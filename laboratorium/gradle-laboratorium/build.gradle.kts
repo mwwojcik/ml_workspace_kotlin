@@ -21,6 +21,6 @@ plugins {
 }
 
 
-tasks.getByName<DefaultTask>("wytrenujModel") {
-   
+tasks.register<WytrenujModelTask>("wytrenujModel") {
+   komunikat="Hello mw test!"
 }

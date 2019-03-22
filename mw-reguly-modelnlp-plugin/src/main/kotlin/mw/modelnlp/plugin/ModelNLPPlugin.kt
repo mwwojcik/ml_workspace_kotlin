@@ -10,6 +10,6 @@ open class GreetingToFileTask : Plugin<Project> {
 
 
     override fun apply(target: Project) {
-        println("Hello world - my first plugin")
+
     }
 }
