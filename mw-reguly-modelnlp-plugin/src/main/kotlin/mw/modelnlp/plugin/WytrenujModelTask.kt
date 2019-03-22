@@ -7,7 +7,7 @@ open class WytrenujModelTask(): DefaultTask() {
 
     var komunikat:String=""
 
-    var plik
+    var plikRegul:
 
     @TaskAction
     fun wyswietl(){

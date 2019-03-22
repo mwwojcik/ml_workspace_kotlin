@@ -2,14 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="08c3c1d3-4bdd-466c-b720-15a8fe9253d9" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/gradle-laboratorium.main.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/gradle-laboratorium.main.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/gradle-laboratorium.test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/gradle-laboratorium.test.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle-laboratorium.iml" beforeDir="false" afterPath="$PROJECT_DIR$/gradle-laboratorium.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../mw-reguly-modelnlp-plugin/src/main/kotlin/mw/modelnlp/plugin/ModelNLPPlugin.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../mw-reguly-modelnlp-plugin/src/main/kotlin/mw/modelnlp/plugin/ModelNLPPlugin.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../mw-reguly-modelnlp-plugin/src/main/kotlin/mw/modelnlp/plugin/WytrenujModelTask.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../mw-reguly-modelnlp-plugin/src/main/kotlin/mw/modelnlp/plugin/WytrenujModelTask.kt" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -129,7 +121,7 @@
     <property name="MemberChooser.sorted" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553251937556" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553254664026" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
@@ -323,6 +315,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26066098" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
