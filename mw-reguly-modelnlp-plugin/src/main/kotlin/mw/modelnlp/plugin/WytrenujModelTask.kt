@@ -1,4 +1,17 @@
 package mw.modelnlp.plugin
 
-class WytrenujModelTask {
+import org.gradle.api.DefaultTask
+import org.gradle.api.tasks.TaskAction
+
+open class WytrenujModelTask(): DefaultTask() {
+
+    var komunikat:String=""
+
+    var plik
+
+    @TaskAction
+    fun wyswietl(){
+        println(komunikat)
+    }
+
 }
