@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="demo.WalidatorRegulBiznesowychTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2019-03-23T16:07:43" hostname="/0:0:0:0:0:0:0:1%lo" time="0.034">
+  <properties/>
+  <testcase name="testujRegule" classname="demo.WalidatorRegulBiznesowychTest" time="0.033"/>
+  <testcase name="testujKaskadoweWywolanie" classname="demo.WalidatorRegulBiznesowychTest" time="0.0"/>
+  <system-out><![CDATA[ U ytkownik musi byc pelnoletni 
+ Rok spoza dozwolonego przedzialu 
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
