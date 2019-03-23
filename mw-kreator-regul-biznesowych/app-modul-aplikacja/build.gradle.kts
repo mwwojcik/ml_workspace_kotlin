@@ -23,7 +23,7 @@ java {
 }
 
 dependencies {
-    implementation("org.springframework.boot:spring-boot-starter:2.1.3.RELEASE")
+    implementation(group="org.springframework.boot",name="spring-boot-starter",version="2.1.3.RELEASE")
     compile(kotlin("stdlib-jdk8"))
     compile(project(":app-modul-model"))
     compile(project(":app-modul-silnik-regul"))

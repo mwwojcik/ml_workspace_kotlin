@@ -18,6 +18,7 @@ java{
 }
 
 dependencies {
+    implementation(group="org.springframework.boot",name="spring-boot-starter",version="2.1.3.RELEASE")
     compile(project(":app-modul-model"))
  
     compile(kotlin("stdlib-jdk8"))

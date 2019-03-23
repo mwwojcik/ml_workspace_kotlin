@@ -1,1 +1,1 @@
-/home/projekty/git-repo/kreator-regul-biznesowych/app-modul-generator-kodu/build/classes/kotlin/main/generator/GeneratorKoduBean.class
+/home/projekty/git-repo/ml_workspace_kotlin/mw-kreator-regul-biznesowych/app-modul-generator-kodu/build/classes/kotlin/main/generator/GeneratorKoduBean.class
