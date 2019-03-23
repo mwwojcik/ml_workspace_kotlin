@@ -3,10 +3,12 @@ package reguly
 import com.google.common.io.ByteProcessor
 
 import model.nlp.Sekwencja
+import org.junit.BeforeClass
 import org.junit.Test
 import java.nio.file.Files
 import java.nio.file.Path
 import java.nio.file.Paths
+import kotlin.test.BeforeTest
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
@@ -14,6 +16,23 @@ class PrzypadekTestowy(val sentencja: String, val spodziewanyOperatorWarunku: St
 
 
 class TesterModeluNLP {
+
+    val egzaminator:EgzaminatorModeluNLP=EgzaminatorModeluNLP()
+
+   /* companion object {
+
+
+
+        @BeforeClass
+
+    }*/
+
+
+    fun inicjalizuj(){
+        egzaminator.plikModelu=Paths.get("src/main/modelnlp/bin/model.bin")
+        egzaminator.inicjujModel()
+    }
+
 
     val przypadki = arrayListOf<PrzypadekTestowy>(
             //operatory podstawowe 'jest równy','jest większy lub równy', 'jest mniejszy lub równy'
@@ -44,20 +63,22 @@ class TesterModeluNLP {
     )
 
 
-    //@Test
+    @Test
     fun testuj() {
 
-        /*for ((index, test) in przypadki.withIndex()) {
+        inicjalizuj()
+
+        for ((index, test) in przypadki.withIndex()) {
 
 
-            var s: Sekwencja = EgzaminatorModeluNLP.rozpoznajSekwencje(test.sentencja)
+            var s: Sekwencja = egzaminator.rozpoznajSekwencje(test.sentencja)
 
             println("\n**** Test " + index + " ****")
 
             s.drukuj()
 
             assertEquals(test.spodziewanyOperatorWarunku, s.dajPierwszyOperatorWarunku())
-        }*/
+        }
 
 
     }

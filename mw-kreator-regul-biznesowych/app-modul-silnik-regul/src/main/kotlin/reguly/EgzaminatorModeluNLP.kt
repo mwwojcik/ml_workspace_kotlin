@@ -3,9 +3,14 @@ package reguly
 import model.nlp.RodzajTokenaEnum
 import model.nlp.RozpoznanyToken
 import model.nlp.Sekwencja
+import opennlp.tools.namefind.NameFinderME
+import opennlp.tools.namefind.TokenNameFinderModel
+import opennlp.tools.util.Span
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Component
+import java.io.FileInputStream
 import java.nio.file.Path
+import javax.annotation.PostConstruct
 
 /*import opennlp.tools.namefind.NameFinderME
 import opennlp.tools.util.Span*/
@@ -15,14 +20,32 @@ open class EgzaminatorModeluNLP {
     @Value("\${modelnlp}")
     lateinit var plikModelu: Path
 
-    /*fun rozpoznajSekwencje(aSekwencja:String):Sekwencja{
+    lateinit var model:TokenNameFinderModel
+
+    @PostConstruct
+    public fun inicjujModel(){
+        model=odczytajModel()
+    }
+
+    private fun odczytajModel(): TokenNameFinderModel {
+        lateinit var modelNLP: TokenNameFinderModel
+        try {
+            FileInputStream(plikModelu.toFile()).use { modelIn ->
+                modelNLP = TokenNameFinderModel(modelIn)
+                println("Trained model read from location=>"+ plikModelu.toAbsolutePath().toString())
+                return modelNLP
+            }
+        } catch (e: Exception) {
+            throw IllegalArgumentException(e)
+        }
+    }
+
+    fun rozpoznajSekwencje(aSekwencja:String):Sekwencja{
 
         val pSekwencja=Sekwencja(aSekwencja,aSekwencja.split(" ".toRegex()).toTypedArray())
 
-        var nameFinderModel=TrenerModeluNLP.podajModel()
-
         // testing the model and printing the types it found in the input sentence
-        val nameFinder = NameFinderME(nameFinderModel)
+        val nameFinder = NameFinderME(model)
 
         //println("Finding types in the test sentence..")
         val names = nameFinder.find(pSekwencja.tokeny)
@@ -33,9 +56,8 @@ open class EgzaminatorModeluNLP {
             }
             pSekwencja.rozpoznaneTokeny.add(RozpoznanyToken(pName,RodzajTokenaEnum.AKCJA.podajEnumPoKodzie(name.type),name.prob))
         }
-
         return pSekwencja
-    }*/
+    }
 
 }
 

@@ -8,7 +8,7 @@ plugins {
     //jest za malo. Dodaje plugin odpowiedzialny za tworzenie aplikacji, opakowanie jej w jara
     //dodaje nowe taski np. bootJar
     id("org.springframework.boot") version "2.1.3.RELEASE"
-    id("org.jetbrains.kotlin.plugin.spring") version "1.3.21"
+    //id("org.jetbrains.kotlin.plugin.spring") version "1.3.21"
     //id("io.spring.dependency-management")
 }
 

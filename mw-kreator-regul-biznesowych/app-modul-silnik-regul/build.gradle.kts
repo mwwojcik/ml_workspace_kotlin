@@ -19,10 +19,11 @@ java{
 
 dependencies {
     implementation(group="org.springframework.boot",name="spring-boot-starter",version="2.1.3.RELEASE")
+    compile("org.apache.opennlp:opennlp-tools:1.9.1")
     compile(project(":app-modul-model"))
  
     compile(kotlin("stdlib-jdk8"))
-    testCompile ("junit:junit:4.12")
+    testCompile ("junit:junit:4.9.0")
     testCompile ("org.jetbrains.kotlin:kotlin-test")
     testCompile ("org.jetbrains.kotlin:kotlin-test-junit")
     antlr("org.antlr:antlr4:4.7.2")

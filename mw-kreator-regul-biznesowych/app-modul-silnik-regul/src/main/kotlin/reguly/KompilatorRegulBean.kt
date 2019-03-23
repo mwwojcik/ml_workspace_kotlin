@@ -20,9 +20,6 @@ import java.nio.file.Paths
 open  class KompilatorRegulBean{
 
     @Autowired
-    lateinit var egzaminator:EgzaminatorModeluNLP
-
-    @Autowired
     lateinit var preprocesor:PreprocesorKoduRegulBean
 
     fun kompilujRegulyBiznesowe():List<RegulaBiznesowa>{
