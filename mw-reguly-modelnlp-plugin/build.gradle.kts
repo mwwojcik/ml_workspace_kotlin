@@ -10,12 +10,14 @@ plugins {
     id("maven-publish")
     `java-gradle-plugin`
 
+
 }
 
 repositories {
     // Use jcenter for resolving your dependencies.
     // You can declare any Maven/Ivy/file repository here.
     jcenter()
+    mavenLocal()
 }
 
 dependencies {
@@ -27,6 +29,9 @@ dependencies {
 
     // Use the Kotlin JUnit integration.
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit")
+
+    compile("mw.reguly.modelnlp:modelnlp:1.0")
+
 }
 
 
@@ -34,7 +39,7 @@ gradlePlugin {
     plugins {
         create("model") {
             id = "mw.modelnlp.plugin"
-            implementationClass = "mw.modelnlp.plugin.GreetingToFileTask"
+            implementationClass = "mw.modelnlp.plugin.ModelNLPPlugin"
             version = "1.0"
         }
     }

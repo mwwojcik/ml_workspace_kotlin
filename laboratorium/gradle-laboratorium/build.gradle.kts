@@ -1,5 +1,7 @@
 import mw.modelnlp.plugin.WytrenujModelTask
 
+
+
 buildscript {
 
 
@@ -21,6 +23,7 @@ plugins {
 }
 
 
+
 tasks.register<WytrenujModelTask>("wytrenujModel") {
-   komunikat="Hello mw test!"
+
 }
