@@ -10,7 +10,7 @@ import java.nio.file.Files
 import java.nio.file.Path
 import java.nio.file.Paths
 
-object TrenerModeluNLP {
+object TrenerModeluRozpoznawaniaEncjiNLP {
 
     public fun generujModel(aPlikRegulUczacychIn:Path,aPlikModeluOut:Path){
         zapiszModel(trenujModel(aPlikRegulUczacychIn),aPlikModeluOut)

@@ -2,7 +2,7 @@ package reguly
 
 import model.nlp.Sekwencja
 import org.junit.Test
-import reguly.nlp.EgzaminatorModeluNLP
+import reguly.nlp.EgzaminatorModeluRozpoznawaniaEncjiNLP
 import java.nio.file.Files
 import java.nio.file.Paths
 import kotlin.test.assertEquals
@@ -12,7 +12,7 @@ class PrzypadekTestowy(val sentencja: String, val spodziewanyOperatorWarunku: St
 
 class TesterModeluNLP {
 
-    val egzaminator: EgzaminatorModeluNLP = EgzaminatorModeluNLP()
+    val egzaminator: EgzaminatorModeluRozpoznawaniaEncjiNLP = EgzaminatorModeluRozpoznawaniaEncjiNLP()
 
    /* companion object {
 
@@ -24,7 +24,7 @@ class TesterModeluNLP {
 
 
     fun inicjalizuj(){
-        egzaminator.plikModelu="modelnlp/model.bin"
+        egzaminator.plikModelu="modelnlp/encje_reguly_model.bin"
         egzaminator.inicjujModel()
     }
 

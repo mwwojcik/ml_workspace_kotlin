@@ -15,7 +15,7 @@ import javax.annotation.PostConstruct
 /*import opennlp.tools.namefind.NameFinderME
 import opennlp.tools.util.Span*/
 @Component
-open class EgzaminatorModeluNLP {
+open class EgzaminatorModeluRozpoznawaniaEncjiNLP {
 
     @Value("\${modelnlp}")
     lateinit var plikModelu: String
