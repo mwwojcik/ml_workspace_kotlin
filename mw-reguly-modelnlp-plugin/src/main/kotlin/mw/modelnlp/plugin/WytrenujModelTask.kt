@@ -20,17 +20,14 @@ open class WytrenujModelTask: DefaultTask() {
 
     @OutputDirectory
     @Optional
-    var katalogModelu:Path = project.file("src/main/modelnlp/bin").toPath()
+    var katalogModeluOUT:Path = project.file("src/main/modelnlp/bin").toPath()
     //project.file("${project.buildDir}/generated-src")
-
-    @OutputFile
-    @Optional
-    var plikModelu:Path = project.file(katalogModelu.resolve("model.bin")).toPath()
 
     @TaskAction
     fun wytrenujModel(){
+        var nazwaPlikuModeluOUT:Path = project.file(katalogModeluOUT.resolve("model.bin")).toPath()
         //println(String(Files.readAllBytes(plikRegul)))
-        TrenerModeluNLP.generujModel(plikRegul,plikModelu)
+        TrenerModeluNLP.generujModel(plikRegul,nazwaPlikuModeluOUT)
     }
 
 }

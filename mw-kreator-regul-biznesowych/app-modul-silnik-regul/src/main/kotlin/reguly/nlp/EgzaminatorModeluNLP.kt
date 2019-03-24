@@ -30,9 +30,10 @@ open class EgzaminatorModeluNLP {
     private fun odczytajModel(): TokenNameFinderModel {
         lateinit var modelNLP: TokenNameFinderModel
         try {
-            FileInputStream(plikModelu.toFile()).use { modelIn ->
+
+            this.javaClass.classLoader.getResourceAsStream(plikModelu.toString()).use { modelIn ->
                 modelNLP = TokenNameFinderModel(modelIn)
-                println("Trained model read from location=>"+ plikModelu.toAbsolutePath().toString())
+                //println("Trained model read from location=>"+ plikModelu.toAbsolutePath().toString())
                 return modelNLP
             }
         } catch (e: Exception) {

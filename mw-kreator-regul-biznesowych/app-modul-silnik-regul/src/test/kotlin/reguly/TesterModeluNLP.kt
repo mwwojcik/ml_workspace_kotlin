@@ -24,7 +24,7 @@ class TesterModeluNLP {
 
 
     fun inicjalizuj(){
-        egzaminator.plikModelu=Paths.get("src/main/modelnlp/bin/model.bin")
+        egzaminator.plikModelu=Paths.get("modelnlp/model.bin")
         egzaminator.inicjujModel()
     }
 

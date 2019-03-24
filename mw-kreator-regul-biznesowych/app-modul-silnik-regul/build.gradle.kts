@@ -1,3 +1,4 @@
+import mw.modelnlp.plugin.WytrenujModelTask
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import org.jetbrains.kotlin.resolve.calls.model.ResolvedCallArgument.DefaultArgument.arguments
 import kotlin.collections.mutableListOf as mutablelist
@@ -42,7 +43,9 @@ val generateGrammarSource by tasks.getting(AntlrTask::class) {
 }
 
 
-
+val wytrenujModel by tasks.getting(WytrenujModelTask::class){
+    katalogModeluOUT= File("src/main/resources/modelnlp").toPath()
+}
 
 
 
