@@ -1,4 +1,5 @@
 package demo
+/*
 
 import org.junit.Test
 
@@ -12,7 +13,7 @@ import sprawdzCzyUrodzonyPrzedRokiem1990iCzyWpierwszymKwartale
 
 class WalidatorRegulBiznesowychTest {
 
-   @Test
+   //@Test
     fun testujRegule() {
       sprawdzWiek(10,2017)
        sprawdzCzyDatawPrzedziale(LocalDate.of(2019,1,1)
@@ -20,11 +21,11 @@ class WalidatorRegulBiznesowychTest {
        ,LocalDate.now())
     }
 
-    @Test
+    //@Test
     fun testujKaskadoweWywolanie(){
 
         sprawdzCzyUrodzonyPrzedRokiem1990iCzyWpierwszymKwartale(1970,2)
     }
 
 
-}
+}*/

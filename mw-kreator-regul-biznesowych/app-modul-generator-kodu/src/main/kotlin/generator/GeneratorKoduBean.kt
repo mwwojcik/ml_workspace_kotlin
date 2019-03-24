@@ -61,7 +61,7 @@ open class GeneratorKoduBean {
             fileBuilder.addFunction(budujMetodeDlaReguly(r))
         }
 
-        fileBuilder.build().writeTo(Paths.get("H:\\mw-git\\kreator-regul-biznesowych\\aplikacja-modul\\src\\main\\kotlin\\app"))
+        fileBuilder.build().writeTo(Paths.get("out"))
 
 
         println("... ok **")
