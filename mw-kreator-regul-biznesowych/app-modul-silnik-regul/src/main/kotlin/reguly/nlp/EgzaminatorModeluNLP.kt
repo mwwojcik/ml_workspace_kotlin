@@ -18,7 +18,7 @@ import opennlp.tools.util.Span*/
 open class EgzaminatorModeluNLP {
 
     @Value("\${modelnlp}")
-    lateinit var plikModelu: Path
+    lateinit var plikModelu: String
 
     lateinit var model:TokenNameFinderModel
 
@@ -31,7 +31,7 @@ open class EgzaminatorModeluNLP {
         lateinit var modelNLP: TokenNameFinderModel
         try {
 
-            this.javaClass.classLoader.getResourceAsStream(plikModelu.toString()).use { modelIn ->
+            this.javaClass.classLoader.getResourceAsStream(plikModelu).use { modelIn ->
                 modelNLP = TokenNameFinderModel(modelIn)
                 //println("Trained model read from location=>"+ plikModelu.toAbsolutePath().toString())
                 return modelNLP
