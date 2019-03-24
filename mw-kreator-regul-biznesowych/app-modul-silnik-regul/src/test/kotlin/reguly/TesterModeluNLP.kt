@@ -1,23 +1,18 @@
 package reguly
 
-import com.google.common.io.ByteProcessor
-
 import model.nlp.Sekwencja
-import org.junit.BeforeClass
 import org.junit.Test
+import reguly.nlp.EgzaminatorModeluNLP
 import java.nio.file.Files
-import java.nio.file.Path
 import java.nio.file.Paths
-import kotlin.test.BeforeTest
 import kotlin.test.assertEquals
-import kotlin.test.assertTrue
 
 class PrzypadekTestowy(val sentencja: String, val spodziewanyOperatorWarunku: String)
 
 
 class TesterModeluNLP {
 
-    val egzaminator:EgzaminatorModeluNLP=EgzaminatorModeluNLP()
+    val egzaminator: EgzaminatorModeluNLP = EgzaminatorModeluNLP()
 
    /* companion object {
 

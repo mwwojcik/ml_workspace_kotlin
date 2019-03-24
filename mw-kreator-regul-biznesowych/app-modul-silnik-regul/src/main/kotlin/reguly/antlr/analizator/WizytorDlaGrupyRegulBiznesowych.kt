@@ -1,11 +1,12 @@
-package analizator
+package reguly.antlr.analizator
 
-import konstruktory.BudowniczyAkcji
-import konstruktory.BudowniczyInstrukcjiWarunkowej
-import konstruktory.BudowniczyRegulyBiznesowej
-import konstruktory.FabrykaAkcji
+import reguly.antlr.konstruktory.BudowniczyAkcji
+import reguly.antlr.konstruktory.BudowniczyInstrukcjiWarunkowej
+import reguly.antlr.konstruktory.BudowniczyRegulyBiznesowej
+import reguly.antlr.konstruktory.FabrykaAkcji
 import model.RegulaBiznesowa
-import reguly.antlr.RegulyBiznesoweParser
+import reguly.antlr.gen.RegulyBiznesoweParser
+import reguly.antlr.analizator.BazowyWizytorRegulBiznesowych
 import java.lang.IllegalArgumentException
 import kotlin.String
 
@@ -38,7 +39,7 @@ class WizytorDlaGrupyRegulBiznesowych : BazowyWizytorRegulBiznesowych<String>() 
         BudowniczyInstrukcjiWarunkowej.inicjuj()
         val pStr = super.visitTresc_reguly(ctx)
         BudowniczyRegulyBiznesowej.dodajKomentarz(pStr)
-        BudowniczyRegulyBiznesowej.dodajInstrukcjeWarunkowa(BudowniczyInstrukcjiWarunkowej.buduj())
+       BudowniczyRegulyBiznesowej.dodajInstrukcjeWarunkowa(BudowniczyInstrukcjiWarunkowej.buduj())
         return pStr
     }
 
@@ -51,7 +52,7 @@ class WizytorDlaGrupyRegulBiznesowych : BazowyWizytorRegulBiznesowych<String>() 
     }
 
     override fun visitWarunek(ctx: RegulyBiznesoweParser.WarunekContext): String {
-        val pStr= super.visitWarunek(ctx)
+        val pStr = super.visitWarunek(ctx)
         return pStr
     }
 
@@ -76,9 +77,9 @@ class WizytorDlaGrupyRegulBiznesowych : BazowyWizytorRegulBiznesowych<String>() 
     override fun visitAkcja(ctx: RegulyBiznesoweParser.AkcjaContext): String {
         val pStr = super.visitAkcja(ctx)
 
-      /*  if(ctx.nazwa_akcji().akcja_wyswietl_komunikat()!=null){
-            BudowniczyAkcji.dodajAkcje(FabrykaAkcji.budujAkcjeWyswietleniaKomunikatu(visitParametr_akcji(ctx.parametr_akcji())))
-        }*/
+        /*  if(ctx.nazwa_akcji().akcja_wyswietl_komunikat()!=null){
+              BudowniczyAkcji.dodajAkcje(FabrykaAkcji.budujAkcjeWyswietleniaKomunikatu(visitParametr_akcji(ctx.parametr_akcji())))
+          }*/
 
         return pStr
     }

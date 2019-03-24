@@ -2,18 +2,14 @@ package app
 
 import generator.GeneratorKoduBean
 import org.springframework.beans.factory.annotation.Value
-import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration
 import org.springframework.boot.autoconfigure.SpringBootApplication
-import org.springframework.context.ConfigurableApplicationContext
-import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.context.annotation.ComponentScan
 import org.springframework.context.annotation.Configuration
-import reguly.KompilatorRegulBean
+import reguly.antlr.KompilatorRegulBean
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.runApplication
 import org.springframework.core.env.Environment
-import org.springframework.core.env.get
 import org.springframework.stereotype.Component
 
 @Component
@@ -28,7 +24,7 @@ open class Testowy{
 
 //@SpringBootApplication(scanBasePackages = arrayOf("reguly","generator"))
 @Configuration
-@ComponentScan(basePackages = arrayOf("app","reguly","generator","analizator","nlp"))
+@ComponentScan(basePackages = arrayOf("app","reguly","generator","reguly/antlr/analizator","nlp"))
 @EnableAutoConfiguration
 @SpringBootApplication
 open class KompilatorRegulMainApp{

@@ -1,4 +1,4 @@
-package analizator
+package reguly.antlr.analizator
 
 import org.springframework.stereotype.Component
 

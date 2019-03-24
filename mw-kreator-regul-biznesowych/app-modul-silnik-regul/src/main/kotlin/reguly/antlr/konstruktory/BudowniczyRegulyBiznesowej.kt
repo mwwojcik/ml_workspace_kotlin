@@ -1,14 +1,14 @@
-package konstruktory
+package reguly.antlr.konstruktory
 
 import model.Parametr
 import model.RegulaBiznesowa
 import model.wyrazenia.WyrazenieWarunkowe
 
-object BudowniczyRegulyBiznesowej:IBudowniczy<RegulaBiznesowa> {
+object BudowniczyRegulyBiznesowej: IBudowniczy<RegulaBiznesowa> {
     private lateinit var regula: RegulaBiznesowa
 
     override fun inicjuj() {
-        regula= RegulaBiznesowa()
+        regula = RegulaBiznesowa()
     }
 
     fun dodajNazwe(aNazwa: String) {

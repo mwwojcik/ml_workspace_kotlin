@@ -1,7 +1,7 @@
-package analizator;
+package reguly.antlr.analizator;
 
 import org.antlr.v4.runtime.tree.*;
-import reguly.antlr.RegulyBiznesoweBaseVisitor;
+import reguly.antlr.gen.RegulyBiznesoweBaseVisitor;
 
 public class BazowyWizytorRegulBiznesowych<T> extends RegulyBiznesoweBaseVisitor<T> implements ParseTreeVisitor<T> {
 

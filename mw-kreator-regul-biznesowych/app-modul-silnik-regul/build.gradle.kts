@@ -37,7 +37,7 @@ val compileKotlin by tasks.getting(KotlinCompile::class){
 
 
 val generateGrammarSource by tasks.getting(AntlrTask::class) {
-    outputDirectory=File("src/main/java/reguly/antlr")
+    outputDirectory=File("src/main/java/reguly/antlr/gen")
     arguments=mutablelist("-visitor")
 }
 

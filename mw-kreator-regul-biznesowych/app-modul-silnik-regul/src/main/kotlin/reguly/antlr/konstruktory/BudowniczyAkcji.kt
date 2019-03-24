@@ -1,4 +1,4 @@
-package konstruktory
+package reguly.antlr.konstruktory
 
 import model.akcje.IAkcja
 
@@ -6,7 +6,7 @@ object BudowniczyAkcji : IBudowniczy<IAkcja> {
     private lateinit var akcja:IAkcja
 
     fun dodajAkcje(aAkcja:IAkcja){
-        akcja=aAkcja
+        akcja =aAkcja
     }
 
     override fun buduj(): IAkcja {

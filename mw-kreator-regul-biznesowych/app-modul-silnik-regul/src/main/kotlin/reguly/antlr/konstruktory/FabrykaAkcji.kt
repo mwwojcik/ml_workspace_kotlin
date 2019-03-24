@@ -1,4 +1,4 @@
-package konstruktory
+package reguly.antlr.konstruktory
 
 import model.akcje.IAkcja
 import model.akcje.WyswietlenieKomunikatuAkcja

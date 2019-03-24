@@ -1,4 +1,4 @@
-package reguly
+package reguly.nlp
 
 import model.nlp.RodzajTokenaEnum
 import model.nlp.RozpoznanyToken

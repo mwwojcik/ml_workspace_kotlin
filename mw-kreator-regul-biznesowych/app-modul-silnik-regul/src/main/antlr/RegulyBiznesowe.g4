@@ -1,11 +1,11 @@
 grammar RegulyBiznesowe;
 
 @parser::header {
-package reguly.antlr;
+package reguly.antlr.gen;
 
 }
 @lexer::header {
-package reguly.antlr;
+package reguly.antlr.gen;
 }
 
 grupa_regul

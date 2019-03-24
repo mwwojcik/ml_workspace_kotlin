@@ -1,6 +1,6 @@
 // Generated from RegulyBiznesowe.g4 by ANTLR 4.7.2
 
-package reguly.antlr;
+package reguly.antlr.gen;
 
 
 
