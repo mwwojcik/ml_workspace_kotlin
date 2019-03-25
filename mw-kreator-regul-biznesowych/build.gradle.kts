@@ -15,13 +15,13 @@ allprojects{
         }
     }
 
-   plugins{
+   /*plugins{
        //wszystkie podprojekty dostają mozliwość includowania starterów
        //i korzystania ze springa
        //jest to gradlowy sposob realizacji mavenowskiego BOM i parent pom
        //to wystarczy o ile nie chcemy tworzyc jara i aplikacji
        id("io.spring.dependency-management") version "1.0.6.RELEASE"
-   }
+   }*/
 
 
 
