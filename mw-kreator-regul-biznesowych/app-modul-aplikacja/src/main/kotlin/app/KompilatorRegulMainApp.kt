@@ -1,5 +1,6 @@
 package app
 
+import db.encje.RegulyDbBean
 import generator.GeneratorKoduBean
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration
@@ -15,7 +16,7 @@ import org.springframework.stereotype.Component
 
 //@SpringBootApplication(scanBasePackages = arrayOf("reguly","generator"))
 @Configuration
-@ComponentScan(basePackages = arrayOf("app","reguly","generator","reguly"))
+@ComponentScan(basePackages = arrayOf("app","reguly","generator","reguly","db","db.encje"))
 @SpringBootApplication
 open class KompilatorRegulMainApp{
 
@@ -44,5 +45,6 @@ fun main(args: Array<String>) {
     val kompilatorBean = ctx.getBean(KompilatorRegulBean::class.java)
     val generatorKoduBean=ctx.getBean(GeneratorKoduBean::class.java)
 
-
+    val regDAO:RegulyDbBean=ctx.getBean(RegulyDbBean::class.java)
+    regDAO.znajdzWszystkieReguly()
 }
