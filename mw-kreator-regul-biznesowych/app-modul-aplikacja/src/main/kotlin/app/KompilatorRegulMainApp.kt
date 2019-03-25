@@ -12,24 +12,13 @@ import org.springframework.boot.runApplication
 import org.springframework.core.env.Environment
 import org.springframework.stereotype.Component
 
-@Component
-open class Testowy{
-
-    @Value("\${hello}")
-    lateinit var hello:String
-
-    @Autowired
-    private var env: Environment? = null
-}
 
 //@SpringBootApplication(scanBasePackages = arrayOf("reguly","generator"))
 @Configuration
-@ComponentScan(basePackages = arrayOf("app","reguly","generator","reguly/antlr/analizator","nlp"))
-@EnableAutoConfiguration
+@ComponentScan(basePackages = arrayOf("app","reguly","generator","reguly"))
 @SpringBootApplication
 open class KompilatorRegulMainApp{
-    @Value("\${hello}")
-    lateinit var hello:String
+
 }
 
 
@@ -55,7 +44,5 @@ fun main(args: Array<String>) {
     val kompilatorBean = ctx.getBean(KompilatorRegulBean::class.java)
     val generatorKoduBean=ctx.getBean(GeneratorKoduBean::class.java)
 
-
-    println(bean.hello)
 
 }
