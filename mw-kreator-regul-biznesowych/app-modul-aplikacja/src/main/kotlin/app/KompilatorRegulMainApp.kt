@@ -1,23 +1,18 @@
 package app
 
-import db.encje.RegulyDbBean
+import db.RegulyDbBean
 import generator.GeneratorKoduBean
-import org.springframework.beans.factory.annotation.Value
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.context.annotation.ComponentScan
 import org.springframework.context.annotation.Configuration
 import reguly.antlr.KompilatorRegulBean
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.runApplication
-import org.springframework.core.env.Environment
-import org.springframework.stereotype.Component
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories
 
 
-//@SpringBootApplication(scanBasePackages = arrayOf("reguly","generator"))
-@Configuration
-@ComponentScan(basePackages = arrayOf("app","reguly","generator","reguly","db","db.encje"))
 @SpringBootApplication
+@EnableJpaRepositories("db","db.repo","db.encje")
+@ComponentScan(basePackages = arrayOf("app","reguly","generator","reguly","db","db.repo","db.encje"))
 open class KompilatorRegulMainApp{
 
 }
@@ -40,11 +35,11 @@ fun main(args: Array<String>) {
 */
     val ctx=runApplication<KompilatorRegulMainApp>(*args)
 
-    val bean=ctx.getBean(KompilatorRegulMainApp::class.java)
+/*    val bean=ctx.getBean(KompilatorRegulMainApp::class.java)
 
     val kompilatorBean = ctx.getBean(KompilatorRegulBean::class.java)
-    val generatorKoduBean=ctx.getBean(GeneratorKoduBean::class.java)
+    val generatorKoduBean=ctx.getBean(GeneratorKoduBean::class.java)*/
 
-    val regDAO:RegulyDbBean=ctx.getBean(RegulyDbBean::class.java)
+    val regDAO: RegulyDbBean =ctx.getBean(RegulyDbBean::class.java)
     regDAO.znajdzWszystkieReguly()
 }
