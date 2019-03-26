@@ -57,7 +57,7 @@ class TesterModeluNLP {
             , PrzypadekTestowy("Jeśli miesiąc jest nie mniejszy niż 6 to sprawdzaj regułę","jest nie mniejszy niż")
             , PrzypadekTestowy("Jeśli data jest różna od '01-01-200' oraz rok jest większy niż 2000 lub dzień jest różny od 12 to wyświetl komunikat <KOMUNIKAT_1> .","jest różna od")
             , PrzypadekTestowy("Gdy suma jest większa od 100 i różnica jest mniejsza od 0 lub różnica jest równa 1 wtedy wyświetl komunikat <KOMUNIKAT_2> .","jest większa od")
-            , PrzypadekTestowy("Jeśli data_utworzenia jest większa od '01-01-2010' oraz data_utworzenia jest mniejsza niż data_kwalifikacji i data_kwalifikacji jest równa data_weryfikacji to zgłoś błąd walidacji <KOMUNIKAT_WALIDACJI_1> .","jest większa od")
+            , PrzypadekTestowy("Jeśli data_utworzenia jest większa od '01-01-2010' oraz data_utworzenia nie jest mniejsza niż data_kwalifikacji i data_kwalifikacji jest różna od data_weryfikacji to zgłoś błąd walidacji <KOMUNIKAT_WALIDACJI_1> .","jest większa od")
     )
 
 

@@ -10,17 +10,17 @@ import reguly.antlr.KompilatorRegulBean
 import org.springframework.boot.runApplication
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories
 
-
+/*
 @SpringBootApplication
 @ComponentScan(basePackages = arrayOf("app","reguly","generator","reguly","db"))
 @EnableJpaRepositories(basePackages = arrayOf("db"))
-@EntityScan( basePackages = arrayOf("db","encje","db.encje"))
+@EntityScan( basePackages = arrayOf("db","encje","db.encje"))*/
 open class KompilatorRegulMainApp{
 
 }
 
 
-fun main(args: Array<String>) {
+//fun main(args: Array<String>) {
 
 
     /*val ctx = AnnotationConfigApplicationContext()
@@ -35,13 +35,13 @@ fun main(args: Array<String>) {
 
     println(testowy.hello)
 */
-    val ctx=runApplication<KompilatorRegulMainApp>(*args)
+    //val ctx=runApplication<KompilatorRegulMainApp>(*args)
 
 /*    val bean=ctx.getBean(KompilatorRegulMainApp::class.java)
 
     val kompilatorBean = ctx.getBean(KompilatorRegulBean::class.java)
     val generatorKoduBean=ctx.getBean(GeneratorKoduBean::class.java)*/
 
-    val regDAO: RegulyDbBean =ctx.getBean(RegulyDbBean::class.java)
-    regDAO.znajdzWszystkieReguly()
-}
+    //val regDAO: RegulyDbBean =ctx.getBean(RegulyDbBean::class.java)
+    //regDAO.znajdzWszystkieReguly()
+//}

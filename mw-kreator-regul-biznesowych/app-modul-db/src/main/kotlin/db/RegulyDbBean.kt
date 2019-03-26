@@ -12,10 +12,11 @@ class RegulyDbBean {
     lateinit var regulaRepozytorium: IRegulaRepozytorium
 
     fun znajdzWszystkieReguly(){
-       for (elem in regulaRepozytorium.findAll()){
+        println("+++++++++")
+      /* for (elem in regulaRepozytorium.findAll()){
            println(elem.parametry)
            var test= readLine()
            println(test)
-       }
+       }*/
     }
 }
