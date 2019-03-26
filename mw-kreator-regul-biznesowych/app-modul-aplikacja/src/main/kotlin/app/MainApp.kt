@@ -1,4 +1,4 @@
-package app.jfx
+package app
 
 import javafx.application.Application
 import javafx.stage.Stage
@@ -19,7 +19,7 @@ import javafx.scene.Scene
 
 
 @SpringBootApplication
-@ComponentScan(basePackages = arrayOf("app","reguly","generator","reguly","db"))
+@ComponentScan(basePackages = arrayOf("app","reguly","generator","reguly","db","uslugi"))
 @EnableJpaRepositories(basePackages = arrayOf("db"))
 @EntityScan( basePackages = arrayOf("db","encje","db.encje"))
 open class MyApp: Application() {
@@ -64,3 +64,7 @@ open class MyApp: Application() {
 fun main(args: Array<String>) {
     Application.launch(MyApp::class.java, *args)
 }
+
+/*
+https://better-coding.com/javafx-spring-boot-gradle-trzech-bohaterow-na-jednej-scenie/
+* */

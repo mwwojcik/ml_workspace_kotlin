@@ -25,10 +25,11 @@ java {
 dependencies {
     implementation(group="org.springframework.boot",name="spring-boot-starter",version="2.1.3.RELEASE")
     compile(kotlin("stdlib-jdk8"))
-    compile(project(":app-modul-model"))
+    compile(project(":app-modul-uslugi"))
+    /*compile(project(":app-modul-model"))
     compile(project(":app-modul-db"))
     compile(project(":app-modul-silnik-regul"))
-    compile(project(":app-modul-generator-kodu"))
+    compile(project(":app-modul-generator-kodu"))*/
     testCompile("junit:junit:4.12")
     testCompile("org.jetbrains.kotlin:kotlin-test")
     testCompile("org.jetbrains.kotlin:kotlin-test-junit")
