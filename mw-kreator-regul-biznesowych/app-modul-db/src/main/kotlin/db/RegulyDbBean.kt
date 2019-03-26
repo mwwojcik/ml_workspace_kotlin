@@ -14,6 +14,8 @@ class RegulyDbBean {
     fun znajdzWszystkieReguly(){
        for (elem in regulaRepozytorium.findAll()){
            println(elem.parametry)
+           var test= readLine()
+           println(test)
        }
     }
 }
