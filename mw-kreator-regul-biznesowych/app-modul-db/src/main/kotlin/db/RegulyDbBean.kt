@@ -12,7 +12,8 @@ class RegulyDbBean {
     lateinit var regulaRepozytorium: IRegulaRepozytorium
 
     fun znajdzWszystkieReguly(){
-        var reg=regulaRepozytorium.findAll()
-        println(reg)
+       for (elem in regulaRepozytorium.findAll()){
+           println(elem.parametry)
+       }
     }
 }

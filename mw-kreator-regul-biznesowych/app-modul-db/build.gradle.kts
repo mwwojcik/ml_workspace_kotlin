@@ -4,7 +4,7 @@ import kotlin.collections.mutableListOf as mutablelist
 
 plugins{
     kotlin("jvm") version  "1.3.10"
-  
+    id ("org.jetbrains.kotlin.plugin.jpa") version "1.3.21"
 }
 
 
