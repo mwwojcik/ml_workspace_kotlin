@@ -8,11 +8,11 @@ import org.springframework.stereotype.Service
 @Service
 class RegulyDbBean {
 
- /*   @Autowired
-    lateinit var regulaRepozytorium: IRegulaRepozytorium*/
+    @Autowired
+    lateinit var regulaRepozytorium: IRegulaRepozytorium
 
     fun znajdzWszystkieReguly(){
-        /*var reg=regulaRepozytorium.findAll()
-        println(reg)*/
+        var reg=regulaRepozytorium.findAll()
+        println(reg)
     }
 }

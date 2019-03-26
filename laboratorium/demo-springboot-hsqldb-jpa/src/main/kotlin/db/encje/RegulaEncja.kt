@@ -3,7 +3,7 @@ package db.encje
 import javax.persistence.*
 
 @Entity
-@Table(name = "")
+@Table(name = "reguly")
 data class RegulaEncja(
         @Id @GeneratedValue
         val id: Int = 0,
