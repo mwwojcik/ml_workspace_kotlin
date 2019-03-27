@@ -2,6 +2,8 @@ package model.nlp
 
 import java.lang.StringBuilder
 import dnl.utils.text.table.TextTable
+import java.io.ByteArrayOutputStream
+import java.io.PrintStream
 import java.lang.IllegalArgumentException
 
 
@@ -23,6 +25,20 @@ class Sekwencja(val wartosc:String, val tokeny:Array<String>,
         val tt = TextTable(col, data)
 
         tt.printTable()
+    }
+
+
+    fun drukujDoStr():String{
+
+        val pStr=StringBuilder("\n\n")
+
+
+        for(pTok in rozpoznaneTokeny){
+            pStr.append(pTok.wartosc+" ==>> "+pTok.typ.toString())
+            pStr.append("\n")
+        }
+
+        return pStr.toString()
     }
 
     fun dajPierwszyOperatorWarunku():String{

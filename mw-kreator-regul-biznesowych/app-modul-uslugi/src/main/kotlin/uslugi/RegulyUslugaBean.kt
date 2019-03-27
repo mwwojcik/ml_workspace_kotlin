@@ -2,6 +2,9 @@ package uslugi
 
 import db.RegulyDbBean
 import db.repo.IRegulaRepozytorium
+import model.encje.ParametrRegulyEncja
+import model.encje.RegulaEncja
+import model.nlp.RodzajTokenaEnum
 import model.nlp.Sekwencja
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
@@ -16,25 +19,44 @@ open class RegulyUslugaBean {
     @Autowired
     lateinit var regulyDbBean: RegulyDbBean
 
-    var listaRegul= mutableListOf<String>()
 
     @Autowired
     lateinit var egzaminator: EgzaminatorModeluRozpoznawaniaEncjiNLP
 
+    lateinit var listaRegulEncji: MutableList<RegulaEncja>
+
     @PostConstruct
-    fun inicjalizuj() {
+    fun inicjalizuj(): Unit {
         val plistaRegul = String(this::class.java.classLoader.getResourceAsStream("reguly.reg").readBytes()).split("\n")
-        listaRegul.addAll(plistaRegul)
+
+        var i: Int = 0;
+
+        listaRegulEncji = plistaRegul.map({ aRegStr: String ->
+            val pRegList = aRegStr.split(":")
+            RegulaEncja(i++, pRegList[0], pRegList[1])
+        }).toMutableList()
+
+        listaRegulEncji.forEach {
+            it.sekwencja = egzaminator.rozpoznajSekwencje(it.tresc)
+            it.parametry = podajListeParametrow(it.sekwencja as Sekwencja)
+        }
     }
 
-    fun podajReguly():List<Sekwencja> {
+    fun podajListeParametrow(aSekwencja: Sekwencja): MutableList<ParametrRegulyEncja> {
+        var i: Int = 0
+        var unikalnySet: MutableSet<String> = mutableSetOf()
+        return aSekwencja.rozpoznaneTokeny
+                .filter { (it.typ == RodzajTokenaEnum.LEWOSTRONNY_OPERAND_WARUNKU || it.typ == RodzajTokenaEnum.PRAWOSTRONNY_OPERAND_WARUNKU) && !unikalnySet.contains(it.wartosc) }
+                .map {
+                    unikalnySet.add(it.wartosc)
+                    ParametrRegulyEncja(i++, it.wartosc)
+                }
+                .toMutableList()
+    }
 
-        var listaSekwencji:MutableList<Sekwencja> =listaRegul.map{egzaminator.rozpoznajSekwencje(it)}.toMutableList()
-        return listaSekwencji
-        /*for (s:String in listaRegul){
-            egzaminator.rozpoznajSekwencje(s).drukuj()
-        }
+    fun podajReguly(): List<RegulaEncja> {
 
-        regulyDbBean.znajdzWszystkieReguly()*/
+        listaRegulEncji.forEach { it.sekwencja!!.drukuj() }
+        return listaRegulEncji
     }
 }

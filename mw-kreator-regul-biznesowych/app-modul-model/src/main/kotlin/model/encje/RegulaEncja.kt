@@ -1,5 +1,6 @@
 package model.encje
 
+import model.nlp.Sekwencja
 import javax.persistence.*
 
 @Entity
@@ -7,8 +8,17 @@ import javax.persistence.*
 data class RegulaEncja(
         @Id @GeneratedValue
         val id: Int = 0,
-        val nazwa: String
+        val nazwa: String,
+        @Transient
+        val tresc:String
 ){
     @OneToMany(mappedBy = "regula",fetch = FetchType.EAGER)
-    val parametry: MutableSet<ParametrRegulyEncja> = HashSet()
+    var parametry: MutableList<ParametrRegulyEncja> = mutableListOf()
+
+    @Transient
+    var sekwencja: Sekwencja?=null
+
+
+    @Transient
+    var kod:String?=null
 }

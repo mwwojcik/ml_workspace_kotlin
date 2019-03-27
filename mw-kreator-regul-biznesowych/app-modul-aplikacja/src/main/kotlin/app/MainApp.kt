@@ -34,6 +34,7 @@ open class MyApp: Application() {
 
         primaryStage!!.title="Hello World"
         val scene = Scene(rootNode, 800.0, 600.0)
+        scene.stylesheets.add(javaClass.getResource("/css/main.css").toExternalForm())
         primaryStage.setScene(scene)
         primaryStage.show()
     }
