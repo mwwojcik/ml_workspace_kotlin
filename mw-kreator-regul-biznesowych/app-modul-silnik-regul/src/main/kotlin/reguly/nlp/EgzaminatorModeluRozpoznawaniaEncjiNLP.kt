@@ -41,7 +41,7 @@ open class EgzaminatorModeluRozpoznawaniaEncjiNLP {
         }
     }
 
-    fun rozpoznajSekwencje(aSekwencja:String):Sekwencja{
+    public fun rozpoznajSekwencje(aSekwencja:String):Sekwencja{
 
         val pSekwencja=Sekwencja(aSekwencja,aSekwencja.split(" ".toRegex()).toTypedArray())
 

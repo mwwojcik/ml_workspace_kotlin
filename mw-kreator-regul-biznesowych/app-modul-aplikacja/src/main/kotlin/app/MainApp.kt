@@ -21,7 +21,7 @@ import javafx.scene.Scene
 @SpringBootApplication
 @ComponentScan(basePackages = arrayOf("app","reguly","generator","reguly","db","uslugi"))
 @EnableJpaRepositories(basePackages = arrayOf("db"))
-@EntityScan( basePackages = arrayOf("db","encje","db.encje"))
+@EntityScan( basePackages = arrayOf("model","encje","model.encje"))
 open class MyApp: Application() {
 
     lateinit var springContext: ConfigurableApplicationContext
@@ -29,7 +29,7 @@ open class MyApp: Application() {
     lateinit var fxmlLoader: FXMLLoader
 
     override fun start(primaryStage: Stage?) {
-        fxmlLoader.location = javaClass.getResource("/fxml/sample.fxml")
+        fxmlLoader.location = javaClass.getResource("/fxml/main.fxml")
         rootNode = fxmlLoader.load()
 
         primaryStage!!.title="Hello World"

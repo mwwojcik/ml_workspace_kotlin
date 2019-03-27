@@ -1,4 +1,4 @@
-package db.encje
+package model.encje
 
 import javax.persistence.*
 
@@ -14,7 +14,7 @@ data class ParametrRegulyEncja(
     @ManyToOne
     lateinit var regula: RegulaEncja
 
-    constructor(aNazwa: String, regula:RegulaEncja) : this(nazwa=aNazwa) {
+    constructor(aNazwa: String, regula: RegulaEncja) : this(nazwa=aNazwa) {
         this.regula=regula
     }
 }

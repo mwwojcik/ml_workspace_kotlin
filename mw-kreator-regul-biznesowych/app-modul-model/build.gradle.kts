@@ -4,7 +4,8 @@ import kotlin.collections.mutableListOf as mutablelist
 
 plugins{
     kotlin("jvm") version  "1.3.10"
-
+    id ("org.jetbrains.kotlin.plugin.jpa") version "1.3.21"
+    java
 }
 
 
@@ -18,7 +19,8 @@ dependencies {
     testCompile ("junit:junit:4.12")
     testCompile ("org.jetbrains.kotlin:kotlin-test")
     testCompile ("org.jetbrains.kotlin:kotlin-test-junit")
-
+    implementation(group="org.springframework.boot",name="spring-boot-starter",version="2.1.3.RELEASE")
+    implementation(group="org.springframework.boot",name="spring-boot-starter-data-jpa",version="2.1.3.RELEASE")
   
 }
 

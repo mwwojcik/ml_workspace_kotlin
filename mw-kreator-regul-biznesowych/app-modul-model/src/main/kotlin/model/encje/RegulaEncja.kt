@@ -1,4 +1,4 @@
-package db.encje
+package model.encje
 
 import javax.persistence.*
 
