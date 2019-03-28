@@ -1,17 +1,9 @@
 package app.jfx
 
-import db.RegulyDbBean
-import javafx.collections.FXCollections
-import javafx.collections.ObservableList
 import javafx.fxml.FXML
-import javafx.scene.control.*
-import javafx.scene.control.cell.PropertyValueFactory
 import javafx.scene.layout.HBox
 import javafx.scene.layout.VBox
-import javafx.scene.web.WebView
-import model.encje.ParametrRegulyEncja
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Controller
 import uslugi.RegulyUslugaBean
 
@@ -34,11 +26,22 @@ class MainController {
 
             //kontenerek na regule
             var pKontener: VBox = VBox()
+            pKontener.spacing=5.0
 
             panelRegul.children.add(pKontener)
             pKontener.prefWidth=800.0
 
-            val pKodReguly=Label(reg.nazwa)
+            val wartoscNazwaParametry= mutableListOf<WrapperParametruNazwaWartosc>(WrapperParametruNazwaWartosc("Kod",reg.nazwa), WrapperParametruNazwaWartosc("Treść",reg.tresc))
+            wartoscNazwaParametry.add(WrapperParametruNazwaWartosc("",""))
+            for(sek in reg.sekwencja!!.rozpoznaneTokeny){
+                wartoscNazwaParametry.add(WrapperParametruNazwaWartosc(sek.wartosc,sek.typ.toString()))
+            }
+
+            pKontener.children.add(zbudujTabelkeProstychWlasnosciKluczWartosc(wartoscNazwaParametry,szerokoscKolumnyN = 80.0,szerokoscKolumnyW = 520.0,wysokoscTabeli = 200.0))
+
+
+
+          /*  val pKodReguly=Label(reg.nazwa)
             pKodReguly.style="-fx-font-weight: bold;-fx-font-size:14px;"
             pKontener.children.add(pKodReguly)
 
@@ -49,52 +52,17 @@ class MainController {
             ta.prefHeight=150.0
             ta.prefWidth=pKontener.prefWidth
 
-            pKontener.children.add(ta)
-
-            pKontener.children.add(zbudujTabelkeParametrowWejsciowych(reg.parametry))
+            pKontener.children.add(ta)*/
+            var pKontenerPionowy:HBox=HBox()
+            pKontenerPionowy.prefWidth(800.0)
+            pKontenerPionowy.children.add(zbudujTabelkeParametrowWejsciowych(reg.parametry,wysokoscTabeli = 150.0))
+            pKontenerPionowy.children.add(zbudujTabelkeParametrowWejsciowych(reg.parametry,wysokoscTabeli = 150.0))
+            pKontener.children.add(pKontenerPionowy)
 
         }
     }
 
-    fun zbudujTabelkeParametrowWejsciowych(parametry: MutableList<ParametrRegulyEncja>): TableView<TableBean> {
-        var kolumnaTyp: TableColumn<TableBean, ComboBox<String>> = TableColumn("Parametr")
-        var kolumnaNazwa: TableColumn<TableBean, String> = TableColumn("Typ")
-        var kolumnaWartoscDomyslna: TableColumn<TableBean, String> = TableColumn("Wartość domyślna")
 
-        kolumnaTyp.prefWidth = 150.0
-        kolumnaNazwa.prefWidth = 150.0
-        kolumnaWartoscDomyslna.prefWidth = 90.0
-
-        var list: ObservableList<TableBean> = FXCollections.observableArrayList()
-
-        for (param in parametry) {
-            list.add(TableBean(param.nazwa, zbudujCombo()))
-        }
-
-        var tableView: TableView<TableBean> = TableView()
-        tableView.items = list
-
-
-        kolumnaNazwa.cellValueFactory = PropertyValueFactory<TableBean, String>("nazwa")
-        kolumnaTyp.cellValueFactory = PropertyValueFactory<TableBean, ComboBox<String>>("typ")
-        kolumnaWartoscDomyslna.cellValueFactory = PropertyValueFactory<TableBean, String>("wartoscDomyslna")
-        tableView.columns.add(kolumnaNazwa)
-        tableView.columns.add(kolumnaTyp)
-        tableView.columns.add(kolumnaWartoscDomyslna)
-
-        tableView.prefWidth = 600.0
-        tableView.prefHeight = 150.0
-        return tableView
-    }
-
-    fun zbudujCombo(): ComboBox<String> {
-        var typCombo: ComboBox<String> = ComboBox<String>()
-        typCombo.items.add("Liczba")
-        typCombo.items.add("Napis")
-        typCombo.items.add("Data")
-        typCombo.prefHeight = 9.0
-        return typCombo;
-    }
 
 
     @FXML
@@ -122,6 +90,3 @@ class MainController {
     }
 }
 
-open class TableBean(val nazwa: String, val typ: ComboBox<String>) {
-    var wartoscDomyslna: String? = null;
-}
