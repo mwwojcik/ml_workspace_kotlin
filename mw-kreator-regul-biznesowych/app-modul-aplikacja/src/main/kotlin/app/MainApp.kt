@@ -33,9 +33,12 @@ open class MyApp: Application() {
         rootNode = fxmlLoader.load()
 
         primaryStage!!.title="Hello World"
-        val scene = Scene(rootNode, 800.0, 600.0)
+        val scene = Scene(rootNode, 750.0, 800.0)
         scene.stylesheets.add(javaClass.getResource("/css/main.css").toExternalForm())
+        primaryStage.isAlwaysOnTop=false
+        primaryStage.isResizable=false
         primaryStage.setScene(scene)
+
         primaryStage.show()
     }
 

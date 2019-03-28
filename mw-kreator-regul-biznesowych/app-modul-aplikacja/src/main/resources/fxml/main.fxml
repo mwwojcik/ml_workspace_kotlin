@@ -19,12 +19,12 @@
         <RowConstraints percentHeight="10" vgrow="SOMETIMES" />
     </rowConstraints>
     <children>
-        <HBox fx:id="przyciskiKontener" prefHeight="150.0" prefWidth="900.0" styleClass="przyciski-narzedziowe-belka">
+        <HBox fx:id="przyciskiKontener" prefHeight="20.0" prefWidth="900.0" styleClass="przyciski-narzedziowe-belka">
             <children>
-                <Button mnemonicParsing="false" onMouseClicked="#onWczytajRegulyKLIK" styleClass="przyciski-narzedziowe" text="Wczytaj" />
-                <Button mnemonicParsing="false" onMouseClicked="#onWalidujRegulyKLIK" styleClass="przyciski-narzedziowe" text="Waliduj" />
-                <Button mnemonicParsing="false" onMouseClicked="#onZapiszRegulyKLIK" styleClass="przyciski-narzedziowe" text="Zapisz" />
-                <Button mnemonicParsing="false" onMouseClicked="#onGenerujKodKLIK" styleClass="przyciski-narzedziowe" text="Generuj" />
+                <Button mnemonicParsing="false" onMouseClicked="#onWczytajRegulyKLIK" styleClass="przycisk-menu" text="Wczytaj" />
+                <Button mnemonicParsing="false" onMouseClicked="#onWalidujRegulyKLIK" styleClass="przycisk-menu" text="Waliduj" />
+                <Button mnemonicParsing="false" onMouseClicked="#onZapiszRegulyKLIK" styleClass="przycisk-menu" text="Zapisz" />
+                <Button mnemonicParsing="false" onMouseClicked="#onGenerujKodKLIK" styleClass="przycisk-menu" text="Generuj" />
             </children>
         </HBox>
         <ScrollPane prefHeight="Infinity" GridPane.rowIndex="1">

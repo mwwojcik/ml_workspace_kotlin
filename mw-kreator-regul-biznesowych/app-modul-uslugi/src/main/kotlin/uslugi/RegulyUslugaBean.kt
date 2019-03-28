@@ -56,7 +56,7 @@ open class RegulyUslugaBean {
 
     fun podajReguly(): List<RegulaEncja> {
 
-        listaRegulEncji.forEach { it.sekwencja!!.drukuj() }
+        //listaRegulEncji.forEach { it.sekwencja!!.drukuj() }
         return listaRegulEncji
     }
 }

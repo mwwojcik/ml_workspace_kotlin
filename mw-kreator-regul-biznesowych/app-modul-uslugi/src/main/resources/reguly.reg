@@ -1,23 +1,18 @@
-RS-001:Jeśli data jest równa '01-01-2000' wtedy wyświetl komunikat .
-RS-002:Jeśli data jest większa lub równa '01-01-2000' wtedy wyświetl komunikat .
-RS-003:Jeśli nachylenie jest mniejsze lub równe 30 wtedy wyświetl komunikat .
-RS-004:Jeśli data nie jest równa '01-01-2000' wtedy wyświetl komunikat ."
-RS-005:Jeśli data nie jest większa lub równa '01-01-2000' wtedy wyświetl komunikat .
-RS-006:Jeśli nachylenie nie jest mniejsze lub równe 30 wtedy wyświetl komunikat .
-RS-007:Jeśli dochód jest większy niż 100 wtedy wyświetl komunikat .
-RS-008:Jeżeli suma jest mniejsza od 50 to wyświetl komunikat .
-RS-009:Jeżeli suma jest różna od 50 to wyświetl komunikat .
-RS-010:Jeśli dochód jest nie większy niż 100 wtedy wyświetl komunikat .
-RS-011:Jeżeli suma nie jest mniejsza od 50 to wyświetl komunikat .
-RS-012:Jeżeli suma nie jest różna od 50 to wyświetl komunikat .
-RS-013:Jeśli rok jest równy 2000 to wyświetl komunikat .
-RS-014:Jeśli rok nie jest mniejszy niż 2000 wtedy wyświetl komunikat .
-RS-015:Jeśli miesiąc jest nie mniejszy niż styczeń to wyświetl komunikat .
-RS-016:Jeśli data jest nie większa niż '01-01-2019' to zgłoś błąd .
-RS-015:Jeśli dzień jest równy wczoraj to zgłoś błąd .
-RS-018:Jeśli miesiąc jest nie mniejszy niż 6 to sprawdzaj regułę .
-RS-019:Jeśli data jest różna od '01-01-200' oraz rok jest większy niż 2000 lub dzień jest różny od 12 to wyświetl komunikat <KOMUNIKAT_1> .
-RS-020:Gdy suma jest większa od 100 i różnica jest mniejsza od 0 lub różnica jest równa 1 wtedy wyświetl komunikat <KOMUNIKAT_2> .
-RS-021:Jeśli data_utworzenia jest większa od '01-01-2010' oraz data_utworzenia nie jest mniejsza niż data_kwalifikacji i data_kwalifikacji jest różna od data_weryfikacji to zgłoś błąd walidacji <KOMUNIKAT_WALIDACJI_1> .
-RS-022:Jeśli data_utworzenia jest większa od '01-01-2010' oraz data_utworzenia nie jest mniejsza niż data_kwalifikacji i data_kwalifikacji jest różna od data_weryfikacji to zgłoś błąd walidacji <KOMUNIKAT_WALIDACJI_1> w przeciwnym razie sprawdź regułę RS-001 .
-RS-023:Jeśli nachylenie nie jest mniejsze lub równe 30 wtedy wyświetl komunikat <KOMUNIKAT_0> w przeciwnym razie zgłoś błąd walidacji <KOMUNIKAT_1> .
+RS-001:Jeśli data jest równa '01-01-2000' wtedy wyświetl komunikat <KOMUNIKAT1> .
+RS-002:Jeśli data jest większa lub równa '01-01-2000' wtedy wyświetl komunikat <KOMUNIKAT1> .
+RS-003:Jeśli nachylenie jest mniejsze lub równe 30 wtedy wyświetl komunikat <KOMUNIKAT1> .
+RS-004:Jeśli data nie jest równa '01-01-2000' wtedy wyświetl komunikat <KOMUNIKAT1> .
+RS-005:Jeśli data nie jest większa lub równa '01-01-2000' wtedy wyświetl komunikat <KOMUNIKAT1> .
+RS-006:Jeśli nachylenie nie jest mniejsze lub równe 30 wtedy wyświetl komunikat <KOMUNIKAT1> .
+RS-007:Jeśli dochód jest większy niż 100 wtedy wyświetl komunikat <KOMUNIKAT1> .
+RS-008:Jeżeli suma jest mniejsza od 50 to wyświetl komunikat <KOMUNIKAT1> .
+RS-009:Jeżeli suma jest różna od 50 to wyświetl komunikat <KOMUNIKAT1> .
+RS-010:Jeśli dochód jest nie większy niż 100 wtedy wyświetl komunikat <KOMUNIKAT1> .
+RS-011:Jeżeli suma nie jest mniejsza od 50 to wyświetl komunikat <KOMUNIKAT1> .
+RS-012:Jeżeli suma nie jest różna od 50 to wyświetl komunikat <KOMUNIKAT1> .
+RS-013:Jeśli rok jest równy 2000 to wyświetl komunikat <KOMUNIKAT1> .
+RS-014:Jeśli rok nie jest mniejszy niż 2000 wtedy wyświetl komunikat <KOMUNIKAT1> .
+RS-015:Jeśli miesiąc jest nie mniejszy niż styczeń to wyświetl komunikat <KOMUNIKAT1> .
+RS-016:Jeśli data jest nie większa niż '01-01-2019' to zgłoś błąd <KOMUNIKAT1> .
+RS-015:Jeśli dzień jest równy wczoraj to zgłoś błąd <KOMUNIKAT1> .
+RS-018:Jeśli miesiąc jest nie mniejszy niż 6 to sprawdzaj regułę <KOMUNIKAT1> .

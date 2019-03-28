@@ -9,18 +9,20 @@
 
 
 
-.przyciski-narzedziowe {
+.przycisk-menu {
 	-fx-font: 11px "System";
 	-fx-content-display: middle;
-	-fx-padding: 16px 16px;
-	-fx-margin-right: 0px; float: left;
-	-fx-margin-bottom:20px;
-	-fx-margin-top:20px;
+	-fx-padding: 15px 15px;
+	-fx-margin: 10px;
+	 float: left;
 }
 
 .przyciski-narzedziowe-belka {
-	-fx-padding-top: 15px;
-	-fx-padding-bottom: 15px;
-	-fx-padding-left:0px;
+	-fx-padding: 15px;
+}
 
+.noheader .column-header-background {
+    -fx-max-height: 0;
+    -fx-pref-height: 0;
+    -fx-min-height: 0;
 }

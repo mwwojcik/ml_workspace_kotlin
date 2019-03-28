@@ -1,5 +1,6 @@
 package app.jfx
 
+import javafx.beans.binding.Bindings
 import javafx.collections.FXCollections
 import javafx.collections.ObservableList
 import javafx.scene.control.ComboBox
@@ -8,43 +9,13 @@ import javafx.scene.control.TableView
 import javafx.scene.control.cell.PropertyValueFactory
 import model.encje.ParametrRegulyEncja
 
+
 val SZEROKOSC_TABELI = 600.0
 val SZEROKOSC_KOLUMNA_POJEDYNCZA = SZEROKOSC_TABELI
 val SZEROKOSC_DWIE_KOLUMNY = SZEROKOSC_TABELI / 2
 val SZEROKOSC_TRZY_KOLUMNY = SZEROKOSC_TABELI / 3
 val WYSOKOSC_TABELI = 100.0
 
-fun zbudujTabelkeTylkoWartosc(parametry: List<String>,
-                              szerokoscKolumny: Double = SZEROKOSC_KOLUMNA_POJEDYNCZA,
-                              szerokoscTabeli: Double = SZEROKOSC_TABELI,
-                              wysokoscTabeli: Double = WYSOKOSC_TABELI): TableView<ProstaTabelaTylkoWartosc> {
-    var kolumnaWartosc: TableColumn<ProstaTabelaTylkoWartosc, String> = TableColumn("wartosc")
-
-
-    kolumnaWartosc.prefWidth = szerokoscKolumny
-
-
-    var list: ObservableList<ProstaTabelaTylkoWartosc> = FXCollections.observableArrayList()
-
-    for (param in parametry) {
-        list.add(ProstaTabelaTylkoWartosc(param))
-    }
-
-    var tableView: TableView<ProstaTabelaTylkoWartosc> = TableView()
-    tableView.items = list
-
-
-
-    kolumnaWartosc.cellValueFactory = PropertyValueFactory<ProstaTabelaTylkoWartosc, String>("wartosc")
-
-
-    tableView.columns.add(kolumnaWartosc)
-
-
-    tableView.prefWidth = szerokoscTabeli
-    tableView.prefHeight =wysokoscTabeli
-    return tableView
-}
 
 fun zbudujTabelkeProstychWlasnosciKluczWartosc(parametry: List<WrapperParametruNazwaWartosc>
                                                , szerokoscKolumnyN: Double = SZEROKOSC_DWIE_KOLUMNY
@@ -55,8 +26,8 @@ fun zbudujTabelkeProstychWlasnosciKluczWartosc(parametry: List<WrapperParametruN
     var kolumnaWartosc: TableColumn<ProstaTabelaNazwaWartosc, String> = TableColumn("wartosc")
 
 
-    kolumnaWartosc.prefWidth = szerokoscKolumnyW
-    kolumnaNazwa.prefWidth = szerokoscKolumnyN
+   kolumnaWartosc.prefWidth = szerokoscKolumnyW
+   kolumnaNazwa.prefWidth = szerokoscKolumnyN
 
 
     var list: ObservableList<ProstaTabelaNazwaWartosc> = FXCollections.observableArrayList()
@@ -68,16 +39,17 @@ fun zbudujTabelkeProstychWlasnosciKluczWartosc(parametry: List<WrapperParametruN
     var tableView: TableView<ProstaTabelaNazwaWartosc> = TableView()
     tableView.items = list
 
-
     kolumnaNazwa.cellValueFactory = PropertyValueFactory<ProstaTabelaNazwaWartosc, String>("nazwa")
     kolumnaWartosc.cellValueFactory = PropertyValueFactory<ProstaTabelaNazwaWartosc, String>("wartosc")
 
     tableView.columns.add(kolumnaNazwa)
     tableView.columns.add(kolumnaWartosc)
 
-
     tableView.prefWidth = szerokoscTabeli
-    tableView.prefHeight = wysokoscTabeli
+    tableView.minWidth=szerokoscTabeli
+    tableView.maxWidth=szerokoscTabeli
+    tableView.prefHeight= 2*wyliczWysokoscTabeli(tableView,12,12,10)
+    tableView.getStyleClass().add("noheader");
     return tableView
 }
 
@@ -113,7 +85,13 @@ fun zbudujTabelkeParametrowWejsciowych(parametry: MutableList<ParametrRegulyEncj
     tableView.columns.add(kolumnaWartoscDomyslna)
 
     tableView.prefWidth = szerokoscTabeli
-    tableView.prefHeight = wysokoscTabeli
+    tableView.minWidth=szerokoscTabeli
+    tableView.maxWidth=szerokoscTabeli
+
+    //tableView.prefHeight = wysokoscTabeli
+    tableView.prefHeight= 2*wyliczWysokoscTabeli(tableView,12,12,10)
+    //tableView.getStyleClass().add("noheader");
+
     return tableView
 }
 
@@ -126,6 +104,26 @@ fun zbudujCombo(): ComboBox<String> {
     return typCombo;
 }
 
+
+/**
+ * Helper to set table height based on content
+ *
+ * @param table        - the table in context
+ * @param rowHeight    - the height of a single row, alternatively could use table.fixedCellSizeProperty()
+ * @param headerHeight - the height of the table header
+ * @param margin       - a value for the margins
+ */
+fun wyliczWysokoscTabeli(table: TableView<*>, rowHeight: Int, headerHeight: Int, margin: Int):Double {
+    /*table.prefHeightProperty().bind(Bindings.max(2, Bindings.size(table.items))
+            .multiply(rowHeight)
+            .add(headerHeight)
+            .add(margin))
+    table.minHeightProperty().bind(table.prefHeightProperty())
+    table.maxHeightProperty().bind(table.prefHeightProperty())*/
+    return (table.items.count()*rowHeight+headerHeight+margin).toDouble()
+
+}
+
 open class TabelaPoleCombo(val nazwa: String, val typ: ComboBox<String>) {
     var wartoscDomyslna: String? = null;
 }
@@ -135,3 +133,45 @@ open class ProstaTabelaNazwaWartosc(val nazwa: String, val wartosc: String)
 open class ProstaTabelaTylkoWartosc(val wartosc: String)
 
 open class WrapperParametruNazwaWartosc(val nazwa: String, val wartosc: String)
+
+
+
+
+
+
+
+
+
+/*fun zbudujTabelkeTylkoWartosc(parametry: List<String>,
+                              szerokoscKolumny: Double = SZEROKOSC_KOLUMNA_POJEDYNCZA,
+                              szerokoscTabeli: Double = SZEROKOSC_TABELI,
+                              wysokoscTabeli: Double = WYSOKOSC_TABELI): TableView<ProstaTabelaTylkoWartosc> {
+    var kolumnaWartosc: TableColumn<ProstaTabelaTylkoWartosc, String> = TableColumn("wartosc")
+
+
+    kolumnaWartosc.prefWidth = szerokoscKolumny
+
+
+    var list: ObservableList<ProstaTabelaTylkoWartosc> = FXCollections.observableArrayList()
+
+    for (param in parametry) {
+        list.add(ProstaTabelaTylkoWartosc(param))
+    }
+
+    var tableView: TableView<ProstaTabelaTylkoWartosc> = TableView()
+    tableView.items = list
+
+
+
+    kolumnaWartosc.cellValueFactory = PropertyValueFactory<ProstaTabelaTylkoWartosc, String>("wartosc")
+
+
+    tableView.columns.add(kolumnaWartosc)
+
+
+    tableView.prefWidth = szerokoscTabeli
+
+    //tableView.prefHeight =wysokoscTabeli
+    tableView.prefHeight= wyliczWysokoscTabeli(tableView,12,12,10)
+    return tableView
+}*/
