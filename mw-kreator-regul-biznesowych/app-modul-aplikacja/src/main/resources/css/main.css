@@ -11,7 +11,6 @@
 
 .przycisk-menu {
 	-fx-font: 11px "System";
-	-fx-content-display: middle;
 	-fx-padding: 15px 15px;
 	-fx-margin: 10px;
 	 float: left;

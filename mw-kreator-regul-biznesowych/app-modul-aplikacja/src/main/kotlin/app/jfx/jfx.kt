@@ -10,11 +10,11 @@ import javafx.scene.control.cell.PropertyValueFactory
 import model.encje.ParametrRegulyEncja
 
 
-val SZEROKOSC_TABELI = 600.0
+val SZEROKOSC_TABELI = 0.0
 val SZEROKOSC_KOLUMNA_POJEDYNCZA = SZEROKOSC_TABELI
 val SZEROKOSC_DWIE_KOLUMNY = SZEROKOSC_TABELI / 2
 val SZEROKOSC_TRZY_KOLUMNY = SZEROKOSC_TABELI / 3
-val WYSOKOSC_TABELI = 100.0
+val WYSOKOSC_TABELI = 0.0
 
 
 fun zbudujTabelkeProstychWlasnosciKluczWartosc(parametry: List<WrapperParametruNazwaWartosc>
@@ -26,8 +26,11 @@ fun zbudujTabelkeProstychWlasnosciKluczWartosc(parametry: List<WrapperParametruN
     var kolumnaWartosc: TableColumn<ProstaTabelaNazwaWartosc, String> = TableColumn("wartosc")
 
 
-   kolumnaWartosc.prefWidth = szerokoscKolumnyW
-   kolumnaNazwa.prefWidth = szerokoscKolumnyN
+    var dlugoscNajwiekszegoNapisuKolumnyW: Int = parametry.map { it.wartosc.length }.max()!!
+    var maksymalnaDlugoscKolumnyW = dlugoscNajwiekszegoNapisuKolumnyW *5.0
+
+    kolumnaWartosc.prefWidth = if (maksymalnaDlugoscKolumnyW > szerokoscKolumnyW) maksymalnaDlugoscKolumnyW else szerokoscKolumnyW;
+    kolumnaNazwa.prefWidth = szerokoscKolumnyN
 
 
     var list: ObservableList<ProstaTabelaNazwaWartosc> = FXCollections.observableArrayList()
@@ -46,9 +49,9 @@ fun zbudujTabelkeProstychWlasnosciKluczWartosc(parametry: List<WrapperParametruN
     tableView.columns.add(kolumnaWartosc)
 
     tableView.prefWidth = szerokoscTabeli
-    tableView.minWidth=szerokoscTabeli
-    tableView.maxWidth=szerokoscTabeli
-    tableView.prefHeight= 2*wyliczWysokoscTabeli(tableView,12,12,10)
+    tableView.minWidth = szerokoscTabeli
+    tableView.maxWidth = szerokoscTabeli
+    tableView.prefHeight = 2 * wyliczWysokoscTabeli(tableView, 12, 12, 10)
     tableView.getStyleClass().add("noheader");
     return tableView
 }
@@ -85,11 +88,11 @@ fun zbudujTabelkeParametrowWejsciowych(parametry: MutableList<ParametrRegulyEncj
     tableView.columns.add(kolumnaWartoscDomyslna)
 
     tableView.prefWidth = szerokoscTabeli
-    tableView.minWidth=szerokoscTabeli
-    tableView.maxWidth=szerokoscTabeli
+    tableView.minWidth = szerokoscTabeli
+    tableView.maxWidth = szerokoscTabeli
 
     //tableView.prefHeight = wysokoscTabeli
-    tableView.prefHeight= 2*wyliczWysokoscTabeli(tableView,12,12,10)
+    tableView.prefHeight = 2 * wyliczWysokoscTabeli(tableView, 12, 12, 10)
     //tableView.getStyleClass().add("noheader");
 
     return tableView
@@ -113,14 +116,14 @@ fun zbudujCombo(): ComboBox<String> {
  * @param headerHeight - the height of the table header
  * @param margin       - a value for the margins
  */
-fun wyliczWysokoscTabeli(table: TableView<*>, rowHeight: Int, headerHeight: Int, margin: Int):Double {
+fun wyliczWysokoscTabeli(table: TableView<*>, rowHeight: Int, headerHeight: Int, margin: Int): Double {
     /*table.prefHeightProperty().bind(Bindings.max(2, Bindings.size(table.items))
             .multiply(rowHeight)
             .add(headerHeight)
             .add(margin))
     table.minHeightProperty().bind(table.prefHeightProperty())
     table.maxHeightProperty().bind(table.prefHeightProperty())*/
-    return (table.items.count()*rowHeight+headerHeight+margin).toDouble()
+    return (table.items.count() * rowHeight + headerHeight + margin).toDouble()
 
 }
 
@@ -133,13 +136,6 @@ open class ProstaTabelaNazwaWartosc(val nazwa: String, val wartosc: String)
 open class ProstaTabelaTylkoWartosc(val wartosc: String)
 
 open class WrapperParametruNazwaWartosc(val nazwa: String, val wartosc: String)
-
-
-
-
-
-
-
 
 
 /*fun zbudujTabelkeTylkoWartosc(parametry: List<String>,

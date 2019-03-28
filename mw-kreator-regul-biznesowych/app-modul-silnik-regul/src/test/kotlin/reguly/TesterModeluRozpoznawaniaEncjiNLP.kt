@@ -55,12 +55,12 @@ class TesterModeluNLP {
             , PrzypadekTestowy("Jeśli data jest nie większa niż '01-01-2019' to zgłoś błąd","jest nie większa niż")
             , PrzypadekTestowy("Jeśli dzień jest równy wczoraj to zgłoś błąd","jest równy")
             , PrzypadekTestowy("Jeśli miesiąc jest nie mniejszy niż 6 to sprawdzaj regułę","jest nie mniejszy niż")
-            /*, PrzypadekTestowy("Jeśli data jest różna od poczatek_roku oraz rok jest większy niż 2000 lub dzień jest różny od 12 to wyświetl komunikat <KOMUNIKAT_1> .","jest różny od")
+            , PrzypadekTestowy("Jeśli data jest różna od poczatek_roku oraz rok jest większy niż 2000 lub dzień jest różny od 12 to wyświetl komunikat <KOMUNIKAT_1> .","jest różna od")
             , PrzypadekTestowy("Gdy suma jest większa od 100 i różnica jest mniejsza od 0 lub różnica jest równa 1 wtedy wyświetl komunikat <KOMUNIKAT_2> .","jest większa od")
             , PrzypadekTestowy("Jeśli data_utworzenia jest większa od '01-01-2010' oraz data_utworzenia nie jest mniejsza niż data_kwalifikacji i data_kwalifikacji jest różna od data_weryfikacji to zgłoś błąd walidacji <KOMUNIKAT_WALIDACJI_1> .","jest większa od")
-            , PrzypadekTestowy("Jeśli data_utworzenia jest większa od '01-01-2010' oraz data_utworzenia nie jest mniejsza niż data_kwalifikacji i data_kwalifikacji jest różna od data_weryfikacji to zgłoś błąd walidacji <KOMUNIKAT_WALIDACJI_1> w przeciwnym wypadku sprawdź regułę RS-001.","jest większa od")
-            , PrzypadekTestowy("Jeśli nachylenie nie jest mniejsze lub równe 30 wtedy wyświetl komunikat <KOMUNIKAT_0> w przeciwnym wypadku wyświetl komunikat <KOMUNIKAT_1> .", "nie jest mniejsze lub równe")
-            */
+            , PrzypadekTestowy("Jeśli data_utworzenia jest większa od '01-01-2010' oraz data_utworzenia nie jest mniejsza niż data_kwalifikacji i data_kwalifikacji jest różna od data_weryfikacji to zgłoś błąd walidacji <KOMUNIKAT_WALIDACJI_1> .","jest większa od")
+            , PrzypadekTestowy("Jeśli nachylenie nie jest mniejsze lub równe 30 wtedy wyświetl komunikat <KOMUNIKAT_0> .", "nie jest mniejsze lub równe")
+
     )
 
 
