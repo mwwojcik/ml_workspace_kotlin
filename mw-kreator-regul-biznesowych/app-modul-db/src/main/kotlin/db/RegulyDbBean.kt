@@ -1,6 +1,7 @@
 package db
 
 import db.repo.IRegulaRepozytorium
+import model.encje.RegulaEncja
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 
@@ -12,12 +13,11 @@ class RegulyDbBean {
     @Autowired
     lateinit var regulaRepozytorium: IRegulaRepozytorium
 
-    fun znajdzWszystkieReguly(){
-        println("+++++++++")
-      /* for (elem in regulaRepozytorium.findAll()){
-           println(elem.parametry)
-           var test= readLine()
-           println(test)
-       }*/
+    fun pobierzRegulePoKodzie(aKod:String):RegulaEncja?{
+        return regulaRepozytorium.findByKod(aKod)
+    }
+
+    fun zapiszRegule(aEncja:RegulaEncja){
+        regulaRepozytorium.save(aEncja)
     }
 }

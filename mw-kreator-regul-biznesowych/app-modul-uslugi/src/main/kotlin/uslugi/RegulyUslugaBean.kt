@@ -23,7 +23,7 @@ open class RegulyUslugaBean {
     @Autowired
     lateinit var egzaminator: EgzaminatorModeluRozpoznawaniaEncjiNLP
 
-    lateinit var listaRegulEncji: MutableList<RegulaEncja>
+    val reguly: MutableMap<String, String> = mutableMapOf()
 
     @PostConstruct
     fun inicjalizuj(): Unit {
@@ -31,15 +31,39 @@ open class RegulyUslugaBean {
 
         var i: Int = 0;
 
-        listaRegulEncji = plistaRegul.map({ aRegStr: String ->
-            val pRegList = aRegStr.split(":")
-            RegulaEncja(i++, pRegList[0], pRegList[1].replace("\r", ""))
-        }).toMutableList()
+        plistaRegul.forEach({
+            val pRegList = it.split(":")
+            reguly.put(pRegList[0], pRegList[1].replace("\r", ""))
+        })
+    }
 
-        listaRegulEncji.forEach {
-            it.sekwencja = egzaminator.rozpoznajSekwencje(it.tresc)
-            it.parametry = podajListeParametrow(it.sekwencja as Sekwencja)
+    fun podajReguly(): List<RegulaEncja> {
+        return zaladujRegulyDoObiektow()
+    }
+
+    fun zaladujRegulyDoObiektow():List<RegulaEncja>{
+        val pListaEncji= mutableListOf<RegulaEncja>()
+
+        for ((key, value) in reguly) {
+            var pEncja=regulyDbBean.pobierzRegulePoKodzie(key)
+
+            if(pEncja==null){
+                pEncja=utworzObiektReguly(key,value)
+            }
+
+            pEncja.sekwencja = egzaminator.rozpoznajSekwencje(value)
+            pEncja.parametry = podajListeParametrow(pEncja.sekwencja as Sekwencja)
+
+        pListaEncji.add(pEncja)
+
         }
+        return pListaEncji.toList()
+    }
+
+    fun utworzObiektReguly(aKod:String,aTresc:String):RegulaEncja{
+        val pEncja=RegulaEncja(aKod, aTresc)
+        regulyDbBean.zapiszRegule(pEncja)
+        return pEncja
     }
 
     fun podajListeParametrow(aSekwencja: Sekwencja): MutableList<ParametrRegulyEncja> {
@@ -49,14 +73,8 @@ open class RegulyUslugaBean {
                 .filter { (it.typ == RodzajTokenaEnum.LEWOSTRONNY_OPERAND_WARUNKU || it.typ == RodzajTokenaEnum.PRAWOSTRONNY_OPERAND_WARUNKU) && !unikalnySet.contains(it.wartosc) }
                 .map {
                     unikalnySet.add(it.wartosc)
-                    ParametrRegulyEncja(i++, it.wartosc)
+                    ParametrRegulyEncja(it.wartosc)
                 }
                 .toMutableList()
-    }
-
-    fun podajReguly(): List<RegulaEncja> {
-
-        listaRegulEncji.forEach { it.sekwencja!!.drukuj() }
-        return listaRegulEncji
     }
 }

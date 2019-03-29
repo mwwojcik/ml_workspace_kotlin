@@ -5,12 +5,14 @@ import javax.persistence.*
 @Entity
 @Table(name="parametry_reguly")
 data class ParametrRegulyEncja(
-        @Id @GeneratedValue
-        val id: Int = 0,
         val nazwa: String,
         var typ:String?=null,
         val wartoscDomyslna:String?=null
 ) {
+
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    var  id=0
+
     @ManyToOne
     lateinit var regula: RegulaEncja
 

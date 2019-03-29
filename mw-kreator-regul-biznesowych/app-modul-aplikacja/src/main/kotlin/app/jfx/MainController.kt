@@ -37,7 +37,7 @@ class MainController {
 
             //kontenerek na regule
             var pKontenerNaTabelki: VBox = VBox()
-            var pKontenerTytylowy=TitledPane(reg.nazwa,pKontenerNaTabelki)
+            var pKontenerTytylowy=TitledPane(reg.kod,pKontenerNaTabelki)
             panelRegul.children.add(pKontenerTytylowy)
 
 
@@ -79,23 +79,6 @@ class MainController {
             //DRUGI WIERSZ
             pKontenerNaTabelki.children.add(pKontenerPionowyNaTabelkiParametrow)
 
-            /*  val pKodReguly=Label(reg.nazwa)
-            pKodReguly.style="-fx-font-weight: bold;-fx-font-size:14px;"
-            pKontener.children.add(pKodReguly)
-
-            val ta=TextArea(reg.tresc)
-            ta.appendText("\n")
-            ta.appendText(reg.sekwencja?.drukujDoStr())
-            //ta.prefWidth=600.0
-            ta.prefHeight=150.0
-            ta.prefWidth=pKontener.prefWidth
-
-            pKontener.children.add(ta)*/
-            /*var pKontenerPionowy:HBox=HBox()
-            pKontenerPionowy.prefWidth(800.0)
-            pKontenerPionowy.children.add(zbudujTabelkeParametrowWejsciowych(reg.parametry,wysokoscTabeli = 150.0))
-            pKontenerPionowy.children.add(zbudujTabelkeParametrowWejsciowych(reg.parametry,wysokoscTabeli = 150.0))
-            pKontener.children.add(pKontenerPionowy)*/
 
         }
     }

@@ -5,4 +5,6 @@ import model.encje.RegulaEncja
 import org.springframework.data.repository.CrudRepository
 
 
-public interface IRegulaRepozytorium:CrudRepository<RegulaEncja,Long>
+public interface IRegulaRepozytorium:CrudRepository<RegulaEncja,Long>{
+    fun findByKod(aKod:String):RegulaEncja?
+}
