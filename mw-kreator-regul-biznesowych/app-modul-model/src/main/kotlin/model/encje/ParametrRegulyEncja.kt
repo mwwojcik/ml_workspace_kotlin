@@ -8,7 +8,7 @@ data class ParametrRegulyEncja(
         @Id @GeneratedValue
         val id: Int = 0,
         val nazwa: String,
-        val typ:String?=null,
+        var typ:String?=null,
         val wartoscDomyslna:String?=null
 ) {
     @ManyToOne

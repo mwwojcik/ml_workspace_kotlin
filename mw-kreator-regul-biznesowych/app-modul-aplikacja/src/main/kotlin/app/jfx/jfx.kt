@@ -1,14 +1,18 @@
 package app.jfx
 
+import javafx.beans.property.SimpleStringProperty
 import javafx.beans.value.ObservableValue
 import javafx.collections.FXCollections
 import javafx.collections.ObservableList
 import javafx.scene.control.ComboBox
 import javafx.scene.control.TableColumn
 import javafx.scene.control.TableView
+import javafx.scene.control.cell.ComboBoxTableCell
 import javafx.scene.control.cell.PropertyValueFactory
+import javafx.scene.control.cell.TextFieldTableCell
+import javafx.util.Callback
 import model.encje.ParametrRegulyEncja
-import javax.swing.event.ChangeListener
+import sun.misc.Signal.handle
 
 
 val SZEROKOSC_TABELI = 0.0
@@ -28,7 +32,7 @@ fun zbudujTabelkeProstychWlasnosciKluczWartosc(parametry: List<WrapperParametruN
 
 
     var dlugoscNajwiekszegoNapisuKolumnyW: Int = parametry.map { it.wartosc.length }.max()!!
-    var maksymalnaDlugoscKolumnyW = dlugoscNajwiekszegoNapisuKolumnyW *5.0
+    var maksymalnaDlugoscKolumnyW = dlugoscNajwiekszegoNapisuKolumnyW * 5.0
 
     kolumnaWartosc.prefWidth = if (maksymalnaDlugoscKolumnyW > szerokoscKolumnyW) maksymalnaDlugoscKolumnyW else szerokoscKolumnyW;
     kolumnaNazwa.prefWidth = szerokoscKolumnyN
@@ -62,28 +66,37 @@ fun zbudujTabelkeParametrowWejsciowych(parametry: MutableList<ParametrRegulyEncj
                                        , szerokoscKolumnyN: Double = SZEROKOSC_TRZY_KOLUMNY
                                        , szerokoscKolumnyW: Double = SZEROKOSC_TRZY_KOLUMNY
                                        , szerokoscTabeli: Double = SZEROKOSC_TABELI
-                                       ): TableView<WierszTabeliParametrow> {
-    var kolumnaTyp: TableColumn<WierszTabeliParametrow, ComboBox<String>> = TableColumn("Parametr")
-    var kolumnaNazwa: TableColumn<WierszTabeliParametrow, String> = TableColumn("Typ")
-    var kolumnaWartoscDomyslna: TableColumn<WierszTabeliParametrow, String> = TableColumn("Wartość domyślna")
+): TableView<WierszTabeliParametrowWeWy> {
+
+    //WierszTabeliParametrowWeWy- typ w całym wierszu, String-typ danej kolumny
+    var kolumnaTyp: TableColumn<WierszTabeliParametrowWeWy, String> = TableColumn("Typ")
+    var kolumnaNazwa: TableColumn<WierszTabeliParametrowWeWy, String> = TableColumn("Nazwa")
+    var kolumnaWartoscDomyslna: TableColumn<WierszTabeliParametrowWeWy, String> = TableColumn("Wartość domyślna")
 
     kolumnaTyp.prefWidth = szerokoscKolumnyT
     kolumnaNazwa.prefWidth = szerokoscKolumnyN
     kolumnaWartoscDomyslna.prefWidth = szerokoscKolumnyW
 
-    var list: ObservableList<WierszTabeliParametrow> = FXCollections.observableArrayList()
-
-    for (param in parametry) {
-        list.add(WierszTabeliParametrow(param.nazwa, zbudujCombo(),param))
-    }
-
-    var tableView: TableView<WierszTabeliParametrow> = TableView()
-    tableView.items = list
+    var list: ObservableList<WierszTabeliParametrowWeWy> =
+            FXCollections.observableArrayList(parametry.map{WierszTabeliParametrowWeWy(it.nazwa,it.typ?:"",it.wartoscDomyslna?:"",it)}.toList())
+    var tableView: TableView<WierszTabeliParametrowWeWy> = TableView(list)
 
 
-    kolumnaNazwa.cellValueFactory = PropertyValueFactory<WierszTabeliParametrow, String>("nazwa")
-    kolumnaTyp.cellValueFactory = PropertyValueFactory<WierszTabeliParametrow, ComboBox<String>>("typ")
-    kolumnaWartoscDomyslna.cellValueFactory = PropertyValueFactory<WierszTabeliParametrow, String>("wartoscDomyslna")
+    kolumnaNazwa.setCellValueFactory ({ cellData -> cellData.value.nazwaProperty})
+    kolumnaNazwa.cellFactory = TextFieldTableCell.forTableColumn()
+    kolumnaNazwa.isEditable=false
+
+    kolumnaTyp.setCellValueFactory ({ cellData -> cellData.value.typProperty})
+    kolumnaTyp.cellFactory = ComboBoxTableCell.forTableColumn("Liczba", "Napis", "Data")
+    kolumnaTyp.setOnEditCommit({t->
+        t.getTableView().getItems().get(t.getTablePosition().getRow()).parametr.typ=t.newValue
+    })
+
+
+    kolumnaWartoscDomyslna.setCellValueFactory ({ cellData -> cellData.value.wartoscDomyslnaProperty})
+    kolumnaWartoscDomyslna.cellFactory = TextFieldTableCell.forTableColumn()
+    kolumnaWartoscDomyslna.isEditable=false
+
     tableView.columns.add(kolumnaNazwa)
     tableView.columns.add(kolumnaTyp)
     tableView.columns.add(kolumnaWartoscDomyslna)
@@ -96,25 +109,8 @@ fun zbudujTabelkeParametrowWejsciowych(parametry: MutableList<ParametrRegulyEncj
     tableView.prefHeight = 2 * wyliczWysokoscTabeli(tableView, 12, 12, 10)
     //tableView.getStyleClass().add("noheader");
 
+    tableView.isEditable=true
     return tableView
-}
-
-fun zbudujCombo(): ComboBox<String> {
-    var typCombo: ComboBox<String> = ComboBox<String>()
-    typCombo.items.add("Liczba")
-    typCombo.items.add("Napis")
-    typCombo.items.add("Data")
-    typCombo.prefHeight = 9.0
-
-    typCombo.getSelectionModel().selectedItemProperty().addListener(
-
-            {
-                ov: ObservableValue<*>,old_val: String?, new_val: String?->
-               //println(new_val)
-            }
-    )
-
-    return typCombo;
 }
 
 
@@ -127,19 +123,28 @@ fun zbudujCombo(): ComboBox<String> {
  * @param margin       - a value for the margins
  */
 fun wyliczWysokoscTabeli(table: TableView<*>, rowHeight: Int, headerHeight: Int, margin: Int): Double {
-    /*table.prefHeightProperty().bind(Bindings.max(2, Bindings.size(table.items))
-            .multiply(rowHeight)
-            .add(headerHeight)
-            .add(margin))
-    table.minHeightProperty().bind(table.prefHeightProperty())
-    table.maxHeightProperty().bind(table.prefHeightProperty())*/
     return (table.items.count() * rowHeight + headerHeight + margin).toDouble()
 
 }
 
-open class WierszTabeliParametrow(val nazwa: String, val typ: ComboBox<String>,val parametr:ParametrRegulyEncja) {
-    var wartoscDomyslna: String? = null;
+
+open class WierszTabeliParametrowWeWy(aNazwa: String, aTyp: String,aWartosc:String,aParametr:ParametrRegulyEncja) {
+    val nazwaProperty: SimpleStringProperty
+    val typProperty: SimpleStringProperty
+    val wartoscDomyslnaProperty: SimpleStringProperty
+
+    val parametr: ParametrRegulyEncja
+
+    init {
+        nazwaProperty = SimpleStringProperty(aNazwa)
+        typProperty = SimpleStringProperty(aTyp)
+        wartoscDomyslnaProperty= SimpleStringProperty(aWartosc)
+        parametr = aParametr
+    }
+
+
 }
+
 
 open class ProstaTabelaNazwaWartosc(val nazwa: String, val wartosc: String)
 
