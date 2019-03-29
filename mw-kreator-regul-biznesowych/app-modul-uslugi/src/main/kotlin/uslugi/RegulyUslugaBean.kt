@@ -33,7 +33,7 @@ open class RegulyUslugaBean {
 
         listaRegulEncji = plistaRegul.map({ aRegStr: String ->
             val pRegList = aRegStr.split(":")
-            RegulaEncja(i++, pRegList[0], pRegList[1])
+            RegulaEncja(i++, pRegList[0], pRegList[1].replace("\r", ""))
         }).toMutableList()
 
         listaRegulEncji.forEach {
@@ -56,7 +56,7 @@ open class RegulyUslugaBean {
 
     fun podajReguly(): List<RegulaEncja> {
 
-        //listaRegulEncji.forEach { it.sekwencja!!.drukuj() }
+        listaRegulEncji.forEach { it.sekwencja!!.drukuj() }
         return listaRegulEncji
     }
 }

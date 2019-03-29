@@ -1,13 +1,13 @@
 package app.jfx
 
 import javafx.fxml.FXML
+import javafx.scene.control.TableView
 import javafx.scene.control.TitledPane
 import javafx.scene.layout.HBox
 import javafx.scene.layout.VBox
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Controller
 import uslugi.RegulyUslugaBean
-import javax.swing.border.TitledBorder
 
 
 @Controller
@@ -18,6 +18,8 @@ class MainController {
 
     @FXML
     lateinit var panelRegul: VBox
+
+    val listaTabelParametrow:MutableList<TitledPane> = mutableListOf<TitledPane>()
 
     @FXML
     private fun initialize() {
@@ -53,11 +55,13 @@ class MainController {
             pKontenerPionowyNaTabelkiParametrow.prefWidth=800.0
             pKontenerPionowyNaTabelkiParametrow.spacing=15.0
 
-            var pKontenerParametrowWe=TitledPane("Parametry WE", zbudujTabelkeParametrowWejsciowych(reg.parametry
+            val pParametryTab=zbudujTabelkeParametrowWejsciowych(reg.parametry
                     ,szerokoscTabeli = 340.0
                     ,szerokoscKolumnyN = 100.0
                     ,szerokoscKolumnyT = 100.0
-                    ,szerokoscKolumnyW = 120.0))
+                    ,szerokoscKolumnyW = 120.0)
+
+            var pKontenerParametrowWe=TitledPane("Parametry WE", pParametryTab)
             var pKontenerParametrowWy=TitledPane("Parametry WY", zbudujTabelkeParametrowWejsciowych(reg.parametry
                     ,szerokoscTabeli = 340.0
                     ,szerokoscKolumnyN = 100.0
@@ -66,6 +70,8 @@ class MainController {
 
             pKontenerParametrowWe.isExpanded=false
             pKontenerParametrowWy.isExpanded=false
+
+            listaTabelParametrow.add(pKontenerParametrowWe)
 
             pKontenerPionowyNaTabelkiParametrow.children.add(pKontenerParametrowWe)
             pKontenerPionowyNaTabelkiParametrow.children.add(pKontenerParametrowWy)
@@ -106,6 +112,11 @@ class MainController {
     @FXML
     fun onWalidujRegulyKLIK() {
         println("onWalidujRegulyKLIK")
+
+        //listaTabelParametrow.get(0).columns.get(0).style="-fx-border-color: red;"
+
+        listaTabelParametrow.get(0).style="-fx-border-color: red;"
+        listaTabelParametrow.get(0).isExpanded=true
 
     }
 

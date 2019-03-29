@@ -1,6 +1,6 @@
 package app.jfx
 
-import javafx.beans.binding.Bindings
+import javafx.beans.value.ObservableValue
 import javafx.collections.FXCollections
 import javafx.collections.ObservableList
 import javafx.scene.control.ComboBox
@@ -8,6 +8,7 @@ import javafx.scene.control.TableColumn
 import javafx.scene.control.TableView
 import javafx.scene.control.cell.PropertyValueFactory
 import model.encje.ParametrRegulyEncja
+import javax.swing.event.ChangeListener
 
 
 val SZEROKOSC_TABELI = 0.0
@@ -61,28 +62,28 @@ fun zbudujTabelkeParametrowWejsciowych(parametry: MutableList<ParametrRegulyEncj
                                        , szerokoscKolumnyN: Double = SZEROKOSC_TRZY_KOLUMNY
                                        , szerokoscKolumnyW: Double = SZEROKOSC_TRZY_KOLUMNY
                                        , szerokoscTabeli: Double = SZEROKOSC_TABELI
-                                       , wysokoscTabeli: Double = WYSOKOSC_TABELI): TableView<TabelaPoleCombo> {
-    var kolumnaTyp: TableColumn<TabelaPoleCombo, ComboBox<String>> = TableColumn("Parametr")
-    var kolumnaNazwa: TableColumn<TabelaPoleCombo, String> = TableColumn("Typ")
-    var kolumnaWartoscDomyslna: TableColumn<TabelaPoleCombo, String> = TableColumn("Wartość domyślna")
+                                       ): TableView<WierszTabeliParametrow> {
+    var kolumnaTyp: TableColumn<WierszTabeliParametrow, ComboBox<String>> = TableColumn("Parametr")
+    var kolumnaNazwa: TableColumn<WierszTabeliParametrow, String> = TableColumn("Typ")
+    var kolumnaWartoscDomyslna: TableColumn<WierszTabeliParametrow, String> = TableColumn("Wartość domyślna")
 
     kolumnaTyp.prefWidth = szerokoscKolumnyT
     kolumnaNazwa.prefWidth = szerokoscKolumnyN
     kolumnaWartoscDomyslna.prefWidth = szerokoscKolumnyW
 
-    var list: ObservableList<TabelaPoleCombo> = FXCollections.observableArrayList()
+    var list: ObservableList<WierszTabeliParametrow> = FXCollections.observableArrayList()
 
     for (param in parametry) {
-        list.add(TabelaPoleCombo(param.nazwa, zbudujCombo()))
+        list.add(WierszTabeliParametrow(param.nazwa, zbudujCombo(),param))
     }
 
-    var tableView: TableView<TabelaPoleCombo> = TableView()
+    var tableView: TableView<WierszTabeliParametrow> = TableView()
     tableView.items = list
 
 
-    kolumnaNazwa.cellValueFactory = PropertyValueFactory<TabelaPoleCombo, String>("nazwa")
-    kolumnaTyp.cellValueFactory = PropertyValueFactory<TabelaPoleCombo, ComboBox<String>>("typ")
-    kolumnaWartoscDomyslna.cellValueFactory = PropertyValueFactory<TabelaPoleCombo, String>("wartoscDomyslna")
+    kolumnaNazwa.cellValueFactory = PropertyValueFactory<WierszTabeliParametrow, String>("nazwa")
+    kolumnaTyp.cellValueFactory = PropertyValueFactory<WierszTabeliParametrow, ComboBox<String>>("typ")
+    kolumnaWartoscDomyslna.cellValueFactory = PropertyValueFactory<WierszTabeliParametrow, String>("wartoscDomyslna")
     tableView.columns.add(kolumnaNazwa)
     tableView.columns.add(kolumnaTyp)
     tableView.columns.add(kolumnaWartoscDomyslna)
@@ -104,6 +105,15 @@ fun zbudujCombo(): ComboBox<String> {
     typCombo.items.add("Napis")
     typCombo.items.add("Data")
     typCombo.prefHeight = 9.0
+
+    typCombo.getSelectionModel().selectedItemProperty().addListener(
+
+            {
+                ov: ObservableValue<*>,old_val: String?, new_val: String?->
+               //println(new_val)
+            }
+    )
+
     return typCombo;
 }
 
@@ -127,7 +137,7 @@ fun wyliczWysokoscTabeli(table: TableView<*>, rowHeight: Int, headerHeight: Int,
 
 }
 
-open class TabelaPoleCombo(val nazwa: String, val typ: ComboBox<String>) {
+open class WierszTabeliParametrow(val nazwa: String, val typ: ComboBox<String>,val parametr:ParametrRegulyEncja) {
     var wartoscDomyslna: String? = null;
 }
 
