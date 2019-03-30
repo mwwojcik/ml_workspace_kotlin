@@ -36,6 +36,8 @@ open class MyApp: Application() {
         primaryStage.isResizable=false
         primaryStage.setScene(scene)
 
+        KontekstAplikacji.mainStage=primaryStage
+
         primaryStage.show()
     }
 

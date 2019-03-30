@@ -1,5 +1,6 @@
 package app.jfx
 
+import app.KontekstAplikacji
 import javafx.fxml.FXML
 import javafx.scene.control.TableView
 import javafx.scene.control.TitledPane
@@ -117,8 +118,9 @@ class MainController {
 
     @FXML
     fun onZamknijKLIK(){
-
         println("onZamknijKLIK")
+        KontekstAplikacji.mainStage!!.close()
+
     }
 }
 
