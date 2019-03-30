@@ -1,10 +1,18 @@
+import org.gradle.api.internal.initialization.ClassLoaderIds.buildScript
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import org.jetbrains.kotlin.resolve.calls.model.ResolvedCallArgument.DefaultArgument.arguments
 import kotlin.collections.mutableListOf as mutablelist
 
+buildscript{
+    plugins{
+        id ("org.jetbrains.kotlin.plugin.spring")version "1.3.21" //nastepca all-open
+    }
+}
+
 plugins{
     kotlin("jvm") version  "1.3.10"
     id ("org.jetbrains.kotlin.plugin.jpa") version "1.3.21"
+
 }
 
 

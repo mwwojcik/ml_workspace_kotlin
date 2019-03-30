@@ -55,14 +55,14 @@ class MainController {
             pKontenerPionowyNaTabelkiParametrow.prefWidth=800.0
             pKontenerPionowyNaTabelkiParametrow.spacing=15.0
 
-            val pParametryTab=zbudujTabelkeParametrowWejsciowych(reg.parametry
+            val pParametryTab=zbudujTabelkeParametrowWejsciowych(reg.parametry!!
                     ,szerokoscTabeli = 340.0
                     ,szerokoscKolumnyN = 100.0
                     ,szerokoscKolumnyT = 100.0
                     ,szerokoscKolumnyW = 120.0)
 
             var pKontenerParametrowWe=TitledPane("Parametry WE", pParametryTab)
-            var pKontenerParametrowWy=TitledPane("Parametry WY", zbudujTabelkeParametrowWejsciowych(reg.parametry
+            var pKontenerParametrowWy=TitledPane("Parametry WY", zbudujTabelkeParametrowWejsciowych(reg.parametry!!
                     ,szerokoscTabeli = 340.0
                     ,szerokoscKolumnyN = 100.0
                     ,szerokoscKolumnyT = 100.0
@@ -113,6 +113,12 @@ class MainController {
     fun onGenerujKodKLIK() {
         println("onGenerujKodKLIK")
 
+    }
+
+    @FXML
+    fun onZamknijKLIK(){
+
+        println("onZamknijKLIK")
     }
 }
 

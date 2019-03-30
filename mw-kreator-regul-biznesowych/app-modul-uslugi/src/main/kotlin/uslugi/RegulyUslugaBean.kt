@@ -8,6 +8,7 @@ import model.nlp.RodzajTokenaEnum
 import model.nlp.Sekwencja
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
+import javax.transaction.Transactional
 import reguly.nlp.EgzaminatorModeluRozpoznawaniaEncjiNLP
 import java.nio.file.Files
 import java.nio.file.Path
@@ -15,6 +16,7 @@ import java.nio.file.Paths
 import javax.annotation.PostConstruct
 
 @Service
+@Transactional
 open class RegulyUslugaBean {
     @Autowired
     lateinit var regulyDbBean: RegulyDbBean
@@ -37,6 +39,7 @@ open class RegulyUslugaBean {
         })
     }
 
+
     fun podajReguly(): List<RegulaEncja> {
         return zaladujRegulyDoObiektow()
     }
@@ -52,7 +55,7 @@ open class RegulyUslugaBean {
             }
 
             pEncja.sekwencja = egzaminator.rozpoznajSekwencje(value)
-            pEncja.parametry = podajListeParametrow(pEncja.sekwencja as Sekwencja)
+            pEncja.parametry = zaladujParametryDoObiektow(pEncja.sekwencja as Sekwencja,pEncja)
 
         pListaEncji.add(pEncja)
 
@@ -66,15 +69,44 @@ open class RegulyUslugaBean {
         return pEncja
     }
 
-    fun podajListeParametrow(aSekwencja: Sekwencja): MutableList<ParametrRegulyEncja> {
+    fun utworzObiektParametru(aRegulaEncja:RegulaEncja,aNazwa:String,aTyp:String,aWartoscDomyslna:String):ParametrRegulyEncja{
+        val pEncja=ParametrRegulyEncja(aNazwa,aTyp,aWartoscDomyslna)
+        pEncja.regula=aRegulaEncja
+        regulyDbBean.zapiszObiektParametru(pEncja)
+        return pEncja
+    }
+
+    fun zaladujParametryDoObiektow(aSekwencja: Sekwencja,aRegulaEncja:RegulaEncja): MutableList<ParametrRegulyEncja> {
         var i: Int = 0
-        var unikalnySet: MutableSet<String> = mutableSetOf()
-        return aSekwencja.rozpoznaneTokeny
-                .filter { (it.typ == RodzajTokenaEnum.LEWOSTRONNY_OPERAND_WARUNKU || it.typ == RodzajTokenaEnum.PRAWOSTRONNY_OPERAND_WARUNKU) && !unikalnySet.contains(it.wartosc) }
-                .map {
+        var unikalnySet: MutableSet<String> = linkedSetOf()
+
+        aSekwencja.rozpoznaneTokeny
+                .filter { (it.typ == RodzajTokenaEnum.LEWOSTRONNY_OPERAND_WARUNKU
+                        || it.typ == RodzajTokenaEnum.PRAWOSTRONNY_OPERAND_WARUNKU)
+                        && !unikalnySet.contains(it.wartosc) }
+                .forEach() {
                     unikalnySet.add(it.wartosc)
                     ParametrRegulyEncja(it.wartosc)
                 }
-                .toMutableList()
+        val obiektyParametrow:MutableList<ParametrRegulyEncja> = mutableListOf<ParametrRegulyEncja>()
+
+        unikalnySet.forEach{
+            var pEncja=regulyDbBean.pobierzParametrPoNazwie(aRegulaEncja,it)
+            if(pEncja==null){
+                pEncja=utworzObiektParametru(aRegulaEncja,it,wnioskujTypParametru(it)!!,wnioskujWartoscDomyslnaParametru(it)!!)
+            }
+            obiektyParametrow.add(pEncja)
+        }
+
+     return obiektyParametrow
+
+    }
+
+    fun wnioskujTypParametru(aParam:String):String?{
+        return ""
+    }
+
+    fun wnioskujWartoscDomyslnaParametru(aParam:String):String?{
+        return ""
     }
 }

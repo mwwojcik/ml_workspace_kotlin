@@ -4,6 +4,8 @@ allprojects{
     group="mw.kotlin"
     version="1.0"
 
+
+
     repositories {
         mavenCentral()
         maven {

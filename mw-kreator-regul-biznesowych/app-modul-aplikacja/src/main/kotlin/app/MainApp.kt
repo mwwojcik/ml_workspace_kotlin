@@ -11,17 +11,14 @@ import javafx.scene.Parent
 import org.springframework.context.ConfigurableApplicationContext
 import org.springframework.boot.SpringApplication
 import javafx.scene.Scene
-
-
-
-
-
+import org.springframework.transaction.annotation.EnableTransactionManagement
 
 
 @SpringBootApplication
 @ComponentScan(basePackages = arrayOf("app","reguly","generator","reguly","db","uslugi"))
 @EnableJpaRepositories(basePackages = arrayOf("db"))
 @EntityScan( basePackages = arrayOf("model","encje","model.encje"))
+@EnableTransactionManagement
 open class MyApp: Application() {
 
     lateinit var springContext: ConfigurableApplicationContext

@@ -3,6 +3,12 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import org.jetbrains.kotlin.resolve.calls.model.ResolvedCallArgument.DefaultArgument.arguments
 import kotlin.collections.mutableListOf as mutablelist
 
+buildscript{
+    plugins{
+        id ("org.jetbrains.kotlin.plugin.spring")version "1.3.21" //nastepca all-open
+    }
+}
+
 repositories{
     mavenLocal()
 }

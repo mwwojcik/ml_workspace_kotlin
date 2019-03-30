@@ -9,11 +9,12 @@ data class RegulaEncja(
         val kod: String,
         val tresc:String
 ){
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    var id: Int =0
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    var id : Long=0
 
-    @OneToMany(mappedBy = "regula",fetch = FetchType.EAGER)
-    var parametry: MutableList<ParametrRegulyEncja> = mutableListOf()
+    @OneToMany(mappedBy = "regula",fetch = FetchType.EAGER, cascade = arrayOf(CascadeType.ALL))
+    var parametry: MutableList<ParametrRegulyEncja>?= null
 
     @Transient
     var sekwencja: Sekwencja?=null

@@ -11,9 +11,9 @@ import javafx.scene.control.cell.TextFieldTableCell
 import javafx.scene.layout.BorderPane
 import javafx.stage.Stage
 
-class TableWithComboBoxExample : Application() {
+class TableWithComboBoxExample {//: Application() {
 
-    override fun start(primaryStage: Stage) {
+    /*override*/ fun start(primaryStage: Stage) {
         val contactTable = TableView<Contact>()
         contactTable.isEditable = true
 
@@ -84,6 +84,7 @@ class TableWithComboBoxExample : Application() {
 
 }
 
+/*
 fun main(args: Array<String>) {
     Application.launch(TableWithComboBoxExample::class.java, *args)
-}
+}*/

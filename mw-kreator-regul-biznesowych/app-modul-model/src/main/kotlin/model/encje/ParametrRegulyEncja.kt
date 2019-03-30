@@ -10,8 +10,9 @@ data class ParametrRegulyEncja(
         val wartoscDomyslna:String?=null
 ) {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    var  id=0
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    var  id:Long=0
 
     @ManyToOne
     lateinit var regula: RegulaEncja

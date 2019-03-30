@@ -25,6 +25,7 @@
                 <Button mnemonicParsing="false" onMouseClicked="#onWalidujRegulyKLIK" styleClass="przycisk-menu" text="Waliduj" />
                 <Button mnemonicParsing="false" onMouseClicked="#onZapiszRegulyKLIK" styleClass="przycisk-menu" text="Zapisz" />
                 <Button mnemonicParsing="false" onMouseClicked="#onGenerujKodKLIK" styleClass="przycisk-menu" text="Generuj" />
+                <Button mnemonicParsing="false" onMouseClicked="#onZamknijKLIK" styleClass="przycisk-menu" text="Zamknij" />
             </children>
         </HBox>
         <ScrollPane prefHeight="Infinity" GridPane.rowIndex="1">
