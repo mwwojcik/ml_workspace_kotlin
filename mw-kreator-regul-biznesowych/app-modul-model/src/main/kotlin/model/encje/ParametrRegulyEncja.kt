@@ -8,11 +8,15 @@ data class ParametrRegulyEncja(
         val nazwa: String,
         var typ:String?=null,
         val wartoscDomyslna:String?=null
-) {
+) :Encja() {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    var  id:Long=0
+    var id : Long?=null
+
+    @Version
+    @Column(name="WERSJA")
+    var wersja:Long?=null
 
     @ManyToOne
     lateinit var regula: RegulaEncja

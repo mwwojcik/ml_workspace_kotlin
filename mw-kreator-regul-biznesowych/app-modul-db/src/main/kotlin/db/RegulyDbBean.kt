@@ -37,6 +37,7 @@ open class RegulyDbBean {
 
     @Transactional
     fun zapiszObiektParametru(aEncja:ParametrRegulyEncja){
+        //parametrRegulyRepozytorium.findById(aEncja.id).get().typ=aEncja.typ
         parametrRegulyRepozytorium.save(aEncja)
     }
 

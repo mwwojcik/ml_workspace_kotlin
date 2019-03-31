@@ -50,4 +50,8 @@ class Sekwencja(val wartosc:String, val tokeny:Array<String>,
 
         throw IllegalArgumentException("Brak rozpoznanego warunku")
     }
+
+    fun podajTokenPoWartosci(aWartosc:String):RozpoznanyToken?{
+        return rozpoznaneTokeny.map{it.wartosc to it}.toMap().get(aWartosc)
+    }
 }

@@ -6,6 +6,7 @@ import javafx.scene.control.TableView
 import javafx.scene.control.TitledPane
 import javafx.scene.layout.HBox
 import javafx.scene.layout.VBox
+import model.encje.RegulaEncja
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Controller
 import uslugi.RegulyUslugaBean
@@ -15,7 +16,12 @@ import uslugi.RegulyUslugaBean
 class MainController {
 
     @Autowired
-    lateinit var reguly: RegulyUslugaBean
+    lateinit var regulyUsluga: RegulyUslugaBean
+
+    lateinit var listaRegul:List<RegulaEncja>
+
+
+
 
     @FXML
     lateinit var panelRegul: VBox
@@ -27,7 +33,9 @@ class MainController {
 
         panelRegul.spacing = 50.0
 
-        for (reg in reguly.podajReguly()) {
+        listaRegul=regulyUsluga.podajReguly()
+
+        for (reg in listaRegul) {
 
             val wartoscNazwaParametry= mutableListOf<WrapperParametruNazwaWartosc>(WrapperParametruNazwaWartosc("Treść",reg.tresc))
             wartoscNazwaParametry.add(WrapperParametruNazwaWartosc("",""))
@@ -107,6 +115,7 @@ class MainController {
     @FXML
     fun onZapiszRegulyKLIK() {
         println("onZapiszRegulyKLIK")
+        regulyUsluga.zapiszReguly(listaRegul)
 
     }
 
@@ -119,6 +128,7 @@ class MainController {
     @FXML
     fun onZamknijKLIK(){
         println("onZamknijKLIK")
+
         KontekstAplikacji.mainStage!!.close()
 
     }
