@@ -4,12 +4,16 @@ import javafx.beans.property.SimpleStringProperty
 import javafx.beans.value.ObservableValue
 import javafx.collections.FXCollections
 import javafx.collections.ObservableList
+import javafx.geometry.Insets
 import javafx.scene.control.ComboBox
+import javafx.scene.control.Label
 import javafx.scene.control.TableColumn
 import javafx.scene.control.TableView
 import javafx.scene.control.cell.ComboBoxTableCell
 import javafx.scene.control.cell.PropertyValueFactory
 import javafx.scene.control.cell.TextFieldTableCell
+import javafx.scene.layout.VBox
+import javafx.scene.paint.Color
 import javafx.util.Callback
 import model.encje.ParametrRegulyEncja
 import sun.misc.Signal.handle
@@ -114,6 +118,19 @@ fun zbudujTabelkeParametrowWejsciowych(parametry: MutableList<ParametrRegulyEncj
 }
 
 
+fun zbudujKontenerBledow(szerokoscKontenera:Double):KontenerBledow{
+
+    val pPanelBledow=KontenerBledow()
+    pPanelBledow.spacing=10.0
+    pPanelBledow.padding= Insets(10.0)
+    pPanelBledow.style="-fx-border-color: red;"
+    pPanelBledow.prefWidth=szerokoscKontenera
+    pPanelBledow.minWidth=szerokoscKontenera
+    pPanelBledow.maxWidth=szerokoscKontenera
+
+    return pPanelBledow
+}
+
 /**
  * Helper to set table height based on content
  *
@@ -126,6 +143,10 @@ fun wyliczWysokoscTabeli(table: TableView<*>, rowHeight: Int, headerHeight: Int,
     return (table.items.count() * rowHeight + headerHeight + margin).toDouble()
 
 }
+
+
+
+
 
 
 open class WierszTabeliParametrowWeWy(aNazwa: String, aTyp: String,aWartosc:String,aParametr:ParametrRegulyEncja) {
@@ -152,6 +173,31 @@ open class ProstaTabelaTylkoWartosc(val wartosc: String)
 
 open class WrapperParametruNazwaWartosc(val nazwa: String, val wartosc: String)
 
+
+open class KontenerBledow:VBox{
+    constructor():super(){
+        isVisible=false
+    }
+
+    fun dodajBledy(aBledy:List<String>){
+        if(aBledy.isEmpty()){
+            return
+        }
+
+        isVisible=true
+
+        aBledy.forEach{
+            val pKom= Label(it)
+            pKom.setTextFill(Color.web("#FF0000"));
+            children.add(pKom)
+        }
+    }
+
+    fun wyczyscBledy(){
+        children.clear()
+        isVisible=false
+    }
+}
 
 /*fun zbudujTabelkeTylkoWartosc(parametry: List<String>,
                               szerokoscKolumny: Double = SZEROKOSC_KOLUMNA_POJEDYNCZA,

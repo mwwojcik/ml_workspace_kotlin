@@ -8,7 +8,7 @@ data class ParametrRegulyEncja(
         val nazwa: String,
         var typ:String?=null,
         val wartoscDomyslna:String?=null
-) :Encja() {
+) :Encja(),IWalidowalny {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,5 +23,14 @@ data class ParametrRegulyEncja(
 
     constructor(aNazwa: String, regula: RegulaEncja) : this(nazwa=aNazwa) {
         this.regula=regula
+    }
+
+    @Transient
+    override fun waliduj(): List<String> {
+        val bledy:MutableList<String> = mutableListOf<String>()
+        if(typ==null){
+            bledy.add(zglosBladBrakuOkreslonegoTypu(nazwa))
+        }
+        return bledy
     }
 }
