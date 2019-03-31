@@ -60,6 +60,9 @@ class TesterModeluNLP {
             , PrzypadekTestowy("Jeśli data_utworzenia jest większa od '01-01-2010' oraz data_utworzenia nie jest mniejsza niż data_kwalifikacji i data_kwalifikacji jest różna od data_weryfikacji to zgłoś błąd walidacji <KOMUNIKAT_WALIDACJI_1> .","jest większa od")
             , PrzypadekTestowy("Jeśli data_utworzenia jest większa od '01-01-2010' oraz data_utworzenia nie jest mniejsza niż data_kwalifikacji i data_kwalifikacji jest różna od data_weryfikacji to zgłoś błąd walidacji <KOMUNIKAT_WALIDACJI_1> .","jest większa od")
             , PrzypadekTestowy("Jeśli nachylenie nie jest mniejsze lub równe 30 wtedy wyświetl komunikat <KOMUNIKAT_0> .", "nie jest mniejsze lub równe")
+            , PrzypadekTestowy("Jeśli nachylenie nie jest mniejsze lub równe 30 wtedy wyświetl komunikat <KOMUNIKAT_0> w przeciwnym wypadku wyświetl komunikat <KOMUNIKAT2> .", "nie jest mniejsze lub równe")
+            , PrzypadekTestowy("Jeżeli suma jest różna od 50 to wyświetl komunikat <KOMUNIKAT1> w przeciwnym wypadku sprawdź regułę RS-1 .", "jest różna od")
+            , PrzypadekTestowy("Jeśli data_utworzenia jest większa od '01-01-2010' oraz data_utworzenia nie jest mniejsza niż data_kwalifikacji i data_kwalifikacji jest różna od data_weryfikacji to zgłoś błąd walidacji <KOMUNIKAT_WALIDACJI_1> w przeciwnym razie wyświetl komunikat <KOMUNIKAT2> .","jest większa od")
 
     )
 
