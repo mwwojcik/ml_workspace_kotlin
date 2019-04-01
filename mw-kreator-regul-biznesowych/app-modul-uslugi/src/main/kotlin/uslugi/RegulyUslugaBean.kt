@@ -8,12 +8,15 @@ import model.nlp.RodzajTokenaEnum
 import model.nlp.Sekwencja
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
-import javax.transaction.Transactional
+import org.springframework.transaction.annotation.Transactional
 import reguly.nlp.EgzaminatorModeluRozpoznawaniaEncjiNLP
 import java.nio.file.Files
 import java.nio.file.Path
 import java.nio.file.Paths
 import javax.annotation.PostConstruct
+import javax.persistence.EntityManager
+import javax.persistence.PersistenceContext
+
 
 @Service
 @Transactional
@@ -22,6 +25,7 @@ open class RegulyUslugaBean {
     var licznikDefaultowychParametrow=1
     var prefixNazwwyParametruDomyslnego="param"
     val formatDaty="^([0-2][0-9]||3[0-1])-(0[0-9]||1[0-2])-([0-9][0-9])?[0-9][0-9]\$"
+
 
     @Autowired
     lateinit var regulyDbBean: RegulyDbBean
@@ -49,16 +53,12 @@ open class RegulyUslugaBean {
         return zaladujRegulyDoObiektow()
     }
 
-    fun zapiszReguly(aReguly: List<RegulaEncja>) {
+    fun zapiszReguly(aReguly: List<RegulaEncja>):List<RegulaEncja> {
 
-        aReguly.filter { it.parametry != null }.forEach {
-            it.parametry!!.filter {
-                it.typ != null
-            }.forEach {
-                regulyDbBean.zapiszObiektParametru(it)
-            }
+        aReguly.forEach{
+            regulyDbBean.zapiszRegule(it)
         }
-
+        return aReguly
     }
 
     //**********************************

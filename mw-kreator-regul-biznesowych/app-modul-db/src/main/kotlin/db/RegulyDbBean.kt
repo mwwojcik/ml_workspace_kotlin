@@ -6,11 +6,18 @@ import model.encje.ParametrRegulyEncja
 import model.encje.RegulaEncja
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
-import javax.transaction.Transactional
+import org.springframework.transaction.annotation.Propagation
+import org.springframework.transaction.annotation.Transactional
+import javax.persistence.EntityManager
+import javax.persistence.PersistenceContext
+
 
 
 @Service
 open class RegulyDbBean {
+
+    @PersistenceContext
+    lateinit var  entityManager: EntityManager
 
     @Autowired
     lateinit var regulaRepozytorium: IRegulaRepozytorium
@@ -27,12 +34,6 @@ open class RegulyDbBean {
     @Transactional
     fun zapiszRegule(aEncja:RegulaEncja){
         regulaRepozytorium.save(aEncja)
-
-        if(aEncja.parametry!=null) {
-            for (param in aEncja.parametry!!) {
-                parametrRegulyRepozytorium.save(param)
-            }
-        }
     }
 
     @Transactional
