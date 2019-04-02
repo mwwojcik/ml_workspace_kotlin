@@ -5,24 +5,27 @@ import javax.persistence.*
 
 @Entity
 @Table(name = "reguly")
-data class RegulaEncja(
+open class RegulaEncja(
         val kod: String,
-        val tresc: String
-) : Encja(), IWalidowalny {
+        var tresc: String
+) : Encja() {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    var id: Long? = null
-
-    @Version
-    @Column(name = "WERSJA")
-    var wersja: Long? = null
-
-    @OneToMany(mappedBy = "regula", fetch = FetchType.EAGER, cascade = arrayOf(CascadeType.ALL))
+ /*   @Transient
     var parametry: MutableList<ParametrRegulyEncja>? = null
 
     @Transient
-    var sekwencja: Sekwencja? = null
+    var sekwencja: Sekwencja? = null*/
+
+    //@OneToMany(mappedBy = "regula", fetch = FetchType.EAGER, cascade = arrayOf(CascadeType.ALL))
+
+}
+
+/*
+
+@Transient
+    var parametry: MutableList<ParametrRegulyEncja>? = null
+
+
 
     @Transient
     override fun waliduj(): List<String> {
@@ -39,4 +42,5 @@ data class RegulaEncja(
 
         return bledy
     }
-}
+*
+* */

@@ -55,9 +55,9 @@ class MainController {
 
             val wartoscNazwaParametry = mutableListOf<WrapperParametruNazwaWartosc>()
             wartoscNazwaParametry.add(WrapperParametruNazwaWartosc("", ""))
-            for (sek in reg.sekwencja!!.rozpoznaneTokeny) {
+        /*    for (sek in reg.sekwencja!!.rozpoznaneTokeny) {
                 wartoscNazwaParametry.add(WrapperParametruNazwaWartosc(sek.wartosc, sek.typ.toString()))
-            }
+            }*/
 
 
             //kontenerek na regule
@@ -82,27 +82,27 @@ class MainController {
             pKontenerPionowyNaTabelkiParametrow.prefWidth = 800.0
             pKontenerPionowyNaTabelkiParametrow.spacing = 15.0
 
-            val pParametryTab = zbudujTabelkeParametrowWejsciowych(reg.parametry!!
+          /*  val pParametryTab = zbudujTabelkeParametrowWejsciowych(reg.parametry!!
                     , szerokoscTabeli = 340.0
                     , szerokoscKolumnyN = 100.0
                     , szerokoscKolumnyT = 100.0
-                    , szerokoscKolumnyW = 120.0)
+                    , szerokoscKolumnyW = 120.0)*/
 
-            var pKontenerParametrowWe = TitledPane("Parametry WE", pParametryTab)
+         /*   var pKontenerParametrowWe = TitledPane("Parametry WE", pParametryTab)
             var pKontenerParametrowWy = TitledPane("Parametry WY", zbudujTabelkeParametrowWejsciowych(reg.parametry!!
                     , szerokoscTabeli = 340.0
                     , szerokoscKolumnyN = 100.0
                     , szerokoscKolumnyT = 100.0
-                    , szerokoscKolumnyW = 120.0))
+                    , szerokoscKolumnyW = 120.0))*/
 
-            pKontenerParametrowWe.isExpanded = false
+           /* pKontenerParametrowWe.isExpanded = false
             pKontenerParametrowWy.isExpanded = false
 
             mapaKonenerowParametrowWe.put(reg.kod, pKontenerParametrowWe)
             mapaKonenerowParametrowWy.put(reg.kod, pKontenerParametrowWy)
 
             pKontenerPionowyNaTabelkiParametrow.children.add(pKontenerParametrowWe)
-            pKontenerPionowyNaTabelkiParametrow.children.add(pKontenerParametrowWy)
+            pKontenerPionowyNaTabelkiParametrow.children.add(pKontenerParametrowWy)*/
 
 
             //DRUGI WIERSZ
@@ -116,14 +116,14 @@ class MainController {
     }
 
     fun aktualizujParametryWe() {
-        for (reg in listaRegul) {
+       /* for (reg in listaRegul) {
             (mapaKonenerowParametrowWe[reg.kod]!!.content as TableView<*>).items.clear()
             if (reg.parametry != null) {
                 (mapaKonenerowParametrowWe[reg.kod]!!.content as TableView<WierszTabeliParametrowWeWy>).items = FXCollections.observableArrayList(reg.parametry!!.map {
                     WierszTabeliParametrowWeWy(it.nazwa, it.typ ?: "", it.wartoscDomyslna ?: "", it)
                 }.toList())
             }
-        }
+        }*/
     }
 
 
@@ -152,7 +152,7 @@ class MainController {
         wyczyscKonteneryBledow()
         println("onWalidujRegulyKLIK")
 
-        listaRegul.forEach {
+       /* listaRegul.forEach {
 
             val bledy = it.waliduj()
 
@@ -161,10 +161,10 @@ class MainController {
                 mapaKonenerowParametrowWe[it.kod]!!.isExpanded = true
                 mapaKonenerowParametrowWe[it.kod]!!.style = "-fx-border-color: red;"
 
-                /*mapaKonenerowParametrowWy[it.kod]!!.isExpanded = true
-                mapaKonenerowParametrowWy[it.kod]!!.style = "-fx-border-color: red;"*/
+                *//*mapaKonenerowParametrowWy[it.kod]!!.isExpanded = true
+                mapaKonenerowParametrowWy[it.kod]!!.style = "-fx-border-color: red;"*//*
             }
-        }
+        }*/
 
     }
 
@@ -172,8 +172,19 @@ class MainController {
     fun onZapiszRegulyKLIK() {
         wyczyscKonteneryBledow()
         println("onZapiszRegulyKLIK")
-        listaRegul=regulyUsluga.zapiszReguly(listaRegul)
-        aktualizujParametryWe()
+        val charPool : List<Char> = ('a'..'z') + ('A'..'Z') + ('0'..'9')
+        val randomString = (1..20)
+                .map { i -> kotlin.random.Random.nextInt(0, charPool.size) }
+                .map(charPool::get)
+                .joinToString("");
+
+        val pReg=listaRegul.get(0)
+        pReg.tresc=randomString
+
+        println("Wersja reguly przed zapisem=>"+pReg.wersja)
+        listaRegul=regulyUsluga.zapiszReguly(arrayListOf(pReg))
+        println("Wersja reguly po zapisie=>"+pReg.wersja)
+        //aktualizujParametryWe()
     }
 
     @FXML
