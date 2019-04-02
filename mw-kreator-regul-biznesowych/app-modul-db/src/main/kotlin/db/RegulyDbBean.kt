@@ -34,7 +34,6 @@ open class RegulyDbBean {
     @Transactional
     fun zapiszRegule(aEncja:RegulaEncja){
         regulaRepozytorium.save(aEncja)
-
     }
 
     @Transactional

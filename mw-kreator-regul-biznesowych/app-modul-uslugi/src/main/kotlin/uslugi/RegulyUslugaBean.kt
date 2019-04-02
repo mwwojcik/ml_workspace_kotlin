@@ -26,14 +26,10 @@ open class RegulyUslugaBean {
     var prefixNazwwyParametruDomyslnego="param"
     val formatDaty="^([0-2][0-9]||3[0-1])-(0[0-9]||1[0-2])-([0-9][0-9])?[0-9][0-9]\$"
 
-    @PersistenceContext
-    lateinit var  entityManager: EntityManager
 
     @Autowired
     lateinit var regulyDbBean: RegulyDbBean
 
-    @Autowired
-    lateinit var repozytoriumRepozytorium: IRegulaRepozytorium
 
     @Autowired
     lateinit var egzaminator: EgzaminatorModeluRozpoznawaniaEncjiNLP
@@ -60,20 +56,8 @@ open class RegulyUslugaBean {
     fun zapiszReguly(aReguly: List<RegulaEncja>):List<RegulaEncja> {
 
         aReguly.forEach{
-            if(it.id!=null){
-                entityManager.merge(it)
-            }else{
-                entityManager.persist(it)
-            }
-
-            entityManager.flush()
-
-            //entityManager.refresh(it)
-        }
-        //repozytoriumRepozytorium.saveAll(aReguly)
-      /*  aReguly.forEach{
             regulyDbBean.zapiszRegule(it)
-        }*/
+        }
         return aReguly
     }
 
@@ -90,13 +74,13 @@ open class RegulyUslugaBean {
                 pEncja = utworzObiektReguly(key, value)
             }
 
-          /*  pEncja.sekwencja = egzaminator.rozpoznajSekwencje(value)
-            pEncja.parametry = zaladujParametryDoObiektow(pEncja.sekwencja as Sekwencja, pEncja)*/
+            pEncja.sekwencja = egzaminator.rozpoznajSekwencje(value)
+            pEncja.parametry = zaladujParametryDoObiektow(pEncja.sekwencja as Sekwencja, pEncja)
 
             pListaEncji.add(pEncja)
 
         }
-        return arrayListOf(pListaEncji.get(0))
+        return pListaEncji.toList()
     }
 
     fun utworzObiektReguly(aKod: String, aTresc: String): RegulaEncja {
@@ -149,9 +133,7 @@ open class RegulyUslugaBean {
 
 
     fun wnioskujAtrybutyParametru(aParam: String,aRegula: RegulaEncja): WrapperTypuParametru {
-        return WrapperTypuParametru(aParam)
-
-        /* if(aRegula.sekwencja!!.podajTokenPoWartosci(aParam)!!.typ==RodzajTokenaEnum.LEWOSTRONNY_OPERAND_WARUNKU){
+        if(aRegula.sekwencja!!.podajTokenPoWartosci(aParam)!!.typ==RodzajTokenaEnum.LEWOSTRONNY_OPERAND_WARUNKU){
             return WrapperTypuParametru(aParam)
         }else{
             //prawa strona równania
@@ -177,11 +159,13 @@ open class RegulyUslugaBean {
             }
 
         }
-    }*/
     }
+
 }
 
-class WrapperTypuParametru(val nazwa:String,val typ:String?=null,val wartoscDomyslna:String?=null)
+class WrapperTypuParametru(val nazwa:String,val typ:String?=null,val wartoscDomyslna:String?=null){
+    }
+
 /*
 *
 1. “1/1/2010” , “01/01/2020”

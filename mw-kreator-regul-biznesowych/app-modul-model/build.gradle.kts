@@ -5,13 +5,11 @@ import kotlin.collections.mutableListOf as mutablelist
 buildscript{
     plugins{
         id ("org.jetbrains.kotlin.plugin.spring")version "1.3.21" //nastepca all-open
-        id ("org.jetbrains.kotlin.plugin.noarg" )version "1.3.21"
     }
 }
 
 plugins{
     kotlin("jvm") version  "1.3.10"
-    id ("org.jetbrains.kotlin.plugin.jpa") version "1.3.21"
     id ("org.jetbrains.kotlin.plugin.jpa") version "1.3.21"
     java
 }
