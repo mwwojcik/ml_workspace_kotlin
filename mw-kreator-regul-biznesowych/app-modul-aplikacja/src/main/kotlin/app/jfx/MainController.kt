@@ -154,7 +154,7 @@ class MainController {
 
         listaRegul.forEach {
 
-            val bledy = it.waliduj()
+            val bledy = emptyList<String>()//it.waliduj()
 
             if (!bledy.isEmpty()) {
                 mapaKonenerowBledowWalidacji[it.kod]!!.dodajBledy(bledy)
