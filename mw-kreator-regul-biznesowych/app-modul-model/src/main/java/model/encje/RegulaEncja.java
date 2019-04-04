@@ -26,8 +26,6 @@ public class RegulaEncja extends Encja{
     @OneToMany(mappedBy = "regula", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<ParametrRegulyEncja> parametry=null;
 
-    @Transient
-    private  Sekwencja sekwencja ;
 
 
 
@@ -55,11 +53,4 @@ public class RegulaEncja extends Encja{
         this.parametry = parametry;
     }
 
-    public Sekwencja getSekwencja() {
-        return sekwencja;
-    }
-
-    public void setSekwencja(Sekwencja sekwencja) {
-        this.sekwencja = sekwencja;
-    }
 }

@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import reguly.nlp.EgzaminatorModeluRozpoznawaniaEncjiNLP
+import uslugi.konwersja.RegulaKonwerter
 import java.nio.file.Files
 import java.nio.file.Path
 import java.nio.file.Paths
@@ -23,6 +24,8 @@ import javax.persistence.PersistenceContext
 @Service
 open class RegulyUslugaBean {
 
+    @Autowired
+    lateinit var konwerter:RegulaKonwerter
 
     @Autowired
     lateinit var regulyDbBean: RegulyDbBean
@@ -52,6 +55,10 @@ open class RegulyUslugaBean {
 
     @Transactional
     fun podajReguly(): List<Regula> {
+        reguly.values.forEach{
+            konwerter.konwertujDoEncji(it)
+        }
+
        return reguly.values!!.toList()
     }
 
