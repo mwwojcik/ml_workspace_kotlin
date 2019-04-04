@@ -15,7 +15,8 @@ import javafx.scene.control.cell.TextFieldTableCell
 import javafx.scene.layout.VBox
 import javafx.scene.paint.Color
 import javafx.util.Callback
-import model.encje.ParametrRegulyEncja
+import model.dto.Parametr
+
 import sun.misc.Signal.handle
 
 
@@ -65,7 +66,7 @@ fun zbudujTabelkeProstychWlasnosciKluczWartosc(parametry: List<WrapperParametruN
     return tableView
 }
 
-fun zbudujTabelkeParametrowWejsciowych(parametry: MutableList<ParametrRegulyEncja>
+fun zbudujTabelkeParametrowWejsciowych(parametry: MutableList<Parametr>
                                        , szerokoscKolumnyT: Double = SZEROKOSC_TRZY_KOLUMNY
                                        , szerokoscKolumnyN: Double = SZEROKOSC_TRZY_KOLUMNY
                                        , szerokoscKolumnyW: Double = SZEROKOSC_TRZY_KOLUMNY
@@ -149,12 +150,12 @@ fun wyliczWysokoscTabeli(table: TableView<*>, rowHeight: Int, headerHeight: Int,
 
 
 
-open class WierszTabeliParametrowWeWy(aNazwa: String, aTyp: String,aWartosc:String,aParametr:ParametrRegulyEncja) {
+open class WierszTabeliParametrowWeWy(aNazwa: String, aTyp: String,aWartosc:String,aParametr:Parametr) {
     val nazwaProperty: SimpleStringProperty
     val typProperty: SimpleStringProperty
     val wartoscDomyslnaProperty: SimpleStringProperty
 
-    val parametr: ParametrRegulyEncja
+    val parametr: Parametr
 
     init {
         nazwaProperty = SimpleStringProperty(aNazwa)

@@ -11,6 +11,7 @@ import javafx.scene.control.Tooltip
 import javafx.scene.layout.HBox
 import javafx.scene.layout.VBox
 import javafx.scene.paint.Color
+import model.dto.Regula
 import model.encje.RegulaEncja
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Controller
@@ -24,7 +25,7 @@ class MainController {
     @Autowired
     lateinit var regulyUsluga: RegulyUslugaBean
 
-    lateinit var listaRegul: List<RegulaEncja>
+    lateinit var listaRegul: List<Regula>
 
 
     @FXML
@@ -95,8 +96,8 @@ class MainController {
                     , szerokoscKolumnyT = 100.0
                     , szerokoscKolumnyW = 120.0))
 
-            pKontenerParametrowWe.isExpanded = false
-            pKontenerParametrowWy.isExpanded = false
+            pKontenerParametrowWe.isExpanded = true
+            pKontenerParametrowWy.isExpanded = true
 
             mapaKonenerowParametrowWe.put(reg.kod, pKontenerParametrowWe)
             mapaKonenerowParametrowWy.put(reg.kod, pKontenerParametrowWy)
@@ -172,7 +173,7 @@ class MainController {
     fun onZapiszRegulyKLIK() {
         wyczyscKonteneryBledow()
         println("onZapiszRegulyKLIK")
-        listaRegul=regulyUsluga.zapiszReguly(listaRegul)
+        regulyUsluga.zapiszReguly(listaRegul)
         aktualizujParametryWe()
     }
 

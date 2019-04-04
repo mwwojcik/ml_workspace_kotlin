@@ -2,6 +2,8 @@ package uslugi
 
 import db.RegulyDbBean
 import db.repo.IRegulaRepozytorium
+import model.dto.Parametr
+import model.dto.Regula
 import model.encje.ParametrRegulyEncja
 import model.encje.RegulaEncja
 import model.nlp.RodzajTokenaEnum
@@ -19,12 +21,7 @@ import javax.persistence.PersistenceContext
 
 
 @Service
-@Transactional
 open class RegulyUslugaBean {
-
-    var licznikDefaultowychParametrow=1
-    var prefixNazwwyParametruDomyslnego="param"
-    val formatDaty="^([0-2][0-9]||3[0-1])-(0[0-9]||1[0-2])-([0-9][0-9])?[0-9][0-9]\$"
 
 
     @Autowired
@@ -34,7 +31,7 @@ open class RegulyUslugaBean {
     @Autowired
     lateinit var egzaminator: EgzaminatorModeluRozpoznawaniaEncjiNLP
 
-    val reguly: MutableMap<String, String> = mutableMapOf()
+    val reguly: MutableMap<String, Regula> = mutableMapOf()
 
     @PostConstruct
     fun inicjalizuj(): Unit {
@@ -44,128 +41,95 @@ open class RegulyUslugaBean {
 
         plistaRegul.forEach({
             val pRegList = it.split(":")
-            reguly.put(pRegList[0], pRegList[1].replace("\r", ""))
+            val kodReguly=pRegList[0]
+            val trescRegulyStr=pRegList[1].replace("\r", "")
+            val sekwencja=egzaminator.rozpoznajSekwencje(trescRegulyStr)
+            val parametry= wyodrebnijListeParametrow(sekwencja)
+            reguly.put(pRegList[0], Regula(kodReguly,trescRegulyStr,sekwencja,parametry))
         })
     }
     //**********************************
 
-    fun podajReguly(): List<RegulaEncja> {
-        return zaladujRegulyDoObiektow()
+    @Transactional
+    fun podajReguly(): List<Regula> {
+       return reguly.values!!.toList()
     }
 
-    fun zapiszReguly(aReguly: List<RegulaEncja>):List<RegulaEncja> {
+    @Transactional
+    fun zapiszReguly(aReguly: List<Regula>) {
 
-        aReguly.forEach{
-            regulyDbBean.zapiszRegule(it)
-        }
-        return aReguly
     }
 
     //**********************************
 
 
-    fun zaladujRegulyDoObiektow(): List<RegulaEncja> {
-        val pListaEncji = mutableListOf<RegulaEncja>()
+}
 
-        for ((key, value) in reguly) {
-            var pEncja = regulyDbBean.pobierzRegulePoKodzie(key)
 
-            if (pEncja == null) {
-                pEncja = utworzObiektReguly(key, value)
+var licznikDefaultowychParametrow = 1
+var prefixNazwwyParametruDomyslnego = "param"
+val formatDaty = "^([0-2][0-9]||3[0-1])-(0[0-9]||1[0-2])-([0-9][0-9])?[0-9][0-9]\$"
+
+
+data class WrapperTypuParametru(val nazwa: String, val typ: String? = null, val wartoscDomyslna: String? = null)
+
+
+fun wyodrebnijListeParametrow(aSekwencja: Sekwencja): MutableList<Parametr> {
+    var unikalnySet: MutableSet<String> = linkedSetOf()
+
+    aSekwencja.rozpoznaneTokeny
+            .filter {
+                (it.typ == RodzajTokenaEnum.LEWOSTRONNY_OPERAND_WARUNKU
+                        || it.typ == RodzajTokenaEnum.PRAWOSTRONNY_OPERAND_WARUNKU)
+                        && !unikalnySet.contains(it.wartosc)
+            }
+            .forEach() {
+                unikalnySet.add(it.wartosc)
+                ParametrRegulyEncja(it.wartosc)
             }
 
-            pEncja.sekwencja = egzaminator.rozpoznajSekwencje(value)
-            pEncja.parametry = zaladujParametryDoObiektow(pEncja.sekwencja as Sekwencja, pEncja)
-
-            pListaEncji.add(pEncja)
-
-        }
-        return pListaEncji.toList()
-    }
-
-    fun utworzObiektReguly(aKod: String, aTresc: String): RegulaEncja {
-        val pEncja = RegulaEncja(aKod, aTresc)
-        regulyDbBean.zapiszRegule(pEncja)
-        return pEncja
-    }
-
-
-
-    fun zaladujParametryDoObiektow(aSekwencja: Sekwencja, aRegulaEncja: RegulaEncja): MutableList<ParametrRegulyEncja> {
-        var i: Int = 0
-        var unikalnySet: MutableSet<String> = linkedSetOf()
-
-        aSekwencja.rozpoznaneTokeny
-                .filter {
-                    (it.typ == RodzajTokenaEnum.LEWOSTRONNY_OPERAND_WARUNKU
-                            || it.typ == RodzajTokenaEnum.PRAWOSTRONNY_OPERAND_WARUNKU)
-                            && !unikalnySet.contains(it.wartosc)
-                }
-                .forEach() {
-                    unikalnySet.add(it.wartosc)
-                    ParametrRegulyEncja(it.wartosc)
-                }
-        val obiektyParametrow: MutableList<ParametrRegulyEncja> = mutableListOf<ParametrRegulyEncja>()
-
-        licznikDefaultowychParametrow=0
-
-        unikalnySet.forEach {
-            var pEncja = regulyDbBean.pobierzParametrPoNazwie(aRegulaEncja, it)
-
-            if (pEncja == null) {
-                pEncja = utworzObiektParametru(aRegulaEncja, it)
-            }
-
-            obiektyParametrow.add(pEncja)
-        }
-
-        return obiektyParametrow
-
-    }
-
-    fun utworzObiektParametru(aRegulaEncja: RegulaEncja, aParametr: String): ParametrRegulyEncja {
-        val wraperAtrybutow=wnioskujAtrybutyParametru(aParametr,aRegulaEncja)
-        val pEncja = ParametrRegulyEncja(wraperAtrybutow.nazwa, wraperAtrybutow.typ, wraperAtrybutow.wartoscDomyslna)
-        pEncja.regula = aRegulaEncja
-        regulyDbBean.zapiszObiektParametru(pEncja)
-        return pEncja
-    }
-
-
-    fun wnioskujAtrybutyParametru(aParam: String,aRegula: RegulaEncja): WrapperTypuParametru {
-        if(aRegula.sekwencja!!.podajTokenPoWartosci(aParam)!!.typ==RodzajTokenaEnum.LEWOSTRONNY_OPERAND_WARUNKU){
-            return WrapperTypuParametru(aParam)
-        }else{
-            //prawa strona równania
-            if(aParam.contains("'")||aParam.contains("\"")){
-                //string data lub liczba, ale na pewno wartosc domyslne
-                if(aParam.replace("\"","").replace("'","").trim().matches(formatDaty.toRegex())){
-                    return WrapperTypuParametru(prefixNazwwyParametruDomyslnego+licznikDefaultowychParametrow++,"Data",aParam)//wartosc domyslna data
-
-                }else {
-                    //wartosc domyslna napis
-                    return WrapperTypuParametru(prefixNazwwyParametruDomyslnego + licznikDefaultowychParametrow++, "Napis", aParam)//wartosc domyslna data
-                }
-            }else{
-                var pEwentualnaLiczba=aParam.trim().toIntOrNull()
-
-                if(pEwentualnaLiczba!=null){
-                    //wartosc domyslna bedaca liczba
-                    return WrapperTypuParametru(prefixNazwwyParametruDomyslnego+licznikDefaultowychParametrow++,"Liczba",aParam)//wartosc domyslna data
-                }
-
-                //nazwa zmiennej
-                return WrapperTypuParametru(aParam)
-            }
-
-        }
-    }
+    licznikDefaultowychParametrow = 0
+    return unikalnySet.map {
+        utworzObiektParametru(it, aSekwencja)
+    }.toMutableList()
 
 }
 
-class WrapperTypuParametru(val nazwa:String,val typ:String?=null,val wartoscDomyslna:String?=null){
-    }
 
+fun utworzObiektParametru(aNazwaParametru: String, aSekwencja: Sekwencja): Parametr {
+    val wraperAtrybutow = wnioskujAtrybutyParametru(aNazwaParametru, aSekwencja)
+    return Parametr(wraperAtrybutow.nazwa, wraperAtrybutow.typ, wraperAtrybutow.wartoscDomyslna)
+}
+
+
+fun wnioskujAtrybutyParametru(aParam: String, aSekwencja: Sekwencja): WrapperTypuParametru {
+    if (aSekwencja.podajTokenPoWartosci(aParam)!!.typ == RodzajTokenaEnum.LEWOSTRONNY_OPERAND_WARUNKU) {
+        return WrapperTypuParametru(aParam)
+    } else {
+        //prawa strona równania
+        if (aParam.contains("'") || aParam.contains("\"")) {
+            //string data lub liczba, ale na pewno wartosc domyslne
+            if (aParam.replace("\"", "").replace("'", "").trim().matches(formatDaty.toRegex())) {
+                return WrapperTypuParametru(prefixNazwwyParametruDomyslnego + licznikDefaultowychParametrow++, "Data", aParam)//wartosc domyslna data
+
+            } else {
+                //wartosc domyslna napis
+                return WrapperTypuParametru(prefixNazwwyParametruDomyslnego + licznikDefaultowychParametrow++, "Napis", aParam)//wartosc domyslna data
+            }
+        } else {
+            var pEwentualnaLiczba = aParam.trim().toIntOrNull()
+
+            if (pEwentualnaLiczba != null) {
+                //wartosc domyslna bedaca liczba
+                return WrapperTypuParametru(prefixNazwwyParametruDomyslnego + licznikDefaultowychParametrow++, "Liczba", aParam)//wartosc domyslna data
+            }
+
+            //nazwa zmiennej
+            return WrapperTypuParametru(aParam)
+        }
+
+    }
+}
 /*
 *
 1. “1/1/2010” , “01/01/2020”
