@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import reguly.nlp.EgzaminatorModeluRozpoznawaniaEncjiNLP
 import uslugi.konwersja.RegulaKonwerter
+import uslugi.konwersja.SynchronizatorDanychBean
 import java.nio.file.Files
 import java.nio.file.Path
 import java.nio.file.Paths
@@ -30,41 +31,54 @@ open class RegulyUslugaBean {
     @Autowired
     lateinit var regulyDbBean: RegulyDbBean
 
+    @Autowired
+    lateinit var synchronizatorDanych: SynchronizatorDanychBean
 
     @Autowired
     lateinit var egzaminator: EgzaminatorModeluRozpoznawaniaEncjiNLP
 
-    val reguly: MutableMap<String, Regula> = mutableMapOf()
+    //val reguly: MutableMap<String, Regula> = mutableMapOf()
 
     @PostConstruct
     fun inicjalizuj(): Unit {
         val plistaRegul = String(this::class.java.classLoader.getResourceAsStream("reguly.reg").readBytes()).split("\n")
 
-        var i: Int = 0;
-
-        plistaRegul.forEach({
+        val pObiektyDoSynchronizacji:List<Regula> =
+                plistaRegul.map({
             val pRegList = it.split(":")
             val kodReguly=pRegList[0]
             val trescRegulyStr=pRegList[1].replace("\r", "")
             val sekwencja=egzaminator.rozpoznajSekwencje(trescRegulyStr)
             val parametry= wyodrebnijListeParametrow(sekwencja)
-            reguly.put(pRegList[0], Regula(kodReguly,trescRegulyStr,sekwencja,parametry))
-        })
+            Regula(kodReguly,trescRegulyStr,sekwencja,parametry)
+        }).toList()
+
+        synchronizatorDanych.synchronizujDane(pObiektyDoSynchronizacji)
     }
     //**********************************
 
     @Transactional
     fun podajReguly(): List<Regula> {
-        reguly.values.forEach{
+        return emptyList<Regula>()
+       /* reguly.values.forEach{
             konwerter.konwertujDoEncji(it)
         }
 
-       return reguly.values!!.toList()
+       return reguly.values!!.toList()*/
     }
 
     @Transactional
     fun zapiszReguly(aReguly: List<Regula>) {
+        aReguly.forEach{
+            val charPool : List<Char> = ('a'..'z') + ('A'..'Z') + ('0'..'9')
+            val randomString = (1..20)
+                    .map { i -> kotlin.random.Random.nextInt(0, charPool.size) }
+                    .map(charPool::get)
+                    .joinToString("")
 
+            it.tresc=randomString
+            konwerter.konwertujDoEncji(it)
+        }
     }
 
     //**********************************

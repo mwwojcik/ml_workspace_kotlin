@@ -120,9 +120,11 @@ class MainController {
         for (reg in listaRegul) {
             (mapaKonenerowParametrowWe[reg.kod]!!.content as TableView<*>).items.clear()
             if (reg.parametry != null) {
-                (mapaKonenerowParametrowWe[reg.kod]!!.content as TableView<WierszTabeliParametrowWeWy>).items = FXCollections.observableArrayList(reg.parametry!!.map {
-                    WierszTabeliParametrowWeWy(it.nazwa, it.typ ?: "", it.wartoscDomyslna ?: "", it)
-                }.toList())
+                (mapaKonenerowParametrowWe[reg.kod]!!.content as TableView<WierszTabeliParametrowWeWy>).items =
+                        FXCollections.observableArrayList(
+                                reg.parametry!!.map {
+                                    WierszTabeliParametrowWeWy(it.nazwa, it.typ ?: "", it.wartoscDomyslna ?: "", it)
+                                }.toList())
             }
         }
     }
@@ -134,7 +136,6 @@ class MainController {
         }
 
         mapaKonenerowParametrowWe.forEach { String, kontener ->
-            kontener.isExpanded = false
             kontener.style = "-fx-border:none;"
 
         }

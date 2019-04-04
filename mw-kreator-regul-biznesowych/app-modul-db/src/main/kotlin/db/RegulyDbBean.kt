@@ -18,49 +18,33 @@ import javax.persistence.PersistenceContext
 open class RegulyDbBean {
 
     @PersistenceContext
-    lateinit var entityManager: EntityManager
+    private lateinit var entityManager: EntityManager
 
     @Autowired
-    lateinit var regulaRepozytorium: IRegulaRepozytorium
+    private lateinit var regulaRepozytorium: IRegulaRepozytorium
 
     @Autowired
-    lateinit var parametrRegulyRepozytorium: IParametrRegulyRepozytorium
+    private lateinit var parametrRegulyRepozytorium: IParametrRegulyRepozytorium
+
+
 
 
     @Transactional
-    fun pobierzRegulePoKodzie(aKod: String): RegulaEncja {
-        var pEncja: RegulaEncja? = regulaRepozytorium.findByKod(aKod)
+    fun pobierzParametrPoNazwie(aRegulaEncja: RegulaEncja, aNazwa: String): ParametrRegulyEncja? =
+            parametrRegulyRepozytorium.findByRegulaAndNazwa(aRegulaEncja, aNazwa)
 
-        if (pEncja == null) {
-            pEncja = utworzEncje(RegulaEncja::class.java)
-            entityManager.persist(pEncja)
-        } else {
-            return pEncja
-        }
-        return pEncja
-    }
 
     @Transactional
-    fun zapiszRegule(aEncja: RegulaEncja) {
-        regulaRepozytorium.save(aEncja)
-    }
+    fun pobierzRegulyJesliKoduNieMaNaLiscie(aKody:List<String>)=regulaRepozytorium.findByKodNotIn(aKody)
 
     @Transactional
-    fun zapiszObiektParametru(aEncja: ParametrRegulyEncja) {
-        //parametrRegulyRepozytorium.findById(aEncja.id).get().typ=aEncja.typ
-        parametrRegulyRepozytorium.save(aEncja)
-    }
+    fun pobierzRegulePoKodzie(aKod: String): RegulaEncja? = regulaRepozytorium.findByKod(aKod)
 
     @Transactional
-    fun pobierzParametryDlaReguly(aRegulaEncja: RegulaEncja): List<ParametrRegulyEncja>? {
-        return parametrRegulyRepozytorium.findByRegula(aRegulaEncja)
-    }
+    fun usunRegule(aRegula:RegulaEncja)=regulaRepozytorium.delete(aRegula)
 
-    @Transactional
-    fun pobierzParametrPoNazwie(aRegulaEncja: RegulaEncja, aNazwa: String): ParametrRegulyEncja? {
-        //zapiszRegule(aRegulaEncja)
-        return parametrRegulyRepozytorium.findByRegulaAndNazwa(aRegulaEncja, aNazwa)
-    }
+
+
 
     @Transactional
     fun <T : Encja> podajObiektZarzadzalny(aId: Long?=null, aKlasaObiektu: Class<T>): T {

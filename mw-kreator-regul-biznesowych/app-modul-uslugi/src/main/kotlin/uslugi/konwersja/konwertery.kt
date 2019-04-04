@@ -16,13 +16,13 @@ import reguly.nlp.EgzaminatorModeluRozpoznawaniaEncjiNLP
 open class RegulaKonwerter : BazowyKonwerter(), IKonwerter<Regula, RegulaEncja> {
 
     @Autowired
-    lateinit var egzaminator: EgzaminatorModeluRozpoznawaniaEncjiNLP;
+    private lateinit var egzaminator: EgzaminatorModeluRozpoznawaniaEncjiNLP;
 
     @Autowired
-    lateinit var konwerterParametrow: ParametrKonwerter
+    private lateinit var konwerterParametrow: ParametrKonwerter
 
     override fun konwertujDoEncji(aDto: Regula): RegulaEncja {
-        val pEncja: RegulaEncja = podajObiektRegulyPoKodzie(aDto.kod)
+        val pEncja: RegulaEncja = podajObiektZarzadzalny<RegulaEncja>(aDto.id,RegulaEncja::class.java)
         with(aDto) {
             pEncja.kod = kod
             pEncja.tresc = tresc
@@ -44,6 +44,8 @@ open class RegulaKonwerter : BazowyKonwerter(), IKonwerter<Regula, RegulaEncja> 
                     , parametry.map {
                 konwerterParametrow.konwertujDoTransportu(it)
             }.toMutableList())
+            pDto.id=id
+            pDto.wersja=wersja
             return pDto
         }
     }
@@ -65,6 +67,8 @@ open class ParametrKonwerter : BazowyKonwerter(), IKonwerter<Parametr, ParametrR
     override fun konwertujDoTransportu(aEncja: ParametrRegulyEncja): Parametr {
         with(aEncja){
             val pDto=Parametr(nazwa,typ,wartoscDomyslna)
+            pDto.id=id
+            pDto.wersja=wersja
             return pDto
         }
     }
@@ -78,11 +82,6 @@ open class BazowyKonwerter {
     fun <T : Encja> podajObiektZarzadzalny(aId: Long?, aTypObiektuZarzadzalnego: Class<T>): T {
         return regulyDbBean.podajObiektZarzadzalny(aId, aTypObiektuZarzadzalnego)
     }
-
-    fun podajObiektRegulyPoKodzie(aKod:String): RegulaEncja {
-        return regulyDbBean.pobierzRegulePoKodzie(aKod)
-    }
-
 }
 
 
