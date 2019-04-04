@@ -22,7 +22,7 @@ open class RegulaKonwerter : BazowyKonwerter(), IKonwerter<Regula, RegulaEncja> 
     lateinit var konwerterParametrow: ParametrKonwerter
 
     override fun konwertujDoEncji(aDto: Regula): RegulaEncja {
-        val pEncja: RegulaEncja = podajObiektZarzadzalny(aDto.id!!, RegulaEncja::class.java)
+        val pEncja: RegulaEncja = podajObiektRegulyPoKodzie(aDto.kod)
         with(aDto) {
             pEncja.kod = kod
             pEncja.tresc = tresc
@@ -53,7 +53,7 @@ open class RegulaKonwerter : BazowyKonwerter(), IKonwerter<Regula, RegulaEncja> 
 open class ParametrKonwerter : BazowyKonwerter(), IKonwerter<Parametr, ParametrRegulyEncja> {
 
     override fun konwertujDoEncji(aDto: Parametr): ParametrRegulyEncja {
-        val pEncja: ParametrRegulyEncja = podajObiektZarzadzalny(aDto.id!!, ParametrRegulyEncja::class.java)
+        val pEncja: ParametrRegulyEncja = podajObiektZarzadzalny<ParametrRegulyEncja>(aDto.id, ParametrRegulyEncja::class.java)
         with(aDto) {
             pEncja.nazwa = nazwa
             pEncja.typ = typ
@@ -75,8 +75,12 @@ open class BazowyKonwerter {
     @Autowired
     lateinit var regulyDbBean: RegulyDbBean
 
-    fun <T : Encja> podajObiektZarzadzalny(aId: Long, aTypObiektuZarzadzalnego: Class<T>): T {
+    fun <T : Encja> podajObiektZarzadzalny(aId: Long?, aTypObiektuZarzadzalnego: Class<T>): T {
         return regulyDbBean.podajObiektZarzadzalny(aId, aTypObiektuZarzadzalnego)
+    }
+
+    fun podajObiektRegulyPoKodzie(aKod:String): RegulaEncja {
+        return regulyDbBean.pobierzRegulePoKodzie(aKod)
     }
 
 }
