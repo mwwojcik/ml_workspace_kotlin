@@ -6,6 +6,7 @@ import model.nlp.Sekwencja
 import opennlp.tools.namefind.NameFinderME
 import opennlp.tools.namefind.TokenNameFinderModel
 import opennlp.tools.util.Span
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Component
 import java.io.FileInputStream
@@ -21,6 +22,9 @@ open class EgzaminatorModeluRozpoznawaniaEncjiNLP {
     lateinit var plikModelu: String
 
     lateinit var model:TokenNameFinderModel
+
+    @Autowired
+    lateinit var tokenizer:TokenizerSentencji
 
     @PostConstruct
     public fun inicjujModel(){
@@ -43,7 +47,7 @@ open class EgzaminatorModeluRozpoznawaniaEncjiNLP {
 
     public fun rozpoznajSekwencje(aSekwencja:String):Sekwencja{
 
-        val pSekwencja=Sekwencja(aSekwencja,aSekwencja.split(" ".toRegex()).toTypedArray())
+        val pSekwencja=Sekwencja(aSekwencja,tokenizer.przygotujZdanieDoAnalizy(aSekwencja).split(" ".toRegex()).toTypedArray())
 
         // testing the model and printing the types it found in the input sentence
         val nameFinder = NameFinderME(model)

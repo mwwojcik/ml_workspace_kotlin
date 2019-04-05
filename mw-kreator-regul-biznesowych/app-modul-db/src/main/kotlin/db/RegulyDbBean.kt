@@ -43,7 +43,8 @@ open class RegulyDbBean {
     @Transactional
     fun usunRegule(aRegula:RegulaEncja)=regulaRepozytorium.delete(aRegula)
 
-
+    @Transactional
+    fun pobierzWszystkieReguly()=regulaRepozytorium.findAll()
 
 
     @Transactional

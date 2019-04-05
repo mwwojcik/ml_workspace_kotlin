@@ -3,6 +3,7 @@ package reguly
 import model.nlp.Sekwencja
 import org.junit.Test
 import reguly.nlp.EgzaminatorModeluRozpoznawaniaEncjiNLP
+import reguly.nlp.TokenizerSentencji
 import java.nio.file.Files
 import java.nio.file.Paths
 import kotlin.test.assertEquals
@@ -26,12 +27,13 @@ class TesterModeluNLP {
     fun inicjalizuj(){
         egzaminator.plikModelu="modelnlp/encje_reguly_model.bin"
         egzaminator.inicjujModel()
+        egzaminator.tokenizer= TokenizerSentencji()
     }
 
 
     val przypadki = arrayListOf<PrzypadekTestowy>(
             //operatory podstawowe 'jest równy','jest większy lub równy', 'jest mniejszy lub równy'
-            PrzypadekTestowy("Jeśli data jest równa '01-01-2000' wtedy wyświetl komunikat <KOMUNIKAT1> .", "jest równa")
+            PrzypadekTestowy("Jeśli data jest       równa '01-01-2000',      wtedy         wyświetl komunikat <KOMUNIKAT1>.", "jest równa")
             , PrzypadekTestowy("Jeśli data jest większa lub równa '01-01-2000' wtedy wyświetl komunikat <KOMUNIKAT1> .", "jest większa lub równa")
             , PrzypadekTestowy("Jeśli nachylenie jest mniejsze lub równe 30 wtedy wyświetl komunikat <KOMUNIKAT1> .", "jest mniejsze lub równe")
             //operatory podstawowe zaprzeczone 'nie jest równy','nie jest większy lub równy', 'nie jest mniejszy lub równy'
@@ -62,7 +64,7 @@ class TesterModeluNLP {
             , PrzypadekTestowy("Jeśli nachylenie nie jest mniejsze lub równe 30 wtedy wyświetl komunikat <KOMUNIKAT_0> .", "nie jest mniejsze lub równe")
             , PrzypadekTestowy("Jeśli nachylenie nie jest mniejsze lub równe 30 wtedy wyświetl komunikat <KOMUNIKAT_0> w przeciwnym wypadku wyświetl komunikat <KOMUNIKAT2> .", "nie jest mniejsze lub równe")
             , PrzypadekTestowy("Jeżeli suma jest różna od 50 to wyświetl komunikat <KOMUNIKAT1> w przeciwnym wypadku sprawdź regułę RS-1 .", "jest różna od")
-            , PrzypadekTestowy("Jeśli data_utworzenia jest większa od '01-01-2010' oraz data_utworzenia nie jest mniejsza niż data_kwalifikacji i data_kwalifikacji jest różna od data_weryfikacji to zgłoś błąd walidacji <KOMUNIKAT_WALIDACJI_1> w przeciwnym razie wyświetl komunikat <KOMUNIKAT2> .","jest większa od")
+            , PrzypadekTestowy("Jeśli data_utworzenia jest większa od '01-01-2010',oraz data_utworzenia nie jest mniejsza niż data_kwalifikacji i data_kwalifikacji jest różna od data_weryfikacji to zgłoś błąd walidacji <KOMUNIKAT_WALIDACJI_1> w przeciwnym razie wyświetl komunikat <KOMUNIKAT2> .","jest większa od")
 
     )
 

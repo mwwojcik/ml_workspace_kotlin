@@ -26,7 +26,7 @@ import javax.persistence.PersistenceContext
 open class RegulyUslugaBean {
 
     @Autowired
-    lateinit var konwerter:RegulaKonwerter
+    lateinit var konwerter: RegulaKonwerter
 
     @Autowired
     lateinit var regulyDbBean: RegulyDbBean
@@ -43,15 +43,15 @@ open class RegulyUslugaBean {
     fun inicjalizuj(): Unit {
         val plistaRegul = String(this::class.java.classLoader.getResourceAsStream("reguly.reg").readBytes()).split("\n")
 
-        val pObiektyDoSynchronizacji:List<Regula> =
+        val pObiektyDoSynchronizacji: List<Regula> =
                 plistaRegul.map({
-            val pRegList = it.split(":")
-            val kodReguly=pRegList[0]
-            val trescRegulyStr=pRegList[1].replace("\r", "")
-            val sekwencja=egzaminator.rozpoznajSekwencje(trescRegulyStr)
-            val parametry= wyodrebnijListeParametrow(sekwencja)
-            Regula(kodReguly,trescRegulyStr,sekwencja,parametry)
-        }).toList()
+                    val pRegList = it.split(":")
+                    val kodReguly = pRegList[0]
+                    val trescRegulyStr = pRegList[1].replace("\r", "")
+                    val sekwencja = egzaminator.rozpoznajSekwencje(trescRegulyStr)
+                    val parametry = wyodrebnijListeParametrow(sekwencja)
+                    Regula(kodReguly, trescRegulyStr, sekwencja, parametry)
+                }).toList()
 
         synchronizatorDanych.synchronizujDane(pObiektyDoSynchronizacji)
     }
@@ -59,24 +59,15 @@ open class RegulyUslugaBean {
 
     @Transactional
     fun podajReguly(): List<Regula> {
-        return emptyList<Regula>()
-       /* reguly.values.forEach{
-            konwerter.konwertujDoEncji(it)
-        }
 
-       return reguly.values!!.toList()*/
+        return regulyDbBean.pobierzWszystkieReguly().map {
+            konwerter.konwertujDoTransportu(it)
+        }.toList()
     }
 
     @Transactional
     fun zapiszReguly(aReguly: List<Regula>) {
-        aReguly.forEach{
-            val charPool : List<Char> = ('a'..'z') + ('A'..'Z') + ('0'..'9')
-            val randomString = (1..20)
-                    .map { i -> kotlin.random.Random.nextInt(0, charPool.size) }
-                    .map(charPool::get)
-                    .joinToString("")
-
-            it.tresc=randomString
+        aReguly.forEach {
             konwerter.konwertujDoEncji(it)
         }
     }

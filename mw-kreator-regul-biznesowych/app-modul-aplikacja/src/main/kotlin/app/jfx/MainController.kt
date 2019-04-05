@@ -11,12 +11,16 @@ import javafx.scene.control.Tooltip
 import javafx.scene.layout.HBox
 import javafx.scene.layout.VBox
 import javafx.scene.paint.Color
+import model.dto.Parametr
 import model.dto.Regula
 import model.encje.RegulaEncja
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Controller
 import uslugi.RegulyUslugaBean
 import javax.transaction.Transactional
+import javafx.scene.control.Alert
+
+
 
 
 @Controller
@@ -54,10 +58,10 @@ class MainController {
             pTytul.padding = Insets(10.0)
             pTytul.setStyle("-fx-font-weight: bold")
 
-            val wartoscNazwaParametry = mutableListOf<WrapperParametruNazwaWartosc>()
-            wartoscNazwaParametry.add(WrapperParametruNazwaWartosc("", ""))
+            val wartoscNazwaParametry = mutableListOf<WrapperParametruNazwaWartoscKategoria>()
+            wartoscNazwaParametry.add(WrapperParametruNazwaWartoscKategoria("", "",""))
             for (sek in reg.sekwencja!!.rozpoznaneTokeny) {
-                wartoscNazwaParametry.add(WrapperParametruNazwaWartosc(sek.wartosc, sek.typ.toString()))
+                wartoscNazwaParametry.add(WrapperParametruNazwaWartoscKategoria(sek.wartosc, sek.typ.toString(),"op"))
             }
 
 
@@ -72,9 +76,10 @@ class MainController {
 
             pKontenerNaTabelki.children.add(pTytul)
             //PIERWSZY WIERSZ
-            pKontenerNaTabelki.children.add(zbudujTabelkeProstychWlasnosciKluczWartosc(wartoscNazwaParametry
+            pKontenerNaTabelki.children.add(zbudujTabelkeWlasnosciNazwaWartoscKategoria(wartoscNazwaParametry
                     , szerokoscKolumnyN = 80.0
-                    , szerokoscKolumnyW = 520.0
+                    , szerokoscKolumnyW = 460.0
+                    , szerokoscKolumnyK = 80.0
                     , szerokoscTabeli = 700.0))
 
 
@@ -90,7 +95,7 @@ class MainController {
                     , szerokoscKolumnyW = 120.0)
 
             var pKontenerParametrowWe = TitledPane("Parametry WE", pParametryTab)
-            var pKontenerParametrowWy = TitledPane("Parametry WY", zbudujTabelkeParametrowWejsciowych(reg.parametry!!
+            var pKontenerParametrowWy = TitledPane("Parametry WY", zbudujTabelkeParametrowWejsciowych(mutableListOf()
                     , szerokoscTabeli = 340.0
                     , szerokoscKolumnyN = 100.0
                     , szerokoscKolumnyT = 100.0
@@ -146,6 +151,7 @@ class MainController {
     fun onWczytajRegulyKLIK() {
         wyczyscKonteneryBledow()
         println("onWczytajRegulyKLIK")
+        listaRegul=regulyUsluga.podajReguly()
 
     }
 
@@ -154,18 +160,27 @@ class MainController {
         wyczyscKonteneryBledow()
         println("onWalidujRegulyKLIK")
 
+        var flaga =false
+
         listaRegul.forEach {
 
-            val bledy = emptyList<String>()//it.waliduj()
+            val bledy = it.waliduj()
 
             if (!bledy.isEmpty()) {
                 mapaKonenerowBledowWalidacji[it.kod]!!.dodajBledy(bledy)
                 mapaKonenerowParametrowWe[it.kod]!!.isExpanded = true
                 mapaKonenerowParametrowWe[it.kod]!!.style = "-fx-border-color: red;"
 
-                /*mapaKonenerowParametrowWy[it.kod]!!.isExpanded = true
+                flaga=true
+              /*  mapaKonenerowParametrowWy[it.kod]!!.isExpanded = true
                 mapaKonenerowParametrowWy[it.kod]!!.style = "-fx-border-color: red;"*/
             }
+
+
+        }
+
+        if(flaga){
+            Alert(Alert.AlertType.INFORMATION, "Wykryte zostały błędy walidacji!").show()
         }
 
     }

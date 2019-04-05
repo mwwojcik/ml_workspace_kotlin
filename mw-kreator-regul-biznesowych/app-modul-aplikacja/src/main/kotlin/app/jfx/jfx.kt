@@ -66,6 +66,51 @@ fun zbudujTabelkeProstychWlasnosciKluczWartosc(parametry: List<WrapperParametruN
     return tableView
 }
 
+fun zbudujTabelkeWlasnosciNazwaWartoscKategoria(parametry: List<WrapperParametruNazwaWartoscKategoria>
+                                               , szerokoscKolumnyN: Double = SZEROKOSC_TRZY_KOLUMNY
+                                               , szerokoscKolumnyW: Double = SZEROKOSC_TRZY_KOLUMNY,
+                                                szerokoscKolumnyK: Double = SZEROKOSC_TRZY_KOLUMNY
+                                               , szerokoscTabeli: Double = SZEROKOSC_TABELI
+                                               , wysokoscTabeli: Double = WYSOKOSC_TABELI): TableView<WrapperParametruNazwaWartoscKategoria> {
+    var kolumnaNazwa: TableColumn<WrapperParametruNazwaWartoscKategoria, String> = TableColumn("nazwa")
+    var kolumnaWartosc: TableColumn<WrapperParametruNazwaWartoscKategoria, String> = TableColumn("wartosc")
+    var kolumnaKategoria: TableColumn<WrapperParametruNazwaWartoscKategoria, String> = TableColumn("kategoria")
+
+
+    var dlugoscNajwiekszegoNapisuKolumnyW: Int = parametry.map { it.wartosc.length }.max()!!
+    var maksymalnaDlugoscKolumnyW = dlugoscNajwiekszegoNapisuKolumnyW * 5.0
+
+    kolumnaWartosc.prefWidth = if (maksymalnaDlugoscKolumnyW > szerokoscKolumnyW) maksymalnaDlugoscKolumnyW else szerokoscKolumnyW;
+    kolumnaNazwa.prefWidth = szerokoscKolumnyN
+    kolumnaKategoria.prefWidth = szerokoscKolumnyK
+
+
+    var list: ObservableList<WrapperParametruNazwaWartoscKategoria> = FXCollections.observableArrayList()
+
+    for (param in parametry) {
+        list.add(WrapperParametruNazwaWartoscKategoria(param.nazwa, param.wartosc,param.kategoria))
+    }
+
+    var tableView: TableView<WrapperParametruNazwaWartoscKategoria> = TableView()
+    tableView.items = list
+
+    kolumnaNazwa.cellValueFactory = PropertyValueFactory<WrapperParametruNazwaWartoscKategoria, String>("nazwa")
+    kolumnaWartosc.cellValueFactory = PropertyValueFactory<WrapperParametruNazwaWartoscKategoria, String>("wartosc")
+    kolumnaKategoria.cellValueFactory = PropertyValueFactory<WrapperParametruNazwaWartoscKategoria, String>("kategoria")
+
+    tableView.columns.add(kolumnaNazwa)
+    tableView.columns.add(kolumnaWartosc)
+    tableView.columns.add(kolumnaKategoria)
+
+    tableView.prefWidth = szerokoscTabeli
+    tableView.minWidth = szerokoscTabeli
+    tableView.maxWidth = szerokoscTabeli
+    tableView.prefHeight = 2 * wyliczWysokoscTabeli(tableView, 12, 12, 10)
+    tableView.getStyleClass().add("noheader");
+    return tableView
+}
+
+
 fun zbudujTabelkeParametrowWejsciowych(parametry: MutableList<Parametr>
                                        , szerokoscKolumnyT: Double = SZEROKOSC_TRZY_KOLUMNY
                                        , szerokoscKolumnyN: Double = SZEROKOSC_TRZY_KOLUMNY
@@ -173,6 +218,8 @@ open class ProstaTabelaNazwaWartosc(val nazwa: String, val wartosc: String)
 open class ProstaTabelaTylkoWartosc(val wartosc: String)
 
 open class WrapperParametruNazwaWartosc(val nazwa: String, val wartosc: String)
+
+open class WrapperParametruNazwaWartoscKategoria(val nazwa: String, val wartosc: String,val kategoria:String)
 
 
 open class KontenerBledow:VBox{

@@ -8,6 +8,21 @@ data class Regula(
         , var tresc: String
         , val sekwencja: Sekwencja
         , var parametry: MutableList<Parametr> = mutableListOf()
-) : ObiektBazowy() {
+) : ObiektBazowy(),IWalidowalny {
+
+    override fun waliduj(): List<String> {
+        val bledy: MutableList<String> = mutableListOf<String>()
+
+        if (parametry != null) {
+            parametry!!.forEach {
+                val wynik=it.waliduj()
+                if(!wynik.isEmpty()) {
+                    bledy.addAll(wynik)
+                }
+            }
+        }
+
+        return bledy
+    }
 
 }
