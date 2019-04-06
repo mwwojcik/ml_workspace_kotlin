@@ -61,7 +61,7 @@ class MainController {
             val wartoscNazwaParametry = mutableListOf<WrapperParametruNazwaWartoscKategoria>()
             wartoscNazwaParametry.add(WrapperParametruNazwaWartoscKategoria("", "",""))
             for (sek in reg.sekwencja!!.rozpoznaneTokeny) {
-                wartoscNazwaParametry.add(WrapperParametruNazwaWartoscKategoria(sek.wartosc, sek.typ.toString(),"op"))
+                wartoscNazwaParametry.add(WrapperParametruNazwaWartoscKategoria(sek.wartosc, sek.typ.toString(),sek.kategoria?:""))
             }
 
 

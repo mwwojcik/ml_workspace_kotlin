@@ -10,13 +10,14 @@ import model.encje.RegulaEncja
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
 import reguly.nlp.EgzaminatorModeluRozpoznawaniaEncjiNLP
+import reguly.nlp.IFasadaNarzedziaNLP
 
 
 @Component
 open class RegulaKonwerter : BazowyKonwerter(), IKonwerter<Regula, RegulaEncja> {
 
     @Autowired
-    private lateinit var egzaminator: EgzaminatorModeluRozpoznawaniaEncjiNLP;
+    private lateinit var egzaminator: IFasadaNarzedziaNLP
 
     @Autowired
     private lateinit var konwerterParametrow: ParametrKonwerter

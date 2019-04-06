@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import reguly.nlp.EgzaminatorModeluRozpoznawaniaEncjiNLP
+import reguly.nlp.IFasadaNarzedziaNLP
 import uslugi.konwersja.RegulaKonwerter
 import uslugi.konwersja.SynchronizatorDanychBean
 import java.nio.file.Files
@@ -35,7 +36,7 @@ open class RegulyUslugaBean {
     lateinit var synchronizatorDanych: SynchronizatorDanychBean
 
     @Autowired
-    lateinit var egzaminator: EgzaminatorModeluRozpoznawaniaEncjiNLP
+    lateinit var egzaminator: IFasadaNarzedziaNLP
 
     //val reguly: MutableMap<String, Regula> = mutableMapOf()
 
