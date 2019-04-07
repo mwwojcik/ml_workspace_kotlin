@@ -44,7 +44,7 @@ open class RegulyDbBean {
     fun usunRegule(aRegula:RegulaEncja)=regulaRepozytorium.delete(aRegula)
 
     @Transactional
-    fun pobierzWszystkieReguly()=regulaRepozytorium.findAll()
+    fun pobierzWszystkieReguly()=regulaRepozytorium.findAll().sortedBy {it.kod}
 
 
     @Transactional

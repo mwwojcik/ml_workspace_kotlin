@@ -78,8 +78,8 @@ class MainController {
             //PIERWSZY WIERSZ
             pKontenerNaTabelki.children.add(zbudujTabelkeWlasnosciNazwaWartoscKategoria(wartoscNazwaParametry
                     , szerokoscKolumnyN = 80.0
-                    , szerokoscKolumnyW = 460.0
-                    , szerokoscKolumnyK = 80.0
+                    , szerokoscKolumnyW = 400.0
+                    , szerokoscKolumnyK = 160.0
                     , szerokoscTabeli = 700.0))
 
 
