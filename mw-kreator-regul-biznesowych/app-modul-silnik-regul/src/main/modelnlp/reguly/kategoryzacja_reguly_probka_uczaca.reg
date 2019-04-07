@@ -1,68 +1,39 @@
+!= jest różny niż
+!= jest różny od
+!= jest różna niż
+!= jest różna od
+!= jest różne niż
+!= jest różne od
+!= nie jest równy
+!= nie jest równa
+!= nie jest równe
 < jest mniejszy
 < jest mniejsza
 < jest mniejsze
-< mniejszy
-< mniejsza
-< mniejsze
 < mniejszy niż
 < mniejsza niż
 < mniejsze niż
+< jest mniejszy niż
+< jest mniejszy od
+< jest mniejsza niż
+< jest mniejsza od
+< jest mniejsze niż
+< jest mniejsze od
+<= nie jest większy
+<= nie jest większa
+<= nie jest większe
+== jest równy
+== jest równa
+== jest równe
 > jest większy
 > jest większa
 > jest większe
->= jest większa lub równa
-<= jest mniejsza lub równa
 > jest większy niż
 > jest większy od
-< jest mniejszy niż
-< jest mniejszy od
-!= jest różny niż
-!= jest różny od
 > jest większa niż
 > jest większa od
-< jest mniejsza niż
-< jest mniejsza od
-!= jest różna niż
-!= jest różna od
 > jest większe niż
 > jest większe od
-< jest mniejsze niż
-< jest mniejsze od
-!= jest różne niż
-!= jest różne od
-== jest równy
->= jest większy lub równy
-<= jest mniejszy lub równa
-== jest równa
->= jest większa lub równa
-<= jest mniejsza lub równa
-== jest równe
->= jest większe lub równe
-<= jest mniejsze lub równe
-<= nie jest większy niż
-<= nie jest większy od
->= nie jest mniejszy niż
->= nie jest mniejszy od
-== nie jest różny niż
-== nie jest różny od
-<= nie jest większa niż
-<= nie jest większa od
->= nie jest mniejsza niż
->= nie jest mniejsza od
-== nie jest różna niż
-== nie jest różna od
-<= nie jest większe niż
-<= nie jest większe od
->= nie jest mniejsze niż
->= nie jest mniejsze od
-== nie jest różne niż
-== nie jest różne od
-!= nie jest równy
-< nie jest większy lub równy
-> nie jest mniejszy lub równa
-!= nie jest równa
-< nie jest większa lub równa
-> nie jest mniejsza lub równa
-!= nie jest równe
-< nie jest większe lub równe
-> nie jest mniejsze lub równe
+>= nie jest mniejsza
+>= nie jest mniejszy
+>= nie jest mniejsze

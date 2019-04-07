@@ -35,7 +35,7 @@ object TrenerModeluKategoryzacjiNLP {
 
         // setting the parameters for training
         val params = TrainingParameters()
-        params.put(TrainingParameters.ITERATIONS_PARAM, 100)
+        params.put(TrainingParameters.ITERATIONS_PARAM, 170)
         params.put(TrainingParameters.CUTOFF_PARAM, 1)
 
         // training the model using TokenNameFinderModel class

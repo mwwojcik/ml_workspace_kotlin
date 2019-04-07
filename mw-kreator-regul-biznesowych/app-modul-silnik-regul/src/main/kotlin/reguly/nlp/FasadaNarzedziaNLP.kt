@@ -15,6 +15,8 @@ open class FasadaNarzedziaNLP:IFasadaNarzedziaNLP {
     lateinit var egzaminatorModeluKategorii:EgzaminatorModeluKategoryzacjiNLP
 
 
+
+
     override fun rozpoznajSekwencje(aSekwencja: String): Sekwencja {
             val sekwencja=
                     egzaminatorModeluReguly.rozpoznajSekwencje(tokenizerSentencji.przygotujZdanieDoAnalizy(aSekwencja))
