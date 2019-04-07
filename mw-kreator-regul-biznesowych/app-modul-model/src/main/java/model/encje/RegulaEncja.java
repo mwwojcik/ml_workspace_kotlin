@@ -1,8 +1,5 @@
 package model.encje;
 
-import model.nlp.Sekwencja;
-import org.jetbrains.annotations.NotNull;
-
 import javax.persistence.*;
 import java.util.List;
 
@@ -25,6 +22,10 @@ public class RegulaEncja extends Encja{
 
     @OneToMany(mappedBy = "regula", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<ParametrRegulyEncja> parametry=null;
+
+
+    @OneToMany(mappedBy = "regulaWolajaca", cascade = CascadeType.ALL)
+    private List<WywolanieRegulyEncja> wywolaniaRegul=null;
 
 
 
@@ -53,4 +54,11 @@ public class RegulaEncja extends Encja{
         this.parametry = parametry;
     }
 
+    public List<WywolanieRegulyEncja> getWywolaniaRegul() {
+        return wywolaniaRegul;
+    }
+
+    public void setWywolaniaRegul(List<WywolanieRegulyEncja> wywolaniaRegul) {
+        this.wywolaniaRegul = wywolaniaRegul;
+    }
 }
