@@ -36,7 +36,7 @@ open class RegulyUslugaBean {
     lateinit var synchronizatorDanych: SynchronizatorDanychBean
 
     @Autowired
-    lateinit var egzaminator: IFasadaNarzedziaNLP
+    lateinit var fasadaNLP: IFasadaNarzedziaNLP
 
     //val reguly: MutableMap<String, Regula> = mutableMapOf()
 
@@ -49,7 +49,7 @@ open class RegulyUslugaBean {
                     val pRegList = it.split(":")
                     val kodReguly = pRegList[0]
                     val trescRegulyStr = pRegList[1].replace("\r", "")
-                    val sekwencja = egzaminator.rozpoznajSekwencje(trescRegulyStr)
+                    val sekwencja = fasadaNLP.rozpoznajSekwencje(trescRegulyStr)
                     val parametry = wyodrebnijListeParametrow(sekwencja)
                     Regula(kodReguly, trescRegulyStr, sekwencja, parametry)
                 }).toList()

@@ -3,7 +3,7 @@ package reguly
 import model.nlp.Sekwencja
 import org.junit.Test
 import reguly.nlp.EgzaminatorModeluRozpoznawaniaEncjiNLP
-import reguly.nlp.TokenizerSentencji
+import reguly.nlp.NormalizatorSekwencjiNLP
 import java.nio.file.Files
 import java.nio.file.Paths
 import kotlin.test.assertEquals
@@ -15,6 +15,7 @@ class TesterModeluNLP {
 
     val egzaminator: EgzaminatorModeluRozpoznawaniaEncjiNLP = EgzaminatorModeluRozpoznawaniaEncjiNLP()
 
+    val normalizator= NormalizatorSekwencjiNLP()
    /* companion object {
 
 
@@ -27,7 +28,7 @@ class TesterModeluNLP {
     fun inicjalizuj(){
         egzaminator.plikModelu="modelnlp/encje_reguly_model.bin"
         egzaminator.inicjujModel()
-        egzaminator.tokenizer= TokenizerSentencji()
+
     }
 
 
@@ -77,7 +78,7 @@ class TesterModeluNLP {
         for ((index, test) in przypadki.withIndex()) {
 
 
-            var s: Sekwencja = egzaminator.rozpoznajSekwencje(test.sentencja)
+            var s: Sekwencja = egzaminator.rozpoznajSekwencje(normalizator.zwrocPostacZnormalizowana(test.sentencja).postacKanoniczna)
 
             println("\n**** Test " + index + " ****")
 

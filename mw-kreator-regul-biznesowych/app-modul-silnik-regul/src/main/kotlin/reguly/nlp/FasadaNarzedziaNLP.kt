@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component
 @Component
 open class FasadaNarzedziaNLP : IFasadaNarzedziaNLP {
     @Autowired
-    lateinit var tokenizerSentencji: TokenizerSentencji
+    lateinit var normalizatorSekwencji: NormalizatorSekwencjiNLP
     @Autowired
     lateinit var egzaminatorModeluReguly: EgzaminatorModeluRozpoznawaniaEncjiNLP
     @Autowired
@@ -16,8 +16,11 @@ open class FasadaNarzedziaNLP : IFasadaNarzedziaNLP {
 
 
     override fun rozpoznajSekwencje(aSekwencja: String): Sekwencja {
+        val postacZnormalizowana=normalizatorSekwencji.zwrocPostacZnormalizowana(aSekwencja)
+
+        //analizie poddajemy postac kanoniczna
         val sekwencja =
-                egzaminatorModeluReguly.rozpoznajSekwencje(tokenizerSentencji.przygotujZdanieDoAnalizy(aSekwencja))
+                egzaminatorModeluReguly.rozpoznajSekwencje(postacZnormalizowana.postacKanoniczna)
 
         sekwencja.rozpoznaneTokeny.filter {
             it.typ == RodzajTokenaEnum.OPETATOR_POROWNANIA || it.typ == RodzajTokenaEnum.AKCJA
@@ -25,6 +28,10 @@ open class FasadaNarzedziaNLP : IFasadaNarzedziaNLP {
         }.forEach {
             it.kategoria = egzaminatorModeluKategorii.wybierzNajlepszaKategorie(it.wartosc)
         }
+
+        sekwencja.postacKanoniczna=postacZnormalizowana.postacKanoniczna
+        sekwencja.komunikaty=postacZnormalizowana.komunikaty
+
         return sekwencja
     }
 

@@ -26,6 +26,7 @@ java{
 
 dependencies {
     implementation(group="org.springframework.boot",name="spring-boot-starter",version="2.1.3.RELEASE")
+    testCompile(group="org.springframework.boot",name="spring-boot-starter-test", version="2.1.3.RELEASE")
     compile("org.apache.opennlp:opennlp-tools:1.9.1")
     compile(project(":app-modul-model"))
  

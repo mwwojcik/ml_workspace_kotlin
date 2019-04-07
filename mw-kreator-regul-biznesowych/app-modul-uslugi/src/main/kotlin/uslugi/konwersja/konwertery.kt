@@ -17,7 +17,7 @@ import reguly.nlp.IFasadaNarzedziaNLP
 open class RegulaKonwerter : BazowyKonwerter(), IKonwerter<Regula, RegulaEncja> {
 
     @Autowired
-    private lateinit var egzaminator: IFasadaNarzedziaNLP
+    private lateinit var fasadaNLP: IFasadaNarzedziaNLP
 
     @Autowired
     private lateinit var konwerterParametrow: ParametrKonwerter
@@ -41,7 +41,7 @@ open class RegulaKonwerter : BazowyKonwerter(), IKonwerter<Regula, RegulaEncja> 
         with(aEncja) {
             val pDto = Regula(kod
                     , tresc
-                    , egzaminator.rozpoznajSekwencje(tresc)
+                    , fasadaNLP.rozpoznajSekwencje(tresc)
                     , parametry.map {
                 konwerterParametrow.konwertujDoTransportu(it)
             }.toMutableList())

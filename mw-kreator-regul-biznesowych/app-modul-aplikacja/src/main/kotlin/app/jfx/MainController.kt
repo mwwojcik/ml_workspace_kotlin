@@ -51,12 +51,21 @@ class MainController {
         for (reg in listaRegul) {
 
             //val wartoscNazwaParametry= mutableListOf<WrapperParametruNazwaWartosc>(WrapperParametruNazwaWartosc("Treść",reg.tresc))
-            val pTytul = Label(reg.tresc)
+            val pTytul = Label(reg.tresc+"\n\n"+"------  Postać znormalizowana (wyodrębnione komunikaty) -----"+"\n\n"+reg.sekwencja.postacKanoniczna)
             pTytul.prefWidth = 700.0
-            pTytul.tooltip = Tooltip(reg.tresc)
+            pTytul.tooltip = Tooltip(reg.tresc )
             pTytul.isWrapText = true
             pTytul.padding = Insets(10.0)
             pTytul.setStyle("-fx-font-weight: bold")
+
+            val wartoscKomunikaty= mutableListOf<WrapperParametruNazwaWartosc>()
+
+            if (!reg.sekwencja.komunikaty.isNullOrEmpty()){
+
+                for (klucz in reg.sekwencja.komunikaty!!.keys){
+                    wartoscKomunikaty.add(WrapperParametruNazwaWartosc(klucz, reg.sekwencja.komunikaty!![klucz]!!))
+                }
+            }
 
             val wartoscNazwaParametry = mutableListOf<WrapperParametruNazwaWartoscKategoria>()
             wartoscNazwaParametry.add(WrapperParametruNazwaWartoscKategoria("", "",""))
@@ -75,6 +84,15 @@ class MainController {
             pKontenerNaTabelki.prefWidth = 800.0
 
             pKontenerNaTabelki.children.add(pTytul)
+            //wiersz zerowy - komunikaty
+
+            if(!wartoscKomunikaty.isNullOrEmpty()) {
+                pKontenerNaTabelki.children.add(zbudujTabelkeProstychWlasnosciKluczWartosc(wartoscKomunikaty
+                        , szerokoscKolumnyN = 80.0
+                        , szerokoscKolumnyW = 600.0
+                        , szerokoscTabeli = 700.0))
+            }
+
             //PIERWSZY WIERSZ
             pKontenerNaTabelki.children.add(zbudujTabelkeWlasnosciNazwaWartoscKategoria(wartoscNazwaParametry
                     , szerokoscKolumnyN = 80.0

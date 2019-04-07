@@ -7,14 +7,18 @@ import java.io.PrintStream
 import java.lang.IllegalArgumentException
 
 
-class Sekwencja(val wartosc:String, val tokeny:Array<String>,
+class Sekwencja(val zdaniePierwotne:String, val tokeny:Array<String>,
                 val rozpoznaneTokeny:MutableList<RozpoznanyToken>
                 = mutableListOf<RozpoznanyToken>()) {
+
+    var postacKanoniczna:String=zdaniePierwotne
+
+    var komunikaty: MutableMap <String,String>? = mutableMapOf()
 
 
     fun drukuj(){
 
-        println("\n\nZDANIE=>"+wartosc)
+        println("\n\nZDANIE=>"+zdaniePierwotne)
         val pDane= mutableListOf<Array<String>>()
         for(pTok in rozpoznaneTokeny){
             pDane.add(arrayOf<String>(pTok.wartosc,pTok.typ.toString(),pTok.prob.toString()))
