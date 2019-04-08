@@ -20,7 +20,7 @@ open class RegulaKonwerter : BazowyKonwerter(), IKonwerter<Regula, RegulaEncja> 
     private lateinit var konwerterParametrow: ParametrKonwerter
 
     override fun konwertujDoEncji(aDto: Regula): RegulaEncja {
-        val pEncja: RegulaEncja = podajObiektZarzadzalny<RegulaEncja>(aDto.id,RegulaEncja::class.java)
+        val pEncja: RegulaEncja = podajObiektZarzadzalny<RegulaEncja>(aDto.id, RegulaEncja::class.java)
         with(aDto) {
             pEncja.kod = kod
             pEncja.tresc = tresc
@@ -32,13 +32,12 @@ open class RegulaKonwerter : BazowyKonwerter(), IKonwerter<Regula, RegulaEncja> 
 
         }
 
-        val wywolaniaInnychAkcji
-                =aDto.sekwencja.rozpoznaneTokeny.filter{it.typ==RodzajTokenaEnum.AKCJA && it.kategoria==RodzajeAkcjiEnum.SPRAWDZ_REGULE.toString()}.toList()
+        val wywolaniaInnychAkcji = aDto.sekwencja.rozpoznaneTokeny.filter { it.typ == RodzajTokenaEnum.AKCJA && it.kategoria == RodzajeAkcjiEnum.SPRAWDZ_REGULE.toString() }.toList()
 
 
-        if(!wywolaniaInnychAkcji.isNullOrEmpty()){
-            wywolaniaInnychAkcji.forEach{
-                println("Wywolanie=>"+aDto.kod +"wola"+aDto.sekwencja.podajTokenPoLP(it.lp+1).wartosc)
+        if (!wywolaniaInnychAkcji.isNullOrEmpty()) {
+            wywolaniaInnychAkcji.forEach {
+                println("Wywolanie=>" + aDto.kod + "wola" + aDto.sekwencja.podajTokenPoLP(it.lp + 1).wartosc)
             }
         }
 
@@ -53,8 +52,8 @@ open class RegulaKonwerter : BazowyKonwerter(), IKonwerter<Regula, RegulaEncja> 
                     , parametry.map {
                 konwerterParametrow.konwertujDoTransportu(it)
             }.toMutableList())
-            pDto.id=id
-            pDto.wersja=wersja
+            pDto.id = id
+            pDto.wersja = wersja
             return pDto
         }
     }
@@ -74,20 +73,25 @@ open class ParametrKonwerter : BazowyKonwerter(), IKonwerter<Parametr, ParametrR
     }
 
     override fun konwertujDoTransportu(aEncja: ParametrRegulyEncja): Parametr {
-        with(aEncja){
-            val pDto=Parametr(nazwa,typ,wartoscDomyslna)
-            pDto.id=id
-            pDto.wersja=wersja
+        with(aEncja) {
+            val pDto = Parametr(nazwa, typ, wartoscDomyslna)
+            pDto.id = id
+            pDto.wersja = wersja
             return pDto
         }
     }
 }
 
 @Component
-class ParametrWywolaniaRegulyKonwerter:BazowyKonwerter(),IKonwerter<ParametrWywolaniaReguly,ParametrWywolaniaRegulyEncja>{
+class ParametrWywolaniaRegulyKonwerter : BazowyKonwerter(), IKonwerter<ParametrWywolaniaReguly, ParametrWywolaniaRegulyEncja> {
+    @Autowired
+    lateinit var konwerterWywolania: WywolanieRegulyKonwerter
+
+    @Autowired
+    private lateinit var konwerterParametrow: ParametrKonwerter
 
     override fun konwertujDoEncji(aDto: ParametrWywolaniaReguly): ParametrWywolaniaRegulyEncja {
-        val pEncja: ParametrWywolaniaRegulyEncja = podajObiektZarzadzalny<ParametrWywolaniaRegulyEncja>(aDto.id,ParametrWywolaniaRegulyEncja::class.java)
+        val pEncja: ParametrWywolaniaRegulyEncja = podajObiektZarzadzalny<ParametrWywolaniaRegulyEncja>(aDto.id, ParametrWywolaniaRegulyEncja::class.java)
         with(aDto) {
         }
 
@@ -96,10 +100,14 @@ class ParametrWywolaniaRegulyKonwerter:BazowyKonwerter(),IKonwerter<ParametrWywo
 
     override fun konwertujDoTransportu(aEncja: ParametrWywolaniaRegulyEncja): ParametrWywolaniaReguly {
         with(aEncja) {
-            val pDto = ParametrWywolaniaReguly()
+            val pDto = ParametrWywolaniaReguly(
+                    konwerterWywolania.konwertujDoTransportu(wywolanie)
+                    , konwerterParametrow.konwertujDoTransportu(parametrRegulyWolajacej)
+                    , konwerterParametrow.konwertujDoTransportu(parametrRegulyWolanej)
+            )
 
-            pDto.id=id
-            pDto.wersja=wersja
+            pDto.id = id
+            pDto.wersja = wersja
 
             return pDto
         }
@@ -107,9 +115,12 @@ class ParametrWywolaniaRegulyKonwerter:BazowyKonwerter(),IKonwerter<ParametrWywo
 }
 
 @Component
-class WywolanieRegulyKonwerter:BazowyKonwerter(),IKonwerter<WywolanieReguly,WywolanieRegulyEncja>{
+class WywolanieRegulyKonwerter : BazowyKonwerter(), IKonwerter<WywolanieReguly, WywolanieRegulyEncja> {
+    @Autowired
+    lateinit var konwerterReguly: RegulaKonwerter
+
     override fun konwertujDoEncji(aDto: WywolanieReguly): WywolanieRegulyEncja {
-        val pEncja: WywolanieRegulyEncja = podajObiektZarzadzalny<WywolanieRegulyEncja>(aDto.id,WywolanieRegulyEncja::class.java)
+        val pEncja: WywolanieRegulyEncja = podajObiektZarzadzalny<WywolanieRegulyEncja>(aDto.id, WywolanieRegulyEncja::class.java)
         with(aDto) {
         }
 
@@ -119,13 +130,13 @@ class WywolanieRegulyKonwerter:BazowyKonwerter(),IKonwerter<WywolanieReguly,Wywo
     override fun konwertujDoTransportu(aEncja: WywolanieRegulyEncja): WywolanieReguly {
 
         with(aEncja) {
-            val pDto = WywolanieReguly()
+            val pDto = WywolanieReguly(
+                    konwerterReguly.konwertujDoTransportu(regulaWolajaca)
+                    , konwerterReguly.konwertujDoTransportu(regulaWolana)
+            )
 
-            pDto.id=id
-            pDto.wersja=wersja
-
-            pDto.id=id
-            pDto.wersja=wersja
+            pDto.id = id
+            pDto.wersja = wersja
 
             return pDto
         }

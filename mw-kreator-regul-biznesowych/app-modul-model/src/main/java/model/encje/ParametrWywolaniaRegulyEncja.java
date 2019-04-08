@@ -16,7 +16,7 @@ public class ParametrWywolaniaRegulyEncja extends Encja{
 
     @OneToOne
     @JoinColumn(name = "parametr_reg_wolanej_id")
-    private ParametrRegulyEncja parametrRegulyWolajanej;
+    private ParametrRegulyEncja parametrRegulyWolanej;
 
 
     public WywolanieRegulyEncja getWywolanie() {
@@ -35,11 +35,11 @@ public class ParametrWywolaniaRegulyEncja extends Encja{
         this.parametrRegulyWolajacej = parametrRegulyWolajacej;
     }
 
-    public ParametrRegulyEncja getParametrRegulyWolajanej() {
-        return parametrRegulyWolajanej;
+    public ParametrRegulyEncja getParametrRegulyWolanej() {
+        return parametrRegulyWolanej;
     }
 
-    public void setParametrRegulyWolajanej(ParametrRegulyEncja parametrRegulyWolajanej) {
-        this.parametrRegulyWolajanej = parametrRegulyWolajanej;
+    public void setParametrRegulyWolanej(ParametrRegulyEncja parametrRegulyWolanej) {
+        this.parametrRegulyWolanej = parametrRegulyWolanej;
     }
 }
