@@ -31,6 +31,8 @@ class Sekwencja(val zdaniePierwotne:String, val tokeny:Array<String>,
         tt.printTable()
     }
 
+    fun podajTokenPoLP(lp:Int):RozpoznanyToken=rozpoznaneTokeny[lp-1]
+
 
     fun drukujDoStr():String{
 

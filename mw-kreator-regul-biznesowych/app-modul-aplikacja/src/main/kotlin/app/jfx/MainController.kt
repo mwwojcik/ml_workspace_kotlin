@@ -51,7 +51,7 @@ class MainController {
         for (reg in listaRegul) {
 
             //val wartoscNazwaParametry= mutableListOf<WrapperParametruNazwaWartosc>(WrapperParametruNazwaWartosc("Treść",reg.tresc))
-            val pTytul = Label(reg.tresc+"\n\n"+"------  Postać znormalizowana (wyodrębnione komunikaty) -----"+"\n\n"+reg.sekwencja.postacKanoniczna)
+            val pTytul = Label(reg.tresc+"\n\n"+"-- Postać znormalizowana --"+"\n\n"+reg.sekwencja.postacKanoniczna)
             pTytul.prefWidth = 700.0
             pTytul.tooltip = Tooltip(reg.tresc )
             pTytul.isWrapText = true

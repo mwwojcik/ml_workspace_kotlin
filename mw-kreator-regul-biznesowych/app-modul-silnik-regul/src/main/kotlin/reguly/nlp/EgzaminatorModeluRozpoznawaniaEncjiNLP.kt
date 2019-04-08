@@ -49,12 +49,14 @@ open class EgzaminatorModeluRozpoznawaniaEncjiNLP {
 
         //println("Finding types in the test sentence..")
         val names = nameFinder.find(pSekwencja.tokeny)
+        var lp=1;
         for (name: Span in names){
             var pName=""
             for(i in name.start..name.end-1){
                 pName+=pSekwencja.tokeny[i]+" "
             }
-            pSekwencja.rozpoznaneTokeny.add(RozpoznanyToken(pName,RodzajTokenaEnum.AKCJA.podajEnumPoKodzie(name.type),name.prob))
+            pSekwencja.rozpoznaneTokeny.add(RozpoznanyToken(lp,pName,RodzajTokenaEnum.AKCJA.podajEnumPoKodzie(name.type),name.prob))
+            lp++
         }
         return pSekwencja
     }

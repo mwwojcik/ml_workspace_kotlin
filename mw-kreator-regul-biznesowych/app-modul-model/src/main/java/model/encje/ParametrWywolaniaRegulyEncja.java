@@ -10,11 +10,13 @@ public class ParametrWywolaniaRegulyEncja extends Encja{
     @JoinColumn(name="wywolanie_id")
     private WywolanieRegulyEncja wywolanie;
 
-    @Column(name = "nazwa_parametru_reg_wolajaca")
-    private String nazwaParametruRegulaWolajaca;
+    @OneToOne
+    @JoinColumn(name = "parametr_reg_wolajacej_id")
+    private ParametrRegulyEncja parametrRegulyWolajacej;
 
-    @Column(name = "nazwa_parametru_reg_wolana")
-    private String getNazwaParametruRegulaWolana;
+    @OneToOne
+    @JoinColumn(name = "parametr_reg_wolanej_id")
+    private ParametrRegulyEncja parametrRegulyWolajanej;
 
 
     public WywolanieRegulyEncja getWywolanie() {
@@ -25,19 +27,19 @@ public class ParametrWywolaniaRegulyEncja extends Encja{
         this.wywolanie = wywolanie;
     }
 
-    public String getNazwaParametruRegulaWolajaca() {
-        return nazwaParametruRegulaWolajaca;
+    public ParametrRegulyEncja getParametrRegulyWolajacej() {
+        return parametrRegulyWolajacej;
     }
 
-    public void setNazwaParametruRegulaWolajaca(String nazwaParametruRegulaWolajaca) {
-        this.nazwaParametruRegulaWolajaca = nazwaParametruRegulaWolajaca;
+    public void setParametrRegulyWolajacej(ParametrRegulyEncja parametrRegulyWolajacej) {
+        this.parametrRegulyWolajacej = parametrRegulyWolajacej;
     }
 
-    public String getGetNazwaParametruRegulaWolana() {
-        return getNazwaParametruRegulaWolana;
+    public ParametrRegulyEncja getParametrRegulyWolajanej() {
+        return parametrRegulyWolajanej;
     }
 
-    public void setGetNazwaParametruRegulaWolana(String getNazwaParametruRegulaWolana) {
-        this.getNazwaParametruRegulaWolana = getNazwaParametruRegulaWolana;
+    public void setParametrRegulyWolajanej(ParametrRegulyEncja parametrRegulyWolajanej) {
+        this.parametrRegulyWolajanej = parametrRegulyWolajanej;
     }
 }

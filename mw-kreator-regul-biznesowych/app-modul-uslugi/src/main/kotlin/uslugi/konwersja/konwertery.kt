@@ -1,12 +1,9 @@
 package uslugi.konwersja
 
 import db.RegulyDbBean
-import model.dto.ObiektBazowy
-import model.dto.Parametr
-import model.dto.Regula
-import model.encje.Encja
-import model.encje.ParametrRegulyEncja
-import model.encje.RegulaEncja
+import model.dto.*
+import model.encje.*
+import model.nlp.RodzajTokenaEnum
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
 import reguly.nlp.EgzaminatorModeluRozpoznawaniaEncjiNLP
@@ -34,6 +31,17 @@ open class RegulaKonwerter : BazowyKonwerter(), IKonwerter<Regula, RegulaEncja> 
             }.toMutableList()
 
         }
+
+        val wywolaniaInnychAkcji
+                =aDto.sekwencja.rozpoznaneTokeny.filter{it.typ==RodzajTokenaEnum.AKCJA && it.kategoria==RodzajeAkcjiEnum.SPRAWDZ_REGULE.toString()}.toList()
+
+
+        if(!wywolaniaInnychAkcji.isNullOrEmpty()){
+            wywolaniaInnychAkcji.forEach{
+                println("Wywolanie=>"+aDto.kod +"wola"+aDto.sekwencja.podajTokenPoLP(it.lp+1).wartosc)
+            }
+        }
+
         return pEncja;
     }
 
@@ -72,6 +80,56 @@ open class ParametrKonwerter : BazowyKonwerter(), IKonwerter<Parametr, ParametrR
             pDto.wersja=wersja
             return pDto
         }
+    }
+}
+
+@Component
+class ParametrWywolaniaRegulyKonwerter:BazowyKonwerter(),IKonwerter<ParametrWywolaniaReguly,ParametrWywolaniaRegulyEncja>{
+
+    override fun konwertujDoEncji(aDto: ParametrWywolaniaReguly): ParametrWywolaniaRegulyEncja {
+        val pEncja: ParametrWywolaniaRegulyEncja = podajObiektZarzadzalny<ParametrWywolaniaRegulyEncja>(aDto.id,ParametrWywolaniaRegulyEncja::class.java)
+        with(aDto) {
+        }
+
+        return pEncja
+    }
+
+    override fun konwertujDoTransportu(aEncja: ParametrWywolaniaRegulyEncja): ParametrWywolaniaReguly {
+        with(aEncja) {
+            val pDto = ParametrWywolaniaReguly()
+
+            pDto.id=id
+            pDto.wersja=wersja
+
+            return pDto
+        }
+    }
+}
+
+@Component
+class WywolanieRegulyKonwerter:BazowyKonwerter(),IKonwerter<WywolanieReguly,WywolanieRegulyEncja>{
+    override fun konwertujDoEncji(aDto: WywolanieReguly): WywolanieRegulyEncja {
+        val pEncja: WywolanieRegulyEncja = podajObiektZarzadzalny<WywolanieRegulyEncja>(aDto.id,WywolanieRegulyEncja::class.java)
+        with(aDto) {
+        }
+
+        return pEncja
+    }
+
+    override fun konwertujDoTransportu(aEncja: WywolanieRegulyEncja): WywolanieReguly {
+
+        with(aEncja) {
+            val pDto = WywolanieReguly()
+
+            pDto.id=id
+            pDto.wersja=wersja
+
+            pDto.id=id
+            pDto.wersja=wersja
+
+            return pDto
+        }
+
     }
 }
 
