@@ -8,6 +8,7 @@ data class Regula(
         , var tresc: String
         , val sekwencja: Sekwencja
         , var parametry: MutableList<Parametr> = mutableListOf()
+        , var wywolaniaRegul:MutableList<WywolanieReguly> = mutableListOf()
 ) : ObiektBazowy(),IWalidowalny {
 
     override fun waliduj(): List<String> {

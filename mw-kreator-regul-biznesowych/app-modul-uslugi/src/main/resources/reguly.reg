@@ -24,5 +24,6 @@ RS-023:Jeśli nachylenie jest mniejsze  30 wtedy wyświetl komunikat <KOMUNIKAT_
 RS-024:Jeśli nachylenie jest mniejsze  30 wtedy wyświetl komunikat <KOMUNIKAT_0> w przeciwnym wypadku wyświetl komunikat <KOMUNIKAT2> .
 RS-025:Jeżeli suma jest różna od 50 to wyświetl komunikat <KOMUNIKAT1> w przeciwnym wypadku sprawdź regułę RS-001 .
 RS-026:Jeśli data_utworzenia jest większa od '01-01-2010' oraz data_utworzenia jest mniejsza niż data_kwalifikacji i data_kwalifikacji jest różna od data_weryfikacji to zgłoś błąd walidacji "Daty utworzenia, modyfikacji i kwalifikacji są nieprawidłowe" w przeciwnym razie wyświetl komunikat "Wszystkie daty zostały zwalidowane jako poprawne." .
-RS-027:Jeśli data_dzisiejsza jest większa od '07-04-2019' i data_dzisiejsza jest mniejsza od '14-04-2019' to wyświetl komunikat <KOMUNIKAT1> w przeciwnym razie waliduj regułę RS-01.
-RS-028:Jeżeli suma jest niemniejsza od 100 to sprawdź regułę RS-025 w przeciwnym razie zgłaszaj błąd walidacji <KOMUNIKAT2>
+RS-027:Jeśli data_dzisiejsza jest większa od '07-04-2019' i data_dzisiejsza jest mniejsza od '14-04-2019' to wyświetl komunikat <KOMUNIKAT1> w przeciwnym razie waliduj regułę RS-001.
+RS-028:Jeżeli suma jest niewiększa od 100 wtedy sprawdź regułę RS-025 w przeciwnym razie zgłoś błąd walidacji "Suma musi być większa od 100" .
+RS-029:Jeśli wiek jest większy niż 20 wtedy wywołaj regułę RS-001 w przeciwnym wypadku sprawdzaj regułę RS-002.

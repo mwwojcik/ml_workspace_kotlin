@@ -1,7 +1,7 @@
 package model.dto
 
-class WywolanieReguly(val regulaWolajaca: Regula
-                      , val regulaWolana: Regula
+class WywolanieReguly(  val kodRegulyWolajacej: String
+                      , val kodRegulyWolanej: String
                       , var parametry: MutableList<ParametrWywolaniaReguly> = mutableListOf()
 ) : ObiektBazowy(), IWalidowalny {
     override fun waliduj(): List<String> {

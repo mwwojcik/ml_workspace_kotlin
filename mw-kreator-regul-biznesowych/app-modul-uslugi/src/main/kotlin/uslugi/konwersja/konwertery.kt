@@ -19,6 +19,9 @@ open class RegulaKonwerter : BazowyKonwerter(), IKonwerter<Regula, RegulaEncja> 
     @Autowired
     private lateinit var konwerterParametrow: ParametrKonwerter
 
+    @Autowired
+    private lateinit var konwerterWywolanRegul:WywolanieRegulyKonwerter
+
     override fun konwertujDoEncji(aDto: Regula): RegulaEncja {
         val pEncja: RegulaEncja = podajObiektZarzadzalny<RegulaEncja>(aDto.id, RegulaEncja::class.java)
         with(aDto) {
@@ -30,15 +33,10 @@ open class RegulaKonwerter : BazowyKonwerter(), IKonwerter<Regula, RegulaEncja> 
                 pParam
             }.toMutableList()
 
-        }
+            pEncja.wywolaniaRegul=wywolaniaRegul.map {
+                konwerterWywolanRegul.konwertujDoEncji(it)
+            }.toMutableList()
 
-        val wywolaniaInnychAkcji = aDto.sekwencja.rozpoznaneTokeny.filter { it.typ == RodzajTokenaEnum.AKCJA && it.kategoria == RodzajeAkcjiEnum.SPRAWDZ_REGULE.toString() }.toList()
-
-
-        if (!wywolaniaInnychAkcji.isNullOrEmpty()) {
-            wywolaniaInnychAkcji.forEach {
-                println("Wywolanie=>" + aDto.kod + "wola" + aDto.sekwencja.podajTokenPoLP(it.lp + 1).wartosc)
-            }
         }
 
         return pEncja;
@@ -83,66 +81,63 @@ open class ParametrKonwerter : BazowyKonwerter(), IKonwerter<Parametr, ParametrR
 }
 
 @Component
-class ParametrWywolaniaRegulyKonwerter : BazowyKonwerter(), IKonwerter<ParametrWywolaniaReguly, ParametrWywolaniaRegulyEncja> {
-    @Autowired
-    lateinit var konwerterWywolania: WywolanieRegulyKonwerter
-
-    @Autowired
-    private lateinit var konwerterParametrow: ParametrKonwerter
-
-    override fun konwertujDoEncji(aDto: ParametrWywolaniaReguly): ParametrWywolaniaRegulyEncja {
-        val pEncja: ParametrWywolaniaRegulyEncja = podajObiektZarzadzalny<ParametrWywolaniaRegulyEncja>(aDto.id, ParametrWywolaniaRegulyEncja::class.java)
-        with(aDto) {
-        }
-
-        return pEncja
-    }
-
-    override fun konwertujDoTransportu(aEncja: ParametrWywolaniaRegulyEncja): ParametrWywolaniaReguly {
-        with(aEncja) {
-            val pDto = ParametrWywolaniaReguly(
-                    konwerterWywolania.konwertujDoTransportu(wywolanie)
-                    , konwerterParametrow.konwertujDoTransportu(parametrRegulyWolajacej)
-                    , konwerterParametrow.konwertujDoTransportu(parametrRegulyWolanej)
-            )
-
-            pDto.id = id
-            pDto.wersja = wersja
-
-            return pDto
-        }
-    }
-}
-
-@Component
 class WywolanieRegulyKonwerter : BazowyKonwerter(), IKonwerter<WywolanieReguly, WywolanieRegulyEncja> {
-    @Autowired
-    lateinit var konwerterReguly: RegulaKonwerter
 
     override fun konwertujDoEncji(aDto: WywolanieReguly): WywolanieRegulyEncja {
         val pEncja: WywolanieRegulyEncja = podajObiektZarzadzalny<WywolanieRegulyEncja>(aDto.id, WywolanieRegulyEncja::class.java)
         with(aDto) {
+            pEncja.regulaWolajaca = regulyDbBean.pobierzRegulePoKodzie(kodRegulyWolajacej)
+            pEncja.regulaWolana = regulyDbBean.pobierzRegulePoKodzie(kodRegulyWolanej)
+            pEncja.parametry = parametry.map {
+                podajEncjeParametruWywolania(it, pEncja)
+            }.toMutableList()
         }
 
         return pEncja
     }
 
+    fun podajEncjeParametruWywolania(aDto: ParametrWywolaniaReguly, aEncjaWywolania: WywolanieRegulyEncja)
+            : ParametrWywolaniaRegulyEncja {
+        val pEncja: ParametrWywolaniaRegulyEncja = podajObiektZarzadzalny<ParametrWywolaniaRegulyEncja>(aDto.id, ParametrWywolaniaRegulyEncja::class.java)
+        with(aDto) {
+            pEncja.parametrRegulyWolajacej = regulyDbBean.pobierzParametrRegulyPoNazwie(aEncjaWywolania.regulaWolajaca, nazwaParametruRegulyWolajacej)
+            pEncja.parametrRegulyWolanej = regulyDbBean.pobierzParametrRegulyPoNazwie(aEncjaWywolania.regulaWolana, nazwaParametruRegulyWolanej)
+            pEncja.wywolanie = aEncjaWywolania
+        }
+
+        return pEncja
+    }
+
+
     override fun konwertujDoTransportu(aEncja: WywolanieRegulyEncja): WywolanieReguly {
 
         with(aEncja) {
-            val pDto = WywolanieReguly(
-                    konwerterReguly.konwertujDoTransportu(regulaWolajaca)
-                    , konwerterReguly.konwertujDoTransportu(regulaWolana)
-            )
+            val pDto = WywolanieReguly(regulaWolajaca.kod, regulaWolana.kod)
+
+            pDto.parametry =
+                    parametry.map {
+                        podajObiektTransportowyParametruWywolania(it)
+                    }.toMutableList()
 
             pDto.id = id
             pDto.wersja = wersja
 
             return pDto
         }
+    }
 
+    fun podajObiektTransportowyParametruWywolania(aEncja: ParametrWywolaniaRegulyEncja): ParametrWywolaniaReguly {
+        with(aEncja) {
+            val pDto = ParametrWywolaniaReguly(parametrRegulyWolajacej.nazwa, parametrRegulyWolanej.nazwa)
+
+            pDto.id = id
+            pDto.wersja = wersja
+
+            return pDto
+        }
     }
 }
+
 
 @Component
 open class BazowyKonwerter {

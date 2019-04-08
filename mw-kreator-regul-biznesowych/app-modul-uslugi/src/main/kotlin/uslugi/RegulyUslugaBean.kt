@@ -2,8 +2,7 @@ package uslugi
 
 import db.RegulyDbBean
 import db.repo.IRegulaRepozytorium
-import model.dto.Parametr
-import model.dto.Regula
+import model.dto.*
 import model.encje.ParametrRegulyEncja
 import model.encje.RegulaEncja
 import model.nlp.RodzajTokenaEnum
@@ -51,8 +50,13 @@ open class RegulyUslugaBean {
                     val trescRegulyStr = pRegList[1].replace("\r", "")
                     val sekwencja = fasadaNLP.rozpoznajSekwencje(trescRegulyStr)
                     val parametry = wyodrebnijListeParametrow(sekwencja)
-                    Regula(kodReguly, trescRegulyStr, sekwencja, parametry)
+                    val wywolania = wyodrebnijListeWywolanInnychRegul(sekwencja, kodReguly)
+                    Regula(kodReguly, trescRegulyStr, sekwencja, parametry, wywolania)
                 }).toList()
+
+                pObiektyDoSynchronizacji.filter { !it.wywolaniaRegul.isNullOrEmpty() }.map{it.wywolaniaRegul.toList()}.forEach{
+                    wyodrebnijParametryWywolania(it,pObiektyDoSynchronizacji)
+                }
 
         synchronizatorDanych.synchronizujDane(pObiektyDoSynchronizacji)
     }
@@ -98,7 +102,6 @@ fun wyodrebnijListeParametrow(aSekwencja: Sekwencja): MutableList<Parametr> {
             }
             .forEach() {
                 unikalnySet.add(it.wartosc)
-                ParametrRegulyEncja(it.wartosc)
             }
 
     licznikDefaultowychParametrow = 0
@@ -108,6 +111,37 @@ fun wyodrebnijListeParametrow(aSekwencja: Sekwencja): MutableList<Parametr> {
 
 }
 
+fun wyodrebnijListeWywolanInnychRegul(aSekwencja: Sekwencja, aKod: String): MutableList<WywolanieReguly> {
+
+    val wywolaniaInnychAkcji = aSekwencja.rozpoznaneTokeny.filter {
+        it.typ == RodzajTokenaEnum.AKCJA
+                && it.kategoria == RodzajeAkcjiEnum.SPRAWDZ_REGULE.toString()
+    }.toList()
+
+
+    if (!wywolaniaInnychAkcji.isNullOrEmpty()) {
+        return wywolaniaInnychAkcji.map {
+
+            WywolanieReguly(aKod, aSekwencja.podajTokenPoLP(it.lp + 1).wartosc.trim())
+
+        }.toMutableList()
+
+    }
+    return mutableListOf()
+
+}
+
+fun wyodrebnijParametryWywolania(aWywolania:List<WywolanieReguly>,aWszystkieReguly:List<Regula>){
+    val mapa=aWszystkieReguly.map { it.kod to it }.toMap()
+
+    aWywolania.forEach{
+        val pRegulaWolana:Regula=mapa[it.kodRegulyWolanej]!!
+        it.parametry=pRegulaWolana.parametry.map{ParametrWywolaniaReguly(nazwaParametruRegulyWolanej = it.nazwa)}.toMutableList()
+
+    }
+
+
+}
 
 fun utworzObiektParametru(aNazwaParametru: String, aSekwencja: Sekwencja): Parametr {
     val wraperAtrybutow = wnioskujAtrybutyParametru(aNazwaParametru, aSekwencja)

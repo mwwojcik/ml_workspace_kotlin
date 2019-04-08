@@ -30,7 +30,7 @@ open class RegulyDbBean {
 
 
     @Transactional
-    fun pobierzParametrPoNazwie(aRegulaEncja: RegulaEncja, aNazwa: String): ParametrRegulyEncja? =
+    fun pobierzParametrRegulyPoNazwie(aRegulaEncja: RegulaEncja, aNazwa: String): ParametrRegulyEncja? =
             parametrRegulyRepozytorium.findByRegulaAndNazwa(aRegulaEncja, aNazwa)
 
 
