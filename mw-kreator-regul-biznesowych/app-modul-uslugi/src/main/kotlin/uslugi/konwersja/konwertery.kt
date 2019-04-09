@@ -35,7 +35,7 @@ open class RegulaKonwerter : BazowyKonwerter(), IKonwerter<Regula, RegulaEncja> 
 
             pEncja.wywolaniaRegul=wywolaniaRegul.map {
                 konwerterWywolanRegul.konwertujDoEncji(it)
-            }.toMutableList()
+            }.toMutableSet()
 
         }
 

@@ -1,7 +1,9 @@
 package db
 
 import db.repo.IParametrRegulyRepozytorium
+import db.repo.IParametrWywolaniaRegulyRepozytorium
 import db.repo.IRegulaRepozytorium
+import db.repo.IWywolanieRegulyRepozytorium
 import model.encje.Encja
 import model.encje.ParametrRegulyEncja
 import model.encje.RegulaEncja
@@ -26,7 +28,11 @@ open class RegulyDbBean {
     @Autowired
     private lateinit var parametrRegulyRepozytorium: IParametrRegulyRepozytorium
 
+    @Autowired
+    private lateinit var wywolaniaRegulyRepozytorium: IWywolanieRegulyRepozytorium
 
+    @Autowired
+    private lateinit var parametrWywolaniaRegulyRepozytorium: IParametrWywolaniaRegulyRepozytorium
 
 
     @Transactional
@@ -41,10 +47,27 @@ open class RegulyDbBean {
     fun pobierzRegulePoKodzie(aKod: String): RegulaEncja? = regulaRepozytorium.findByKod(aKod)
 
     @Transactional
+    fun pobierzRegulePoId(aId:Long):RegulaEncja?=regulaRepozytorium.findById(aId).get()
+
+    @Transactional
     fun usunRegule(aRegula:RegulaEncja)=regulaRepozytorium.delete(aRegula)
 
     @Transactional
     fun pobierzWszystkieReguly()=regulaRepozytorium.findAll().sortedBy {it.kod}
+
+
+    @Transactional
+    fun usunWszystkieWywolaniaDoReguly(aRegula:RegulaEncja){
+        wywolaniaRegulyRepozytorium.findByRegulaWolana(aRegula).forEach{
+            parametrWywolaniaRegulyRepozytorium.deleteByWywolanie(it)
+            usunObiektZarzadzalny(it)
+        }
+
+        wywolaniaRegulyRepozytorium.findByRegulaWolajaca(aRegula).forEach{
+            parametrWywolaniaRegulyRepozytorium.deleteByWywolanie(it)
+            usunObiektZarzadzalny(it)
+        }
+    }
 
 
     @Transactional
@@ -56,6 +79,10 @@ open class RegulyDbBean {
             entityManager.persist(pEncja)
             return pEncja
         }
+    }
+
+    fun usunObiektZarzadzalny(aObiekt:Encja){
+        entityManager.remove(aObiekt)
     }
 
     internal fun <T> utworzEncje(aKlasaObiektu: Class<T>): T {

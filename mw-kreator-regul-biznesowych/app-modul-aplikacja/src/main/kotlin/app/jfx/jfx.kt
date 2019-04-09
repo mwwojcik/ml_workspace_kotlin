@@ -168,6 +168,7 @@ fun zbudujTabelkeParametrowWejsciowych(parametry: MutableList<Parametr>
 
 
 fun zbudujTabelkeParametrowWyjsciowych(wywolania: List<WywolanieReguly>
+                                       , nazwyParametrowRegulyWejsciowej:List<String>
                                        , szerokoscKolumnyT: Double = SZEROKOSC_TRZY_KOLUMNY
                                        , szerokoscKolumnyN: Double = SZEROKOSC_TRZY_KOLUMNY
                                        , szerokoscKolumnyW: Double = SZEROKOSC_TRZY_KOLUMNY
@@ -177,7 +178,7 @@ fun zbudujTabelkeParametrowWyjsciowych(wywolania: List<WywolanieReguly>
     //WierszTabeliParametrowWeWy- typ w całym wierszu, String-typ danej kolumny
     var kolumnaTyp: TableColumn<WierszTabeliParametrowWy, String> = TableColumn("Parametr lokalny")
     var kolumnaNazwa: TableColumn<WierszTabeliParametrowWy, String> = TableColumn("Parametr wołany")
-    var kolumnaWartoscDomyslna: TableColumn<WierszTabeliParametrowWy, String> = TableColumn("Wartość domyślna")
+    var kolumnaWartoscDomyslna: TableColumn<WierszTabeliParametrowWy, String> = TableColumn("Domyślna")
 
     kolumnaTyp.prefWidth = szerokoscKolumnyT
     kolumnaNazwa.prefWidth = szerokoscKolumnyN
@@ -197,14 +198,6 @@ fun zbudujTabelkeParametrowWyjsciowych(wywolania: List<WywolanieReguly>
         }
     }
 
-   /*list.addAll(wywolania.map{
-
-   }.toList())
-
-
-            FXCollections.observableArrayList(parametry.map{WierszTabeliParametrowWeWy(it.nazwa,it.typ?:"",it.wartoscDomyslna?:"",it)}.toList())
-    */
-
     var tableView: TableView<WierszTabeliParametrowWy> = TableView(list)
 
 
@@ -213,7 +206,7 @@ fun zbudujTabelkeParametrowWyjsciowych(wywolania: List<WywolanieReguly>
     kolumnaNazwa.isEditable=false
 
     kolumnaTyp.setCellValueFactory ({ cellData -> cellData.value.typProperty})
-    kolumnaTyp.cellFactory = ComboBoxTableCell.forTableColumn("Liczba", "Napis", "Data")
+    kolumnaTyp.cellFactory = ComboBoxTableCell.forTableColumn(FXCollections.observableArrayList<String>(nazwyParametrowRegulyWejsciowej))
     kolumnaTyp.setOnEditCommit({t->
         t.getTableView().getItems().get(t.getTablePosition().getRow()).parametr.nazwaParametruRegulyWolajacej=t.newValue
     })

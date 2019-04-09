@@ -43,15 +43,15 @@ open class SynchronizatorDanychBean {
                     //tresc reguly w bazie rozni sie od tresci w pliku
                     //regula sie zmienila, plik ma pierwszenstwo
                     //usuwam obiekt i dodaje na nowoz aktualnymi wartosciami
-                    regulyDbBean.usunRegule(pEncja)
+                    usunReguleRazemZOdwolaniami(pEncja)
                     konwerter.konwertujDoEncji(regulyWgKodow[it]!!)
                 } else {
                     //tresc ta sama porownujemy parametry
 
-                    if (!czyParametrySaSpojne(regulyWgKodow[it]!!.parametry, pEncja.parametry ?: emptyList())) {
-                        regulyDbBean.usunRegule(pEncja)
+                  /*  if (!czyParametrySaSpojne(regulyWgKodow[it]!!.parametry, pEncja.parametry ?: emptyList())) {
+                        usunReguleRazemZOdwolaniami(pEncja)
                         konwerter.konwertujDoEncji(regulyWgKodow[it]!!)
-                    }
+                    }*/
                 }
             }
         }
@@ -60,10 +60,15 @@ open class SynchronizatorDanychBean {
     }
 
 
+    fun usunReguleRazemZOdwolaniami(aRegula:RegulaEncja){
+        regulyDbBean.usunWszystkieWywolaniaDoReguly(aRegula)
+        regulyDbBean.usunRegule(aRegula)
+    }
+
     @Transactional
     fun usunEncje(encjeDoUsuniecia: List<RegulaEncja>) {
         encjeDoUsuniecia.forEach {
-            regulyDbBean.usunRegule(it)
+            usunReguleRazemZOdwolaniami(it)
         }
     }
 

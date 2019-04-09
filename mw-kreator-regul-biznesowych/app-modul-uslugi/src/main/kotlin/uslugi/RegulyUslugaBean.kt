@@ -77,6 +77,25 @@ open class RegulyUslugaBean {
         }
     }
 
+    @Transactional
+    fun dodajParametr(aRegula:Regula,aNazwaParametru: String){
+        if(!aRegula.parametry.map { it.nazwa }.toList().contains(aNazwaParametru)) {
+            aRegula.parametry.add(Parametr(aNazwaParametru))
+            konwerter.konwertujDoEncji(aRegula)
+        }
+    }
+
+    @Transactional
+    fun usunParametr(aRegula:Regula){
+       val pParam=aRegula.parametry.last()
+        if(!aRegula.sekwencja.rozpoznaneTokeny.filter{it.typ==RodzajTokenaEnum.LEWOSTRONNY_OPERAND_WARUNKU||it.typ==RodzajTokenaEnum.PRAWOSTRONNY_OPERAND_WARUNKU}
+                        .map{it.wartosc}.contains(pParam.nazwa)){
+            aRegula.parametry.remove(pParam)
+        }
+        konwerter.konwertujDoEncji(aRegula)
+    }
+
+
     //**********************************
 
 

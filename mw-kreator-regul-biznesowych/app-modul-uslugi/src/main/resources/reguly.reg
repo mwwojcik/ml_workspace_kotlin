@@ -1,4 +1,4 @@
-RS-001:Jeśli data jest równa '01-01-2000' wtedy wyświetlaj komunikat "Podana data jest równa 01-01-2000" .
+RS-001:Jeśli data1 jest równa '01-01-2000' wtedy wyświetlaj komunikat "Podana data jest równa 01-01-2000" .
 RS-002:Jeśli data nie jest większa od '01-01-2000' wtedy pokaż komunikat "Data jest mniejsza lub równa '01-01-2000'" .
 RS-003:Jeśli nachylenie nie jest mniejsze niż 30 wtedy wyświetl komunikat <KOMUNIKAT1> .
 RS-004:Jeśli data jest różna od '01-01-2000' wtedy wyświetl komunikat <KOMUNIKAT1> .
@@ -26,4 +26,4 @@ RS-025:Jeżeli suma jest różna od 50 to wyświetl komunikat <KOMUNIKAT1> w prz
 RS-026:Jeśli data_utworzenia jest większa od '01-01-2010' oraz data_utworzenia jest mniejsza niż data_kwalifikacji i data_kwalifikacji jest różna od data_weryfikacji to zgłoś błąd walidacji "Daty utworzenia, modyfikacji i kwalifikacji są nieprawidłowe" w przeciwnym razie wyświetl komunikat "Wszystkie daty zostały zwalidowane jako poprawne." .
 RS-027:Jeśli data_dzisiejsza jest większa od '07-04-2019' i data_dzisiejsza jest mniejsza od '14-04-2019' to wyświetl komunikat <KOMUNIKAT1> w przeciwnym razie waliduj regułę RS-001.
 RS-028:Jeżeli suma jest nie jest większa od 100 wtedy spraaj regułę RS-025 w przeciwnym razie sprawdź regułę RS-003 .
-RS-029:Jeśli wiek jest większy niż 20 wtedy wywołaj regułę RS-001 w przeciwnym wypadku zgłoś błąd walidacji "To jest poprawna sytuacja" .
+RS-029:Jeśli wiek większy niż 20 wtedy wywołaj regułę RS-001 w przeciwnym wypadku zgłoś błąd walidacji "To jest poprawna sytuacja" .

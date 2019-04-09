@@ -16,7 +16,7 @@ public class WywolanieRegulyEncja extends Encja{
     @JoinColumn(name = "regula_wolana_id")
     private RegulaEncja regulaWolana;
 
-    @OneToMany(mappedBy = "wywolanie", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "wywolanie",fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     private List<ParametrWywolaniaRegulyEncja> parametry=null;
 
     public RegulaEncja getRegulaWolajaca() {

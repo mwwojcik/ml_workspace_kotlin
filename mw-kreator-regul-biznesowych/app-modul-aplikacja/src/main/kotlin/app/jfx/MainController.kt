@@ -4,10 +4,7 @@ import app.KontekstAplikacji
 import javafx.collections.FXCollections
 import javafx.fxml.FXML
 import javafx.geometry.Insets
-import javafx.scene.control.Label
-import javafx.scene.control.TableView
-import javafx.scene.control.TitledPane
-import javafx.scene.control.Tooltip
+import javafx.scene.control.*
 import javafx.scene.layout.HBox
 import javafx.scene.layout.VBox
 import javafx.scene.paint.Color
@@ -17,10 +14,8 @@ import model.encje.RegulaEncja
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Controller
 import uslugi.RegulyUslugaBean
+import java.awt.Panel
 import javax.transaction.Transactional
-import javafx.scene.control.Alert
-
-
 
 
 @Controller
@@ -30,6 +25,8 @@ class MainController {
     lateinit var regulyUsluga: RegulyUslugaBean
 
     lateinit var listaRegul: List<Regula>
+
+    lateinit var mapaRegul: Map<String, Regula>
 
 
     @FXML
@@ -51,26 +48,27 @@ class MainController {
         for (reg in listaRegul) {
 
             //val wartoscNazwaParametry= mutableListOf<WrapperParametruNazwaWartosc>(WrapperParametruNazwaWartosc("Treść",reg.tresc))
-            val pTytul = Label(reg.tresc+"\n\n"+"-- Postać znormalizowana --"+"\n\n"+reg.sekwencja.postacKanoniczna)
+            val pTytul = Label(reg.tresc + "\n\n" + "-- Postać znormalizowana --" + "\n\n" + reg.sekwencja.postacKanoniczna)
             pTytul.prefWidth = 700.0
-            pTytul.tooltip = Tooltip(reg.tresc )
+            pTytul.tooltip = Tooltip(reg.tresc)
             pTytul.isWrapText = true
             pTytul.padding = Insets(10.0)
             pTytul.setStyle("-fx-font-weight: bold")
 
-            val wartoscKomunikaty= mutableListOf<WrapperParametruNazwaWartosc>()
+            val wartoscKomunikaty = mutableListOf<WrapperParametruNazwaWartosc>()
 
-            if (!reg.sekwencja.komunikaty.isNullOrEmpty()){
+            if (!reg.sekwencja.komunikaty.isNullOrEmpty()) {
 
-                for (klucz in reg.sekwencja.komunikaty!!.keys){
+                for (klucz in reg.sekwencja.komunikaty!!.keys) {
                     wartoscKomunikaty.add(WrapperParametruNazwaWartosc(klucz, reg.sekwencja.komunikaty!![klucz]!!))
                 }
             }
 
             val wartoscNazwaParametry = mutableListOf<WrapperParametruNazwaWartoscKategoria>()
-            wartoscNazwaParametry.add(WrapperParametruNazwaWartoscKategoria("", "",""))
+            wartoscNazwaParametry.add(WrapperParametruNazwaWartoscKategoria("", "", ""))
             for (sek in reg.sekwencja!!.rozpoznaneTokeny) {
-                wartoscNazwaParametry.add(WrapperParametruNazwaWartoscKategoria(sek.wartosc, sek.typ.toString(),sek.kategoria?:""))
+                wartoscNazwaParametry.add(WrapperParametruNazwaWartoscKategoria(sek.wartosc, sek.typ.toString(), sek.kategoria
+                        ?: ""))
             }
 
 
@@ -86,7 +84,7 @@ class MainController {
             pKontenerNaTabelki.children.add(pTytul)
             //wiersz zerowy - komunikaty
 
-            if(!wartoscKomunikaty.isNullOrEmpty()) {
+            if (!wartoscKomunikaty.isNullOrEmpty()) {
                 pKontenerNaTabelki.children.add(zbudujTabelkeProstychWlasnosciKluczWartosc(wartoscKomunikaty
                         , szerokoscKolumnyN = 80.0
                         , szerokoscKolumnyW = 600.0
@@ -101,23 +99,28 @@ class MainController {
                     , szerokoscTabeli = 700.0))
 
 
+            val nazwyParametrow = reg.parametry.map {
+                it.nazwa
+            }.toList()
+
             //BUDUJE DRUGI WIERSZ - PODZIAL NA DWA OBSZARY PIONOWE
             var pKontenerPionowyNaTabelkiParametrow = HBox()
             pKontenerPionowyNaTabelkiParametrow.prefWidth = 800.0
             pKontenerPionowyNaTabelkiParametrow.spacing = 15.0
 
             val pParametryTab = zbudujTabelkeParametrowWejsciowych(reg.parametry!!
-                    , szerokoscTabeli = 340.0
+                    , szerokoscTabeli = 312.0
                     , szerokoscKolumnyN = 100.0
                     , szerokoscKolumnyT = 100.0
-                    , szerokoscKolumnyW = 120.0)
+                    , szerokoscKolumnyW = 90.0)
 
             var pKontenerParametrowWe = TitledPane("Parametry WE", pParametryTab)
             var pKontenerParametrowWy = TitledPane("Parametry WY", zbudujTabelkeParametrowWyjsciowych(reg.wywolaniaRegul
-                    , szerokoscTabeli = 340.0
+                    , nazwyParametrow
+                    , szerokoscTabeli = 312.0
                     , szerokoscKolumnyN = 100.0
                     , szerokoscKolumnyT = 100.0
-                    , szerokoscKolumnyW = 120.0))
+                    , szerokoscKolumnyW = 90.0))
 
             pKontenerParametrowWe.isExpanded = true
             pKontenerParametrowWy.isExpanded = true
@@ -125,17 +128,44 @@ class MainController {
             mapaKonenerowParametrowWe.put(reg.kod, pKontenerParametrowWe)
             mapaKonenerowParametrowWy.put(reg.kod, pKontenerParametrowWy)
 
+            val przyciskNowyParam = Button("Nowy")
+            przyciskNowyParam.setOnMouseClicked {
+                val pdial = TextInputDialog()
+                pdial.contentText = "Nazwa"
+                pdial.headerText = "Wpisz nazwę parametru"
+                val nazwaOpt = pdial.showAndWait()
+
+                if (nazwaOpt.isPresent) {
+                    regulyUsluga.dodajParametr(mapaRegul[reg.kod]!!, nazwaOpt.get())
+                    aktualizujParametryWe()
+                }
+            }
+
+            val przyciskUsunParam = Button("Usuń")
+            przyciskUsunParam.setOnMouseClicked {
+                regulyUsluga.usunParametr(mapaRegul[reg.kod]!!)
+                aktualizujParametryWe()
+            }
+
+
+
+
             pKontenerPionowyNaTabelkiParametrow.children.add(pKontenerParametrowWe)
+            pKontenerPionowyNaTabelkiParametrow.children.add(przyciskNowyParam)
+            pKontenerPionowyNaTabelkiParametrow.children.add(przyciskUsunParam)
             pKontenerPionowyNaTabelkiParametrow.children.add(pKontenerParametrowWy)
 
 
             //DRUGI WIERSZ
             pKontenerNaTabelki.children.add(pKontenerPionowyNaTabelkiParametrow)
 
+
             //Trzeci wiersz - panel błędów
             val pPanelBledow = zbudujKontenerBledow(700.0)
             pKontenerNaTabelki.children.add(pPanelBledow)
             mapaKonenerowBledowWalidacji.put(reg.kod, pPanelBledow)
+
+            mapaRegul = listaRegul.map { it.kod to it }.toMap()
         }
     }
 
@@ -169,7 +199,7 @@ class MainController {
     fun onWczytajRegulyKLIK() {
         wyczyscKonteneryBledow()
         println("onWczytajRegulyKLIK")
-        listaRegul=regulyUsluga.podajReguly()
+        listaRegul = regulyUsluga.podajReguly()
 
     }
 
@@ -178,7 +208,7 @@ class MainController {
         wyczyscKonteneryBledow()
         println("onWalidujRegulyKLIK")
 
-        var flaga =false
+        var flaga = false
 
         listaRegul.forEach {
 
@@ -189,15 +219,15 @@ class MainController {
                 mapaKonenerowParametrowWe[it.kod]!!.isExpanded = true
                 mapaKonenerowParametrowWe[it.kod]!!.style = "-fx-border-color: red;"
 
-                flaga=true
-              /*  mapaKonenerowParametrowWy[it.kod]!!.isExpanded = true
-                mapaKonenerowParametrowWy[it.kod]!!.style = "-fx-border-color: red;"*/
+                flaga = true
+                /*  mapaKonenerowParametrowWy[it.kod]!!.isExpanded = true
+                  mapaKonenerowParametrowWy[it.kod]!!.style = "-fx-border-color: red;"*/
             }
 
 
         }
 
-        if(flaga){
+        if (flaga) {
             Alert(Alert.AlertType.INFORMATION, "Wykryte zostały błędy walidacji!").show()
         }
 

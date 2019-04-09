@@ -2,6 +2,7 @@ package model.encje;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "reguly")
@@ -24,8 +25,8 @@ public class RegulaEncja extends Encja{
     private List<ParametrRegulyEncja> parametry=null;
 
 
-    @OneToMany(mappedBy = "regulaWolajaca", cascade = CascadeType.ALL)
-    private List<WywolanieRegulyEncja> wywolaniaRegul=null;
+    @OneToMany(mappedBy = "regulaWolajaca", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private Set<WywolanieRegulyEncja> wywolaniaRegul=null;
 
 
 
@@ -54,11 +55,11 @@ public class RegulaEncja extends Encja{
         this.parametry = parametry;
     }
 
-    public List<WywolanieRegulyEncja> getWywolaniaRegul() {
+    public Set<WywolanieRegulyEncja> getWywolaniaRegul() {
         return wywolaniaRegul;
     }
 
-    public void setWywolaniaRegul(List<WywolanieRegulyEncja> wywolaniaRegul) {
+    public void setWywolaniaRegul(Set<WywolanieRegulyEncja> wywolaniaRegul) {
         this.wywolaniaRegul = wywolaniaRegul;
     }
 }
