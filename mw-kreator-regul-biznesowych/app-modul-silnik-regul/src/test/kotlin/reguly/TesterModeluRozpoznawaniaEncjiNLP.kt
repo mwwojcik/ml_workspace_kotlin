@@ -1,12 +1,13 @@
 package reguly
 
 import model.nlp.Sekwencja
+import org.junit.Assert.assertEquals
 import org.junit.Test
 import reguly.nlp.EgzaminatorModeluRozpoznawaniaEncjiNLP
 import reguly.nlp.NormalizatorSekwencjiNLP
 import java.nio.file.Files
 import java.nio.file.Paths
-import kotlin.test.assertEquals
+
 
 class PrzypadekTestowy(val sentencja: String, val spodziewanyOperatorWarunku: String)
 

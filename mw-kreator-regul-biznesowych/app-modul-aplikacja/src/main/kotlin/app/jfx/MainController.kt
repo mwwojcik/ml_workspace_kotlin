@@ -113,7 +113,7 @@ class MainController {
                     , szerokoscKolumnyW = 120.0)
 
             var pKontenerParametrowWe = TitledPane("Parametry WE", pParametryTab)
-            var pKontenerParametrowWy = TitledPane("Parametry WY", zbudujTabelkeParametrowWejsciowych(mutableListOf()
+            var pKontenerParametrowWy = TitledPane("Parametry WY", zbudujTabelkeParametrowWyjsciowych(reg.wywolaniaRegul
                     , szerokoscTabeli = 340.0
                     , szerokoscKolumnyN = 100.0
                     , szerokoscKolumnyT = 100.0

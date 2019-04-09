@@ -48,8 +48,12 @@ open class RegulaKonwerter : BazowyKonwerter(), IKonwerter<Regula, RegulaEncja> 
                     , tresc
                     , fasadaNLP.rozpoznajSekwencje(tresc)
                     , parametry.map {
-                konwerterParametrow.konwertujDoTransportu(it)
-            }.toMutableList())
+                        konwerterParametrow.konwertujDoTransportu(it)
+                    }.toMutableList()
+                    ,wywolaniaRegul.map {
+                        konwerterWywolanRegul.konwertujDoTransportu(it)
+                    }.toMutableList()
+                    )
             pDto.id = id
             pDto.wersja = wersja
             return pDto
@@ -114,6 +118,10 @@ class WywolanieRegulyKonwerter : BazowyKonwerter(), IKonwerter<WywolanieReguly, 
         with(aEncja) {
             val pDto = WywolanieReguly(regulaWolajaca.kod, regulaWolana.kod)
 
+
+            if(parametry.size!=0){
+                println("")
+            }
             pDto.parametry =
                     parametry.map {
                         podajObiektTransportowyParametruWywolania(it)
@@ -128,7 +136,7 @@ class WywolanieRegulyKonwerter : BazowyKonwerter(), IKonwerter<WywolanieReguly, 
 
     fun podajObiektTransportowyParametruWywolania(aEncja: ParametrWywolaniaRegulyEncja): ParametrWywolaniaReguly {
         with(aEncja) {
-            val pDto = ParametrWywolaniaReguly(parametrRegulyWolajacej.nazwa, parametrRegulyWolanej.nazwa)
+            val pDto = ParametrWywolaniaReguly(parametrRegulyWolajacej?.nazwa?:"", parametrRegulyWolanej.nazwa)
 
             pDto.id = id
             pDto.wersja = wersja

@@ -16,6 +16,8 @@ import javafx.scene.layout.VBox
 import javafx.scene.paint.Color
 import javafx.util.Callback
 import model.dto.Parametr
+import model.dto.ParametrWywolaniaReguly
+import model.dto.WywolanieReguly
 
 import sun.misc.Signal.handle
 
@@ -61,7 +63,7 @@ fun zbudujTabelkeProstychWlasnosciKluczWartosc(parametry: List<WrapperParametruN
     tableView.prefWidth = szerokoscTabeli
     tableView.minWidth = szerokoscTabeli
     tableView.maxWidth = szerokoscTabeli
-    tableView.prefHeight = 2 * wyliczWysokoscTabeli(tableView, 12, 12, 10)
+    tableView.prefHeight = 2 * wyliczWysokoscTabeli(tableView.items.count(), 12, 12, 10)
     tableView.getStyleClass().add("noheader");
     return tableView
 }
@@ -105,7 +107,7 @@ fun zbudujTabelkeWlasnosciNazwaWartoscKategoria(parametry: List<WrapperParametru
     tableView.prefWidth = szerokoscTabeli
     tableView.minWidth = szerokoscTabeli
     tableView.maxWidth = szerokoscTabeli
-    tableView.prefHeight = 2 * wyliczWysokoscTabeli(tableView, 12, 12, 10)
+    tableView.prefHeight = 2 * wyliczWysokoscTabeli(tableView.items.count(), 12, 12, 10)
     tableView.getStyleClass().add("noheader");
     return tableView
 }
@@ -156,13 +158,89 @@ fun zbudujTabelkeParametrowWejsciowych(parametry: MutableList<Parametr>
     tableView.maxWidth = szerokoscTabeli
 
     //tableView.prefHeight = wysokoscTabeli
-    tableView.prefHeight = 2 * wyliczWysokoscTabeli(tableView, 12, 12, 10)
+    tableView.prefHeight = 2 * wyliczWysokoscTabeli(tableView.items.count(), 12, 12, 10)
     //tableView.getStyleClass().add("noheader");
 
     tableView.isEditable=true
     return tableView
 }
 
+
+
+fun zbudujTabelkeParametrowWyjsciowych(wywolania: List<WywolanieReguly>
+                                       , szerokoscKolumnyT: Double = SZEROKOSC_TRZY_KOLUMNY
+                                       , szerokoscKolumnyN: Double = SZEROKOSC_TRZY_KOLUMNY
+                                       , szerokoscKolumnyW: Double = SZEROKOSC_TRZY_KOLUMNY
+                                       , szerokoscTabeli: Double = SZEROKOSC_TABELI
+): TableView<WierszTabeliParametrowWy> {
+
+    //WierszTabeliParametrowWeWy- typ w całym wierszu, String-typ danej kolumny
+    var kolumnaTyp: TableColumn<WierszTabeliParametrowWy, String> = TableColumn("Parametr lokalny")
+    var kolumnaNazwa: TableColumn<WierszTabeliParametrowWy, String> = TableColumn("Parametr wołany")
+    var kolumnaWartoscDomyslna: TableColumn<WierszTabeliParametrowWy, String> = TableColumn("Wartość domyślna")
+
+    kolumnaTyp.prefWidth = szerokoscKolumnyT
+    kolumnaNazwa.prefWidth = szerokoscKolumnyN
+    kolumnaWartoscDomyslna.prefWidth = szerokoscKolumnyW
+
+    var list: ObservableList<WierszTabeliParametrowWy> = FXCollections.observableArrayList()
+
+    wywolania.forEach{
+        val regula_wolana=it.kodRegulyWolanej
+        it.parametry.forEach{
+            list.add(
+
+                    WierszTabeliParametrowWy(
+                            regula_wolana+"."+it.nazwaParametruRegulyWolanej+"=","","",it)
+
+            )
+        }
+    }
+
+   /*list.addAll(wywolania.map{
+
+   }.toList())
+
+
+            FXCollections.observableArrayList(parametry.map{WierszTabeliParametrowWeWy(it.nazwa,it.typ?:"",it.wartoscDomyslna?:"",it)}.toList())
+    */
+
+    var tableView: TableView<WierszTabeliParametrowWy> = TableView(list)
+
+
+    kolumnaNazwa.setCellValueFactory ({ cellData -> cellData.value.nazwaProperty})
+    kolumnaNazwa.cellFactory = TextFieldTableCell.forTableColumn()
+    kolumnaNazwa.isEditable=false
+
+    kolumnaTyp.setCellValueFactory ({ cellData -> cellData.value.typProperty})
+    kolumnaTyp.cellFactory = ComboBoxTableCell.forTableColumn("Liczba", "Napis", "Data")
+    kolumnaTyp.setOnEditCommit({t->
+        t.getTableView().getItems().get(t.getTablePosition().getRow()).parametr.nazwaParametruRegulyWolajacej=t.newValue
+    })
+
+
+    kolumnaWartoscDomyslna.setCellValueFactory ({ cellData -> cellData.value.wartoscDomyslnaProperty})
+    kolumnaWartoscDomyslna.cellFactory = TextFieldTableCell.forTableColumn()
+    kolumnaWartoscDomyslna.isEditable=false
+
+    tableView.columns.add(kolumnaNazwa)
+    tableView.columns.add(kolumnaTyp)
+    tableView.columns.add(kolumnaWartoscDomyslna)
+
+    tableView.prefWidth = szerokoscTabeli
+    tableView.minWidth = szerokoscTabeli
+    tableView.maxWidth = szerokoscTabeli
+
+    val iloscElementow =if (tableView.items.count()>0) tableView.items.count() else 2
+
+    tableView.prefHeight = 2 * wyliczWysokoscTabeli(iloscElementow, 12, 12, 10)
+    //tableView.getStyleClass().add("noheader");
+    tableView.minHeight=tableView.prefHeight
+
+
+    tableView.isEditable=true
+    return tableView
+}
 
 fun zbudujKontenerBledow(szerokoscKontenera:Double):KontenerBledow{
 
@@ -185,8 +263,8 @@ fun zbudujKontenerBledow(szerokoscKontenera:Double):KontenerBledow{
  * @param headerHeight - the height of the table header
  * @param margin       - a value for the margins
  */
-fun wyliczWysokoscTabeli(table: TableView<*>, rowHeight: Int, headerHeight: Int, margin: Int): Double {
-    return (table.items.count() * rowHeight + headerHeight + margin).toDouble()
+fun wyliczWysokoscTabeli(tableItemsCount:Int, rowHeight: Int, headerHeight: Int, margin: Int): Double {
+    return (tableItemsCount * rowHeight + headerHeight + margin).toDouble()
 
 }
 
@@ -212,6 +290,22 @@ open class WierszTabeliParametrowWeWy(aNazwa: String, aTyp: String,aWartosc:Stri
 
 }
 
+open class WierszTabeliParametrowWy(aNazwa: String, aTyp: String,aWartosc:String,aParametr:ParametrWywolaniaReguly) {
+    val nazwaProperty: SimpleStringProperty
+    val typProperty: SimpleStringProperty
+    val wartoscDomyslnaProperty: SimpleStringProperty
+
+    val parametr: ParametrWywolaniaReguly
+
+    init {
+        nazwaProperty = SimpleStringProperty(aNazwa)
+        typProperty = SimpleStringProperty(aTyp)
+        wartoscDomyslnaProperty= SimpleStringProperty(aWartosc)
+        parametr = aParametr
+    }
+
+
+}
 
 open class ProstaTabelaNazwaWartosc(val nazwa: String, val wartosc: String)
 
