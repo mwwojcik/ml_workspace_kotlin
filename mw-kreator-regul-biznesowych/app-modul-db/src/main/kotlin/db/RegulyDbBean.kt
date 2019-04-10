@@ -58,14 +58,25 @@ open class RegulyDbBean {
 
     @Transactional
     fun usunWszystkieWywolaniaDoReguly(aRegula:RegulaEncja){
-        wywolaniaRegulyRepozytorium.findByRegulaWolana(aRegula).forEach{
+        wywolaniaRegulyRepozytorium.findByRegulaWolana(aRegula)?.forEach{
             parametrWywolaniaRegulyRepozytorium.deleteByWywolanie(it)
             usunObiektZarzadzalny(it)
         }
 
-        wywolaniaRegulyRepozytorium.findByRegulaWolajaca(aRegula).forEach{
+        wywolaniaRegulyRepozytorium.findByRegulaWolajaca(aRegula)?.forEach{
             parametrWywolaniaRegulyRepozytorium.deleteByWywolanie(it)
             usunObiektZarzadzalny(it)
+        }
+    }
+
+    @Transactional
+    fun usunWszystkieOdwolaniaDoParametru(aParametr:ParametrRegulyEncja){
+        parametrWywolaniaRegulyRepozytorium.findByParametrRegulyWolajacej(aParametr)?.forEach{
+            it.parametrRegulyWolajacej=null
+        }
+
+        parametrWywolaniaRegulyRepozytorium.findByParametrRegulyWolanej(aParametr)?.forEach{
+            it.parametrRegulyWolanej=null
         }
     }
 

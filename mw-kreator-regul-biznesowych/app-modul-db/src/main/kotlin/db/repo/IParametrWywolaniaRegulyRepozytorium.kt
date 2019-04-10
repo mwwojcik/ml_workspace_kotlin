@@ -1,5 +1,6 @@
 package db.repo
 
+import model.encje.ParametrRegulyEncja
 import model.encje.ParametrWywolaniaRegulyEncja
 import model.encje.WywolanieRegulyEncja
 import org.springframework.data.repository.CrudRepository
@@ -16,4 +17,7 @@ interface IParametrWywolaniaRegulyRepozytorium : CrudRepository<ParametrWywolani
     @Modifying
     @Query("delete from ParametrWywolaniaRegulyEncja p where p.wywolanie=:x")
     fun deleteByWywolanie(@Param("x") wywolanie:WywolanieRegulyEncja)
+
+    fun findByParametrRegulyWolajacej(parametr:ParametrRegulyEncja):List<ParametrWywolaniaRegulyEncja>?
+    fun findByParametrRegulyWolanej(parametr:ParametrRegulyEncja):List<ParametrWywolaniaRegulyEncja>?
 }

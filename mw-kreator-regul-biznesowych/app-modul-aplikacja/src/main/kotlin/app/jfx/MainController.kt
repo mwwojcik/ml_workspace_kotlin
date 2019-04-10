@@ -109,7 +109,7 @@ class MainController {
             pKontenerPionowyNaTabelkiParametrow.spacing = 15.0
 
             val pParametryTab = zbudujTabelkeParametrowWejsciowych(reg.parametry!!
-                    , szerokoscTabeli = 312.0
+                    , szerokoscTabeli = 308.0
                     , szerokoscKolumnyN = 100.0
                     , szerokoscKolumnyT = 100.0
                     , szerokoscKolumnyW = 90.0)
@@ -117,7 +117,7 @@ class MainController {
             var pKontenerParametrowWe = TitledPane("Parametry WE", pParametryTab)
             var pKontenerParametrowWy = TitledPane("Parametry WY", zbudujTabelkeParametrowWyjsciowych(reg.wywolaniaRegul
                     , nazwyParametrow
-                    , szerokoscTabeli = 312.0
+                    , szerokoscTabeli = 308.0
                     , szerokoscKolumnyN = 100.0
                     , szerokoscKolumnyT = 100.0
                     , szerokoscKolumnyW = 90.0))
@@ -127,6 +127,9 @@ class MainController {
 
             mapaKonenerowParametrowWe.put(reg.kod, pKontenerParametrowWe)
             mapaKonenerowParametrowWy.put(reg.kod, pKontenerParametrowWy)
+
+            val pKontenerPoziomyNaPrzyciski=VBox()
+            pKontenerPoziomyNaPrzyciski.spacing=5.0
 
             val przyciskNowyParam = Button("Nowy")
             przyciskNowyParam.setOnMouseClicked {
@@ -146,13 +149,14 @@ class MainController {
                 regulyUsluga.usunParametr(mapaRegul[reg.kod]!!)
                 aktualizujParametryWe()
             }
+            przyciskNowyParam.prefWidth=50.0
+            przyciskUsunParam.prefWidth=50.0
 
+            pKontenerPoziomyNaPrzyciski.children.add(przyciskNowyParam)
 
-
-
+            pKontenerPoziomyNaPrzyciski.children.add(przyciskUsunParam)
             pKontenerPionowyNaTabelkiParametrow.children.add(pKontenerParametrowWe)
-            pKontenerPionowyNaTabelkiParametrow.children.add(przyciskNowyParam)
-            pKontenerPionowyNaTabelkiParametrow.children.add(przyciskUsunParam)
+            pKontenerPionowyNaTabelkiParametrow.children.add(pKontenerPoziomyNaPrzyciski)
             pKontenerPionowyNaTabelkiParametrow.children.add(pKontenerParametrowWy)
 
 

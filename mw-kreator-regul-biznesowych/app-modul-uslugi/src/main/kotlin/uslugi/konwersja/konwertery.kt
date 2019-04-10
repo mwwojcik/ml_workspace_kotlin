@@ -25,6 +25,18 @@ open class RegulaKonwerter : BazowyKonwerter(), IKonwerter<Regula, RegulaEncja> 
     override fun konwertujDoEncji(aDto: Regula): RegulaEncja {
         val pEncja: RegulaEncja = podajObiektZarzadzalny<RegulaEncja>(aDto.id, RegulaEncja::class.java)
         with(aDto) {
+
+            val parametryDoUsunieciaStr:Set<String> = dajParametryDoUsuniecia(parametry,pEncja.parametry)
+
+            val parametryDoUsuniecia:List<ParametrRegulyEncja> = pEncja.parametry.filter {
+                parametryDoUsunieciaStr.contains(it.nazwa)
+            }.toList()
+
+            parametryDoUsuniecia?.forEach{
+                regulyDbBean.usunWszystkieOdwolaniaDoParametru(it)
+                regulyDbBean.usunObiektZarzadzalny(it)
+            }
+
             pEncja.kod = kod
             pEncja.tresc = tresc
             pEncja.parametry = parametry.map {
@@ -36,6 +48,8 @@ open class RegulaKonwerter : BazowyKonwerter(), IKonwerter<Regula, RegulaEncja> 
             pEncja.wywolaniaRegul=wywolaniaRegul.map {
                 konwerterWywolanRegul.konwertujDoEncji(it)
             }.toMutableSet()
+
+
 
         }
 
@@ -58,6 +72,14 @@ open class RegulaKonwerter : BazowyKonwerter(), IKonwerter<Regula, RegulaEncja> 
             pDto.wersja = wersja
             return pDto
         }
+    }
+
+    fun dajParametryDoUsuniecia(aParametryDto: List<Parametr>, aParametryEncja: List<ParametrRegulyEncja>): Set<String> {
+
+        val nazwyDto = aParametryDto.map { it.nazwa }.toSet()
+        val nazwyEncja = aParametryEncja.map { it.nazwa }.toSet()
+
+        return (nazwyEncja-nazwyDto)
     }
 }
 
