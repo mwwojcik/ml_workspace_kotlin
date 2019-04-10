@@ -23,6 +23,8 @@ class MainController {
 
     lateinit var mapaRegul: Map<String, Regula>
 
+    var mapaRegulWidok:MutableMap<String,RegulaWidok> = mutableMapOf()
+
 
     @FXML
     lateinit var panelRegul: VBox
@@ -42,6 +44,10 @@ class MainController {
 
         for (reg in listaRegul) {
 
+            var regulaWidok=RegulaWidok()
+            regulaWidok.aktualizujDane(reg)
+            mapaRegulWidok.put(reg.kod,regulaWidok)
+
             //val wartoscNazwaParametry= mutableListOf<WrapperParametruNazwaWartosc>(WrapperParametruNazwaWartosc("Treść",reg.tresc))
             val pTytul = Label(reg.tresc + "\n\n" + "-- Postać znormalizowana --" + "\n\n" + reg.sekwencja.postacKanoniczna)
             pTytul.prefWidth = 700.0
@@ -49,22 +55,6 @@ class MainController {
             pTytul.isWrapText = true
             pTytul.padding = Insets(10.0)
             pTytul.setStyle("-fx-font-weight: bold")
-
-            val wartoscKomunikaty = mutableListOf<WrapperParametruNazwaWartosc>()
-
-            if (!reg.sekwencja.komunikaty.isNullOrEmpty()) {
-
-                for (klucz in reg.sekwencja.komunikaty!!.keys) {
-                    wartoscKomunikaty.add(WrapperParametruNazwaWartosc(klucz, reg.sekwencja.komunikaty!![klucz]!!))
-                }
-            }
-
-            val wartoscNazwaParametry = mutableListOf<WierszTabeliTrzyWartosci>()
-            wartoscNazwaParametry.add(WierszTabeliTrzyWartosci("", "", ""))
-            for (sek in reg.sekwencja!!.rozpoznaneTokeny) {
-                wartoscNazwaParametry.add(WierszTabeliTrzyWartosci(sek.wartosc, sek.typ.toString(), sek.kategoria
-                        ?: ""))
-            }
 
 
             //kontenerek na regule
@@ -79,15 +69,15 @@ class MainController {
             pKontenerNaTabelki.children.add(pTytul)
             //wiersz zerowy - komunikaty
 
-            if (!wartoscKomunikaty.isNullOrEmpty()) {
-                pKontenerNaTabelki.children.add(zbudujTabelkeRozpoznanychKomunikatow(wartoscKomunikaty
+
+                pKontenerNaTabelki.children.add(zbudujTabelkeRozpoznanychKomunikatow(regulaWidok
                         , szerokoscKolumnyN = 80.0
                         , szerokoscKolumnyW = 600.0
                         , szerokoscTabeli = 700.0))
-            }
+
 
             //PIERWSZY WIERSZ
-            pKontenerNaTabelki.children.add(zbudujTabelkeRozpoznanychTokenow(wartoscNazwaParametry
+            pKontenerNaTabelki.children.add(zbudujTabelkeRozpoznanychTokenow(regulaWidok
                     , szerokoscKolumnyN = 80.0
                     , szerokoscKolumnyW = 400.0
                     , szerokoscKolumnyK = 160.0
@@ -103,14 +93,14 @@ class MainController {
             pKontenerPionowyNaTabelkiParametrow.prefWidth = 800.0
             pKontenerPionowyNaTabelkiParametrow.spacing = 15.0
 
-            val pParametryTab = zbudujTabelkeParametrowWejsciowych(reg.parametry!!
+            val pParametryTab = zbudujTabelkeParametrowWejsciowych(regulaWidok
                     , szerokoscTabeli = 308.0
                     , szerokoscKolumnyN = 100.0
                     , szerokoscKolumnyT = 100.0
                     , szerokoscKolumnyW = 90.0)
 
             var pKontenerParametrowWe = TitledPane("Parametry WE", pParametryTab)
-            var pKontenerParametrowWy = TitledPane("Parametry WY", zbudujTabelkeParametrowWyjsciowych(reg.wywolaniaRegul
+            var pKontenerParametrowWy = TitledPane("Parametry WY", zbudujTabelkeParametrowWyjsciowych(regulaWidok
                     , nazwyParametrow
                     , szerokoscTabeli = 308.0
                     , szerokoscKolumnyN = 100.0
@@ -135,14 +125,17 @@ class MainController {
 
                 if (nazwaOpt.isPresent) {
                     regulyUsluga.dodajParametr(mapaRegul[reg.kod]!!, nazwaOpt.get())
-                    aktualizujParametryWe()
+                    mapaRegulWidok[reg.kod]!!.aktualizujDane(mapaRegul[reg.kod]!!)
+
+                    //aktualizujParametryWe()
                 }
             }
 
             val przyciskUsunParam = Button("Usuń")
             przyciskUsunParam.setOnMouseClicked {
                 regulyUsluga.usunParametr(mapaRegul[reg.kod]!!)
-                aktualizujParametryWe()
+                mapaRegulWidok[reg.kod]!!.aktualizujDane(mapaRegul[reg.kod]!!)
+                //aktualizujParametryWe()
             }
             przyciskNowyParam.prefWidth=50.0
             przyciskUsunParam.prefWidth=50.0
@@ -244,6 +237,11 @@ class MainController {
     fun onGenerujKodKLIK() {
         wyczyscKonteneryBledow()
         println("onGenerujKodKLIK")
+        /* var p:Regula=mapaRegul["RS-001"]!!
+        p.sekwencja.komunikaty!!.put("ala","alamakota")
+        mapaRegulWidok.get("RS-001")!!.aktualizujDane(p)
+        mapaRegulWidok.get("RS-001")!!.zmienWartosciDopuszczalnychTypow()*/
+
 
     }
 

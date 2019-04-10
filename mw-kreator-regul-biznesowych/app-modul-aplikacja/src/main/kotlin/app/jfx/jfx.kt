@@ -14,6 +14,7 @@ import javafx.scene.layout.VBox
 import javafx.scene.paint.Color
 import model.dto.Parametr
 import model.dto.ParametrWywolaniaReguly
+import model.dto.Regula
 import model.dto.WywolanieReguly
 
 
@@ -24,7 +25,7 @@ val SZEROKOSC_TRZY_KOLUMNY = SZEROKOSC_TABELI / 3
 val WYSOKOSC_TABELI = 0.0
 
 
-fun zbudujTabelkeRozpoznanychKomunikatow(parametry: List<WrapperParametruNazwaWartosc>
+fun zbudujTabelkeRozpoznanychKomunikatow(regulaWidok: RegulaWidok
                                          , szerokoscKolumnyN: Double = SZEROKOSC_DWIE_KOLUMNY
                                          , szerokoscKolumnyW: Double = SZEROKOSC_DWIE_KOLUMNY
                                          , szerokoscTabeli: Double = SZEROKOSC_TABELI
@@ -33,21 +34,16 @@ fun zbudujTabelkeRozpoznanychKomunikatow(parametry: List<WrapperParametruNazwaWa
     var kolumnaWartosc: TableColumn<WierszTabeliDwieWartosci, String> = TableColumn("wartosc")
 
 
-    var dlugoscNajwiekszegoNapisuKolumnyW: Int = parametry.map { it.wartosc.length }.max()!!
+    var dlugoscNajwiekszegoNapisuKolumnyW: Int = regulaWidok.rozpoznaneKomunikatyWidok.map { it.wartosc.length }.max()?:20
+
     var maksymalnaDlugoscKolumnyW = dlugoscNajwiekszegoNapisuKolumnyW * 5.0
 
     kolumnaWartosc.prefWidth = if (maksymalnaDlugoscKolumnyW > szerokoscKolumnyW) maksymalnaDlugoscKolumnyW else szerokoscKolumnyW;
     kolumnaNazwa.prefWidth = szerokoscKolumnyN
 
 
-    var list: ObservableList<WierszTabeliDwieWartosci> = FXCollections.observableArrayList()
-
-    for (param in parametry) {
-        list.add(WierszTabeliDwieWartosci(param.nazwa, param.wartosc))
-    }
-
     var tableView: TableView<WierszTabeliDwieWartosci> = TableView()
-    tableView.items = list
+    tableView.items = regulaWidok.rozpoznaneKomunikatyWidok
 
     kolumnaNazwa.cellValueFactory = PropertyValueFactory<WierszTabeliDwieWartosci, String>("nazwa")
     kolumnaWartosc.cellValueFactory = PropertyValueFactory<WierszTabeliDwieWartosci, String>("wartosc")
@@ -63,7 +59,7 @@ fun zbudujTabelkeRozpoznanychKomunikatow(parametry: List<WrapperParametruNazwaWa
     return tableView
 }
 
-fun zbudujTabelkeRozpoznanychTokenow(parametry: List<WierszTabeliTrzyWartosci>
+fun zbudujTabelkeRozpoznanychTokenow(regulaWidok: RegulaWidok
                                      , szerokoscKolumnyN: Double = SZEROKOSC_TRZY_KOLUMNY
                                      , szerokoscKolumnyW: Double = SZEROKOSC_TRZY_KOLUMNY,
                                      szerokoscKolumnyK: Double = SZEROKOSC_TRZY_KOLUMNY
@@ -74,22 +70,15 @@ fun zbudujTabelkeRozpoznanychTokenow(parametry: List<WierszTabeliTrzyWartosci>
     var kolumnaKategoria: TableColumn<WierszTabeliTrzyWartosci, String> = TableColumn("kategoria")
 
 
-    var dlugoscNajwiekszegoNapisuKolumnyW: Int = parametry.map { it.wartosc.length }.max()!!
+    var dlugoscNajwiekszegoNapisuKolumnyW: Int = regulaWidok.rozpoznaneTokenyWidok.map { it.wartosc.length }.max()!!
     var maksymalnaDlugoscKolumnyW = dlugoscNajwiekszegoNapisuKolumnyW * 5.0
 
     kolumnaWartosc.prefWidth = if (maksymalnaDlugoscKolumnyW > szerokoscKolumnyW) maksymalnaDlugoscKolumnyW else szerokoscKolumnyW;
     kolumnaNazwa.prefWidth = szerokoscKolumnyN
     kolumnaKategoria.prefWidth = szerokoscKolumnyK
 
-
-    var list: ObservableList<WierszTabeliTrzyWartosci> = FXCollections.observableArrayList()
-
-    for (param in parametry) {
-        list.add(WierszTabeliTrzyWartosci(param.nazwa, param.wartosc,param.kategoria))
-    }
-
     var tableView: TableView<WierszTabeliTrzyWartosci> = TableView()
-    tableView.items = list
+    tableView.items = regulaWidok.rozpoznaneTokenyWidok
 
     kolumnaNazwa.cellValueFactory = PropertyValueFactory<WierszTabeliTrzyWartosci, String>("nazwa")
     kolumnaWartosc.cellValueFactory = PropertyValueFactory<WierszTabeliTrzyWartosci, String>("wartosc")
@@ -108,7 +97,7 @@ fun zbudujTabelkeRozpoznanychTokenow(parametry: List<WierszTabeliTrzyWartosci>
 }
 
 
-fun zbudujTabelkeParametrowWejsciowych(parametry: MutableList<Parametr>
+fun zbudujTabelkeParametrowWejsciowych(regulaWidok: RegulaWidok
                                        , szerokoscKolumnyT: Double = SZEROKOSC_TRZY_KOLUMNY
                                        , szerokoscKolumnyN: Double = SZEROKOSC_TRZY_KOLUMNY
                                        , szerokoscKolumnyW: Double = SZEROKOSC_TRZY_KOLUMNY
@@ -120,29 +109,29 @@ fun zbudujTabelkeParametrowWejsciowych(parametry: MutableList<Parametr>
     var kolumnaNazwa: TableColumn<WierszTabeliParametrowWe, String> = TableColumn("Nazwa")
     var kolumnaWartoscDomyslna: TableColumn<WierszTabeliParametrowWe, String> = TableColumn("Wartość domyślna")
 
+
+
     kolumnaTyp.prefWidth = szerokoscKolumnyT
     kolumnaNazwa.prefWidth = szerokoscKolumnyN
     kolumnaWartoscDomyslna.prefWidth = szerokoscKolumnyW
 
-    var list: ObservableList<WierszTabeliParametrowWe> =
-            FXCollections.observableArrayList(parametry.map{WierszTabeliParametrowWe(it.nazwa,it.typ?:"",it.wartoscDomyslna?:"",it)}.toList())
-    var tableView: TableView<WierszTabeliParametrowWe> = TableView(list)
+    var tableView: TableView<WierszTabeliParametrowWe> = TableView(regulaWidok.rozpoznaneParametryWejsciowe)
 
 
-    kolumnaNazwa.setCellValueFactory ({ cellData -> cellData.value.nazwaProperty})
+    kolumnaNazwa.setCellValueFactory({ cellData -> cellData.value.nazwaProperty })
     kolumnaNazwa.cellFactory = TextFieldTableCell.forTableColumn()
-    kolumnaNazwa.isEditable=false
+    kolumnaNazwa.isEditable = false
 
-    kolumnaTyp.setCellValueFactory ({ cellData -> cellData.value.typProperty})
-    kolumnaTyp.cellFactory = ComboBoxTableCell.forTableColumn("Liczba", "Napis", "Data")
-    kolumnaTyp.setOnEditCommit({t->
-        t.getTableView().getItems().get(t.getTablePosition().getRow()).parametr.typ=t.newValue
+    kolumnaTyp.setCellValueFactory({ cellData -> cellData.value.typProperty })
+    kolumnaTyp.cellFactory=ComboBoxTableCell.forTableColumn(regulaWidok.nazwyDopuszczalnychWartosciTypowCBWidok)
+    kolumnaTyp.setOnEditCommit({ t ->
+        t.getTableView().getItems().get(t.getTablePosition().getRow()).parametr.typ = t.newValue
     })
 
 
-    kolumnaWartoscDomyslna.setCellValueFactory ({ cellData -> cellData.value.wartoscDomyslnaProperty})
+    kolumnaWartoscDomyslna.setCellValueFactory({ cellData -> cellData.value.wartoscDomyslnaProperty })
     kolumnaWartoscDomyslna.cellFactory = TextFieldTableCell.forTableColumn()
-    kolumnaWartoscDomyslna.isEditable=false
+    kolumnaWartoscDomyslna.isEditable = false
 
     tableView.columns.add(kolumnaNazwa)
     tableView.columns.add(kolumnaTyp)
@@ -156,14 +145,13 @@ fun zbudujTabelkeParametrowWejsciowych(parametry: MutableList<Parametr>
     tableView.prefHeight = 2 * wyliczWysokoscTabeli(tableView.items.count(), 12, 12, 10)
     //tableView.getStyleClass().add("noheader");
 
-    tableView.isEditable=true
+    tableView.isEditable = true
     return tableView
 }
 
 
-
-fun zbudujTabelkeParametrowWyjsciowych(wywolania: List<WywolanieReguly>
-                                       , nazwyParametrowRegulyWejsciowej:List<String>
+fun zbudujTabelkeParametrowWyjsciowych(regulaWidok: RegulaWidok
+                                       , nazwyParametrowRegulyWejsciowej: List<String>
                                        , szerokoscKolumnyT: Double = SZEROKOSC_TRZY_KOLUMNY
                                        , szerokoscKolumnyN: Double = SZEROKOSC_TRZY_KOLUMNY
                                        , szerokoscKolumnyW: Double = SZEROKOSC_TRZY_KOLUMNY
@@ -179,37 +167,26 @@ fun zbudujTabelkeParametrowWyjsciowych(wywolania: List<WywolanieReguly>
     kolumnaNazwa.prefWidth = szerokoscKolumnyN
     kolumnaWartoscDomyslna.prefWidth = szerokoscKolumnyW
 
-    var list: ObservableList<WierszTabeliParametrowWy> = FXCollections.observableArrayList()
-
-    wywolania.forEach{
-        val regula_wolana=it.kodRegulyWolanej
-        it.parametry.forEach{
-            list.add(
-
-                    WierszTabeliParametrowWy(
-                            regula_wolana+"."+it.nazwaParametruRegulyWolanej+"=","","",it)
-
-            )
-        }
-    }
-
-    var tableView: TableView<WierszTabeliParametrowWy> = TableView(list)
 
 
-    kolumnaNazwa.setCellValueFactory ({ cellData -> cellData.value.nazwaProperty})
+
+    var tableView: TableView<WierszTabeliParametrowWy> = TableView(regulaWidok.rozpoznaneParametryWyjscioweWidok)
+
+
+    kolumnaNazwa.setCellValueFactory({ cellData -> cellData.value.nazwaProperty })
     kolumnaNazwa.cellFactory = TextFieldTableCell.forTableColumn()
-    kolumnaNazwa.isEditable=false
+    kolumnaNazwa.isEditable = false
 
-    kolumnaTyp.setCellValueFactory ({ cellData -> cellData.value.typProperty})
-    kolumnaTyp.cellFactory = ComboBoxTableCell.forTableColumn(FXCollections.observableArrayList<String>(nazwyParametrowRegulyWejsciowej))
-    kolumnaTyp.setOnEditCommit({t->
-        t.getTableView().getItems().get(t.getTablePosition().getRow()).parametr.nazwaParametruRegulyWolajacej=t.newValue
+    kolumnaTyp.setCellValueFactory({ cellData -> cellData.value.typProperty })
+    kolumnaTyp.cellFactory = ComboBoxTableCell.forTableColumn(regulaWidok.nazwyParametrowWejsciowychCBWidok)
+    kolumnaTyp.setOnEditCommit({ t ->
+        t.getTableView().getItems().get(t.getTablePosition().getRow()).parametr.nazwaParametruRegulyWolajacej = t.newValue
     })
 
 
-    kolumnaWartoscDomyslna.setCellValueFactory ({ cellData -> cellData.value.wartoscDomyslnaProperty})
+    kolumnaWartoscDomyslna.setCellValueFactory({ cellData -> cellData.value.wartoscDomyslnaProperty })
     kolumnaWartoscDomyslna.cellFactory = TextFieldTableCell.forTableColumn()
-    kolumnaWartoscDomyslna.isEditable=false
+    kolumnaWartoscDomyslna.isEditable = false
 
     tableView.columns.add(kolumnaNazwa)
     tableView.columns.add(kolumnaTyp)
@@ -219,26 +196,26 @@ fun zbudujTabelkeParametrowWyjsciowych(wywolania: List<WywolanieReguly>
     tableView.minWidth = szerokoscTabeli
     tableView.maxWidth = szerokoscTabeli
 
-    val iloscElementow =if (tableView.items.count()>0) tableView.items.count() else 2
+    val iloscElementow = if (tableView.items.count() > 0) tableView.items.count() else 2
 
     tableView.prefHeight = 2 * wyliczWysokoscTabeli(iloscElementow, 12, 12, 10)
     //tableView.getStyleClass().add("noheader");
-    tableView.minHeight=tableView.prefHeight
+    tableView.minHeight = tableView.prefHeight
 
 
-    tableView.isEditable=true
+    tableView.isEditable = true
     return tableView
 }
 
-fun zbudujKontenerBledow(szerokoscKontenera:Double):KontenerBledow{
+fun zbudujKontenerBledow(szerokoscKontenera: Double): KontenerBledow {
 
-    val pPanelBledow=KontenerBledow()
-    pPanelBledow.spacing=10.0
-    pPanelBledow.padding= Insets(10.0)
-    pPanelBledow.style="-fx-border-color: red;"
-    pPanelBledow.prefWidth=szerokoscKontenera
-    pPanelBledow.minWidth=szerokoscKontenera
-    pPanelBledow.maxWidth=szerokoscKontenera
+    val pPanelBledow = KontenerBledow()
+    pPanelBledow.spacing = 10.0
+    pPanelBledow.padding = Insets(10.0)
+    pPanelBledow.style = "-fx-border-color: red;"
+    pPanelBledow.prefWidth = szerokoscKontenera
+    pPanelBledow.minWidth = szerokoscKontenera
+    pPanelBledow.maxWidth = szerokoscKontenera
 
     return pPanelBledow
 }
@@ -251,17 +228,13 @@ fun zbudujKontenerBledow(szerokoscKontenera:Double):KontenerBledow{
  * @param headerHeight - the height of the table header
  * @param margin       - a value for the margins
  */
-fun wyliczWysokoscTabeli(tableItemsCount:Int, rowHeight: Int, headerHeight: Int, margin: Int): Double {
+fun wyliczWysokoscTabeli(tableItemsCount: Int, rowHeight: Int, headerHeight: Int, margin: Int): Double {
     return (tableItemsCount * rowHeight + headerHeight + margin).toDouble()
 
 }
 
 
-
-
-
-
-open class WierszTabeliParametrowWe(aNazwa: String, aTyp: String, aWartosc:String, aParametr:Parametr) {
+open class WierszTabeliParametrowWe(aNazwa: String, aTyp: String, aWartosc: String, aParametr: Parametr) {
     val nazwaProperty: SimpleStringProperty
     val typProperty: SimpleStringProperty
     val wartoscDomyslnaProperty: SimpleStringProperty
@@ -271,14 +244,14 @@ open class WierszTabeliParametrowWe(aNazwa: String, aTyp: String, aWartosc:Strin
     init {
         nazwaProperty = SimpleStringProperty(aNazwa)
         typProperty = SimpleStringProperty(aTyp)
-        wartoscDomyslnaProperty= SimpleStringProperty(aWartosc)
+        wartoscDomyslnaProperty = SimpleStringProperty(aWartosc)
         parametr = aParametr
     }
 
 
 }
 
-open class WierszTabeliParametrowWy(aNazwa: String, aTyp: String,aWartosc:String,aParametr:ParametrWywolaniaReguly) {
+open class WierszTabeliParametrowWy(aNazwa: String, aTyp: String, aWartosc: String, aParametr: ParametrWywolaniaReguly) {
     val nazwaProperty: SimpleStringProperty
     val typProperty: SimpleStringProperty
     val wartoscDomyslnaProperty: SimpleStringProperty
@@ -288,7 +261,7 @@ open class WierszTabeliParametrowWy(aNazwa: String, aTyp: String,aWartosc:String
     init {
         nazwaProperty = SimpleStringProperty(aNazwa)
         typProperty = SimpleStringProperty(aTyp)
-        wartoscDomyslnaProperty= SimpleStringProperty(aWartosc)
+        wartoscDomyslnaProperty = SimpleStringProperty(aWartosc)
         parametr = aParametr
     }
 
@@ -299,39 +272,79 @@ open class WierszTabeliDwieWartosci(val nazwa: String, val wartosc: String)
 
 open class WrapperParametruNazwaWartosc(val nazwa: String, val wartosc: String)
 
-open class WierszTabeliTrzyWartosci(val nazwa: String, val wartosc: String, val kategoria:String)
+open class WierszTabeliTrzyWartosci(val nazwa: String, val wartosc: String, val kategoria: String)
 
 
-open class KontenerBledow:VBox{
-    constructor():super(){
-        isVisible=false
+open class KontenerBledow : VBox {
+    constructor() : super() {
+        isVisible = false
     }
 
-    fun dodajBledy(aBledy:List<String>){
-        if(aBledy.isEmpty()){
+    fun dodajBledy(aBledy: List<String>) {
+        if (aBledy.isEmpty()) {
             return
         }
 
-        isVisible=true
+        isVisible = true
 
-        aBledy.forEach{
-            val pKom= Label(it)
+        aBledy.forEach {
+            val pKom = Label(it)
             pKom.setTextFill(Color.web("#FF0000"));
             children.add(pKom)
         }
     }
 
-    fun wyczyscBledy(){
+    fun wyczyscBledy() {
         children.clear()
-        isVisible=false
+        isVisible = false
     }
 }
 
-open class RegulaWidok{
+open class RegulaWidok {
     var rozpoznaneKomunikatyWidok: ObservableList<WierszTabeliDwieWartosci> = FXCollections.observableArrayList()
-    var rozpoznaneTokenyWidok:ObservableList<WierszTabeliTrzyWartosci> = FXCollections.observableArrayList()
-    var rozpoznaneParametryWyjscioweWidok:ObservableList<WierszTabeliParametrowWy> = FXCollections.observableArrayList()
-    var rozpoznaneParametryWejsciowe:ObservableList<WierszTabeliParametrowWe> = FXCollections.observableArrayList()
-    var nazwyParametrowWejsciowychCBWidok=FXCollections.observableArrayList<String>()
-    var nazwyDopuszczalnychTypowCBWidok=FXCollections.observableArrayList<String>()
+    var rozpoznaneTokenyWidok: ObservableList<WierszTabeliTrzyWartosci> = FXCollections.observableArrayList()
+    var rozpoznaneParametryWyjscioweWidok: ObservableList<WierszTabeliParametrowWy> = FXCollections.observableArrayList()
+    var rozpoznaneParametryWejsciowe: ObservableList<WierszTabeliParametrowWe> = FXCollections.observableArrayList()
+    var nazwyParametrowWejsciowychCBWidok =  FXCollections.observableArrayList<String>()
+    var nazwyDopuszczalnychWartosciTypowCBWidok=FXCollections.observableArrayList<String>()
+
+
+    fun aktualizujDane(regula: Regula) {
+        rozpoznaneKomunikatyWidok.clear()
+        rozpoznaneTokenyWidok.clear()
+        nazwyDopuszczalnychWartosciTypowCBWidok.clear()
+        rozpoznaneParametryWejsciowe.clear()
+        nazwyParametrowWejsciowychCBWidok.clear()
+        rozpoznaneParametryWyjscioweWidok.clear()
+
+        regula?.sekwencja?.komunikaty?.forEach {
+            rozpoznaneKomunikatyWidok.add(WierszTabeliDwieWartosci(it.key, it.value))
+        }
+       regula.sekwencja.rozpoznaneTokeny.forEach{
+            rozpoznaneTokenyWidok.add(WierszTabeliTrzyWartosci(it.wartosc, it.typ.toString(), it?.kategoria?:""))
+        }
+
+        nazwyDopuszczalnychWartosciTypowCBWidok.addAll("Liczba", "Napis", "Data")
+
+        regula.parametry.forEach{
+            rozpoznaneParametryWejsciowe.add(WierszTabeliParametrowWe(it.nazwa, it.typ ?: "", it.wartoscDomyslna ?: "", it))
+        }
+
+        nazwyParametrowWejsciowychCBWidok.addAll(regula.parametry.map {
+            it.nazwa
+        })
+
+        regula?.wywolaniaRegul?.forEach {
+            val regula_wolana = it.kodRegulyWolanej
+            it?.parametry?.forEach {
+                rozpoznaneParametryWyjscioweWidok.add(
+                        WierszTabeliParametrowWy(
+                                regula_wolana + "." + it.nazwaParametruRegulyWolanej + "=", "", "", it)
+                )
+            }
+        }
+
+    }
+
+
 }
