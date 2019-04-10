@@ -27,6 +27,7 @@ create TABLE IF NOT EXISTS parametry_reguly(
 	nazwa VARCHAR (45),
 	typ VARCHAR (45),
 	wartosc_domyslna VARCHAR (150),
+	czy_usuwalny int,
 	wersja INTEGER,
 	FOREIGN KEY (regula_id)  REFERENCES reguly(id)
 	)

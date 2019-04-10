@@ -80,7 +80,7 @@ open class RegulyUslugaBean {
     @Transactional
     fun dodajParametr(aRegula:Regula,aNazwaParametru: String){
         if(!aRegula.parametry.map { it.nazwa }.toList().contains(aNazwaParametru)) {
-            aRegula.parametry.add(Parametr(aNazwaParametru))
+            aRegula.parametry.add(Parametr(aNazwaParametru,czyUsuwalny = 1))
             konwerter.konwertujDoEncji(aRegula)
         }
     }
@@ -88,6 +88,11 @@ open class RegulyUslugaBean {
     @Transactional
     fun usunParametr(aRegula:Regula){
        val pParam=aRegula.parametry.last()
+
+        if(pParam.czyUsuwalny==0){
+            return
+        }
+
         if(!aRegula.sekwencja.rozpoznaneTokeny.filter{it.typ==RodzajTokenaEnum.LEWOSTRONNY_OPERAND_WARUNKU||it.typ==RodzajTokenaEnum.PRAWOSTRONNY_OPERAND_WARUNKU}
                         .map{it.wartosc}.contains(pParam.nazwa)){
             aRegula.parametry.remove(pParam)

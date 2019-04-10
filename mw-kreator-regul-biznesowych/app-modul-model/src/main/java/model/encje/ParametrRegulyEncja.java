@@ -2,6 +2,7 @@ package model.encje;
 
 import org.jetbrains.annotations.NotNull;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -14,6 +15,8 @@ public class ParametrRegulyEncja extends Encja {
     private String nazwa;
     private String typ;
     private String wartoscDomyslna;
+    @Column(name = "czy_usuwalny")
+    private Integer czyUsuwalny=0;
 
     @ManyToOne
     private RegulaEncja regula;
@@ -63,5 +66,13 @@ public class ParametrRegulyEncja extends Encja {
 
     public void setRegula(RegulaEncja regula) {
         this.regula = regula;
+    }
+
+    public Integer getCzyUsuwalny() {
+        return czyUsuwalny;
+    }
+
+    public void setCzyUsuwalny(Integer czyUsuwalny) {
+        this.czyUsuwalny = czyUsuwalny;
     }
 }

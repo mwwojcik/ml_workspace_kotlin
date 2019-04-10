@@ -26,11 +26,11 @@ open class RegulaKonwerter : BazowyKonwerter(), IKonwerter<Regula, RegulaEncja> 
         val pEncja: RegulaEncja = podajObiektZarzadzalny<RegulaEncja>(aDto.id, RegulaEncja::class.java)
         with(aDto) {
 
-            val parametryDoUsunieciaStr:Set<String> = dajParametryDoUsuniecia(parametry,pEncja.parametry)
+            val parametryDoUsunieciaStr:Set<String>? = dajParametryDoUsuniecia(parametry,pEncja.parametry)
 
-            val parametryDoUsuniecia:List<ParametrRegulyEncja> = pEncja.parametry.filter {
-                parametryDoUsunieciaStr.contains(it.nazwa)
-            }.toList()
+            val parametryDoUsuniecia:List<ParametrRegulyEncja>? = pEncja.parametry?.filter {
+                parametryDoUsunieciaStr?.contains(it.nazwa)?:false
+            }?.toList()
 
             parametryDoUsuniecia?.forEach{
                 regulyDbBean.usunWszystkieOdwolaniaDoParametru(it)
@@ -74,10 +74,10 @@ open class RegulaKonwerter : BazowyKonwerter(), IKonwerter<Regula, RegulaEncja> 
         }
     }
 
-    fun dajParametryDoUsuniecia(aParametryDto: List<Parametr>, aParametryEncja: List<ParametrRegulyEncja>): Set<String> {
+    fun dajParametryDoUsuniecia(aParametryDto: List<Parametr>?, aParametryEncja: List<ParametrRegulyEncja>?): Set<String> {
 
-        val nazwyDto = aParametryDto.map { it.nazwa }.toSet()
-        val nazwyEncja = aParametryEncja.map { it.nazwa }.toSet()
+        val nazwyDto = aParametryDto?.map { it.nazwa }?.toSet()?: emptySet()
+        val nazwyEncja = aParametryEncja?.map { it.nazwa }?.toSet()?: emptySet()
 
         return (nazwyEncja-nazwyDto)
     }
@@ -92,13 +92,14 @@ open class ParametrKonwerter : BazowyKonwerter(), IKonwerter<Parametr, ParametrR
             pEncja.nazwa = nazwa
             pEncja.typ = typ
             pEncja.wartoscDomyslna = wartoscDomyslna
+            pEncja.czyUsuwalny=czyUsuwalny
             return pEncja
         }
     }
 
     override fun konwertujDoTransportu(aEncja: ParametrRegulyEncja): Parametr {
         with(aEncja) {
-            val pDto = Parametr(nazwa, typ, wartoscDomyslna)
+            val pDto = Parametr(nazwa, typ, wartoscDomyslna,czyUsuwalny)
             pDto.id = id
             pDto.wersja = wersja
             return pDto
