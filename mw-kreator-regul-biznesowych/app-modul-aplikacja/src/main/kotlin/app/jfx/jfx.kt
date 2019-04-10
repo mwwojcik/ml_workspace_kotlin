@@ -1,11 +1,9 @@
 package app.jfx
 
 import javafx.beans.property.SimpleStringProperty
-import javafx.beans.value.ObservableValue
 import javafx.collections.FXCollections
 import javafx.collections.ObservableList
 import javafx.geometry.Insets
-import javafx.scene.control.ComboBox
 import javafx.scene.control.Label
 import javafx.scene.control.TableColumn
 import javafx.scene.control.TableView
@@ -14,12 +12,9 @@ import javafx.scene.control.cell.PropertyValueFactory
 import javafx.scene.control.cell.TextFieldTableCell
 import javafx.scene.layout.VBox
 import javafx.scene.paint.Color
-import javafx.util.Callback
 import model.dto.Parametr
 import model.dto.ParametrWywolaniaReguly
 import model.dto.WywolanieReguly
-
-import sun.misc.Signal.handle
 
 
 val SZEROKOSC_TABELI = 0.0
@@ -29,13 +24,13 @@ val SZEROKOSC_TRZY_KOLUMNY = SZEROKOSC_TABELI / 3
 val WYSOKOSC_TABELI = 0.0
 
 
-fun zbudujTabelkeProstychWlasnosciKluczWartosc(parametry: List<WrapperParametruNazwaWartosc>
-                                               , szerokoscKolumnyN: Double = SZEROKOSC_DWIE_KOLUMNY
-                                               , szerokoscKolumnyW: Double = SZEROKOSC_DWIE_KOLUMNY
-                                               , szerokoscTabeli: Double = SZEROKOSC_TABELI
-                                               , wysokoscTabeli: Double = WYSOKOSC_TABELI): TableView<ProstaTabelaNazwaWartosc> {
-    var kolumnaNazwa: TableColumn<ProstaTabelaNazwaWartosc, String> = TableColumn("nazwa")
-    var kolumnaWartosc: TableColumn<ProstaTabelaNazwaWartosc, String> = TableColumn("wartosc")
+fun zbudujTabelkeRozpoznanychKomunikatow(parametry: List<WrapperParametruNazwaWartosc>
+                                         , szerokoscKolumnyN: Double = SZEROKOSC_DWIE_KOLUMNY
+                                         , szerokoscKolumnyW: Double = SZEROKOSC_DWIE_KOLUMNY
+                                         , szerokoscTabeli: Double = SZEROKOSC_TABELI
+                                         , wysokoscTabeli: Double = WYSOKOSC_TABELI): TableView<WierszTabeliDwieWartosci> {
+    var kolumnaNazwa: TableColumn<WierszTabeliDwieWartosci, String> = TableColumn("nazwa")
+    var kolumnaWartosc: TableColumn<WierszTabeliDwieWartosci, String> = TableColumn("wartosc")
 
 
     var dlugoscNajwiekszegoNapisuKolumnyW: Int = parametry.map { it.wartosc.length }.max()!!
@@ -45,17 +40,17 @@ fun zbudujTabelkeProstychWlasnosciKluczWartosc(parametry: List<WrapperParametruN
     kolumnaNazwa.prefWidth = szerokoscKolumnyN
 
 
-    var list: ObservableList<ProstaTabelaNazwaWartosc> = FXCollections.observableArrayList()
+    var list: ObservableList<WierszTabeliDwieWartosci> = FXCollections.observableArrayList()
 
     for (param in parametry) {
-        list.add(ProstaTabelaNazwaWartosc(param.nazwa, param.wartosc))
+        list.add(WierszTabeliDwieWartosci(param.nazwa, param.wartosc))
     }
 
-    var tableView: TableView<ProstaTabelaNazwaWartosc> = TableView()
+    var tableView: TableView<WierszTabeliDwieWartosci> = TableView()
     tableView.items = list
 
-    kolumnaNazwa.cellValueFactory = PropertyValueFactory<ProstaTabelaNazwaWartosc, String>("nazwa")
-    kolumnaWartosc.cellValueFactory = PropertyValueFactory<ProstaTabelaNazwaWartosc, String>("wartosc")
+    kolumnaNazwa.cellValueFactory = PropertyValueFactory<WierszTabeliDwieWartosci, String>("nazwa")
+    kolumnaWartosc.cellValueFactory = PropertyValueFactory<WierszTabeliDwieWartosci, String>("wartosc")
 
     tableView.columns.add(kolumnaNazwa)
     tableView.columns.add(kolumnaWartosc)
@@ -68,15 +63,15 @@ fun zbudujTabelkeProstychWlasnosciKluczWartosc(parametry: List<WrapperParametruN
     return tableView
 }
 
-fun zbudujTabelkeWlasnosciNazwaWartoscKategoria(parametry: List<WrapperParametruNazwaWartoscKategoria>
-                                               , szerokoscKolumnyN: Double = SZEROKOSC_TRZY_KOLUMNY
-                                               , szerokoscKolumnyW: Double = SZEROKOSC_TRZY_KOLUMNY,
-                                                szerokoscKolumnyK: Double = SZEROKOSC_TRZY_KOLUMNY
-                                               , szerokoscTabeli: Double = SZEROKOSC_TABELI
-                                               , wysokoscTabeli: Double = WYSOKOSC_TABELI): TableView<WrapperParametruNazwaWartoscKategoria> {
-    var kolumnaNazwa: TableColumn<WrapperParametruNazwaWartoscKategoria, String> = TableColumn("nazwa")
-    var kolumnaWartosc: TableColumn<WrapperParametruNazwaWartoscKategoria, String> = TableColumn("wartosc")
-    var kolumnaKategoria: TableColumn<WrapperParametruNazwaWartoscKategoria, String> = TableColumn("kategoria")
+fun zbudujTabelkeRozpoznanychTokenow(parametry: List<WierszTabeliTrzyWartosci>
+                                     , szerokoscKolumnyN: Double = SZEROKOSC_TRZY_KOLUMNY
+                                     , szerokoscKolumnyW: Double = SZEROKOSC_TRZY_KOLUMNY,
+                                     szerokoscKolumnyK: Double = SZEROKOSC_TRZY_KOLUMNY
+                                     , szerokoscTabeli: Double = SZEROKOSC_TABELI
+                                     , wysokoscTabeli: Double = WYSOKOSC_TABELI): TableView<WierszTabeliTrzyWartosci> {
+    var kolumnaNazwa: TableColumn<WierszTabeliTrzyWartosci, String> = TableColumn("nazwa")
+    var kolumnaWartosc: TableColumn<WierszTabeliTrzyWartosci, String> = TableColumn("wartosc")
+    var kolumnaKategoria: TableColumn<WierszTabeliTrzyWartosci, String> = TableColumn("kategoria")
 
 
     var dlugoscNajwiekszegoNapisuKolumnyW: Int = parametry.map { it.wartosc.length }.max()!!
@@ -87,18 +82,18 @@ fun zbudujTabelkeWlasnosciNazwaWartoscKategoria(parametry: List<WrapperParametru
     kolumnaKategoria.prefWidth = szerokoscKolumnyK
 
 
-    var list: ObservableList<WrapperParametruNazwaWartoscKategoria> = FXCollections.observableArrayList()
+    var list: ObservableList<WierszTabeliTrzyWartosci> = FXCollections.observableArrayList()
 
     for (param in parametry) {
-        list.add(WrapperParametruNazwaWartoscKategoria(param.nazwa, param.wartosc,param.kategoria))
+        list.add(WierszTabeliTrzyWartosci(param.nazwa, param.wartosc,param.kategoria))
     }
 
-    var tableView: TableView<WrapperParametruNazwaWartoscKategoria> = TableView()
+    var tableView: TableView<WierszTabeliTrzyWartosci> = TableView()
     tableView.items = list
 
-    kolumnaNazwa.cellValueFactory = PropertyValueFactory<WrapperParametruNazwaWartoscKategoria, String>("nazwa")
-    kolumnaWartosc.cellValueFactory = PropertyValueFactory<WrapperParametruNazwaWartoscKategoria, String>("wartosc")
-    kolumnaKategoria.cellValueFactory = PropertyValueFactory<WrapperParametruNazwaWartoscKategoria, String>("kategoria")
+    kolumnaNazwa.cellValueFactory = PropertyValueFactory<WierszTabeliTrzyWartosci, String>("nazwa")
+    kolumnaWartosc.cellValueFactory = PropertyValueFactory<WierszTabeliTrzyWartosci, String>("wartosc")
+    kolumnaKategoria.cellValueFactory = PropertyValueFactory<WierszTabeliTrzyWartosci, String>("kategoria")
 
     tableView.columns.add(kolumnaNazwa)
     tableView.columns.add(kolumnaWartosc)
@@ -118,20 +113,20 @@ fun zbudujTabelkeParametrowWejsciowych(parametry: MutableList<Parametr>
                                        , szerokoscKolumnyN: Double = SZEROKOSC_TRZY_KOLUMNY
                                        , szerokoscKolumnyW: Double = SZEROKOSC_TRZY_KOLUMNY
                                        , szerokoscTabeli: Double = SZEROKOSC_TABELI
-): TableView<WierszTabeliParametrowWeWy> {
+): TableView<WierszTabeliParametrowWe> {
 
-    //WierszTabeliParametrowWeWy- typ w całym wierszu, String-typ danej kolumny
-    var kolumnaTyp: TableColumn<WierszTabeliParametrowWeWy, String> = TableColumn("Typ")
-    var kolumnaNazwa: TableColumn<WierszTabeliParametrowWeWy, String> = TableColumn("Nazwa")
-    var kolumnaWartoscDomyslna: TableColumn<WierszTabeliParametrowWeWy, String> = TableColumn("Wartość domyślna")
+    //WierszTabeliParametrowWe- typ w całym wierszu, String-typ danej kolumny
+    var kolumnaTyp: TableColumn<WierszTabeliParametrowWe, String> = TableColumn("Typ")
+    var kolumnaNazwa: TableColumn<WierszTabeliParametrowWe, String> = TableColumn("Nazwa")
+    var kolumnaWartoscDomyslna: TableColumn<WierszTabeliParametrowWe, String> = TableColumn("Wartość domyślna")
 
     kolumnaTyp.prefWidth = szerokoscKolumnyT
     kolumnaNazwa.prefWidth = szerokoscKolumnyN
     kolumnaWartoscDomyslna.prefWidth = szerokoscKolumnyW
 
-    var list: ObservableList<WierszTabeliParametrowWeWy> =
-            FXCollections.observableArrayList(parametry.map{WierszTabeliParametrowWeWy(it.nazwa,it.typ?:"",it.wartoscDomyslna?:"",it)}.toList())
-    var tableView: TableView<WierszTabeliParametrowWeWy> = TableView(list)
+    var list: ObservableList<WierszTabeliParametrowWe> =
+            FXCollections.observableArrayList(parametry.map{WierszTabeliParametrowWe(it.nazwa,it.typ?:"",it.wartoscDomyslna?:"",it)}.toList())
+    var tableView: TableView<WierszTabeliParametrowWe> = TableView(list)
 
 
     kolumnaNazwa.setCellValueFactory ({ cellData -> cellData.value.nazwaProperty})
@@ -175,7 +170,7 @@ fun zbudujTabelkeParametrowWyjsciowych(wywolania: List<WywolanieReguly>
                                        , szerokoscTabeli: Double = SZEROKOSC_TABELI
 ): TableView<WierszTabeliParametrowWy> {
 
-    //WierszTabeliParametrowWeWy- typ w całym wierszu, String-typ danej kolumny
+    //WierszTabeliParametrowWe- typ w całym wierszu, String-typ danej kolumny
     var kolumnaTyp: TableColumn<WierszTabeliParametrowWy, String> = TableColumn("Parametr lokalny")
     var kolumnaNazwa: TableColumn<WierszTabeliParametrowWy, String> = TableColumn("Parametr wołany")
     var kolumnaWartoscDomyslna: TableColumn<WierszTabeliParametrowWy, String> = TableColumn("Domyślna")
@@ -266,7 +261,7 @@ fun wyliczWysokoscTabeli(tableItemsCount:Int, rowHeight: Int, headerHeight: Int,
 
 
 
-open class WierszTabeliParametrowWeWy(aNazwa: String, aTyp: String,aWartosc:String,aParametr:Parametr) {
+open class WierszTabeliParametrowWe(aNazwa: String, aTyp: String, aWartosc:String, aParametr:Parametr) {
     val nazwaProperty: SimpleStringProperty
     val typProperty: SimpleStringProperty
     val wartoscDomyslnaProperty: SimpleStringProperty
@@ -300,13 +295,11 @@ open class WierszTabeliParametrowWy(aNazwa: String, aTyp: String,aWartosc:String
 
 }
 
-open class ProstaTabelaNazwaWartosc(val nazwa: String, val wartosc: String)
-
-open class ProstaTabelaTylkoWartosc(val wartosc: String)
+open class WierszTabeliDwieWartosci(val nazwa: String, val wartosc: String)
 
 open class WrapperParametruNazwaWartosc(val nazwa: String, val wartosc: String)
 
-open class WrapperParametruNazwaWartoscKategoria(val nazwa: String, val wartosc: String,val kategoria:String)
+open class WierszTabeliTrzyWartosci(val nazwa: String, val wartosc: String, val kategoria:String)
 
 
 open class KontenerBledow:VBox{
@@ -334,36 +327,11 @@ open class KontenerBledow:VBox{
     }
 }
 
-/*fun zbudujTabelkeTylkoWartosc(parametry: List<String>,
-                              szerokoscKolumny: Double = SZEROKOSC_KOLUMNA_POJEDYNCZA,
-                              szerokoscTabeli: Double = SZEROKOSC_TABELI,
-                              wysokoscTabeli: Double = WYSOKOSC_TABELI): TableView<ProstaTabelaTylkoWartosc> {
-    var kolumnaWartosc: TableColumn<ProstaTabelaTylkoWartosc, String> = TableColumn("wartosc")
-
-
-    kolumnaWartosc.prefWidth = szerokoscKolumny
-
-
-    var list: ObservableList<ProstaTabelaTylkoWartosc> = FXCollections.observableArrayList()
-
-    for (param in parametry) {
-        list.add(ProstaTabelaTylkoWartosc(param))
-    }
-
-    var tableView: TableView<ProstaTabelaTylkoWartosc> = TableView()
-    tableView.items = list
-
-
-
-    kolumnaWartosc.cellValueFactory = PropertyValueFactory<ProstaTabelaTylkoWartosc, String>("wartosc")
-
-
-    tableView.columns.add(kolumnaWartosc)
-
-
-    tableView.prefWidth = szerokoscTabeli
-
-    //tableView.prefHeight =wysokoscTabeli
-    tableView.prefHeight= wyliczWysokoscTabeli(tableView,12,12,10)
-    return tableView
-}*/
+open class RegulaWidok{
+    var rozpoznaneKomunikatyWidok: ObservableList<WierszTabeliDwieWartosci> = FXCollections.observableArrayList()
+    var rozpoznaneTokenyWidok:ObservableList<WierszTabeliTrzyWartosci> = FXCollections.observableArrayList()
+    var rozpoznaneParametryWyjscioweWidok:ObservableList<WierszTabeliParametrowWy> = FXCollections.observableArrayList()
+    var rozpoznaneParametryWejsciowe:ObservableList<WierszTabeliParametrowWe> = FXCollections.observableArrayList()
+    var nazwyParametrowWejsciowychCBWidok=FXCollections.observableArrayList<String>()
+    var nazwyDopuszczalnychTypowCBWidok=FXCollections.observableArrayList<String>()
+}

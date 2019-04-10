@@ -7,15 +7,10 @@ import javafx.geometry.Insets
 import javafx.scene.control.*
 import javafx.scene.layout.HBox
 import javafx.scene.layout.VBox
-import javafx.scene.paint.Color
-import model.dto.Parametr
 import model.dto.Regula
-import model.encje.RegulaEncja
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Controller
 import uslugi.RegulyUslugaBean
-import java.awt.Panel
-import javax.transaction.Transactional
 
 
 @Controller
@@ -64,10 +59,10 @@ class MainController {
                 }
             }
 
-            val wartoscNazwaParametry = mutableListOf<WrapperParametruNazwaWartoscKategoria>()
-            wartoscNazwaParametry.add(WrapperParametruNazwaWartoscKategoria("", "", ""))
+            val wartoscNazwaParametry = mutableListOf<WierszTabeliTrzyWartosci>()
+            wartoscNazwaParametry.add(WierszTabeliTrzyWartosci("", "", ""))
             for (sek in reg.sekwencja!!.rozpoznaneTokeny) {
-                wartoscNazwaParametry.add(WrapperParametruNazwaWartoscKategoria(sek.wartosc, sek.typ.toString(), sek.kategoria
+                wartoscNazwaParametry.add(WierszTabeliTrzyWartosci(sek.wartosc, sek.typ.toString(), sek.kategoria
                         ?: ""))
             }
 
@@ -85,14 +80,14 @@ class MainController {
             //wiersz zerowy - komunikaty
 
             if (!wartoscKomunikaty.isNullOrEmpty()) {
-                pKontenerNaTabelki.children.add(zbudujTabelkeProstychWlasnosciKluczWartosc(wartoscKomunikaty
+                pKontenerNaTabelki.children.add(zbudujTabelkeRozpoznanychKomunikatow(wartoscKomunikaty
                         , szerokoscKolumnyN = 80.0
                         , szerokoscKolumnyW = 600.0
                         , szerokoscTabeli = 700.0))
             }
 
             //PIERWSZY WIERSZ
-            pKontenerNaTabelki.children.add(zbudujTabelkeWlasnosciNazwaWartoscKategoria(wartoscNazwaParametry
+            pKontenerNaTabelki.children.add(zbudujTabelkeRozpoznanychTokenow(wartoscNazwaParametry
                     , szerokoscKolumnyN = 80.0
                     , szerokoscKolumnyW = 400.0
                     , szerokoscKolumnyK = 160.0
@@ -177,10 +172,10 @@ class MainController {
         for (reg in listaRegul) {
             (mapaKonenerowParametrowWe[reg.kod]!!.content as TableView<*>).items.clear()
             if (reg.parametry != null) {
-                (mapaKonenerowParametrowWe[reg.kod]!!.content as TableView<WierszTabeliParametrowWeWy>).items =
+                (mapaKonenerowParametrowWe[reg.kod]!!.content as TableView<WierszTabeliParametrowWe>).items =
                         FXCollections.observableArrayList(
                                 reg.parametry!!.map {
-                                    WierszTabeliParametrowWeWy(it.nazwa, it.typ ?: "", it.wartoscDomyslna ?: "", it)
+                                    WierszTabeliParametrowWe(it.nazwa, it.typ ?: "", it.wartoscDomyslna ?: "", it)
                                 }.toList())
             }
         }
