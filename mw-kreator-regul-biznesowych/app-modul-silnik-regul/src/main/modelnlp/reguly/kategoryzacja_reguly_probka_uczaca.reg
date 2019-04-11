@@ -7,6 +7,12 @@
 != nie jest równy
 != nie jest równa
 != nie jest równe
+!=null jest niepuste
+!=null ma wartość
+!=null jest określone
+!=null jest doprecyzowane
+!=null zostało wprowadzone
+!=null zostało podane
 && i
 && oraz
 < jest mniejszy
@@ -33,6 +39,12 @@
 == jest równy
 == jest równa
 == jest równe
+==null jest puste
+==null nie ma wartości
+==null nie jest określone
+==null nie jest doprecyzowane
+==null nie zostało wprowadzone
+==null nie zostało podane
 > jest większy
 > jest większa
 > jest większe

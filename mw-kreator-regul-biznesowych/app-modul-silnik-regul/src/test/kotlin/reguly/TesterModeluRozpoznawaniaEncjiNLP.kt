@@ -57,7 +57,7 @@ class TesterModeluNLP {
             , PrzypadekTestowy("Jeśli rok nie jest mniejszy niż 2000 wtedy wyświetl komunikat <KOMUNIKAT1> .","nie jest mniejszy niż")
             , PrzypadekTestowy("Jeśli miesiąc jest nie mniejszy niż styczeń to wyświetl komunikat <KOMUNIKAT1> .","jest nie mniejszy niż")
             , PrzypadekTestowy("Jeśli data jest nie większa niż '01-01-2019' to zgłoś błąd <KOMUNIKAT1> .","jest nie większa niż")
-            , PrzypadekTestowy("Jeśli dzień jest równy wczoraj to zgłoś błąd <KOMUNIKAT1> .","jest równy")
+            , PrzypadekTestowy("Jeśli dzień jest równy data_wczoraj to zgłoś błąd <KOMUNIKAT1> .","jest równy")
             , PrzypadekTestowy("Jeśli miesiąc jest nie mniejszy niż 6 to sprawdzaj regułę <KOMUNIKAT1> .","jest nie mniejszy niż")
             , PrzypadekTestowy("Jeśli data jest różna od poczatek_roku oraz rok jest większy niż 2000 lub dzień jest różny od 12 to wyświetl komunikat <KOMUNIKAT_1> .","jest różna od")
             , PrzypadekTestowy("Gdy suma jest większa od 100 i różnica jest mniejsza od 0 lub różnica jest równa 1 wtedy wyświetl komunikat <KOMUNIKAT_2> .","jest większa od")
@@ -68,6 +68,8 @@ class TesterModeluNLP {
             , PrzypadekTestowy("Jeżeli suma jest różna od 50 to wyświetl komunikat <KOMUNIKAT1> w przeciwnym wypadku sprawdź regułę RS-1 .", "jest różna od")
             , PrzypadekTestowy("Jeśli data_utworzenia jest większa od '01-01-2010',oraz data_utworzenia nie jest mniejsza niż data_kwalifikacji i data_kwalifikacji jest różna od data_weryfikacji to zgłoś błąd walidacji <KOMUNIKAT_WALIDACJI_1> w przeciwnym razie wyświetl komunikat <KOMUNIKAT2> .","jest większa od")
             , PrzypadekTestowy("Jeśli data_urodzenia jest większa niż poczatek wtedy wyświetl komunikat Kom w przeciwnym wypadku zgłaszaj błąd walidac W1","jest większa niż")
+            , PrzypadekTestowy("Jeśli data_urodzenia ma wartość i data_urodzenia jest większa niż dzien_dzisiejszy wtedy wyświetl komunikat <KOMUNIKAT> w przeciwnym wypadku zgłaszaj błąd walidac W1","została wpisana")
+
     )
 
 

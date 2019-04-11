@@ -49,7 +49,7 @@ class Sekwencja(val zdaniePierwotne:String, val tokeny:Array<String>,
 
     fun dajPierwszyOperatorWarunku():String{
         for (tok in rozpoznaneTokeny){
-            if (tok.typ==RodzajTokenaEnum.OPETATOR_POROWNANIA){
+            if (tok.typ==RodzajTokenaEnum.OPETATOR_POROWNANIA||tok.typ==RodzajTokenaEnum.OPERATOR_POROWNANIA_NULL){
                 return tok.wartosc.trim();
             }
         }

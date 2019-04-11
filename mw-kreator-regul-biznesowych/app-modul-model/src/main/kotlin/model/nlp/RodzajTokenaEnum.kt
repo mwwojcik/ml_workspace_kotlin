@@ -12,7 +12,9 @@ enum class RodzajTokenaEnum(val kod:String) {
     AKCJA("akcja"),
     PARAMETR_AKCJI("parametr_akcji"),
     OPERATOR_LOGICZNY("operator_logiczny"),
-    W_PRZECIWNYM_RAZIE("w_przeciwnym_wypadku"),;
+    W_PRZECIWNYM_RAZIE("w_przeciwnym_wypadku"),
+    LEWOSTRONNY_OPERAND_POROWNANIA_NULL("porowanie_czy_null_OP"),
+    OPERATOR_POROWNANIA_NULL("operator_porownania_czy_null");
 
     fun podajEnumPoKodzie(aKod:String):RodzajTokenaEnum{
         for(wart:RodzajTokenaEnum in RodzajTokenaEnum.values()){
