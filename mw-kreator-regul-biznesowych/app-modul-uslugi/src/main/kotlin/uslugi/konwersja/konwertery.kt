@@ -6,11 +6,13 @@ import model.encje.*
 import model.nlp.RodzajTokenaEnum
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
+import org.springframework.transaction.annotation.Transactional
 import reguly.nlp.EgzaminatorModeluRozpoznawaniaEncjiNLP
 import reguly.nlp.IFasadaNarzedziaNLP
 
 
 @Component
+@Transactional
 open class RegulaKonwerter : BazowyKonwerter(), IKonwerter<Regula, RegulaEncja> {
 
     @Autowired
@@ -84,6 +86,7 @@ open class RegulaKonwerter : BazowyKonwerter(), IKonwerter<Regula, RegulaEncja> 
 }
 
 @Component
+@Transactional
 open class ParametrKonwerter : BazowyKonwerter(), IKonwerter<Parametr, ParametrRegulyEncja> {
 
     override fun konwertujDoEncji(aDto: Parametr): ParametrRegulyEncja {
@@ -108,6 +111,7 @@ open class ParametrKonwerter : BazowyKonwerter(), IKonwerter<Parametr, ParametrR
 }
 
 @Component
+@Transactional
 class WywolanieRegulyKonwerter : BazowyKonwerter(), IKonwerter<WywolanieReguly, WywolanieRegulyEncja> {
 
     override fun konwertujDoEncji(aDto: WywolanieReguly): WywolanieRegulyEncja {
@@ -171,6 +175,7 @@ class WywolanieRegulyKonwerter : BazowyKonwerter(), IKonwerter<WywolanieReguly, 
 
 
 @Component
+@Transactional
 open class BazowyKonwerter {
     @Autowired
     lateinit var regulyDbBean: RegulyDbBean

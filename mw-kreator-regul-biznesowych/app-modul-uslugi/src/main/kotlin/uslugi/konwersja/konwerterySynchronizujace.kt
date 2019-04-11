@@ -4,13 +4,16 @@ import db.RegulyDbBean
 import model.dto.Parametr
 import model.dto.Regula
 import model.encje.ParametrRegulyEncja
+import model.encje.ParametrWywolaniaRegulyEncja
 import model.encje.RegulaEncja
+import model.encje.WywolanieRegulyEncja
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
 import org.springframework.transaction.annotation.Propagation
 import org.springframework.transaction.annotation.Transactional
 
 @Component
+@Transactional
 open class SynchronizatorDanychBean {
 
     @Autowired
@@ -19,7 +22,12 @@ open class SynchronizatorDanychBean {
     @Autowired
     lateinit var konwerter: RegulaKonwerter
 
-    @Transactional
+    @Autowired
+    lateinit var konwerterParametru: ParametrKonwerter
+
+    @Autowired
+    private lateinit var konwerterWywolanRegul:WywolanieRegulyKonwerter
+
     fun synchronizujDane(aObiektyDoSynchronizacji: List<Regula>) {
         //wybierz obiekty ktore sa w bazie ale nie ma ich w pliku
 
@@ -42,16 +50,64 @@ open class SynchronizatorDanychBean {
                 if (pEncja.tresc != regulyWgKodow[it]!!.tresc) {
                     //tresc reguly w bazie rozni sie od tresci w pliku
                     //regula sie zmienila, plik ma pierwszenstwo
-                    //usuwam obiekt i dodaje na nowoz aktualnymi wartosciami
-                    usunReguleRazemZOdwolaniami(pEncja)
-                    konwerter.konwertujDoEncji(regulyWgKodow[it]!!)
-                } else {
-                    //tresc ta sama porownujemy parametry
 
-                  /*  if (!czyParametrySaSpojne(regulyWgKodow[it]!!.parametry, pEncja.parametry ?: emptyList())) {
-                        usunReguleRazemZOdwolaniami(pEncja)
-                        konwerter.konwertujDoEncji(regulyWgKodow[it]!!)
-                    }*/
+                    val pRegulaDto = regulyWgKodow[it]!!
+
+                    val pWywolaniaNieaktualneParametry =
+                            regulyDbBean.pobierzWszystkieWywolaniaDoReguly(pEncja).toMutableList()
+
+                    //List<ParametrRegulyEncja> parametry
+                    val parametryNoweEncje = pRegulaDto.parametry?.map {
+                        konwerterParametru.konwertujDoEncji(it)
+                    }.toList()
+
+                    val pUsuniete:MutableList<WywolanieRegulyEncja> = mutableListOf()
+                    pWywolaniaNieaktualneParametry.forEach {
+                        //sprawdzam czy wywolanie jest aktualne
+                        val pRegulaWolajacaDto=regulyWgKodow[it.regulaWolajaca.kod]
+                        val czyNadalAktualne=pRegulaWolajacaDto?.wywolaniaRegul?.map { it.kodRegulyWolanej }?.toList()?.contains(pEncja.kod)?:false
+
+                        it.parametry.forEach {
+                            regulyDbBean.usunObiektZarzadzalny(it)
+                        }
+                        it.parametry.clear()
+                        if(!czyNadalAktualne){
+                            regulyDbBean.usunObiektZarzadzalny(it)
+                            it.regulaWolajaca.wywolaniaRegul.remove(it)
+                            pUsuniete.add(it)
+                        }
+                    }
+
+
+                    pWywolaniaNieaktualneParametry.removeAll(pUsuniete)
+
+                    //usuwam stary zestaw parametrow
+                    pEncja.parametry?.forEach {
+                        regulyDbBean.usunObiektZarzadzalny(it)
+                    }
+
+                    //encje przepinam na nowe
+                    pEncja.parametry = parametryNoweEncje
+                    parametryNoweEncje.forEach{
+                        it.regula=pEncja
+                    }
+
+                    //dla wszystkich wywolan trzeba odtworzyc parametry
+                    pWywolaniaNieaktualneParametry?.forEach { pWywolanie ->
+                        parametryNoweEncje?.forEach {
+                            val pWywolanieParamEncja = regulyDbBean.podajObiektZarzadzalny(null, ParametrWywolaniaRegulyEncja::class.java)
+                            pWywolanieParamEncja.parametrRegulyWolanej = it
+                            pWywolanieParamEncja.wywolanie = pWywolanie
+                            pWywolanie.parametry.add(pWywolanieParamEncja)
+                        }
+                    }
+
+                    pEncja.tresc=pRegulaDto.tresc
+
+                    pEncja.wywolaniaRegul=pRegulaDto.wywolaniaRegul.map {
+                        konwerterWywolanRegul.konwertujDoEncji(it)
+                    }.toMutableSet()
+
                 }
             }
         }
@@ -60,19 +116,18 @@ open class SynchronizatorDanychBean {
     }
 
 
-    fun usunReguleRazemZOdwolaniami(aRegula:RegulaEncja){
-        regulyDbBean.usunWszystkieWywolaniaDoReguly(aRegula)
+    fun usunReguleRazemZOdwolaniami(aRegula: RegulaEncja) {
         regulyDbBean.usunRegule(aRegula)
     }
 
-    @Transactional
+
     fun usunEncje(encjeDoUsuniecia: List<RegulaEncja>) {
         encjeDoUsuniecia.forEach {
             usunReguleRazemZOdwolaniami(it)
         }
     }
 
-    @Transactional
+
     fun czyParametrySaSpojne(aParametryDto: List<Parametr>, aParametryEncja: List<ParametrRegulyEncja>): Boolean {
         if (aParametryDto.size != aParametryEncja.size) {
             return false

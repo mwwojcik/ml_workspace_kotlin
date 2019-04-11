@@ -61,15 +61,16 @@ class TesterModeluNLP {
             , PrzypadekTestowy("Jeśli miesiąc jest nie mniejszy niż 6 to sprawdzaj regułę <KOMUNIKAT1> .","jest nie mniejszy niż")
             , PrzypadekTestowy("Jeśli data jest różna od poczatek_roku oraz rok jest większy niż 2000 lub dzień jest różny od 12 to wyświetl komunikat <KOMUNIKAT_1> .","jest różna od")
             , PrzypadekTestowy("Gdy suma jest większa od 100 i różnica jest mniejsza od 0 lub różnica jest równa 1 wtedy wyświetl komunikat <KOMUNIKAT_2> .","jest większa od")
-            , PrzypadekTestowy("Jeśli data_utworzenia jest większa od '01-01-2010' oraz data_utworzenia nie jest mniejsza niż data_kwalifikacji i data_kwalifikacji jest różna od data_weryfikacji to zgłoś błąd walidacji <KOMUNIKAT_WALIDACJI_1> .","jest większa od")
-            , PrzypadekTestowy("Jeśli data_utworzenia jest większa od '01-01-2010' oraz data_utworzenia nie jest mniejsza niż data_kwalifikacji i data_kwalifikacji jest różna od data_weryfikacji to zgłoś błąd walidacji <KOMUNIKAT_WALIDACJI_1> .","jest większa od")
+            , PrzypadekTestowy("Jeśli data jest większa od '01-01-2010' oraz data_utworzenia nie jest mniejsza niż data_kwalifikacji i data_kwalifikacji jest różna od data_weryfikacji to zgłoś błąd walidacji <KOMUNIKAT_WALIDACJI_1> .","jest większa od")
+            , PrzypadekTestowy("Jeśli data jest większa od '01-01-2010' oraz data_utworzenia nie jest mniejsza niż data_kwalifikacji i data_kwalifikacji jest różna od data_weryfikacji to zgłoś błąd walidacji <KOMUNIKAT_WALIDACJI_1> .","jest większa od")
             , PrzypadekTestowy("Jeśli nachylenie nie jest mniejsze lub równe 30 wtedy wyświetl komunikat <KOMUNIKAT_0> .", "nie jest mniejsze lub równe")
             , PrzypadekTestowy("Jeśli nachylenie nie jest mniejsze lub równe 30 wtedy wyświetl komunikat <KOMUNIKAT_0> w przeciwnym wypadku wyświetl komunikat <KOMUNIKAT2> .", "nie jest mniejsze lub równe")
             , PrzypadekTestowy("Jeżeli suma jest różna od 50 to wyświetl komunikat <KOMUNIKAT1> w przeciwnym wypadku sprawdź regułę RS-1 .", "jest różna od")
-            , PrzypadekTestowy("Jeśli data_utworzenia jest większa od '01-01-2010',oraz data_utworzenia nie jest mniejsza niż data_kwalifikacji i data_kwalifikacji jest różna od data_weryfikacji to zgłoś błąd walidacji <KOMUNIKAT_WALIDACJI_1> w przeciwnym razie wyświetl komunikat <KOMUNIKAT2> .","jest większa od")
-            , PrzypadekTestowy("Jeśli data_urodzenia jest większa niż poczatek wtedy wyświetl komunikat Kom w przeciwnym wypadku zgłaszaj błąd walidac W1","jest większa niż")
-            , PrzypadekTestowy("Jeśli data_urodzenia ma wartość i data_urodzenia jest większa niż dzien_dzisiejszy wtedy wyświetl komunikat <KOMUNIKAT> w przeciwnym wypadku zgłaszaj błąd walidac W1","ma wartość")
-            , PrzypadekTestowy("Jeśli pole_wiek jest mniejsze niż 18,  wtedy zgłaszaj błąd KOMUNIKAT1 w przeciwnym wypadku wyświetl komunikat KOMUNIKAT2 .","jest mniejsze niż")
+            , PrzypadekTestowy("Jeśli utworzenia jest większa od '01-01-2010',oraz data_utworzenia nie jest mniejsza niż data_kwalifikacji i data_kwalifikacji jest różna od data_weryfikacji to zgłoś błąd walidacji <KOMUNIKAT_WALIDACJI_1> w przeciwnym razie wyświetl komunikat <KOMUNIKAT2> .","jest większa od")
+            , PrzypadekTestowy("Jeśli urodzenia jest większa niż poczatek wtedy wyświetl komunikat Kom w przeciwnym wypadku zgłaszaj błąd walidac W1","jest większa niż")
+            , PrzypadekTestowy("Jeśli poleDaty ma wartość i pole jest większe niż dzien wtedy wyświetl komunikat <KOMUNIKAT> w przeciwnym wypadku zgłaszaj błąd walidac W1 .","ma wartość")
+            , PrzypadekTestowy("Jeśli wiek jest mniejszy niż 18 wtedy zgłoś błąd KOMUNIKAT1 w przeciwnym wypadku wyświetl komunikat KOMUNIKAT2 .","jest mniejszy niż")
+
 
     )
 

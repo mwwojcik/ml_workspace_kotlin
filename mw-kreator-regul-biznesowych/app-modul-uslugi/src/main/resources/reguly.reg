@@ -15,17 +15,16 @@ RS-014:Jeśli rok jest większy niż 2000 wtedy wyświetl komunikat <KOMUNIKAT1>
 RS-015:Jeśli miesiąc jest mniejszy niż styczeń to wyświetl komunikat <KOMUNIKAT1> .
 RS-016:Jeśli data jest mniejsza od '01-01-2019' to zgłoś błąd <KOMUNIKAT1> .
 RS-017:Jeśli dzień jest równy wczoraj to zgłoś błąd <KOMUNIKAT1> .
-RS-018:Jeśli miesiąc jest mniejszy niż 6 to sprawdzaj regułę RS-012 .
+RS-018:Jeśli miesiąc jest mniejszy niż 6 to wyświetl komunikat "miesiąc jest mniejszy" .
 RS-019:Jeśli data jest różna od poczatek_roku oraz rok jest większy niż 2000 lub dzień jest różny od 12 to wyświetl komunikat <KOMUNIKAT_1> .
 RS-020:Gdy suma jest większa od 100 i różnica jest mniejsza od 0 lub różnica jest równa 1 wtedy wyświetl komunikat <KOMUNIKAT_2> .
 RS-021:Jeśli data_utworzenia jest większa od '01-01-2010' oraz data_utworzenia jest większa  niż data_kwalifikacji i data_kwalifikacji jest różna od data_weryfikacji to zgłoś błąd walidacji <KOMUNIKAT_WALIDACJI_1> .
 RS-022:Jeśli data_utworzenia jest większa od '01-01-2010' oraz data_utworzenia jest mniejsza niż data_kwalifikacji i data_kwalifikacji jest różna od data_weryfikacji to zgłoś błąd walidacji <KOMUNIKAT_WALIDACJI_1> .
 RS-023:Jeśli nachylenie jest mniejsze  30 wtedy wyświetl komunikat <KOMUNIKAT_0> .
 RS-024:Jeśli nachylenie jest mniejsze  30 wtedy wyświetl komunikat <KOMUNIKAT_0> w przeciwnym wypadku wyświetl komunikat <KOMUNIKAT2> .
-RS-025:Jeżeli suma jest różna od 50 to wyświetl komunikat <KOMUNIKAT1> w przeciwnym wypadku sprawdź regułę RS-001 .
+RS-025:Jeżeli suma jest różna od 50 to wyświetl komunikat <KOMUNIKAT1> w przeciwnym wyświetl komunikat "Suma nie jest mniejsza" .
 RS-026:Jeśli data_utworzenia jest większa od '01-01-2010' oraz data_utworzenia jest mniejsza niż data_kwalifikacji i data_kwalifikacji jest różna od data_weryfikacji to zgłoś błąd walidacji "Daty utworzenia, modyfikacji i kwalifikacji są nieprawidłowe" w przeciwnym razie wyświetl komunikat "Wszystkie daty zostały zwalidowane jako poprawne." .
-RS-027:Jeśli data_dzisiejsza jest większa od '07-04-2019' i data_dzisiejsza jest mniejsza od '14-04-2019' to wyświetl komunikat <KOMUNIKAT1> w przeciwnym razie waliduj regułę RS-001.
-RS-028:Jeżeli suma jest nie jest większa od 100 wtedy spraaj regułę RS-025 w przeciwnym razie sprawdź regułę RS-003 .
-RS-029:Jeśli wiek większy niż 20 wtedy wywołaj regułę RS-001 w przeciwnym wypadku zgłoś błąd walidacji "To jest poprawna sytuacja" .
-RS-030:Jeśli pole_wiek jest mniejsze niż 18,  wtedy wyświetl błąd "Funkcjonalność tylko dla osób dorosłych", w przeciwnym wypadku wyświetl komunikat "Wszystko ok" .
-RS-031:Jeśli pole_wiek zostało określone wtedy sprawdź regułę RS-030, w przeciwnym wypadku zwróć błąd "Nie podano pola wiek".
+RS-027:Jeśli data_dzisiejsza jest większa od '07-04-2019' i data_dzisiejsza jest mniejsza od '14-04-2019' to wyświetl komunikat <KOMUNIKAT1> w przeciwnym razie raportuj błąd "Błąd".
+RS-028:Jeżeli suma jest nie jest większa od 100 wtedy wyświetl komunikat "komunikat" w przeciwnym razie wyświetl komunikat "Kat2" .
+RS-029:Jeśli wiek jest większy niż 20 wtedy wyświetl komunikat "komunikat12" w przeciwnym wypadku zgłoś błąd walidacji "To jest poprawna sytufacja" .
+RS-030:Jeśli wiek jest mniejszy niż 18 wtedy wyświetl komunikat "Funkcjonalność tylko dla osób dorosłych" w przeciwnym wypadku wywołaj regułę RS-028 .

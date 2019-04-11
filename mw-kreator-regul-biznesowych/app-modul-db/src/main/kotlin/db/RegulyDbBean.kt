@@ -7,6 +7,7 @@ import db.repo.IWywolanieRegulyRepozytorium
 import model.encje.Encja
 import model.encje.ParametrRegulyEncja
 import model.encje.RegulaEncja
+import model.encje.WywolanieRegulyEncja
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Propagation
@@ -17,6 +18,7 @@ import javax.persistence.PersistenceContext
 
 
 @Service
+@Transactional
 open class RegulyDbBean {
 
     @PersistenceContext
@@ -56,18 +58,30 @@ open class RegulyDbBean {
     fun pobierzWszystkieReguly()=regulaRepozytorium.findAll().sortedBy {it.kod}
 
 
-    @Transactional
+   /* @Transactional
     fun usunWszystkieWywolaniaDoReguly(aRegula:RegulaEncja){
         wywolaniaRegulyRepozytorium.findByRegulaWolana(aRegula)?.forEach{
             parametrWywolaniaRegulyRepozytorium.deleteByWywolanie(it)
-            usunObiektZarzadzalny(it)
+            it.regulaWolana.wywolaniaRegul.remove(it)
+            it.regulaWolana=null
+        }*/
+
+       /* wywolaniaRegulyRepozytorium.findByRegulaWolajaca(aRegula)?.forEach{
+            parametrWywolaniaRegulyRepozytorium.deleteByWywolanie(it)
+            it.regulaWolajaca.wywolaniaRegul=null
         }
 
-        wywolaniaRegulyRepozytorium.findByRegulaWolajaca(aRegula)?.forEach{
-            parametrWywolaniaRegulyRepozytorium.deleteByWywolanie(it)
-            usunObiektZarzadzalny(it)
-        }
-    }
+        wywolaniaRegulyRepozytorium.deleteByRegulaWolajaca(aRegula)*/
+        //wywolaniaRegulyRepozytorium.deleteByRegulaWolana(aRegula)
+
+
+    //}
+
+    @Transactional
+    fun pobierzWszystkieWywolaniaDoReguly(aRegulaWolana:RegulaEncja):List<WywolanieRegulyEncja> =
+        wywolaniaRegulyRepozytorium.findByRegulaWolana(aRegulaWolana)
+
+
 
     @Transactional
     fun usunWszystkieOdwolaniaDoParametru(aParametr:ParametrRegulyEncja){
