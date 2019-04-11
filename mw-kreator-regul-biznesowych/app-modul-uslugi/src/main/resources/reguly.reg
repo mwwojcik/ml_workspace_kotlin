@@ -27,3 +27,5 @@ RS-026:Jeśli data_utworzenia jest większa od '01-01-2010' oraz data_utworzenia
 RS-027:Jeśli data_dzisiejsza jest większa od '07-04-2019' i data_dzisiejsza jest mniejsza od '14-04-2019' to wyświetl komunikat <KOMUNIKAT1> w przeciwnym razie waliduj regułę RS-001.
 RS-028:Jeżeli suma jest nie jest większa od 100 wtedy spraaj regułę RS-025 w przeciwnym razie sprawdź regułę RS-003 .
 RS-029:Jeśli wiek większy niż 20 wtedy wywołaj regułę RS-001 w przeciwnym wypadku zgłoś błąd walidacji "To jest poprawna sytuacja" .
+RS-030:Jeśli pole_wiek jest mniejsze niż 18,  wtedy wyświetl błąd "Funkcjonalność tylko dla osób dorosłych", w przeciwnym wypadku wyświetl komunikat "Wszystko ok" .
+RS-031:Jeśli pole_wiek zostało określone wtedy sprawdź regułę RS-030, w przeciwnym wypadku zwróć błąd "Nie podano pola wiek".
