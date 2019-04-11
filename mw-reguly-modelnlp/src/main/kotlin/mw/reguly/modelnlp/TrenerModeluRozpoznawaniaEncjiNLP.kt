@@ -31,7 +31,7 @@ object TrenerModeluRozpoznawaniaEncjiNLP {
         sampleStream = NameSampleDataStream(
                 PlainTextByLineStream(inputFactory, StandardCharsets.UTF_8))
 
-        // setting the parameters for training
+        // setting the parameters for train ing
         val params = TrainingParameters()
         params.put(TrainingParameters.ITERATIONS_PARAM, 70)
         params.put(TrainingParameters.CUTOFF_PARAM, 1)

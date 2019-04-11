@@ -53,7 +53,7 @@ class TesterModeluNLP {
             , PrzypadekTestowy("Jeśli dochód jest nie większy niż 100 wtedy wyświetl komunikat <KOMUNIKAT1> .", "jest nie większy niż")
             , PrzypadekTestowy("Jeżeli suma nie jest mniejsza od 50 to wyświetl komunikat <KOMUNIKAT1> .", "nie jest mniejsza od")
             , PrzypadekTestowy("Jeżeli suma nie jest różna od 50 to wyświetl komunikat <KOMUNIKAT1> .", "nie jest różna od")
-            , PrzypadekTestowy("Jeśli rok jest równy 2000 to wyświetl komunikat <KOMUNIKAT1> .","jest równy")
+            //, PrzypadekTestowy("Jeśli rok jest równy 2000 to wyświetl komunikat <KOMUNIKAT1> .","jest równy")
             , PrzypadekTestowy("Jeśli rok nie jest mniejszy niż 2000 wtedy wyświetl komunikat <KOMUNIKAT1> .","nie jest mniejszy niż")
             , PrzypadekTestowy("Jeśli miesiąc jest nie mniejszy niż styczeń to wyświetl komunikat <KOMUNIKAT1> .","jest nie mniejszy niż")
             , PrzypadekTestowy("Jeśli data jest nie większa niż '01-01-2019' to zgłoś błąd <KOMUNIKAT1> .","jest nie większa niż")
@@ -67,7 +67,7 @@ class TesterModeluNLP {
             , PrzypadekTestowy("Jeśli nachylenie nie jest mniejsze lub równe 30 wtedy wyświetl komunikat <KOMUNIKAT_0> w przeciwnym wypadku wyświetl komunikat <KOMUNIKAT2> .", "nie jest mniejsze lub równe")
             , PrzypadekTestowy("Jeżeli suma jest różna od 50 to wyświetl komunikat <KOMUNIKAT1> w przeciwnym wypadku sprawdź regułę RS-1 .", "jest różna od")
             , PrzypadekTestowy("Jeśli data_utworzenia jest większa od '01-01-2010',oraz data_utworzenia nie jest mniejsza niż data_kwalifikacji i data_kwalifikacji jest różna od data_weryfikacji to zgłoś błąd walidacji <KOMUNIKAT_WALIDACJI_1> w przeciwnym razie wyświetl komunikat <KOMUNIKAT2> .","jest większa od")
-
+            , PrzypadekTestowy("Jeśli data_urodzenia jest większa niż poczatek wtedy wyświetl komunikat Kom w przeciwnym wypadku zgłaszaj błąd walidac W1","jest większa niż")
     )
 
 
