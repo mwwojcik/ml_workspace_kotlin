@@ -29,7 +29,7 @@ class MainController {
 
     lateinit var listaRegul: List<Regula>
 
-    lateinit var mapaRegul: Map<String, Regula>
+    lateinit var mapaRegul: MutableMap<String, Regula>
 
     var mapaRegulWidok:MutableMap<String,RegulaWidok> = mutableMapOf()
 
@@ -138,17 +138,16 @@ class MainController {
 
                 if (nazwaOpt.isPresent) {
                     regulyUsluga.dodajParametr(mapaRegul[reg.kod]!!, nazwaOpt.get())
-                    mapaRegulWidok[reg.kod]!!.aktualizujDane(mapaRegul[reg.kod]!!)
-
-                    //aktualizujParametryWe()
+                   // mapaRegulWidok[reg.kod]!!.aktualizujDane(mapaRegul[reg.kod]!!)
+                    aktualizujReguly()
                 }
             }
 
             val przyciskUsunParam = Button("Usuń")
             przyciskUsunParam.setOnMouseClicked {
                 regulyUsluga.usunParametr(mapaRegul[reg.kod]!!)
-                mapaRegulWidok[reg.kod]!!.aktualizujDane(mapaRegul[reg.kod]!!)
-                //aktualizujParametryWe()
+                //mapaRegulWidok[reg.kod]!!.aktualizujDane(mapaRegul[reg.kod]!!)
+                aktualizujReguly()
             }
             przyciskNowyParam.prefWidth=50.0
             przyciskUsunParam.prefWidth=50.0
@@ -170,11 +169,11 @@ class MainController {
             pKontenerNaTabelki.children.add(pPanelBledow)
             mapaKonenerowBledowWalidacji.put(reg.kod, pPanelBledow)
 
-            mapaRegul = listaRegul.map { it.kod to it }.toMap()
+            mapaRegul = listaRegul.map { it.kod to it }.toMap().toMutableMap()
         }
     }
 
-    fun aktualizujParametryWe() {
+ /*   fun aktualizujParametryWe() {
         for (reg in listaRegul) {
             (mapaKonenerowParametrowWe[reg.kod]!!.content as TableView<*>).items.clear()
             if (reg.parametry != null) {
@@ -186,7 +185,7 @@ class MainController {
             }
         }
     }
-
+*/
 
     fun wyczyscKonteneryBledow() {
         mapaKonenerowBledowWalidacji.forEach { String, kontener ->
@@ -204,8 +203,16 @@ class MainController {
     fun onWczytajRegulyKLIK() {
         wyczyscKonteneryBledow()
         println("onWczytajRegulyKLIK")
+
+
+    }
+
+    fun aktualizujReguly(){
         listaRegul = regulyUsluga.podajReguly()
 
+        listaRegul.forEach{
+            mapaRegulWidok[it.kod]!!.aktualizujDane(it)
+        }
     }
 
     @FXML
@@ -243,7 +250,7 @@ class MainController {
         wyczyscKonteneryBledow()
         println("onZapiszRegulyKLIK")
         regulyUsluga.zapiszReguly(listaRegul)
-        aktualizujParametryWe()
+        aktualizujReguly()
     }
 
     @FXML

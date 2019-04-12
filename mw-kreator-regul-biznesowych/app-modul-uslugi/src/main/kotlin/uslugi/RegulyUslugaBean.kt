@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import reguly.nlp.EgzaminatorModeluRozpoznawaniaEncjiNLP
 import reguly.nlp.IFasadaNarzedziaNLP
+import uslugi.konwersja.DodajUsunParametrKonwerter
 import uslugi.konwersja.RegulaKonwerter
 import uslugi.konwersja.SynchronizatorDanychBean
 import java.nio.file.Files
@@ -36,6 +37,9 @@ open class RegulyUslugaBean {
 
     @Autowired
     lateinit var fasadaNLP: IFasadaNarzedziaNLP
+
+    @Autowired
+    lateinit var dodajUsunParametrKonwerter: DodajUsunParametrKonwerter
 
     //val reguly: MutableMap<String, Regula> = mutableMapOf()
 
@@ -80,9 +84,10 @@ open class RegulyUslugaBean {
     @Transactional
     fun dodajParametr(aRegula:Regula,aNazwaParametru: String){
         if(!aRegula.parametry.map { it.nazwa }.toList().contains(aNazwaParametru)) {
-            aRegula.parametry.add(Parametr(aNazwaParametru,czyUsuwalny = 1))
-            konwerter.konwertujDoEncji(aRegula)
+            val pParam=Parametr(aNazwaParametru,czyUsuwalny = 1)
+            dodajUsunParametrKonwerter.dodajParametr(aRegula,pParam)
         }
+
     }
 
     @Transactional
@@ -93,11 +98,8 @@ open class RegulyUslugaBean {
             return
         }
 
-        if(!aRegula.sekwencja.rozpoznaneTokeny.filter{it.typ==RodzajTokenaEnum.LEWOSTRONNY_OPERAND_WARUNKU||it.typ==RodzajTokenaEnum.PRAWOSTRONNY_OPERAND_WARUNKU}
-                        .map{it.wartosc}.contains(pParam.nazwa)){
-            aRegula.parametry.remove(pParam)
-        }
-        konwerter.konwertujDoEncji(aRegula)
+        dodajUsunParametrKonwerter.usunParametr(aRegula,pParam)
+
     }
 
 
