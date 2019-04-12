@@ -2,15 +2,23 @@ package app.jfx
 
 import app.KontekstAplikacji
 import javafx.collections.FXCollections
+import javafx.event.ActionEvent
 import javafx.fxml.FXML
+import javafx.fxml.FXMLLoader
 import javafx.geometry.Insets
+import javafx.scene.Node
+import javafx.scene.Parent
+import javafx.scene.Scene
 import javafx.scene.control.*
 import javafx.scene.layout.HBox
 import javafx.scene.layout.VBox
+import javafx.stage.Modality
+import javafx.stage.Stage
 import model.dto.Regula
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Controller
 import uslugi.RegulyUslugaBean
+import java.util.regex.Pattern
 
 
 @Controller
@@ -29,10 +37,15 @@ class MainController {
     @FXML
     lateinit var panelRegul: VBox
 
+    @FXML
+    lateinit var zamknijPrzycisk:Button
+
     //val listaTabelParametrow:MutableList<TitledPane> = mutableListOf<TitledPane>()
     val mapaKonenerowBledowWalidacji: MutableMap<String, KontenerBledow> = mutableMapOf<String, KontenerBledow>()
     val mapaKonenerowParametrowWe: MutableMap<String, TitledPane> = mutableMapOf<String, TitledPane>()
     val mapaKonenerowParametrowWy: MutableMap<String, TitledPane> = mutableMapOf<String, TitledPane>()
+
+
 
 
     @FXML
@@ -242,6 +255,18 @@ class MainController {
         mapaRegulWidok.get("RS-001")!!.aktualizujDane(p)
         mapaRegulWidok.get("RS-001")!!.zmienWartosciDopuszczalnychTypow()*/
 
+        val stage = Stage();
+        val root: Parent = FXMLLoader.load(this::class.java.classLoader.getResource("fxml/okno-wygenerowany-kod.fxml"));
+        stage.setScene(Scene(root));
+        stage.getScene().getStylesheets().add(this::class.java.classLoader.getResource("css/main.css").toExternalForm())
+        stage.getScene().getStylesheets().add(this::class.java.classLoader.getResource("css/java.css").toExternalForm())
+        stage.setTitle("My modal window");
+        stage.initOwner(zamknijPrzycisk.getScene().getWindow() )
+        stage.initModality(Modality.WINDOW_MODAL);
+        stage.show();
+
+
+
 
     }
 
@@ -258,15 +283,7 @@ class MainController {
 /*
 
 private void clickShow(ActionEvent event) {
-    Stage stage = new Stage();
-    Parent root = FXMLLoader.load(
-        YourClassController.class.getResource("YourClass.fxml"));
-    stage.setScene(new Scene(root));
-    stage.setTitle("My modal window");
-    stage.initModality(Modality.WINDOW_MODAL);
-    stage.initOwner(
-        ((Node)event.getSource()).getScene().getWindow() );
-    stage.show();
+
 }
 
 * */

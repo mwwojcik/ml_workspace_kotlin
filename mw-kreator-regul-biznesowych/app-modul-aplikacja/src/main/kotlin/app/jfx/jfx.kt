@@ -15,7 +15,6 @@ import javafx.scene.paint.Color
 import model.dto.Parametr
 import model.dto.ParametrWywolaniaReguly
 import model.dto.Regula
-import model.dto.WywolanieReguly
 
 
 val SZEROKOSC_TABELI = 0.0
@@ -173,11 +172,11 @@ fun zbudujTabelkeParametrowWyjsciowych(regulaWidok: RegulaWidok
     var tableView: TableView<WierszTabeliParametrowWy> = TableView(regulaWidok.rozpoznaneParametryWyjscioweWidok)
 
 
-    kolumnaNazwa.setCellValueFactory({ cellData -> cellData.value.nazwaProperty })
+    kolumnaNazwa.setCellValueFactory({ cellData -> cellData.value.nazwaParametruRegulyWolanejProp })
     kolumnaNazwa.cellFactory = TextFieldTableCell.forTableColumn()
     kolumnaNazwa.isEditable = false
 
-    kolumnaTyp.setCellValueFactory({ cellData -> cellData.value.typProperty })
+    kolumnaTyp.setCellValueFactory({ cellData -> cellData.value.nazwaParametruRegulyWolajacejProp })
     kolumnaTyp.cellFactory = ComboBoxTableCell.forTableColumn(regulaWidok.nazwyParametrowWejsciowychCBWidok)
     kolumnaTyp.setOnEditCommit({ t ->
         t.getTableView().getItems().get(t.getTablePosition().getRow()).parametr.nazwaParametruRegulyWolajacej = t.newValue
@@ -251,16 +250,16 @@ open class WierszTabeliParametrowWe(aNazwa: String, aTyp: String, aWartosc: Stri
 
 }
 
-open class WierszTabeliParametrowWy(aNazwa: String, aTyp: String, aWartosc: String, aParametr: ParametrWywolaniaReguly) {
-    val nazwaProperty: SimpleStringProperty
-    val typProperty: SimpleStringProperty
+open class WierszTabeliParametrowWy(aNazwaParametruRegulyWolanej: String, aNazwaParametruRegulyWolajacej: String, aWartosc: String, aParametr: ParametrWywolaniaReguly) {
+    val nazwaParametruRegulyWolanejProp: SimpleStringProperty
+    val nazwaParametruRegulyWolajacejProp: SimpleStringProperty
     val wartoscDomyslnaProperty: SimpleStringProperty
 
     val parametr: ParametrWywolaniaReguly
 
     init {
-        nazwaProperty = SimpleStringProperty(aNazwa)
-        typProperty = SimpleStringProperty(aTyp)
+        nazwaParametruRegulyWolanejProp = SimpleStringProperty(aNazwaParametruRegulyWolanej)
+        nazwaParametruRegulyWolajacejProp = SimpleStringProperty(aNazwaParametruRegulyWolajacej)
         wartoscDomyslnaProperty = SimpleStringProperty(aWartosc)
         parametr = aParametr
     }
@@ -339,7 +338,7 @@ open class RegulaWidok {
             it?.parametry?.forEach {
                 rozpoznaneParametryWyjscioweWidok.add(
                         WierszTabeliParametrowWy(
-                                regula_wolana + "." + it.nazwaParametruRegulyWolanej + "=", "", "", it)
+                                regula_wolana + "." + it.nazwaParametruRegulyWolanej + "=", it.nazwaParametruRegulyWolajacej, "", it)
                 )
             }
         }

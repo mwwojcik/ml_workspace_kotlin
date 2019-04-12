@@ -61,7 +61,7 @@ open class SynchronizatorDanychBean {
                         konwerterParametru.konwertujDoEncji(it)
                     }.toList()
 
-                    val pUsuniete:MutableList<WywolanieRegulyEncja> = mutableListOf()
+                    //val pUsuniete:MutableList<WywolanieRegulyEncja> = mutableListOf()
                     pWywolaniaNieaktualneParametry.forEach {
                         //sprawdzam czy wywolanie jest aktualne
                         val pRegulaWolajacaDto=regulyWgKodow[it.regulaWolajaca.kod]
@@ -71,15 +71,15 @@ open class SynchronizatorDanychBean {
                             regulyDbBean.usunObiektZarzadzalny(it)
                         }
                         it.parametry.clear()
-                        if(!czyNadalAktualne){
+                       /* if(!czyNadalAktualne){
                             regulyDbBean.usunObiektZarzadzalny(it)
                             it.regulaWolajaca.wywolaniaRegul.remove(it)
                             pUsuniete.add(it)
-                        }
+                        }*/
                     }
 
 
-                    pWywolaniaNieaktualneParametry.removeAll(pUsuniete)
+                   // pWywolaniaNieaktualneParametry.removeAll(pUsuniete)
 
                     //usuwam stary zestaw parametrow
                     pEncja.parametry?.forEach {
@@ -103,6 +103,12 @@ open class SynchronizatorDanychBean {
                     }
 
                     pEncja.tresc=pRegulaDto.tresc
+
+                    pEncja.wywolaniaRegul.forEach{
+                        regulyDbBean.usunObiektZarzadzalny(it)
+                    }
+
+                    pEncja.wywolaniaRegul=null
 
                     pEncja.wywolaniaRegul=pRegulaDto.wywolaniaRegul.map {
                         konwerterWywolanRegul.konwertujDoEncji(it)

@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<GridPane prefHeight="900.0" prefWidth="900.0" styleClass="kontrolka" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.jfx.MainController">
+<GridPane prefHeight="900.0" prefWidth="900.0" styleClass="kontrolka" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.jfx.KontrolerOknaWygenerowanegoKodu">
     <columnConstraints>
         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
     </columnConstraints>
@@ -21,10 +21,6 @@
     <children>
         <HBox fx:id="przyciskiKontener" prefHeight="20.0" prefWidth="900.0" styleClass="przyciski-narzedziowe-belka">
             <children>
-                <Button mnemonicParsing="false" onMouseClicked="#onWczytajRegulyKLIK" styleClass="przycisk-menu" text="Wczytaj" />
-                <Button mnemonicParsing="false" onMouseClicked="#onWalidujRegulyKLIK" styleClass="przycisk-menu" text="Waliduj" />
-                <Button mnemonicParsing="false" onMouseClicked="#onZapiszRegulyKLIK" styleClass="przycisk-menu" text="Zapisz" />
-                <Button mnemonicParsing="false" onMouseClicked="#onGenerujKodKLIK" styleClass="przycisk-menu" text="Generuj" />
                 <Button mnemonicParsing="false" fx:id="zamknijPrzycisk" onMouseClicked="#onZamknijKLIK" styleClass="przycisk-menu" text="Zamknij" />
             </children>
         </HBox>

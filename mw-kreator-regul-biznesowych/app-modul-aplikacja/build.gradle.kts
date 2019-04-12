@@ -30,7 +30,7 @@ java {
 
 dependencies {
     implementation(group="org.springframework.boot",name="spring-boot-starter",version="2.1.3.RELEASE")
-    implementation(group= "org.fxmisc.richtext", name= "richtextfx", version= "0.4")
+    implementation(group= "org.fxmisc.richtext", name= "richtextfx", version= "0.9.3")
     compile(kotlin("stdlib-jdk8"))
     compile(project(":app-modul-uslugi"))
     /*compile(project(":app-modul-model"))
