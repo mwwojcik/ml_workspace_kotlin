@@ -69,9 +69,11 @@ open class RegulyUslugaBean {
     @Transactional
     fun podajReguly(): List<Regula> {
 
-        return regulyDbBean.pobierzWszystkieReguly().map {
+        val wart= regulyDbBean.pobierzWszystkieReguly().map {
             konwerter.konwertujDoTransportu(it)
         }.toList()
+
+        return wart
     }
 
     @Transactional

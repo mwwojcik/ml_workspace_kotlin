@@ -27,7 +27,7 @@ class MainController {
     @Autowired
     lateinit var regulyUsluga: RegulyUslugaBean
 
-    lateinit var listaRegul: List<Regula>
+    //lateinit var listaRegul: List<Regula>
 
     lateinit var mapaRegul: MutableMap<String, Regula>
 
@@ -53,9 +53,9 @@ class MainController {
 
         panelRegul.spacing = 50.0
 
-        listaRegul = regulyUsluga.podajReguly()
+        mapaRegul = regulyUsluga.podajReguly()?.map { it.kod to it }?.toMap()?.toMutableMap()?: emptyMap<String,Regula>().toMutableMap()
 
-        for (reg in listaRegul) {
+        for (reg in mapaRegul.values) {
 
             var regulaWidok=RegulaWidok()
             regulaWidok.aktualizujDane(reg)
@@ -169,7 +169,7 @@ class MainController {
             pKontenerNaTabelki.children.add(pPanelBledow)
             mapaKonenerowBledowWalidacji.put(reg.kod, pPanelBledow)
 
-            mapaRegul = listaRegul.map { it.kod to it }.toMap().toMutableMap()
+
         }
     }
 
@@ -208,10 +208,10 @@ class MainController {
     }
 
     fun aktualizujReguly(){
-        listaRegul = regulyUsluga.podajReguly()
+        mapaRegul = regulyUsluga.podajReguly().map { it.kod to it }.toMap().toMutableMap()
 
-        listaRegul.forEach{
-            mapaRegulWidok[it.kod]!!.aktualizujDane(it)
+        mapaRegul.forEach{
+            mapaRegulWidok[it.key]!!.aktualizujDane(it.value)
         }
     }
 
@@ -222,7 +222,7 @@ class MainController {
 
         var flaga = false
 
-        listaRegul.forEach {
+        mapaRegul.values.forEach {
 
             val bledy = it.waliduj()
 
@@ -249,7 +249,7 @@ class MainController {
     fun onZapiszRegulyKLIK() {
         wyczyscKonteneryBledow()
         println("onZapiszRegulyKLIK")
-        regulyUsluga.zapiszReguly(listaRegul)
+        regulyUsluga.zapiszReguly(mapaRegul.values.toList())
         aktualizujReguly()
     }
 

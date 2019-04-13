@@ -22,6 +22,7 @@ public class RegulaEncja extends Encja{
     }
 
     @OneToMany(mappedBy = "regula", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OrderBy("id")
     private List<ParametrRegulyEncja> parametry=null;
 
 
