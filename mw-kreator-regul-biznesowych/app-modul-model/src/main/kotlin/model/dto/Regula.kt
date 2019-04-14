@@ -4,24 +4,22 @@ import model.dto.Parametr
 import model.nlp.Sekwencja
 
 data class Regula(
-          val kod: String
+        val kod: String
         , var tresc: String
         , val sekwencja: Sekwencja
         , var parametry: MutableList<Parametr> = mutableListOf()
-        , var wywolaniaRegul:MutableList<WywolanieReguly> = mutableListOf()
-) : ObiektBazowy(),IWalidowalny {
+        , var wywolaniaRegul: MutableList<WywolanieReguly> = mutableListOf()
+) : ObiektBazowy(), IWalidowalny {
+
 
     override fun waliduj(): List<String> {
         val bledy: MutableList<String> = mutableListOf<String>()
 
-        if (parametry != null) {
-            parametry!!.forEach {
-                val wynik=it.waliduj()
-                if(!wynik.isEmpty()) {
-                    bledy.addAll(wynik)
-                }
-            }
+        parametry.forEach {
+            bledy.addAll(it.waliduj())
         }
+
+        wywolaniaRegul.forEach { bledy.addAll(it.waliduj()) }
 
         return bledy
     }

@@ -41,9 +41,9 @@ class MainController {
     lateinit var zamknijPrzycisk:Button
 
     //val listaTabelParametrow:MutableList<TitledPane> = mutableListOf<TitledPane>()
-    val mapaKonenerowBledowWalidacji: MutableMap<String, KontenerBledow> = mutableMapOf<String, KontenerBledow>()
+    /*val mapaKonenerowBledowWalidacji: MutableMap<String, KontenerBledow> = mutableMapOf<String, KontenerBledow>()
     val mapaKonenerowParametrowWe: MutableMap<String, TitledPane> = mutableMapOf<String, TitledPane>()
-    val mapaKonenerowParametrowWy: MutableMap<String, TitledPane> = mutableMapOf<String, TitledPane>()
+    val mapaKonenerowParametrowWy: MutableMap<String, TitledPane> = mutableMapOf<String, TitledPane>()*/
 
 
 
@@ -123,8 +123,8 @@ class MainController {
             pKontenerParametrowWe.isExpanded = true
             pKontenerParametrowWy.isExpanded = true
 
-            mapaKonenerowParametrowWe.put(reg.kod, pKontenerParametrowWe)
-            mapaKonenerowParametrowWy.put(reg.kod, pKontenerParametrowWy)
+           /* mapaKonenerowParametrowWe.put(reg.kod, pKontenerParametrowWe)
+            mapaKonenerowParametrowWy.put(reg.kod, pKontenerParametrowWy)*/
 
             val pKontenerPoziomyNaPrzyciski=VBox()
             pKontenerPoziomyNaPrzyciski.spacing=5.0
@@ -166,9 +166,8 @@ class MainController {
 
             //Trzeci wiersz - panel błędów
             val pPanelBledow = zbudujKontenerBledow(700.0)
+            regulaWidok.kontenerBledow=pPanelBledow
             pKontenerNaTabelki.children.add(pPanelBledow)
-            mapaKonenerowBledowWalidacji.put(reg.kod, pPanelBledow)
-
 
         }
     }
@@ -187,7 +186,7 @@ class MainController {
     }
 */
 
-    fun wyczyscKonteneryBledow() {
+   /* fun wyczyscKonteneryBledow() {
         mapaKonenerowBledowWalidacji.forEach { String, kontener ->
             kontener.wyczyscBledy()
         }
@@ -197,11 +196,10 @@ class MainController {
 
         }
     }
-
+*/
 
     @FXML
     fun onWczytajRegulyKLIK() {
-        wyczyscKonteneryBledow()
         println("onWczytajRegulyKLIK")
 
 
@@ -217,8 +215,9 @@ class MainController {
 
     @FXML
     fun onWalidujRegulyKLIK() {
-        wyczyscKonteneryBledow()
         println("onWalidujRegulyKLIK")
+
+        wyczyscKonteneryBledow()
 
         var flaga = false
 
@@ -227,16 +226,9 @@ class MainController {
             val bledy = it.waliduj()
 
             if (!bledy.isEmpty()) {
-                mapaKonenerowBledowWalidacji[it.kod]!!.dodajBledy(bledy)
-                mapaKonenerowParametrowWe[it.kod]!!.isExpanded = true
-                mapaKonenerowParametrowWe[it.kod]!!.style = "-fx-border-color: red;"
-
+                mapaRegulWidok[it.kod]!!.kontenerBledow?.dodajBledy(bledy)
                 flaga = true
-                /*  mapaKonenerowParametrowWy[it.kod]!!.isExpanded = true
-                  mapaKonenerowParametrowWy[it.kod]!!.style = "-fx-border-color: red;"*/
             }
-
-
         }
 
         if (flaga) {
@@ -245,6 +237,11 @@ class MainController {
 
     }
 
+    private fun wyczyscKonteneryBledow(){
+        mapaRegulWidok.forEach{
+            it.value.kontenerBledow?.wyczyscBledy()
+        }
+    }
     @FXML
     fun onZapiszRegulyKLIK() {
         wyczyscKonteneryBledow()

@@ -4,9 +4,7 @@ import javafx.beans.property.SimpleStringProperty
 import javafx.collections.FXCollections
 import javafx.collections.ObservableList
 import javafx.geometry.Insets
-import javafx.scene.control.Label
-import javafx.scene.control.TableColumn
-import javafx.scene.control.TableView
+import javafx.scene.control.*
 import javafx.scene.control.cell.ComboBoxTableCell
 import javafx.scene.control.cell.PropertyValueFactory
 import javafx.scene.control.cell.TextFieldTableCell
@@ -33,7 +31,8 @@ fun zbudujTabelkeRozpoznanychKomunikatow(regulaWidok: RegulaWidok
     var kolumnaWartosc: TableColumn<WierszTabeliDwieWartosci, String> = TableColumn("wartosc")
 
 
-    var dlugoscNajwiekszegoNapisuKolumnyW: Int = regulaWidok.rozpoznaneKomunikatyWidok.map { it.wartosc.length }.max()?:20
+    var dlugoscNajwiekszegoNapisuKolumnyW: Int = regulaWidok.rozpoznaneKomunikatyWidok.map { it.wartosc.length }.max()
+            ?: 20
 
     var maksymalnaDlugoscKolumnyW = dlugoscNajwiekszegoNapisuKolumnyW * 5.0
 
@@ -122,7 +121,7 @@ fun zbudujTabelkeParametrowWejsciowych(regulaWidok: RegulaWidok
     kolumnaNazwa.isEditable = false
 
     kolumnaTyp.setCellValueFactory({ cellData -> cellData.value.typProperty })
-    kolumnaTyp.cellFactory=ComboBoxTableCell.forTableColumn(regulaWidok.nazwyDopuszczalnychWartosciTypowCBWidok)
+    kolumnaTyp.cellFactory = ComboBoxTableCell.forTableColumn(regulaWidok.nazwyDopuszczalnychWartosciTypowCBWidok)
     kolumnaTyp.setOnEditCommit({ t ->
         t.getTableView().getItems().get(t.getTablePosition().getRow()).parametr.typ = t.newValue
     })
@@ -167,8 +166,6 @@ fun zbudujTabelkeParametrowWyjsciowych(regulaWidok: RegulaWidok
     kolumnaWartoscDomyslna.prefWidth = szerokoscKolumnyW
 
 
-
-
     var tableView: TableView<WierszTabeliParametrowWy> = TableView(regulaWidok.rozpoznaneParametryWyjscioweWidok)
 
 
@@ -206,15 +203,16 @@ fun zbudujTabelkeParametrowWyjsciowych(regulaWidok: RegulaWidok
     return tableView
 }
 
-fun zbudujKontenerBledow(szerokoscKontenera: Double): KontenerBledow {
+fun zbudujKontenerBledow(szerokoscKontenera: Double): PrzewijanyKontenerBledow {
 
-    val pPanelBledow = KontenerBledow()
-    pPanelBledow.spacing = 10.0
+    val pPanelBledow = PrzewijanyKontenerBledow()
     pPanelBledow.padding = Insets(10.0)
     pPanelBledow.style = "-fx-border-color: red;"
     pPanelBledow.prefWidth = szerokoscKontenera
     pPanelBledow.minWidth = szerokoscKontenera
     pPanelBledow.maxWidth = szerokoscKontenera
+    pPanelBledow.prefHeight = 100.0
+
 
     return pPanelBledow
 }
@@ -274,9 +272,10 @@ open class WrapperParametruNazwaWartosc(val nazwa: String, val wartosc: String)
 open class WierszTabeliTrzyWartosci(val nazwa: String, val wartosc: String, val kategoria: String)
 
 
-open class KontenerBledow : VBox {
+open class PrzewijanyKontenerBledow : ListView<String> {
+
     constructor() : super() {
-        isVisible = false
+        isVisible=false
     }
 
     fun dodajBledy(aBledy: List<String>) {
@@ -284,28 +283,27 @@ open class KontenerBledow : VBox {
             return
         }
 
-        isVisible = true
+        isVisible=true
+        items.addAll(aBledy)
 
-        aBledy.forEach {
-            val pKom = Label(it)
-            pKom.setTextFill(Color.web("#FF0000"));
-            children.add(pKom)
-        }
+
     }
 
     fun wyczyscBledy() {
-        children.clear()
-        isVisible = false
+        isVisible=false
+        items.clear()
     }
 }
+
 
 open class RegulaWidok {
     var rozpoznaneKomunikatyWidok: ObservableList<WierszTabeliDwieWartosci> = FXCollections.observableArrayList()
     var rozpoznaneTokenyWidok: ObservableList<WierszTabeliTrzyWartosci> = FXCollections.observableArrayList()
     var rozpoznaneParametryWyjscioweWidok: ObservableList<WierszTabeliParametrowWy> = FXCollections.observableArrayList()
     var rozpoznaneParametryWejsciowe: ObservableList<WierszTabeliParametrowWe> = FXCollections.observableArrayList()
-    var nazwyParametrowWejsciowychCBWidok =  FXCollections.observableArrayList<String>()
-    var nazwyDopuszczalnychWartosciTypowCBWidok=FXCollections.observableArrayList<String>()
+    var nazwyParametrowWejsciowychCBWidok = FXCollections.observableArrayList<String>()
+    var nazwyDopuszczalnychWartosciTypowCBWidok = FXCollections.observableArrayList<String>()
+    var kontenerBledow: PrzewijanyKontenerBledow? = null
 
 
     fun aktualizujDane(regula: Regula) {
@@ -319,14 +317,15 @@ open class RegulaWidok {
         regula?.sekwencja?.komunikaty?.forEach {
             rozpoznaneKomunikatyWidok.add(WierszTabeliDwieWartosci(it.key, it.value))
         }
-       regula.sekwencja.rozpoznaneTokeny.forEach{
-            rozpoznaneTokenyWidok.add(WierszTabeliTrzyWartosci(it.wartosc, it.typ.toString(), it?.kategoria?:""))
+        regula.sekwencja.rozpoznaneTokeny.forEach {
+            rozpoznaneTokenyWidok.add(WierszTabeliTrzyWartosci(it.wartosc, it.typ.toString(), it?.kategoria ?: ""))
         }
 
         nazwyDopuszczalnychWartosciTypowCBWidok.addAll("Liczba", "Napis", "Data")
 
-        regula.parametry.forEach{
-            rozpoznaneParametryWejsciowe.add(WierszTabeliParametrowWe(it.nazwa, it.typ ?: "", it.wartoscDomyslna ?: "", it))
+        regula.parametry.forEach {
+            rozpoznaneParametryWejsciowe.add(WierszTabeliParametrowWe(it.nazwa, it.typ ?: "", it.wartoscDomyslna
+                    ?: "", it))
         }
 
         nazwyParametrowWejsciowychCBWidok.addAll(regula.parametry.map {
