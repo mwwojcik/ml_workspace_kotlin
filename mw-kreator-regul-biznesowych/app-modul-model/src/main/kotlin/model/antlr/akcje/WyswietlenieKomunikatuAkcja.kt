@@ -1,6 +1,6 @@
-package model.akcje
+package model.antlr.akcje
 
-class WyswietlenieKomunikatuAkcja(val komunikat:String):IAkcja {
+class WyswietlenieKomunikatuAkcja(val komunikat:String): IAkcja {
     private val nazwaMetody="wyswietlKomunikat"
     override fun podajAkcje(): String {
         return nazwaMetody+"("+komunikat+")"

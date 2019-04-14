@@ -1,10 +1,10 @@
 package reguly.antlr.konstruktory
 
-import model.akcje.IAkcja
-import model.wyrazenia.WyrazenieWarunkowe
+import model.antlr.akcje.IAkcja
+import model.antlr.wyrazenia.WyrazenieWarunkowe
 
 object BudowniczyInstrukcjiWarunkowej: IBudowniczy<WyrazenieWarunkowe> {
-    private lateinit var instrukcja:WyrazenieWarunkowe
+    private lateinit var instrukcja: WyrazenieWarunkowe
 
     override fun inicjuj() {
         instrukcja = WyrazenieWarunkowe()
@@ -14,10 +14,10 @@ object BudowniczyInstrukcjiWarunkowej: IBudowniczy<WyrazenieWarunkowe> {
         instrukcja.warunek=warunek
     }
 
-    fun dodajAkcjeTak(aAkcjaTak:IAkcja){
+    fun dodajAkcjeTak(aAkcjaTak: IAkcja){
         instrukcja.akcjaTak=aAkcjaTak
     }
-    fun dodajAkcjeNie(aAkcjaNie:IAkcja){
+    fun dodajAkcjeNie(aAkcjaNie: IAkcja){
         instrukcja.akcjaNie=aAkcjaNie
     }
 

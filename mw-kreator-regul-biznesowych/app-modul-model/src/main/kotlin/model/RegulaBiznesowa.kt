@@ -1,6 +1,6 @@
 package model
 
-import model.wyrazenia.WyrazenieWarunkowe
+import model.antlr.wyrazenia.WyrazenieWarunkowe
 
  class RegulaBiznesowa {
     val parametry = mutableListOf<Parametr>()

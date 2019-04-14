@@ -211,8 +211,7 @@ fun zbudujKontenerBledow(szerokoscKontenera: Double): PrzewijanyKontenerBledow {
     pPanelBledow.prefWidth = szerokoscKontenera
     pPanelBledow.minWidth = szerokoscKontenera
     pPanelBledow.maxWidth = szerokoscKontenera
-    pPanelBledow.prefHeight = 100.0
-
+    pPanelBledow.prefHeight = 0.0
 
     return pPanelBledow
 }
@@ -285,12 +284,12 @@ open class PrzewijanyKontenerBledow : ListView<String> {
 
         isVisible=true
         items.addAll(aBledy)
-
-
+        this.prefHeight = 100.0
     }
 
     fun wyczyscBledy() {
         isVisible=false
+        this.prefHeight = 0.0
         items.clear()
     }
 }

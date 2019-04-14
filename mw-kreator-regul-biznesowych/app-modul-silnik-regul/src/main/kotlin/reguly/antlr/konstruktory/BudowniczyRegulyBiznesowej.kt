@@ -2,7 +2,7 @@ package reguly.antlr.konstruktory
 
 import model.Parametr
 import model.RegulaBiznesowa
-import model.wyrazenia.WyrazenieWarunkowe
+import model.antlr.wyrazenia.WyrazenieWarunkowe
 
 object BudowniczyRegulyBiznesowej: IBudowniczy<RegulaBiznesowa> {
     private lateinit var regula: RegulaBiznesowa
@@ -23,7 +23,7 @@ object BudowniczyRegulyBiznesowej: IBudowniczy<RegulaBiznesowa> {
         regula.parametry.add(Parametr(aNazwa, aTyp))
     }
 
-    fun dodajInstrukcjeWarunkowa(aInstrukcja:WyrazenieWarunkowe){
+    fun dodajInstrukcjeWarunkowa(aInstrukcja: WyrazenieWarunkowe){
         regula.instrukcjaWarunkowa=aInstrukcja
     }
 

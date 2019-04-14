@@ -1,11 +1,11 @@
 package reguly.antlr.konstruktory
 
-import model.akcje.IAkcja
+import model.antlr.akcje.IAkcja
 
 object BudowniczyAkcji : IBudowniczy<IAkcja> {
-    private lateinit var akcja:IAkcja
+    private lateinit var akcja: IAkcja
 
-    fun dodajAkcje(aAkcja:IAkcja){
+    fun dodajAkcje(aAkcja: IAkcja){
         akcja =aAkcja
     }
 

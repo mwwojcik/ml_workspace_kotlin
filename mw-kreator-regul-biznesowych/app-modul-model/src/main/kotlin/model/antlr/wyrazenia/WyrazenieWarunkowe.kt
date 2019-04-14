@@ -1,6 +1,7 @@
-package model.wyrazenia
+package model.antlr.wyrazenia
 
-import model.akcje.IAkcja
+import model.antlr.akcje.IAkcja
+
 
 class WyrazenieWarunkowe() : IWyrazenie {
     lateinit var warunek: String
