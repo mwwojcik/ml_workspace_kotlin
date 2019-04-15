@@ -7,6 +7,6 @@ class RegulaAST {
     lateinit var warunkiLogiczne:List<WyrazenieLogiczneAST>
 
 
-    lateinit var akcjaTAK:IAkcjaAST
-    var akcjaNie:IAkcjaAST?=null
+    lateinit var akcjaTAK:AkcjaAST
+    var akcjaNie:AkcjaAST?=null
 }

@@ -9,12 +9,10 @@ class GeneratorStrukturyAST {
 
     fun konwertujDoAST(aRegula:Regula):RegulaAST{
 
-        println(aRegula.kod+"=>"+aRegula.sekwencja.podajTokenyCzesciWarunkowejReguly())
-        println("TAK=>"+aRegula.sekwencja.podajTokenyAkcjiTak())
-        println("NIE=>"+aRegula.sekwencja.podajTokenyAkcjiNie())
+        BudowniczyRegulyAST.inicjuj(aRegula.sekwencja.rozpoznaneTokeny)
+        BudowniczyRegulyAST.sekwencja=aRegula.sekwencja
 
-
-        return RegulaAST()
+        return BudowniczyRegulyAST.buduj()
     }
 
 }

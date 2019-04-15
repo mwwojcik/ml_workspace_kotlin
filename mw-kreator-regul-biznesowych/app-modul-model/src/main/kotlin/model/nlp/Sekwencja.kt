@@ -44,6 +44,29 @@ class Sekwencja(val zdaniePierwotne:String, val tokeny:Array<String>,
         return tokenyCzescWarunkowa
     }
 
+    fun podajTokenyWarunkuPodstawowegoReguly():List<RozpoznanyToken>{
+        val tokenyWarunekGlowny= mutableListOf<RozpoznanyToken>()
+        val pCalaInstrukcjaWarunkowa= podajTokenyCzesciWarunkowejReguly()
+        for(i in 0..2){
+            tokenyWarunekGlowny.add(pCalaInstrukcjaWarunkowa[i])
+        }
+        return tokenyWarunekGlowny
+    }
+
+    fun podajTokenyWarunkuLogicznegoReguly():List<RozpoznanyToken>{
+        val tokenyWarunekLogiczny= mutableListOf<RozpoznanyToken>()
+        val pCalaInstrukcjaWarunkowa= podajTokenyCzesciWarunkowejReguly()
+
+        if(pCalaInstrukcjaWarunkowa.size<=3){
+            return tokenyWarunekLogiczny
+        }
+        for(i in 3..pCalaInstrukcjaWarunkowa.size-1){
+            tokenyWarunekLogiczny.add(pCalaInstrukcjaWarunkowa[i])
+        }
+        return tokenyWarunekLogiczny
+    }
+
+
     fun podajTokenyAkcjiTak():List<RozpoznanyToken>{
         val tokenyAkcjaTak= mutableListOf<RozpoznanyToken>()
         //zaczynamy od 2 bo chcemy przeskoczyc poczatek reguly
