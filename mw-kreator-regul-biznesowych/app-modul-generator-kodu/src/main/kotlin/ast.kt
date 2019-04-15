@@ -1,29 +1,35 @@
 import model.ast.AkcjaAST
 import model.ast.RegulaAST
 import model.ast.WyrazenieLogiczneAST
-import model.ast.WyrazenieWarukoweAST
+import model.ast.WyrazenieWarunkoweAST
 import model.nlp.RozpoznanyToken
+import model.nlp.Sekwencja
 
 interface IBudowniczyAST<T> {
     fun buduj(): T
 
-    fun inicjuj(tokeny: List<RozpoznanyToken>)
+    fun inicjuj(aSekwencja:Sekwencja)
 }
 
 object BudowniczyRegulyAST : IBudowniczyAST<RegulaAST> {
 
+    lateinit var sekwencja:Sekwencja
+
     override fun buduj(): RegulaAST {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val reg=RegulaAST()
+
+        return reg
     }
 
-    override fun inicjuj(tokeny: List<RozpoznanyToken>) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun inicjuj(aSekwencja:Sekwencja) {
+        sekwencja=aSekwencja
     }
 }
 
 
-object BudowniczyWyrazeniaWarunkowegoAST : IBudowniczyAST<WyrazenieWarukoweAST> {
-    override fun buduj(): WyrazenieWarukoweAST {
+/*
+object BudowniczyWyrazeniaWarunkowegoAST : IBudowniczyAST<WyrazenieWarunkoweAST> {
+    override fun buduj(): WyrazenieWarunkoweAST {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
@@ -51,4 +57,4 @@ object BudowniczyAkcjiAST : IBudowniczyAST<AkcjaAST> {
     override fun inicjuj(tokeny: List<RozpoznanyToken>) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
-}
+}*/

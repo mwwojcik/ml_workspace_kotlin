@@ -1,6 +1,7 @@
 package app.jfx
 
 import app.KontekstAplikacji
+import generator.GeneratorStrukturyAST
 import javafx.collections.FXCollections
 import javafx.event.ActionEvent
 import javafx.fxml.FXML
@@ -26,6 +27,9 @@ class MainController {
 
     @Autowired
     lateinit var regulyUsluga: RegulyUslugaBean
+
+    @Autowired
+    lateinit var generatorStrukturyAST: GeneratorStrukturyAST
 
     //lateinit var listaRegul: List<Regula>
 
@@ -269,8 +273,9 @@ class MainController {
         stage.initModality(Modality.WINDOW_MODAL);
         stage.show();
 
-
-
+        for (r in mapaRegul.values) {
+            generatorStrukturyAST.konwertujDoAST(r)
+        }
 
     }
 
