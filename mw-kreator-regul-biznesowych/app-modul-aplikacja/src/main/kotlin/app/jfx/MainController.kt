@@ -1,14 +1,10 @@
 package app.jfx
 
 import app.KontekstAplikacji
-import generator.GeneratorStrukturyAST
-import javafx.collections.FXCollections
-import javafx.event.ActionEvent
+import generator.GeneratorKoduBean
 import javafx.fxml.FXML
 import javafx.fxml.FXMLLoader
 import javafx.geometry.Insets
-import javafx.scene.Node
-import javafx.scene.Parent
 import javafx.scene.Scene
 import javafx.scene.control.*
 import javafx.scene.layout.HBox
@@ -19,7 +15,11 @@ import model.dto.Regula
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Controller
 import uslugi.RegulyUslugaBean
-import java.util.regex.Pattern
+import java.io.IOException
+import java.net.URL
+import java.util.ResourceBundle
+
+
 
 
 @Controller
@@ -29,7 +29,7 @@ class MainController {
     lateinit var regulyUsluga: RegulyUslugaBean
 
     @Autowired
-    lateinit var generatorStrukturyAST: GeneratorStrukturyAST
+    lateinit var generatorKodu: GeneratorKoduBean
 
     //lateinit var listaRegul: List<Regula>
 
@@ -205,7 +205,8 @@ class MainController {
     @FXML
     fun onWczytajRegulyKLIK() {
         println("onWczytajRegulyKLIK")
-
+        regulyUsluga.wczytajReguly()
+        aktualizujReguly()
 
     }
 
@@ -223,6 +224,11 @@ class MainController {
 
         wyczyscKonteneryBledow()
 
+       czyModelWymagaPoprawy()
+
+    }
+
+    fun czyModelWymagaPoprawy():Boolean{
         var flaga = false
 
         mapaRegul.values.forEach {
@@ -238,7 +244,7 @@ class MainController {
         if (flaga) {
             Alert(Alert.AlertType.INFORMATION, "Wykryte zostały błędy walidacji!").show()
         }
-
+        return flaga
     }
 
     private fun wyczyscKonteneryBledow(){
@@ -258,14 +264,15 @@ class MainController {
     fun onGenerujKodKLIK() {
         wyczyscKonteneryBledow()
         println("onGenerujKodKLIK")
-        /* var p:Regula=mapaRegul["RS-001"]!!
-        p.sekwencja.komunikaty!!.put("ala","alamakota")
-        mapaRegulWidok.get("RS-001")!!.aktualizujDane(p)
-        mapaRegulWidok.get("RS-001")!!.zmienWartosciDopuszczalnychTypow()*/
+
+        if(czyModelWymagaPoprawy()){
+            return
+        }
+
 
         val stage = Stage();
-        val root: Parent = FXMLLoader.load(this::class.java.classLoader.getResource("fxml/okno-wygenerowany-kod.fxml"));
-        stage.setScene(Scene(root));
+        val root: FXMLLoader = loadFXML(this::class.java.classLoader.getResource("fxml/okno-wygenerowany-kod.fxml"),null);
+        stage.setScene(Scene(root.getRoot()));
         stage.getScene().getStylesheets().add(this::class.java.classLoader.getResource("css/main.css").toExternalForm())
         stage.getScene().getStylesheets().add(this::class.java.classLoader.getResource("css/java.css").toExternalForm())
         stage.setTitle("My modal window");
@@ -273,9 +280,8 @@ class MainController {
         stage.initModality(Modality.WINDOW_MODAL);
         stage.show();
 
-        for (r in mapaRegul.values) {
-            generatorStrukturyAST.konwertujDoAST(r)
-        }
+        val kontrolerOknaKodu=root.getController<KontrolerOknaWygenerowanegoKodu>()
+        kontrolerOknaKodu.ustawKod(generatorKodu.generujKodDlaRegul(mapaRegul.values.toList()))
 
     }
 
@@ -285,6 +291,20 @@ class MainController {
         println("onZamknijKLIK")
 
         KontekstAplikacji.mainStage!!.close()
+
+    }
+
+    fun loadFXML(url: URL, resources: ResourceBundle?): FXMLLoader {
+        val fxmlLoader = FXMLLoader()
+        fxmlLoader.location = url
+        fxmlLoader.resources = resources
+        try {
+            fxmlLoader.load<Any>()
+            return fxmlLoader
+        } catch (e: IOException) {
+            e.printStackTrace(System.err)
+            throw IllegalStateException(e)
+        }
 
     }
 }

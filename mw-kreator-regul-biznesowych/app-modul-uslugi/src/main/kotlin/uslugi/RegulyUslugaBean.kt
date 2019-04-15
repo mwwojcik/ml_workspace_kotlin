@@ -45,6 +45,12 @@ open class RegulyUslugaBean {
 
     @PostConstruct
     fun inicjalizuj(): Unit {
+       wczytajReguly()
+    }
+    //**********************************
+
+    @Transactional
+    fun wczytajReguly(){
         val plistaRegul = String(this::class.java.classLoader.getResourceAsStream("reguly.reg").readBytes()).split("\n")
 
         val pObiektyDoSynchronizacji: List<Regula> =
@@ -58,13 +64,12 @@ open class RegulyUslugaBean {
                     Regula(kodReguly, trescRegulyStr, sekwencja, parametry, wywolania)
                 }).toList()
 
-                pObiektyDoSynchronizacji.filter { !it.wywolaniaRegul.isNullOrEmpty() }.map{it.wywolaniaRegul.toList()}.forEach{
-                    wyodrebnijParametryWywolania(it,pObiektyDoSynchronizacji)
-                }
+        pObiektyDoSynchronizacji.filter { !it.wywolaniaRegul.isNullOrEmpty() }.map{it.wywolaniaRegul.toList()}.forEach{
+            wyodrebnijParametryWywolania(it,pObiektyDoSynchronizacji)
+        }
 
         synchronizatorDanych.synchronizujDane(pObiektyDoSynchronizacji)
     }
-    //**********************************
 
     @Transactional
     fun podajReguly(): List<Regula> {

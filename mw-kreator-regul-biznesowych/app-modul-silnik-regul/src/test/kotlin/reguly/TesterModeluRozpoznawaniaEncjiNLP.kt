@@ -42,8 +42,8 @@ class TesterModeluNLP {
             //operatory podstawowe zaprzeczone 'nie jest równy','nie jest większy lub równy', 'nie jest mniejszy lub równy'
 
             , PrzypadekTestowy(4,"Jeśli data nie jest równa '01-01-2000' wtedy wyświetl komunikat <KOMUNIKAT1> .", "nie jest równa")
-            , PrzypadekTestowy(5,"Jeśli data nie jest większa lub równa '01-01-2000' wtedy wyświetl komunikat <KOMUNIKAT1> .", "nie jest większa lub równa")
-            , PrzypadekTestowy(6,"Jeśli nachylenie nie jest mniejsze lub równe 30 wtedy wyświetl komunikat <KOMUNIKAT1> .", "nie jest mniejsze lub równe")
+            , PrzypadekTestowy(5,"Jeśli data nie jest większa '01-01-2000' wtedy wyświetl komunikat <KOMUNIKAT1> .", "nie jest większa")
+            , PrzypadekTestowy(6,"Jeśli nachylenie nie jest mniejsze  30 wtedy wyświetl komunikat <KOMUNIKAT1> .", "nie jest mniejsze")
 
             //Operatory stopniowane (['jest większy niż', 'jest mniejszy od', 'jest różny od'])
             , PrzypadekTestowy(7,"Jeśli dochód jest większy niż 100 wtedy wyświetl komunikat <KOMUNIKAT1> .", "jest większy niż")

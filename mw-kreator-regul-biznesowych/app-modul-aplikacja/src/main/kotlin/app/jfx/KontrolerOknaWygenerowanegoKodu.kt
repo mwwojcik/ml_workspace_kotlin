@@ -14,6 +14,7 @@ import org.fxmisc.richtext.LineNumberFactory
 import java.time.Duration
 import org.fxmisc.richtext.model.StyleSpansBuilder
 import org.fxmisc.richtext.model.StyleSpans
+import org.springframework.stereotype.Component
 import java.util.*
 
 
@@ -45,12 +46,22 @@ open class KontrolerOknaWygenerowanegoKodu{
                     + "|(?<COMMENT>" + COMMENT_PATTERN + ")"
     )
 
-    private val sampleCode = arrayOf("package com.example;", "", "import java.util.*;", "", "public class Foo extends Bar implements Baz {", "", "    /*", "     * multi-line comment", "     */", "    public static void main(String[] args) {", "        // single-line comment", "        for(String arg: args) {", "            if(arg.length() != 0)", "                System.out.println(arg);", "            else", "                System.err.println(\"Warning: empty string as argument\");", "        }", "    }", "", "}").joinToString("\n")
+    @FXML
+    val edytor=CodeArea()
 
+    //private val sampleCode = arrayOf("package com.example;", "", "import java.util.*;", "", "public class Foo extends Bar implements Baz {", "", "    /*", "     * multi-line comment", "     */", "    public static void main(String[] args) {", "        // single-line comment", "        for(String arg: args) {", "            if(arg.length() != 0)", "                System.out.println(arg);", "            else", "                System.err.println(\"Warning: empty string as argument\");", "        }", "    }", "", "}").joinToString("\n")
+    @FXML
+    var wygenerowanyKod:String="Hello World"
+
+    @FXML
+    fun ustawKod(aKod:String){
+        wygenerowanyKod=aKod
+        edytor.replaceText(wygenerowanyKod)
+    }
 
     @FXML
     private fun initialize() {
-        val edytor=CodeArea()
+
         edytor.prefWidth=800.0
         edytor.prefHeight=800.0
         val panel=ScrollPane(edytor)
@@ -65,18 +76,18 @@ open class KontrolerOknaWygenerowanegoKodu{
                 // plain changes = ignore style changes that are emitted when syntax highlighting is reapplied
                 // multi plain changes = save computation by not rerunning the code multiple times
                 //   when making multiple changes (e.g. renaming a method at multiple parts in file)
-                .multiPlainChanges()
+               .multiPlainChanges()
 
                 // do not emit an event until 500 ms have passed since the last emission of previous stream
-                .successionEnds(Duration.ofMillis(500))
+               .successionEnds(Duration.ofMillis(500))
 
                 // run the following code block when previous stream emits an event
-                .subscribe({ ignore -> edytor.setStyleSpans(0, computeHighlighting(edytor.getText())) })
+               .subscribe({ ignore -> edytor.setStyleSpans(0, computeHighlighting(edytor.getText())) })
 
         // when no longer need syntax highlighting and wish to clean up memory leaks
         // run: `cleanupWhenNoLongerNeedIt.unsubscribe();`
 
-        edytor.replaceText(0, 0, sampleCode)
+        edytor.replaceText(0, 0, wygenerowanyKod)
     }
 
     @FXML

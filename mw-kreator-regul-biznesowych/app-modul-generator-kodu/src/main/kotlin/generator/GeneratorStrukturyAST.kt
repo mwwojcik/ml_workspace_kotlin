@@ -15,4 +15,8 @@ class GeneratorStrukturyAST {
         return BudowniczyRegulyAST.buduj()
     }
 
+
+
+
+
 }
