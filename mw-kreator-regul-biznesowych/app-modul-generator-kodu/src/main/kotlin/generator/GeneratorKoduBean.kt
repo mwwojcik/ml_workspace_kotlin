@@ -11,6 +11,7 @@ open class GeneratorKoduBean {
 
         BudowniczyRegulyAST.inicjuj(aRegula.sekwencja.rozpoznaneTokeny)
         BudowniczyRegulyAST.sekwencja = aRegula.sekwencja
+        BudowniczyRegulyAST.regula=aRegula
 
         return BudowniczyRegulyAST.buduj()
     }

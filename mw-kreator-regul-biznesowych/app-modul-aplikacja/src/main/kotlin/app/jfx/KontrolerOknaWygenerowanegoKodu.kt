@@ -56,7 +56,7 @@ open class KontrolerOknaWygenerowanegoKodu{
     @FXML
     fun ustawKod(aKod:String){
         wygenerowanyKod=aKod
-        edytor.replaceText(wygenerowanyKod)
+        edytor.replaceText(0,0,wygenerowanyKod)
     }
 
     @FXML

@@ -2,6 +2,8 @@ package generator
 
 import com.squareup.kotlinpoet.*
 import model.ast.RegulaAST
+import model.ast.WyrazenieLogiczneAST
+import model.ast.WyrazenieWarunkoweAST
 import model.dto.Parametr
 import model.dto.Regula
 import java.lang.IllegalArgumentException
@@ -52,7 +54,43 @@ object KonstruktorWalidatoraRegul {
         return pParamBuilder
     }
 
-    fun dajBuilderaMetody(aRegula:Regula):FunSpec.Builder{
+    fun dajWarunki(aWarunekGlowny:WyrazenieWarunkoweAST,aWyrazeniaLogiczne:List<WyrazenieLogiczneAST>? ):String{
+        if(aWyrazeniaLogiczne==null) {
+            return aWarunekGlowny.toString()
+        }else{
+            return aWarunekGlowny.toString()+" "+aWyrazeniaLogiczne.joinToString(separator=" ") { it.toString() }
+        }
+    }
+
+    fun budujInstrukcjeWarunkowa(aRegulaAST: RegulaAST):CodeBlock.Builder{
+        val ifElseSpec=CodeBlock.builder()
+                .beginControlFlow("if("+ dajWarunki(aRegulaAST.warunek,aRegulaAST.warunkiLogiczne)+")")
+                .addStatement("")
+                .endControlFlow()
+
+        return ifElseSpec
+    }
+    /*
+    *
+    *  fun budujInstrukcjeWarunkowa(aInstrukcjaWarunkowa: WyrazenieWarunkowe):CodeBlock{
+         val ifElseSpec=CodeBlock.builder()
+                .beginControlFlow("if("+aInstrukcjaWarunkowa.warunek+")")
+                .addStatement(aInstrukcjaWarunkowa.akcjaTak.podajAkcje())
+                .endControlFlow()
+
+        if(aInstrukcjaWarunkowa.akcjaNie!=null){
+            ifElseSpec.beginControlFlow("else")
+                    .addStatement(aInstrukcjaWarunkowa?.akcjaNie?.podajAkcje()?:"")
+                    .endControlFlow()
+        }
+
+
+        return ifElseSpec.build()
+
+    }
+    * */
+
+    fun dajBuilderaMetody(aRegulaAST:RegulaAST,aRegula:Regula):FunSpec.Builder{
       val funBuilder=FunSpec.builder(aRegula.kod.toLowerCase().replace("-","_")).returns(ClassName("generator","WynikDzialaniaReguly"))
 
 
@@ -69,6 +107,8 @@ object KonstruktorWalidatoraRegul {
             }
         }
 
+        funBuilder.addCode(budujInstrukcjeWarunkowa(aRegulaAST).build())
+
         return funBuilder
     }
 
@@ -76,7 +116,7 @@ object KonstruktorWalidatoraRegul {
         budujTypyZwracane()
 
         for(pReg in aReguly){
-            fileBuilder.addFunction(dajBuilderaMetody(pReg.second).build())
+            fileBuilder.addFunction(dajBuilderaMetody(pReg.first,pReg.second).build())
         }
 
         zapiszDoPliku()
