@@ -1,4 +1,34 @@
-RS-001:Jeśli data jest równa  '01-02-2019' lub data nie jest równa '01-02-2019' i data nie jest mniejsza niż '01-05-2019' wtedy wyświetlaj komunikat "Podana data jest równa 01-01-2000" .
-RS-002:Jeśli nachylenie nie jest mniejsze niż 40 wtedy wyświetl komunikat <KOMUNIKAT1> .
-RS-003:Jeśli data_rejestracji jest więa od '2000-01-01' i data_kwalifikacji jest większa od '2000-01-01' i data_rejestracji nie jest mniejsza niż data_kwalifikacji wtedy wyświetl komunikat "Daty są prawidłowe" w przeciwnym wypadku zgłoś błąd walidacji "Podane daty są nieprawidłowe" .
-RS-004:Jeśli rok jest większy niż 2000 i rok jest nie mniejszy niż 1900 wtedy sprawdź regułę RS-001 .
+RS-001:Jeśli data1 jest równa '01-01-2000' wtedy wyświetlaj komunikat "Podana data jest równa 01-01-2000" .
+RS-002:Jeśli data nie jest większa od '01-01-2000' wtedy waliduj regułę RS-001 .
+RS-003:Jeśli nachylenie nie jest mniejsze niż 30 wtedy wyświetl komunikat <KOMUNIKAT1> .
+RS-004:Jeśli data jest różna od '01-01-2000' wtedy wyświetl komunikat <KOMUNIKAT1> .
+RS-005:Jeśli data jest mniejsza niż '01-01-2000' wtedy wyświetl komunikat <KOMUNIKAT1> .
+RS-006:Jeśli nachylenie jest mniejsze od 30 wtedy wyświetl komunikat <KOMUNIKAT1> .
+RS-007:Jeśli dochód jest większy niż 100 wtedy wyświetl komunikat <KOMUNIKAT1> .
+RS-008:Jeżeli suma jest mniejsza od 50 to wyświetl komunikat <KOMUNIKAT1> .
+RS-009:Jeżeli suma jest różna od 50 to wyświetl komunikat <KOMUNIKAT1> .
+RS-010:Jeśli dochód jest mniejszy od 100 wtedy wyświetl komunikat <KOMUNIKAT1> .
+RS-011:Jeżeli suma  jest większa od 50 to wyświetl komunikat <KOMUNIKAT1> .
+RS-012:Jeżeli suma jest różna od 50 to wyświetl komunikat <KOMUNIKAT1> .
+RS-013:Jeśli rok nie jest równy 2000 to wyświetl komunikat <KOMUNIKAT1> .
+RS-014:Jeśli rok jest większy niż 2000 wtedy wyświetl komunikat <KOMUNIKAT1> .
+RS-015:Jeśli miesiąc jest mniejszy niż styczeń to wyświetl komunikat <KOMUNIKAT1> .
+RS-016:Jeśli data jest mniejsza od '01-01-2019' to zgłoś błąd <KOMUNIKAT1> .
+RS-017:Jeśli dzień jest równy wczoraj to zgłoś błąd <KOMUNIKAT1> .
+RS-018:Jeśli miesiąc jest mniejszy niż 6 to wyświetl komunikat "miesiąc jest mniejszy" .
+RS-019:Jeśli data jest różna od poczatek_roku oraz rok jest większy niż 2000 to wyświetl komunikat <KOMUNIKAT_1> .
+RS-020:Gdy suma jest większa od 100 i różnica jest mniejsza od 0 wtedy wyświetl komunikat <KOMUNIKAT_2> .
+RS-021:Jeśli data_utworzenia jest większa od '01-01-2010' i data_utworzenia jest większa  niż data_kwalifikacji to zgłoś błąd walidacji <KOMUNIKAT_WALIDACJI_1> .
+RS-022:Jeśli data_utworzenia jest większa od '01-01-2010' oraz data_utworzenia jest mniejsza niż data_kwalifikacji to zgłoś błąd walidacji <KOMUNIKAT_WALIDACJI_1> .
+RS-023:Jeśli nachylenie jest mniejsze  30 wtedy wyświetl komunikat <KOMUNIKAT_0> .
+RS-024:Jeśli nachylenie jest mniejsze  30 wtedy wyświetl komunikat <KOMUNIKAT_0> w przeciwnym wypadku wyświetl komunikat <KOMUNIKAT2> .
+RS-025:Jeżeli suma jest różna od 50 to wyświetl komunikat <KOMUNIKAT1> w przeciwnym wyświetl komunikat "Suma nie jest mniejsza" .
+RS-026:Jeśli data_utworzenia jest większa od '01-01-2010' oraz data_utworzenia jest mniejsza niż data_kwalifikacji i data_kwalifikacji jest różna od data_weryfikacji to zgłoś błąd walidacji "Daty utworzenia, modyfikacji i kwalifikacji są nieprawidłowe" w przeciwnym razie wyświetl komunikat "Wszystkie daty zostały zwalidowane jako poprawne." .
+RS-027:Jeśli data_dzisiejsza jest większa od '07-04-2019' i data_dzisiejsza jest mniejsza od '14-04-2019' to wyświetl komunikat <KOMUNIKAT1> w przeciwnym razie raportuj błąd "Błąd".
+RS-028:Jeżeli suma jest nie jest większa od 100 wtedy wyświetl komunikat "komunikat" w przeciwnym razie zwróć błąd "Niepoprawna wartość" .
+RS-029:Jeśli wiek jest większy niż 20 wtedy wyświetl komunikat "komunikat12" w przeciwnym wypadku zgłoś błąd walidacji "To jest poprawna sytufacja" .
+RS-030:Jeśli wiek jest mniejszy niż 18 wtedy wyświetl komunikat "Funkcjonalność tylko dla osób dorosłych" w przeciwnym wypadku wyświetl komunikat "Nic" .
+RS-031:Jeśli data jest równa  '01-02-2019' lub data nie jest równa '01-02-2019' i data nie jest mniejsza niż '01-05-2019' wtedy wyświetlaj komunikat "Podana data jest równa 01-01-2000" .
+RS-032:Jeśli nachylenie nie jest mniejsze niż 40 wtedy wyświetl komunikat <KOMUNIKAT1> .
+RS-033:Jeśli data_rejestracji jest więa od '2000-01-01' i data_kwalifikacji jest większa od '2000-01-01' i data_rejestracji nie jest mniejsza niż data_kwalifikacji wtedy wyświetl komunikat "Daty są prawidłowe" w przeciwnym wypadku zgłoś błąd walidacji "Podane daty są nieprawidłowe" .
+RS-034:Jeśli rok jest większy niż 2000 i rok jest nie mniejszy niż 1900 wtedy sprawdź regułę RS-001 .
