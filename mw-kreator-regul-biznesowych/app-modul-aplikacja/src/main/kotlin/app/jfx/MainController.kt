@@ -208,6 +208,12 @@ class MainController {
         regulyUsluga.wczytajReguly()
         aktualizujReguly()
 
+        var i =30
+        for (reg in mapaRegul.values){
+           println(",PrzypadekTestowy("+i+","+"\""+reg.sekwencja.postacKanoniczna+"\""+","+"\""+reg.sekwencja.dajPierwszyOperatorWarunku()+"\")")
+            i+=1
+        }
+
     }
 
     fun aktualizujReguly(){
