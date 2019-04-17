@@ -184,6 +184,11 @@ fun utworzObiektParametru(aNazwaParametru: String, aSekwencja: Sekwencja): Param
 
 fun wnioskujAtrybutyParametru(aParam: String, aSekwencja: Sekwencja): WrapperTypuParametru {
     if (aSekwencja.podajTokenPoWartosci(aParam)!!.typ == RodzajTokenaEnum.LEWOSTRONNY_OPERAND_WARUNKU) {
+
+        if(aParam.contains("data")){
+            return WrapperTypuParametru(aParam,"Data")
+        }
+
         return WrapperTypuParametru(aParam)
     } else {
         //prawa strona równania
@@ -204,6 +209,9 @@ fun wnioskujAtrybutyParametru(aParam: String, aSekwencja: Sekwencja): WrapperTyp
                 return WrapperTypuParametru(prefixNazwwyParametruDomyslnego + licznikDefaultowychParametrow++, "Liczba", aParam)//wartosc domyslna data
             }
 
+            if(aParam.contains("data")){
+                return WrapperTypuParametru(aParam,"Data")
+            }
             //nazwa zmiennej
             return WrapperTypuParametru(aParam)
         }

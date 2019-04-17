@@ -28,5 +28,5 @@ RS-029:Jeśli wiek jest większy niż 20 wtedy wyświetl komunikat "komunikat12"
 RS-030:Jeśli wiek jest mniejszy niż 18 wtedy wyświetl komunikat "Funkcjonalność tylko dla osób dorosłych" w przeciwnym wypadku wyświetl komunikat "Nic" .
 RS-031:Jeśli data jest równa  '01-02-2019' lub data nie jest równa '01-02-2019' i data nie jest mniejsza niż '01-05-2019' wtedy wyświetlaj komunikat "Podana data jest równa 01-01-2000" .
 RS-032:Jeśli nachylenie nie jest mniejsze niż 40 wtedy wyświetl komunikat <KOMUNIKAT1> .
-RS-033:Jeśli data_rejestracji jest więa od '2000-01-01' i data_kwalifikacji jest większa od '2000-01-01' i data_rejestracji nie jest mniejsza niż data_kwalifikacji wtedy wyświetl komunikat "Daty są prawidłowe" w przeciwnym wypadku zgłoś błąd walidacji "Podane daty są nieprawidłowe" .
+RS-033:Jeśli data_rejestracji jest większa od '2000-01-01' i data_kwalifikacji jest większa od '2000-01-01' i data_rejestracji nie jest mniejsza niż data_kwalifikacji wtedy wyświetl komunikat "Daty są prawidłowe" w przeciwnym wypadku zgłoś błąd walidacji "Podane daty są nieprawidłowe" .
 RS-034:Jeśli rok jest większy niż 2000 i rok jest nie mniejszy niż 1900 wtedy sprawdź regułę RS-001 .

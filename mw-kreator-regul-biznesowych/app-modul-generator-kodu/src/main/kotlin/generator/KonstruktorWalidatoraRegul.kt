@@ -30,6 +30,8 @@ object KonstruktorWalidatoraRegul {
         fileBuilder.addType(bladWalidacji.build())
     }
 
+
+
     fun dajBuilderaParametruMetody(aParam:Parametr):ParameterSpec.Builder{
         val pParamBuilder=ParameterSpec.builder(aParam.nazwa.trim(), podajTypClass(aParam.typ!!))
 
