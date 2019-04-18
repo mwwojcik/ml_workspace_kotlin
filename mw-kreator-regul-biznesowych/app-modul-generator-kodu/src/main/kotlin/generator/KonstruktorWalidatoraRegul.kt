@@ -80,7 +80,7 @@ object KonstruktorWalidatoraRegul {
 
         aRegulaAST.akcjaNie?.let {
             ifElseSpec.beginControlFlow("else")
-                    .addStatement(dajAkcje(aRegulaAST.akcjaNie!!,aRegula.wywolaniaRegul))
+                    .addStatement(dajAkcje(aRegulaAST.akcjaNie!!,aRegula.wywolaniaRegul)).endControlFlow()
         }
 
         return ifElseSpec
