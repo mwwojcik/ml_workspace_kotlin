@@ -127,7 +127,7 @@ object BudowniczyAkcjiAST : IBudowniczyAST<AkcjaAST> {
             throw IllegalArgumentException("Nieprawidlowa liczba tokenow akcji.")
         }
         val akcja=AkcjaAST()
-        akcja.akcja= tokeny[0].wartosc
+        akcja.akcja= tokeny[0].kategoria!!
         akcja.parametr= tokeny[1].wartosc
 
         return akcja

@@ -1,6 +1,7 @@
 package generator
 
 import com.squareup.kotlinpoet.*
+import model.ast.AkcjaAST
 import model.ast.RegulaAST
 import model.ast.WyrazenieLogiczneAST
 import model.ast.WyrazenieWarunkoweAST
@@ -30,6 +31,13 @@ object KonstruktorWalidatoraRegul {
         fileBuilder.addType(bladWalidacji.build())
     }
 
+    fun dajAkcje(akcja: AkcjaAST):String=
+        when(akcja.akcja){
+            "SPRAWDZ_REGULE"->"return "+akcja.parametr.toLowerCase()+"()"
+            "ZGLOS_BLAD"->"return BladWalidacji("+akcja.parametr+")"
+            "WYSWIETL_KOMUNIKAT"->"return Komunikat("+akcja.parametr+")"
+            else->throw IllegalArgumentException("Nieznana akcja")
+        }
 
 
     fun dajBuilderaParametruMetody(aParam:Parametr):ParameterSpec.Builder{
@@ -67,8 +75,13 @@ object KonstruktorWalidatoraRegul {
     fun budujInstrukcjeWarunkowa(aRegulaAST: RegulaAST):CodeBlock.Builder{
         val ifElseSpec=CodeBlock.builder()
                 .beginControlFlow("if("+ dajWarunki(aRegulaAST.warunek,aRegulaAST.warunkiLogiczne)+")")
-                .addStatement("")
+                .addStatement(dajAkcje(aRegulaAST.akcjaTAK))
                 .endControlFlow()
+
+        aRegulaAST.akcjaNie?.let {
+            ifElseSpec.beginControlFlow("else")
+                    .addStatement(dajAkcje(aRegulaAST.akcjaNie!!))
+        }
 
         return ifElseSpec
     }
