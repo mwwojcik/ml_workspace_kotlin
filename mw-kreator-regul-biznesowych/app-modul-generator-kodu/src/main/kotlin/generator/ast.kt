@@ -20,12 +20,12 @@ interface IBudowniczyAST<T> {
 object BudowniczyRegulyAST : IBudowniczyAST<RegulaAST> {
 
     lateinit var sekwencja:Sekwencja
-    lateinit var regula: Regula
+    //lateinit var regula: Regula
     lateinit var tokeny:List<RozpoznanyToken>
 
     override fun buduj(): RegulaAST {
         val reg=RegulaAST()
-        BudowniczyWyrazeniaWarunkowegoAST.parametry= regula.parametry.toList()
+        //BudowniczyWyrazeniaWarunkowegoAST.parametry= regula.parametry.toList()
         BudowniczyWyrazeniaWarunkowegoAST.inicjuj(sekwencja.podajTokenyWarunkuPodstawowegoReguly())
         BudowniczyWyrazeniaLogicznegoAST.inicjuj(sekwencja.podajTokenyWarunkuLogicznegoReguly())
 
@@ -51,14 +51,14 @@ object BudowniczyRegulyAST : IBudowniczyAST<RegulaAST> {
 
 object BudowniczyWyrazeniaWarunkowegoAST : IBudowniczyAST<WyrazenieWarunkoweAST> {
     lateinit var tokeny:List<RozpoznanyToken>
-    lateinit var parametry:List<Parametr>
+   // lateinit var parametry:List<Parametr>
     override fun buduj(): WyrazenieWarunkoweAST {
         val pWarunek=WyrazenieWarunkoweAST()
 
 
         pWarunek.operandLewy= tokeny[0].wartosc
         pWarunek.operatorWarunku= tokeny[1].kategoria!!
-        pWarunek.operandPrawy= przemapujWartoscDomyslnaNaParametr(tokeny[2].wartosc)
+        pWarunek.operandPrawy= tokeny[2].wartosc
 
         return pWarunek
     }
@@ -67,7 +67,7 @@ object BudowniczyWyrazeniaWarunkowegoAST : IBudowniczyAST<WyrazenieWarunkoweAST>
         tokeny = aTokeny
     }
 
-    fun przemapujWartoscDomyslnaNaParametr(aKlucz:String):String{
+  /*  fun przemapujWartoscDomyslnaNaParametr(aKlucz:String):String{
         val pMapa:Map<String,String> = parametry.filter { it.wartoscDomyslna!=null }.map { it.wartoscDomyslna!! to it.nazwa!! }.toMap()
 
         if(pMapa.containsKey(aKlucz)){
@@ -75,7 +75,7 @@ object BudowniczyWyrazeniaWarunkowegoAST : IBudowniczyAST<WyrazenieWarunkoweAST>
         }else{
             return aKlucz
         }
-    }
+    }*/
 }
 
 
