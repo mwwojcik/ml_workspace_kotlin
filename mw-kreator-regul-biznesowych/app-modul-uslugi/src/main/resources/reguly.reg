@@ -29,6 +29,6 @@ RS-030:Jeśli wiek jest mniejszy niż 18 wtedy wyświetl komunikat "Funkcjonalno
 RS-031:Jeśli data jest równa  '01-02-2019' lub data nie jest równa '01-02-2019' i data nie jest mniejsza niż '01-05-2019' wtedy wyświetlaj komunikat "Podana data jest równa 01-01-2000" .
 RS-032:Jeśli nachylenie nie jest mniejsze niż 40 wtedy wyświetl komunikat <KOMUNIKAT1> .
 RS-033:Jeśli data_rejestracji jest większa od '2000-01-01' i data_kwalifikacji jest większa od '2000-01-01' i data_rejestracji nie jest mniejsza niż data_kwalifikacji wtedy wyświetl komunikat "Daty są prawidłowe" w przeciwnym wypadku zgłoś błąd walidacji "Podane daty są nieprawidłowe" .
-RS-034:Jeśli dzień jest mniejszy niż 1 lub dzień jest większy niż 31 wtedy zgłoś błąd "Niepoprawne pole dzień" w przeciwny wypadku wyświetl komunikat "Data jest poprawna." .
+RS-034:Jeśli dzień jest mniejszy od 1 oraz dzień jest większy od 31 wtedy zgłoś błąd "Niepoprawne pole dzień" w przeciwny wypadku wyświetl komunikat "Data jest poprawna." .
 RS-035:Jeśli miesiac jest większy niż 1 oraz miesiac jest mniejszy niż 12 wtedy sprawdź regułę RS-034 w przeciwny wypadku zgłoś błąd "Niepoprawne pole miesiąc" .
 RS-036:Jeśli rok nie jest mniejszy niż 2000 wtedy sprawdź regułę RS-035 w przeciwnym wypadku zgłoś błąd "Rok nie może być mniejszy niż 2000!" .
