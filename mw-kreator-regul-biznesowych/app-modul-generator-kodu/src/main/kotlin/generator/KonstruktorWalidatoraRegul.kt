@@ -158,7 +158,7 @@ fun dajAkcjeWywolaniaReguly(akcja: AkcjaAST,aWywolaniaRegul: MutableList<Wywolan
 
     val parametry=pMapa[pKlucz]!!.parametry.map{it.nazwaParametruRegulyWolanej+"="+it.nazwaParametruRegulyWolajacej}.joinToString()
 
-    return akcja.akcja+"("+parametry+")"
+    return pKlucz+"("+parametry+")"
 }
 
 fun normalizujNazweReguly(aStr:String)=aStr.replace("-","_").toLowerCase().trim()
