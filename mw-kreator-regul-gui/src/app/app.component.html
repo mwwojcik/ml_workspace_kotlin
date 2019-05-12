@@ -1,4 +1,9 @@
 <!--The content below is only a placeholder and can be replaced.-->
+<nav>
+  <a routerLink="/dashboard">Dashboard</a>
+  <a routerLink="/heroes">Heroes</a>
+</nav>
+
 <div style="text-align:center">
   <h1>
     {{ title }}
@@ -6,5 +11,5 @@
 </div>
 
 
-<app-heroes></app-heroes>
+<router-outlet></router-outlet>
 <app-messages></app-messages>
