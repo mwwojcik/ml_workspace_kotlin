@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css?family=Lato|Coiny');
+
+body{
+    font-family: 'Lato', sans-serif;
+    line-height: 2em;
+    color: #000;
+    font-size: 16px;
+    background-color: #f1f2f3
+   /* background-image:linear-gradient(to bottom,yellow,blue) ;
+    height:100vh;    */
+}
+
+h1,h2,h3,h4,h5,h6{
+  font-family: 'Coiny', cursive; 
+  font-size: 0.5 em;
+  color:#974405;
+}
+
+
+.glowny{    
+   padding: 10px;
+    background-color:#fff;   
+}
+
+ header {
+      background: url(assets/img/naglowek-lupa.png) no-repeat ;
+      height: 250px;  
+      background-color:#ccc;
+      
+    }
+
+.karta_duza {
+    padding:20px;
+}
+
+.przezroczysty{
+    opacity: 0.6;
+}
+
+.przezroczysty:hover{
+    opacity: 1;
+}
+
+.niewidoczny{
+    display:none;
+}
+
+.ikonka{
+   font-size: 1.2em;
+}
+
+.sekcja_prezentacja{
+    padding:2em;    
+    color:#974405;
+}
+
+.grupa_odsunieta{
+    padding-top:1.3em;
+}
+
+.odsunieta_gora_dol{
+    padding:1.1em;
+}
+
+a{
+    display:inline;
+    text-decoration: none;    
+    color:#974405;
+}
+
+a:hover,a:active{
+    text-decoration: none;
+    display: inline;
+    color:#974405;
+}
