@@ -18,158 +18,92 @@
         }
 
         /* Add a gray background color and some padding to the footer */
-
-        footer {
-            background-color: #f2f2f2;
-            padding: 25px;
-        }
     </style>
 </head>
 
 <body>
 
     <div class="container glowny">
-
-
-
-
-
         <header class="container text-center">
-
         </header>
-
-
-
         <section>
 
             <div class="row">
                 <section class=" col-sm-12">
-                    
-                        <nav class="nav justify-content-start">
-                                <a href="#" class="nav-item nav-link active">O projekcie</a>
-                                <a href="#" class="nav-item nav-link">Biblioteki</a>
-                                <a href="#" class="nav-item nav-link">O nas</a>                    
-                                <a href="#" class="nav-item nav-link">Reguły</a>
-                            
-                            </nav>
-            
-        </section>
-    </div>
 
+                    <nav class="nav justify-content-start">
+                        <a href="#" class="nav-item nav-link active">O projekcie</a>
+                        <a href="#" class="nav-item nav-link">Biblioteki</a>
+                        <a href="#" class="nav-item nav-link">O nas</a>
+                        <a href="#" class="nav-item nav-link">Reguły</a>
 
+                    </nav>
 
-    <div class="row">
-        <section class="card col-sm-2">
-                <h4 class="grupa_odsunieta">Reguły</h4>
-            <!--<div class="card-footer">Footer</div>-->
-        </section>
-
-        <section class="card col-sm-8">
-            <h4 class="grupa_odsunieta">Analiza zdania</h4>
-            <!--<img class="card-img przezroczysty grupa_odsunieta" src="assets/img/4Fotos.png" alt="4Fotos">-->
-            <div class="card-body">
-
-                <p class="card-text">Aplikacja służąca do zarządzania lokalnymi zbiorami zdjęć, oraz galeriami
-                    obrazów.</p>
-                <ul>
-                    <li>Umożliwia import zdjęć z aparatu</li>
-                    <li>Pozwala na podgląd i łatwą segregację zdjęć</li>
-                    <li>Raportuje zajętość przestrzeni dyskowej i rozmiary katalogów</li>
-                    <li>Ułatwia czyszczenie katalogów </li>
-                    <li>Pozwala na tworzenie drzewiastych galerii WWW</li>
-                    <li>Umożliwia eksportowanie galerii WWW na zdalny serwer FTP</li>
-                </ul>
-
-                Biblioteki
-
-                <ul>
-                    <li>Spring Boot</li>
-                    <li>Java FX</li>
-                </ul>
-
-                <a href="#" class="btn btn-primary">GitHub</a>
+                </section>
             </div>
+
+
+            <app-root></app-root>
+
+            <br>
         </section>
 
-        <section class="card col-sm-2">
+        <footer>
 
+            <!--
 
-            <h4 class="grupa_odsunieta">Akcje</h4>
-            <!--<div class="card-header">O mnie</div>-->
-           
-            <nav class="nav nav-pills flex-column">
-                    <a href="#" class="nav-item nav-link">
-                        <i class="fa fa-home"></i> Waliduj
-                    </a>
-                    <a href="#" class="nav-item nav-link">
-                        <i class="fa fa-user"></i> Wczytaj (plik)
-                    </a>
-                    <a href="#" class="nav-item nav-link">
-                        <i class="fa fa-envelope"></i> Dodaj
-                    </a>
-                    <a href="#" class="nav-item nav-link " tabindex="-1">
-                            <i class="fa fa-envelope"></i> Kod
-                    </a>
-                </nav>
+                <div style="width:30%;float:left;">
+                    <div class="container">
+                        <div class="row">
+                            <div class="far fa-envelope ikonka col-3"></div>
+                            <div class="col-4">Warszawa</div>
+                        </div>
 
-        </section>
+                        <div class="row">
+                            <i class="fas fa-phone-square ikonka col-3"></i>
+                            <span class="col-4">504-00-31-31</span>
+                        </div>
 
-    </div>
-
-
-    <br>
-    </section>
-
-    <footer class="container text-center">
-        <p>Footer Text</p>
-
-        <!--<div class="card-body sekcja_prezentacja ">
-
-                <div class="grupa_odsunieta">
-                    <div class="row">
-                        <div class="far fa-envelope ikonka col-3"></div>
-                        <div class="col-9">Warszawa</div>
-                    </div>
-
-                    <div class="row">
-                        <i class="fas fa-phone-square ikonka col-3"></i>
-                        <span class="col-9">504-00-31-31</span>
-                    </div>
-
-                    <div class="row">
-                        <i class="fas fa-at ikonka col-3"></i>
-                        <span class="col-9">mw.wojcik@gmail.com</span>
+                        <div class="row">
+                            <i class="fas fa-at ikonka col-3"></i>
+                            <span class="col-4">mw.wojcik@gmail.com</span>
+                        </div>
                     </div>
                 </div>
 
-                <div class="grupa_odsunieta">
-                    <div class="row">
-                        <i class="far fa-address-card ikonka col-3"></i>
-                        <a class="col-9" href="assets/img/mw-cv.pdf">CV</a>
-                    </div>
 
-                    <div class="row">
-                        <i class="fab fa-github ikonka col-3"></i>
-                        <a class="col-9" href="https://github.com/mwwojcik">GitHub</a>
+
+                <div style="width:30%;float:left;">
+                    <div class="container">
+                        <div class="row">
+                            <i class="far fa-address-card ikonka col-3"></i>
+                            <a class="col-3" href="assets/img/mw-cv.pdf">CV</a>
+                        </div>
+
+                        <div class="row">
+                            <i class="fab fa-github ikonka col-3"></i>
+                            <a class="col-3" style="" href="https://github.com/mwwojcik">GitHub</a>
+                        </div>
+
+                    </div>
+                </div>
+                <div style="width:30%;float:left;">
+                    <div class="container">
+
+                        <div class="row">
+                            <i class="fab fa-blogger ikonka col-4"></i>
+                            <a class="col-4" href="http://mariuszwojcik.blogspot.com/">Java Zone</a>
+                        </div>
+
+                        <div class="row">
+                            <i class="fab fa-facebook-square ikonka col-4"></i>
+                            <a class="col-4" href="https://www.facebook.com/mwa.mw">Facebook</a>
+                        </div>
                     </div>
                 </div>
 
-                <div class="grupa_odsunieta">
-                    <div class="row">
-                        <i class="fab fa-blogger ikonka col-3"></i>
-                        <a class="col-9" href="http://mariuszwojcik.blogspot.com/">Java Zone</a>
-                    </div>
-
-                    <div class="row">
-                        <i class="fab fa-facebook-square ikonka col-3"></i>
-                        <a class="col-9" href="https://www.facebook.com/mwa.mw">Facebook</a>
-                    </div>
-
-                </div>
-            </div>-->
-
-
-    </footer>
+            </div>    -->
+        </footer>
     </div>
 </body>
 
