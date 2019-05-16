@@ -5,7 +5,7 @@ body{
     line-height: 2em;
     color: #000;
     font-size: 16px;
-    background-color: #f1f2f3
+    background-color: #fff;
    /* background-image:linear-gradient(to bottom,yellow,blue) ;
     height:100vh;    */
 }
@@ -18,13 +18,14 @@ h1,h2,h3,h4,h5,h6{
 
 
 .glowny{    
-   padding: 10px;
-    background-color:#fff;   
+    padding: 10px;
+    min-height: 800px;
+    max-width: 1100 px;
 }
 
  header {
       background: url(assets/img/naglowek-lupa.png) no-repeat ;
-      height: 250px;  
+      height: 230px;  
       background-color:#ccc;
       
     }
@@ -68,6 +69,15 @@ a{
     color:#974405;
 }
 
+nav{
+    margin-top:0px;
+}
+
+.tresc{
+    margin-top:0px;
+    min-height: 500px;
+}
+
 a:hover,a:active{
     text-decoration: none;
     display: inline;
@@ -75,7 +85,7 @@ a:hover,a:active{
 }
 
 footer{
-        height: 20px;
+        height: 60px;
 }
 
 

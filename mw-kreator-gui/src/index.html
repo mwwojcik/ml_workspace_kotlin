@@ -7,99 +7,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://use.fontawesome.com/releases/v5.0.7/css/all.css" rel="stylesheet">
     <base href="/">
-
-
-    <style>
-        /* Remove the navbar's default margin-bottom and rounded borders */
-
-        .navbar {
-            margin-bottom: 0;
-            border-radius: 0;
-        }
-
-        /* Add a gray background color and some padding to the footer */
-    </style>
 </head>
 
 <body>
 
-    <div class="container glowny">
-        <header class="container text-center">
+    <div class="glowny">
+        <header class="container text-center z-depth-1 rounded">
         </header>
-        <section>
-            <div class="row">
-                <section class=" col-sm-12" style="border:1px solid green;">
-                    <nav class="nav justify-content-start">
-                        <a href="#" class="nav-item nav-link active">O projekcie</a>
-                        <a href="#" class="nav-item nav-link">Biblioteki</a>
-                        <a href="#" class="nav-item nav-link">O nas</a>
-                        <a href="#" class="nav-item nav-link">Reguły</a>
-
-                    </nav>
-                </section>
-            </div>
-
-            <div class="row odsunieta_gora_dol" style="border:1px solid blue;">
-                <app-root></app-root>
-            </div>
-            <br>
+        <section class="container">
+            <section class="row">
+                <nav class="nav justify-content-start col-12 z-depth-1 rounded">
+                    <a href="#" class="nav-item nav-link active">O projekcie</a>
+                    <a href="#" class="nav-item nav-link">Biblioteki</a>
+                    <a href="#" class="nav-item nav-link">O mnie</a>
+                    <a href="#" class="nav-item nav-link">Aplikacja <i class="fas fa-play-circle"></i>
+                        </a>
+                </nav>
+            </section>
+        </section>
+        <!--tresc-->
+        <section class="tresc">
+            <app-root></app-root>
         </section>
 
-        <footer>
-
-            <!--
-
-                <div style="width:30%;float:left;">
-                    <div class="container">
-                        <div class="row">
-                            <div class="far fa-envelope ikonka col-3"></div>
-                            <div class="col-4">Warszawa</div>
-                        </div>
-
-                        <div class="row">
-                            <i class="fas fa-phone-square ikonka col-3"></i>
-                            <span class="col-4">504-00-31-31</span>
-                        </div>
-
-                        <div class="row">
-                            <i class="fas fa-at ikonka col-3"></i>
-                            <span class="col-4">mw.wojcik@gmail.com</span>
-                        </div>
-                    </div>
-                </div>
-
-
-
-                <div style="width:30%;float:left;">
-                    <div class="container">
-                        <div class="row">
-                            <i class="far fa-address-card ikonka col-3"></i>
-                            <a class="col-3" href="assets/img/mw-cv.pdf">CV</a>
-                        </div>
-
-                        <div class="row">
-                            <i class="fab fa-github ikonka col-3"></i>
-                            <a class="col-3" style="" href="https://github.com/mwwojcik">GitHub</a>
-                        </div>
-
-                    </div>
-                </div>
-                <div style="width:30%;float:left;">
-                    <div class="container">
-
-                        <div class="row">
-                            <i class="fab fa-blogger ikonka col-4"></i>
-                            <a class="col-4" href="http://mariuszwojcik.blogspot.com/">Java Zone</a>
-                        </div>
-
-                        <div class="row">
-                            <i class="fab fa-facebook-square ikonka col-4"></i>
-                            <a class="col-4" href="https://www.facebook.com/mwa.mw">Facebook</a>
-                        </div>
-                    </div>
-                </div>
-
-            </div>    -->
+        <footer class="container z-depth-1 rounded  font-small gray">
+            <div class="footer-copyright text-center py-3">© 2018 Copyright:
+                <a href="mailto:mw.wojcik@gmail.com">mw.wojcik@gmail.com</a>
+              </div>
         </footer>
     </div>
 </body>
