@@ -20,7 +20,7 @@ h1,h2,h3,h4,h5,h6{
 .glowny{    
     padding: 10px;
     min-height: 800px;
-    max-width: 1100 px;
+    width: 1024 px;
 }
 
  header {
