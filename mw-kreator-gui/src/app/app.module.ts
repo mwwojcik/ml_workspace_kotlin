@@ -8,6 +8,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { OprojekcieComponent } from './oprojekcie/oprojekcie.component';
 import { BibliotekiComponent } from './biblioteki/biblioteki.component';
 import { MenuGlowneComponent } from './menu-glowne/menu-glowne.component';
+import { AppListaRegulComponent } from './app-lista-regul/app-lista-regul.component';
+import { AppRegulaComponent } from './app-regula/app-regula.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { MenuGlowneComponent } from './menu-glowne/menu-glowne.component';
     AplikacjaKreatorRegulComponent,
     OprojekcieComponent,
     BibliotekiComponent,
-    MenuGlowneComponent
+    MenuGlowneComponent,
+    AppListaRegulComponent,
+    AppRegulaComponent
   ],
   imports: [
     BrowserModule,
