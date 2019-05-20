@@ -6,29 +6,25 @@ body{
     font-size: 16px;
     background-color: #fff;
     width:100%;
-    height: 100%;
+    height: 100vh;
 }
 
 html{
     width:100%;
-    height: 100%;
+    min-height: 100%;
 }
 
-html::before {
+html:before {
     background: #fff url(assets/img/kropla-wody-tlo.jpg) fixed no-repeat;
-
     background-size: cover;
-
     background-position: center center;
     content: "";
     display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
+    position: fixed;
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
     z-index: -4;
-    opacity: 0.3;
+    opacity: 0.5;
     }
 
 h1,h2,h3,h4,h5,h6{
@@ -38,14 +34,14 @@ h1,h2,h3,h4,h5,h6{
 }
 
 
-.glowny{    
+.glowny{   
     padding: 10px;
     min-height: 800px;
     width:1024px;
     margin:auto;
-    border:1px solid red;
+    border:1px solid #aaa;
     background-color: white;
-    opacity:0.9;
+    opacity:0.86;
 }
 
 
