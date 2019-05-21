@@ -1,22 +1,22 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
-import { AppComponent } from './app.component';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
-import { OprojekcieComponent } from './oprojekcie/oprojekcie.component';
-import { BibliotekiComponent } from './biblioteki/biblioteki.component';
-
+import { AppComponent } from './app.component';
+import { LoginModule } from './login/login.module';
+import { LayoutModule } from './layout/layout.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    OprojekcieComponent,
-    BibliotekiComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
+    LoginModule,
+    LayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]
