@@ -2,29 +2,58 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
+import {RouterModule, Routes} from '@angular/router';
 
-import { AppRoutingModule } from './app-routing.module';
-import { OprojekcieComponent } from './oprojekcie/oprojekcie.component';
-import { BibliotekiComponent } from './biblioteki/biblioteki.component';
-import { NlpRegulyListaComponent } from './nlp-reguly-lista/nlp-reguly-lista.component';
-import { NlpRegulySzczegolyComponent } from './nlp-reguly-szczegoly/nlp-reguly-szczegoly.component';
-import { NlpRegulyAkcjeComponent } from './nlp-reguly-akcje/nlp-reguly-akcje.component';
+import { OprojekcieModule } from './oprojekcie/oprojekcie.module';
+import { BibliotekiModule } from './biblioteki/biblioteki.module';
+import  {LayoutModule} from './layout/layout.module'
 
+import {UkladGlownyTrescComponent} from './layout/uklad-glowny-tresc/uklad-glowny-tresc.component'
+import {MenuComponent} from './layout/menu/menu.component'
+import {StopkaComponent} from './layout/stopka/stopka.component'
+const routes: Routes = [
+  {
+    path: '',
+    redirectTo: '/oprojekcie',
+    pathMatch: 'full'
+  }
+];
 
 @NgModule({
   declarations: [
     AppComponent,
-    OprojekcieComponent,
-    BibliotekiComponent,
-    NlpRegulyListaComponent,
-    NlpRegulySzczegolyComponent,
-    NlpRegulyAkcjeComponent
+    UkladGlownyTrescComponent,
+    MenuComponent,
+    StopkaComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
+    RouterModule.forRoot(routes),
+    OprojekcieModule,
+    BibliotekiModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+/*
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    RouterModule.forRoot(routes),
+    LayoutModule,
+    LoginModule,
+    DashboardModule,
+    RegistrationModule,
+    UsersModule,
+    AccountSettingsModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+
+*/ 
