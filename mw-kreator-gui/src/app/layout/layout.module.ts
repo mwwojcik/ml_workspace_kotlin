@@ -19,7 +19,8 @@ import { UkladGlownyTrescComponent } from './uklad-glowny-tresc/uklad-glowny-tre
     RouterModule.forChild([])
   ]
   , exports: [
-    UkladGlownyTrescComponent
+    UkladGlownyTrescComponent,
+    UkladGlownyAppComponent
   ]
 })
 export class LayoutModule { }
