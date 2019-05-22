@@ -1,3 +1,4 @@
+import { extend } from 'webdriver-js-extender';
 
 
 /**
@@ -33,6 +34,37 @@ class WywolanieReguly(val kodRegulyWolajacej: String
                       , var parametry: MutableList<ParametrWywolaniaReguly> = mutableListOf()
 )
  */
+export class ObiektBazowy {
+    id: number;
+    wersja: number;
+}
+
 export class RegulaBiznesowa {
     kod: string;
+}
+
+export class Parametr extends ObiektBazowy {
+    nazwa: string;
+    typ: string;
+    wartoscDomyslna: string;
+    czyUsuwalny: number = 0;
+}
+
+export class ParametrWywolaniaReguly extends ObiektBazowy {
+    nazwaParametruRegulyWolajacej: string;
+    nazwaParametruRegulyWolanej: string;
+}
+
+export class Regula extends ObiektBazowy {
+    kod: String
+    tresc: String
+    //sekwencja: Sekwencja;
+    parametry: Array<Parametr>;
+    wywolaniaRegul: Array<WywolanieReguly>;
+}
+
+class WywolanieReguly {
+    kodRegulyWolajacej: string;
+    kodRegulyWolanej: string;
+    parametry: Array<ParametrWywolaniaReguly>;
 }
