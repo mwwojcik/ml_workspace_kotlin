@@ -10,6 +10,7 @@ const routes: Routes = [
     path: 'nlp-reguly-szczegoly',
     component: UkladGlownyAppComponent,
     children: [
+      { path: '', component: NlpRegulySzczegolyComponent },
       { path: ':kod', component: NlpRegulySzczegolyComponent }
     ]
   }

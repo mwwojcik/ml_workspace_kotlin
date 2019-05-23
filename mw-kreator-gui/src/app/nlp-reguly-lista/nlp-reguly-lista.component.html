@@ -1,3 +1,11 @@
 <p>
   nlp-reguly-lista works!
 </p>
+
+<ul>
+  <li *ngFor="let regula of reguly"> 
+    <a [routerLink]="['/nlp-reguly-szczegoly']" [queryParams]="{kod: regula.kod}" queryParamsHandling="merge">
+      {{regula.kod}}
+    </a>
+  </li>
+</ul>

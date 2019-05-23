@@ -9,15 +9,22 @@ export class NlpRegulySzczegolyComponent implements OnInit {
 
   constructor(private route: ActivatedRoute) { }
   private sub: any;
-  private kod: number;
+  kod:string
 
   ngOnInit() {
-     this.sub = this.route.params.subscribe(params => {
+    //this.kod=this.route.snapshot.params.kod
 
-            this.kod= +params['kod'];
+    
+      this.sub = this.route.queryParams.subscribe(params => {
+      this.kod=params['kod']
+
+    //this.kod=this.route.snapshot.queryParams["kod"];
+    //this.kod= +params['kod'];
         });
   }
-  getKod(): number {
+  getKod(): string {
+    //const pKod =this.route.snapshot.queryParams["kod"];
+    console.log("getKod")
     return this.kod;
   }
 }

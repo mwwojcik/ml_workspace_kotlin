@@ -32,6 +32,17 @@ class ParametrWywolaniaReguly( var nazwaParametruRegulyWolajacej:String=""
 class WywolanieReguly(val kodRegulyWolajacej: String
                       , val kodRegulyWolanej: String
                       , var parametry: MutableList<ParametrWywolaniaReguly> = mutableListOf()
+
+
+                      class Sekwencja(val zdaniePierwotne:String, val tokeny:Array<String>,
+                val rozpoznaneTokeny:MutableList<RozpoznanyToken>
+                = mutableListOf<RozpoznanyToken>()) {
+
+
+                    class RozpoznanyToken(val lp:Int,val wartosc:String,val typ:RodzajTokenaEnum,val prob:Double) {
+
+    var kategoria:String?=null
+
 )
  */
 export class ObiektBazowy {
@@ -56,14 +67,30 @@ export class ParametrWywolaniaReguly extends ObiektBazowy {
 }
 
 export class Regula extends ObiektBazowy {
-    kod: String
-    tresc: String
-    //sekwencja: Sekwencja;
+    kod: string
+    tresc: string
+    sekwencja: Sekwencja;
     parametry: Array<Parametr>;
     wywolaniaRegul: Array<WywolanieReguly>;
 }
 
-class WywolanieReguly {
+class Sekwencja {
+    zdaniePierwotne: string;
+    postacKanoniczna:string;
+    tokeny: Array<string>;
+    rozpoznaneTokeny: Array<RozpoznanyToken>;
+    //komunikaty:Map<string,string>;
+}
+
+class RozpoznanyToken {
+    lp:number;
+    wartosc:string;
+    typ:string;
+    prob:number;
+    kategoria:string;
+}
+
+class WywolanieReguly  extends ObiektBazowy{
     kodRegulyWolajacej: string;
     kodRegulyWolanej: string;
     parametry: Array<ParametrWywolaniaReguly>;
