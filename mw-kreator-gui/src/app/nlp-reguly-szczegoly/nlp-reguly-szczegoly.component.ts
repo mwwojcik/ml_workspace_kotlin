@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { RegulyService } from '../reguly.service'
+import { Regula } from '../model';
 @Component({
   selector: 'app-nlp-reguly-szczegoly',
   templateUrl: './nlp-reguly-szczegoly.component.html',
@@ -7,24 +9,97 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class NlpRegulySzczegolyComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private regulyUsluga: RegulyService) { }
   private sub: any;
-  kod:string
+  public kod: string
+  public regula: Regula={ id: 1,
+    wersja: 2,
+    kod: "RS-001",
+    tresc: "Jeśli data1 jest równa '01-01-2000' wtedy wyświetlaj komunikat \"Podana data jest równa 01-01-2000\" ." ,
+    parametry:[],
+    wywolaniaRegul:[],
+    "sekwencja": {
+      "postacKanoniczna": "Jeśli data1 jest równa '01-01-2000' wtedy wyświetlaj komunikat KOMUNIKAT1 .",
+      "zdaniePierwotne": "Jeśli data1 jest równa '01-01-2000' wtedy wyświetlaj komunikat KOMUNIKAT1 .",
+      "tokeny": [
+          "Jeśli",
+          "data1",
+          "jest",
+          "równa",
+          "'01-01-2000'",
+          "wtedy",
+          "wyświetlaj",
+          "komunikat",
+          "KOMUNIKAT1",
+          "."
+      ],
+      "rozpoznaneTokeny": [
+          {
+              "kategoria": null,
+              "lp": 1,
+              "wartosc": "Jeśli ",
+              "typ": "POCZATEK_REGULY",
+              "prob": 0.19358072642932103
+          },
+          {
+              "kategoria": null,
+              "lp": 2,
+              "wartosc": "data1 ",
+              "typ": "LEWOSTRONNY_OPERAND_WARUNKU",
+              "prob": 0.1845057576128071
+          },
+          {
+              "kategoria": "==",
+              "lp": 3,
+              "wartosc": "jest równa ",
+              "typ": "OPETATOR_POROWNANIA",
+              "prob": 0.19175765455936755
+          },
+          {
+              "kategoria": null,
+              "lp": 4,
+              "wartosc": "'01-01-2000' ",
+              "typ": "PRAWOSTRONNY_OPERAND_WARUNKU",
+              "prob": 0.15456750082896537
+          },
+          {
+              "kategoria": null,
+              "lp": 5,
+              "wartosc": "wtedy ",
+              "typ": "KONIEC_REGULY",
+              "prob": 0.18938611298314553
+          },
+          {
+              "kategoria": "WYSWIETL_KOMUNIKAT",
+              "lp": 6,
+              "wartosc": "wyświetlaj komunikat ",
+              "typ": "AKCJA",
+              "prob": 0.18995680026582853
+          },
+          {
+              "kategoria": null,
+              "lp": 7,
+              "wartosc": "KOMUNIKAT1 ",
+              "typ": "PARAMETR_AKCJI",
+              "prob": 0.17290652945075932
+          }
+      ]
+  }
+  };
 
   ngOnInit() {
-    //this.kod=this.route.snapshot.params.kod
-
-    
-      this.sub = this.route.queryParams.subscribe(params => {
-      this.kod=params['kod']
-
-    //this.kod=this.route.snapshot.queryParams["kod"];
-    //this.kod= +params['kod'];
-        });
+    this.sub = this.route.queryParams.subscribe(params => {
+      this.kod = params['kod']
+      this.regula = this.regulyUsluga.podajRegulePoKodzie(this.kod);
+    });
   }
-  getKod(): string {
-    //const pKod =this.route.snapshot.queryParams["kod"];
-    console.log("getKod")
+  getKod(): string {    
+    console.log("getKod")    
     return this.kod;
+  }
+
+  getRegula():Regula{
+    this.regula=this.regulyUsluga.podajRegulePoKodzie(this.kod);
+    return this.regula;
   }
 }

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {REGULY} from '../reguly.mock'
-import {Regula} from '../model'
-import SampleJson from '../reguly.json';
+import { RegulyService } from '../reguly.service';
+import { Regula } from '../model'
 
 @Component({
   selector: 'app-nlp-reguly-lista',
@@ -10,17 +9,16 @@ import SampleJson from '../reguly.json';
 })
 export class NlpRegulyListaComponent implements OnInit {
 
-  reguly : Regula[];
+  reguly: Regula[];
 
-  getReguly(){
-    return this.reguly
+  getReguly() {
+    return this.reguly;
   }
 
-  constructor() { }
+  constructor(private regulyUsluga: RegulyService) { }
 
   ngOnInit() {
-    this.reguly=REGULY
-    this.reguly=SampleJson
+    this.reguly = this.regulyUsluga.podajReguly();
   }
 
 }
