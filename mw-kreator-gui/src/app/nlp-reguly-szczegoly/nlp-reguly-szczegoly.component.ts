@@ -10,9 +10,45 @@ import { Regula } from '../model';
 export class NlpRegulySzczegolyComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private regulyUsluga: RegulyService) { }
-  private sub: any;
-  public kod: string
-  public regula: Regula={ id: 1,
+ //private sub: any;
+ // public kod: string
+  public regula: Regula;
+
+  ngOnInit() {
+    /*this.route.queryParams.subscribe(params => {
+      this.kod = params['kod']
+    });
+    this.getRegula();*/
+    console.log("UTWORZONO")
+    this.getRegula();
+  }
+  /**getKod(): string {    
+    console.log("getKod")    
+    return this.kod;
+  }*/
+
+  getRegula():Regula{
+    var pKod:string;
+    this.route.queryParams.subscribe(params => {
+     pKod = params['kod']
+     console.log(pKod);
+    });
+    this.regulyUsluga.podajRegulePoKodzie(pKod).subscribe(aRegula =>{ this.regula = aRegula});
+    console.log("WYWOLANO")
+    return this.regula;
+
+    /*
+    const id = +this.route.snapshot.paramMap.get('id');
+    this.heroService.getHero(id)
+      .subscribe(hero => this.hero = hero);
+    */
+  }
+}
+
+
+/**
+ * 
+ { id: 1,
     wersja: 2,
     kod: "RS-001",
     tresc: "Jeśli data1 jest równa '01-01-2000' wtedy wyświetlaj komunikat \"Podana data jest równa 01-01-2000\" ." ,
@@ -86,20 +122,5 @@ export class NlpRegulySzczegolyComponent implements OnInit {
       ]
   }
   };
-
-  ngOnInit() {
-    this.sub = this.route.queryParams.subscribe(params => {
-      this.kod = params['kod']
-      this.regula = this.regulyUsluga.podajRegulePoKodzie(this.kod);
-    });
-  }
-  getKod(): string {    
-    console.log("getKod")    
-    return this.kod;
-  }
-
-  getRegula():Regula{
-    this.regula=this.regulyUsluga.podajRegulePoKodzie(this.kod);
-    return this.regula;
-  }
-}
+ * 
+ */
