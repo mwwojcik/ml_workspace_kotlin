@@ -1,5 +1,5 @@
 import { Injectable, OnInit } from '@angular/core';
-import { REGULY } from './reguly.mock'
+
 import { Regula } from './model'
 import SampleJson from './reguly.json';
 import { Observable, of } from 'rxjs';

@@ -27,12 +27,23 @@ html:before {
     opacity: 0.5;
     }
 
-h1,h2,h3,h4,h5,h6{
+h1,h2{
   font-family: 'Coiny', cursive; 
-  font-size: 0.5 em;
+  font-size:2em;
   color:#974405;
 }
 
+h3,h4{
+    font-family: 'Coiny', cursive; 
+    font-size:1.7em;
+    color:#974405;
+  }
+
+  h5,h6{
+    font-family: 'Coiny', cursive; 
+    font-size:1em;
+    color:#974405;
+  }
 
 .glowny{   
     padding: 10px;
@@ -41,7 +52,7 @@ h1,h2,h3,h4,h5,h6{
     margin:auto;
     border:1px solid #aaa;
     background-color: white;
-    opacity:0.86;
+    opacity:0.86;  
 }
 
 
@@ -100,9 +111,23 @@ nav{
 .tresc{
     margin-top:0px;
     min-height: 500px;
-    
+    font-size:0.9em;
 }
 
+.table{
+    margin-top:2em;
+}
+
+.table td{
+    padding:.2em !important;
+    font-size:.8em;
+}
+
+.table th{
+    padding:.2em !important;
+    background-color:#eee;
+    text-align: center;
+}
 
 a:hover,a:active{
     text-decoration: none;

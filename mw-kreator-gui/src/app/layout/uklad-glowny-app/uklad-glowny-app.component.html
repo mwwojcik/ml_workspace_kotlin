@@ -2,27 +2,28 @@
   <header class="container text-center">
   </header>
   <section class="container">
-      <section class="row">
-         <app-menu></app-menu>
-      </section>
+    <section class="row">
+      <app-menu></app-menu>
+    </section>
   </section>
 
-<div class="container">
-  <div class="row">
-    <section class="col-sm-3">
-      <h4 class="grupa_odsunieta">Reguły</h4>
-      <app-nlp-reguly-lista></app-nlp-reguly-lista>
-    </section>
+  <section class="container tresc" style="margin-top:2em;">
+    <div class="row">
+      <section class="col-2">
+        <!--<h4 class="grupa_odsunieta">Reguły</h4>-->
+        <app-nlp-reguly-lista></app-nlp-reguly-lista>
+      </section>
 
-    <section class="col-sm-8">
-      <h4 class="grupa_odsunieta">Analiza zdania</h4>
-      <!--<img class="card-img przezroczysty grupa_odsunieta" src="assets/img/4Fotos.png" alt="4Fotos">-->
-      <div class="card-body">
+      <section class="col-8">
+        <!--<h4 class="grupa_odsunieta">Analiza zdania</h4>-->
+        <!--<img class="card-img przezroczysty grupa_odsunieta" src="assets/img/4Fotos.png" alt="4Fotos">-->
         <router-outlet></router-outlet>
-      </div>
-    </section>
 
-    <!--<section class="col-sm-2">
+      </section>
+
+      <section class="col-2"></section>
+
+      <!--<section class="col-sm-2">
 
 
       
@@ -44,9 +45,9 @@
 
     </section>-->
 
-  </div>
-</div>
+    </div>
+  </section>
 
-<app-stopka></app-stopka>
+  <app-stopka></app-stopka>
 
 </div>

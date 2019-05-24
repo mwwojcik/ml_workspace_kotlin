@@ -1,9 +1,43 @@
+<h3>{{regula.kod}}</h3>
+<h5>{{regula.tresc}} </h5>
 
-  <h1>{{regula.kod}}</h1>
-  <h6>{{regula.tresc}} </h6>
-  <table class="table table-striped">
-  <tr>
-    <td class="col"></td>
-  </tr>
-</table>
+<!--<p>
+  {{regula.sekwencja.postacKanoniczna}}
+</p>-->
 
+
+
+  <table class="table table-bordered">
+    <tr>
+      <th colspan="2"> <h6>Wyodrębnione komunikaty </h6></th>
+    </tr>
+    <tr *ngFor="let komunikat of regula.sekwencja.komunikaty | keyvalue">
+      <td>{{komunikat.key}}</td>
+      <td>{{komunikat.value}}</td>
+    </tr>
+  </table>
+
+
+  <table class="table table-bordered">
+      <tr>
+        <th colspan="4"> <h6>Rozpoznane tokeny </h6></th>
+      </tr>
+      <tr *ngFor="let token of regula.sekwencja.rozpoznaneTokeny">
+          <td>{{token.wartosc}}</td>
+          <td>{{token.typ}}</td>
+          <td>{{token.prob}}</td>
+          <td>{{token.kategoria}}</td>
+  
+      </tr>
+    </table>
+
+    <table class="table table-bordered">
+        <tr>
+          <th colspan="3"> <h6>Rozpoznane parametry wejściowe </h6></th>
+        </tr>
+        <tr *ngFor="let parametr of regula.parametry">
+            <td>{{parametr.nazwa}}</td>
+            <td>{{parametr.typ}}</td>
+            <td>{{parametr.wartoscDomyslna}}</td>   
+        </tr>
+      </table>

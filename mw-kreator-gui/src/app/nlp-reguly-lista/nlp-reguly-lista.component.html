@@ -2,7 +2,7 @@
   <li class="list-group-item d-flex justify-content-center align-items-center" *ngFor="let regula of reguly"> 
     <a [routerLink]="['/nlp-reguly-szczegoly']" [queryParams]="{kod: regula.kod}" queryParamsHandling="merge">
       {{regula.kod}}
-      <span class="badge badge-success badge-pill" style="margin-left:30px;"><i class="fa fa-check"></i></span>
+      <span class="badge badge-success badge-pill" style="margin-left:.1em;" ><i class="fa fa-check"></i></span>
     </a>
   </li>
 </ul>
