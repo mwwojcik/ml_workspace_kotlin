@@ -27,6 +27,7 @@ export class NlpRegulySzczegolyComponent implements OnInit {
     });
     return this.regula;
   }
+
+
+
 }
-
-

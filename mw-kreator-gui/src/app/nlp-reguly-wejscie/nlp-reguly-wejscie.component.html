@@ -1,5 +1,5 @@
 <div class="nav justify-content-end">
-  <a class="btn btn-default btn-sm mr-2" href="#">Dodaj</a>
+  <a class="btn btn-default btn-sm mr-2" data-toggle="modal" data-target="#exampleModalLong">Dodaj</a>
   <a class="btn btn-default btn-sm" href="#">Anuluj</a>
   <a class="btn btn-default btn-sm" href="#">Zapisz</a>
 </div>
@@ -10,6 +10,39 @@
   <tr *ngFor="let regula of reguly">
     <td class="col-1">{{regula.kod}}</td>
     <td class="col-10">{{regula.tresc}}</td>
-    <td class="col-1"><button type="button" class="btn btn-warning btn-sm"><i class="fas fa-trash-alt"></i></button> </td>
+    <td class="col-1"><button type="button" class="btn btn-warning btn-sm" (click)="usunRegule(regula.kod)"><i class="fas fa-trash-alt"></i></button> </td>
   </tr>
 </table>
+
+
+
+
+
+
+<!-- Button trigger modal
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
+  Launch demo modal
+</button>-->
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true"  style="z-index: 1041;">
+<form [formGroup]="addForm" (ngSubmit)="dodajRegule()">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Anuluj</button>
+        <button type="submit" class="btn btn-primary btn-sm">Zapisz</button>
+      </div>
+    </div>
+  </div>
+</form>
+</div>

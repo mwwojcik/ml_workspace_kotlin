@@ -152,6 +152,7 @@ footer{
         height: 60px;
 }
 
-w-15{
-  width:15%;
+/*Uwaga! bez tego nie działa okno modalne!*/
+.modal-backdrop {
+  z-index: -1;
 }

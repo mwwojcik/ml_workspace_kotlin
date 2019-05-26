@@ -26,6 +26,8 @@ import {NlpRegulySzczegolyComponent} from './nlp-reguly-szczegoly/nlp-reguly-szc
 import {NlpRegulyWejscieComponent } from './nlp-reguly-wejscie/nlp-reguly-wejscie.component';
 import { NlpRegulyListaInfoComponent } from './nlp-reguly-lista-info/nlp-reguly-lista-info.component'
 
+import { FormsModule, ReactiveFormsModule} from '@angular/forms';
+
 const routes: Routes = [
   {
     path: '',
@@ -57,7 +59,9 @@ const routes: Routes = [
     NlpRegulyListaModule,
     NlpRegulySzczegolyModule,
     NlpRegulyWejscieModule,
-    NlpRegulyListaInfoModule
+    NlpRegulyListaInfoModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
