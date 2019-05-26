@@ -23,8 +23,8 @@
       <th colspan="2"> <h6>Wyodrębnione komunikaty </h6></th>
     </tr>
     <tr *ngFor="let komunikat of regula.sekwencja.komunikaty | keyvalue">
-      <td>{{komunikat.key}}</td>
-      <td>{{komunikat.value}}</td>
+      <td class="col-4">{{komunikat.key}}</td>
+      <td class="col-8">{{komunikat.value}}</td>
     </tr>
   </table>
 
@@ -40,10 +40,10 @@
           <th><h6>Kategoria</h6></th>
       </tr>
       <tr *ngFor="let token of regula.sekwencja.rozpoznaneTokeny">
-          <td>{{token.wartosc}}</td>
-          <td>{{token.typ}}</td>
-          <td>{{token.prob | number:'1.3'}}</td>
-          <td>{{token.kategoria}}</td>
+          <td class="col-4">{{token.wartosc}}</td>
+          <td class="col-5">{{token.typ}}</td>
+          <td class="col-1">{{token.prob | number:'1.3'}}</td>
+          <td class="col-2">{{token.kategoria}}</td>
 
       </tr>
     </table>
@@ -58,9 +58,9 @@
             <th><h6>Domyślnie</h6></th>
         </tr>
         <tr *ngFor="let parametr of regula.parametry">
-            <td>{{parametr.nazwa}}</td>
-            <td>{{parametr.typ}}</td>
-            <td>{{parametr.wartoscDomyslna}}</td>
+            <td class="col-4">{{parametr.nazwa}}</td>
+            <td class="col-4">{{parametr.typ}}</td>
+            <td class="col-4">{{parametr.wartoscDomyslna}}</td>
         </tr>
       </table>
 
