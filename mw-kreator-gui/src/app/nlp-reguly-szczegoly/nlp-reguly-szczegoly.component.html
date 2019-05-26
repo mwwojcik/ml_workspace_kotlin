@@ -1,7 +1,7 @@
 
 
 
-<table class="table table-bordered">
+<table class="table table-bordered  table-sm">
   <tr>
     <th> <h6>Reguła wejściowa</h6></th>
   </tr>
@@ -18,7 +18,7 @@
 
 
 
-  <table class="table table-bordered">
+  <table class="table table-bordered  table-sm">
     <tr>
       <th colspan="2"> <h6>Wyodrębnione komunikaty </h6></th>
     </tr>
@@ -29,22 +29,33 @@
   </table>
 
 
-  <table class="table table-bordered">
+  <table class="table table-bordered table-sm">
       <tr>
         <th colspan="4"> <h6>Rozpoznane tokeny </h6></th>
+      </tr>
+      <tr>
+          <th><h6>Token</h6></th>
+          <th><h6>Wartość logiczna</h6></th>
+          <th><h6>Prawd.</h6></th>
+          <th><h6>Kategoria</h6></th>
       </tr>
       <tr *ngFor="let token of regula.sekwencja.rozpoznaneTokeny">
           <td>{{token.wartosc}}</td>
           <td>{{token.typ}}</td>
-          <td>{{token.prob}}</td>
+          <td>{{token.prob | number:'1.3'}}</td>
           <td>{{token.kategoria}}</td>
 
       </tr>
     </table>
 
-    <table class="table table-bordered">
+    <table class="table table-bordered  table-sm">
         <tr>
           <th colspan="3"> <h6>Rozpoznane parametry wejściowe </h6></th>
+        </tr>
+        <tr>
+            <th><h6>Parametr</h6></th>
+            <th><h6>Typ</h6></th>
+            <th><h6>Domyślnie</h6></th>
         </tr>
         <tr *ngFor="let parametr of regula.parametry">
             <td>{{parametr.nazwa}}</td>

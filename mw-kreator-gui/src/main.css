@@ -1,17 +1,20 @@
 @import url('https://fonts.googleapis.com/css?family=Lato|Coiny');
 
 body{
-    font-family: 'Lato', sans-serif;
-    line-height: 2em;
-    font-size: 16px;
+
     background-color: #fff;
     width:100%;
     height: 100vh;
+    /*color: #747373*/
+    color:#444;
 }
 
 html{
+    font-family: 'Lato', sans-serif;
+    line-height:1.5em;
     width:100%;
     min-height: 100%;
+    font-size: 14px;
 }
 
 html:before {
@@ -28,39 +31,45 @@ html:before {
     }
 
 h1,h2{
-  font-family: 'Coiny', cursive; 
-  font-size:2em;
+  font-family: 'Coiny', cursive;
+  font-size:2rem;
   color:#974405;
 }
 
 h3,h4{
-    font-family: 'Coiny', cursive; 
-    font-size:1.7em;
+    font-family: 'Coiny', cursive;
+    font-size:1.7rem;
     color:#974405;
   }
 
   h5,h6{
-    font-family: 'Coiny', cursive; 
-    font-size:1em;
+    font-family: 'Coiny', cursive;
+    font-size:1rem;
     color:#974405;
   }
 
-.glowny{   
+  strong{
+    font-family: 'Coiny', cursive;
+    font-size:1rem;
+    color:#974405;
+  }
+
+.glowny{
     padding: 10px;
     min-height: 800px;
     width:1024px;
     margin:auto;
     border:1px solid #aaa;
     background-color: white;
-    opacity:0.86;  
+    opacity:0.86;
 }
 
 
-    
+
 
  header {
       background: url(assets/img/projekt-naglowka.png) no-repeat ;
-      height: 320px;     
+      height: 320px;
       margin-top:90px;
       opacity:0.7;
     }
@@ -86,7 +95,7 @@ h3,h4{
 }
 
 .sekcja_prezentacja{
-    padding:2em;    
+    padding:2em;
     color:#974405;
 }
 
@@ -100,7 +109,7 @@ h3,h4{
 
 a{
     display:inline;
-    text-decoration: none;    
+    text-decoration: none;
     color:#974405;
 }
 
@@ -111,23 +120,27 @@ nav{
 .tresc{
     margin-top:0px;
     min-height: 500px;
-    font-size:0.9em;
+    /*font-size:0.9em;*/
+
 }
 
 .table{
     margin-top:2em;
+    color:inherit !important;
 }
 
 .table td{
-    padding:.2em !important;
-    font-size:.8em;
+  /*  padding:.2em !important;*/
+
 }
 
+
 .table th{
-    padding:.2em !important;
     background-color:#eee;
     text-align: center;
 }
+
+
 
 a:hover,a:active{
     text-decoration: none;
@@ -139,22 +152,6 @@ footer{
         height: 60px;
 }
 
-
-.fa-1x {
-    font-size: 1.5rem;
-    }
-    .navbar-toggler.toggler-example {
-    cursor: pointer;
-    }
-    .dark-blue-text {
-    color: #0A38F5;
-    }
-    .dark-pink-text {
-    color: #AC003A;
-    }
-    .dark-amber-text {
-    color: #ff6f00;
-    }
-    .dark-teal-text {
-    color: #004d40;
-    }
+w-15{
+  width:15%;
+}

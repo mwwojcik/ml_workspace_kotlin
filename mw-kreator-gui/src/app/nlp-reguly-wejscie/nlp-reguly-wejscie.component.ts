@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { RegulyService } from '../reguly.service';
+import { Regula } from '../model'
 
 @Component({
   selector: 'app-nlp-reguly-wejscie',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NlpRegulyWejscieComponent implements OnInit {
 
-  constructor() { }
+  reguly: Regula[];
 
-  ngOnInit() {
+  getReguly() {
+    return this.reguly;
   }
 
+  constructor(private regulyUsluga: RegulyService) { }
+
+  ngOnInit() {
+    this.regulyUsluga.podajReguly()
+    .subscribe(aReguly => this.reguly = aReguly);
+  }
 }
