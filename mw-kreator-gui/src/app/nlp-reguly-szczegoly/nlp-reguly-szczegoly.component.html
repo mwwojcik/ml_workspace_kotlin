@@ -1,6 +1,17 @@
-<h3>{{regula.kod}}</h3>
-<h5>{{regula.tresc}} </h5>
 
+
+
+<table class="table table-bordered">
+  <tr>
+    <th> <h6>Reguła wejściowa</h6></th>
+  </tr>
+  <tr>
+    <td><h3>{{regula.kod}}</h3></td>
+  </tr>
+  <tr>
+    <td><h5>{{regula.tresc}} </h5></td>
+  </tr>
+  </table>
 <!--<p>
   {{regula.sekwencja.postacKanoniczna}}
 </p>-->
@@ -27,7 +38,7 @@
           <td>{{token.typ}}</td>
           <td>{{token.prob}}</td>
           <td>{{token.kategoria}}</td>
-  
+
       </tr>
     </table>
 
@@ -38,6 +49,18 @@
         <tr *ngFor="let parametr of regula.parametry">
             <td>{{parametr.nazwa}}</td>
             <td>{{parametr.typ}}</td>
-            <td>{{parametr.wartoscDomyslna}}</td>   
+            <td>{{parametr.wartoscDomyslna}}</td>
         </tr>
       </table>
+
+
+      <!--<table class="table table-bordered">
+          <tr>
+            <th colspan="3"> <h6>Rozpoznane wywołania innych reguł </h6></th>
+          </tr>
+          <tr *ngFor="let wywolanie of regula.wywolaniaRegul">
+              <td>{{parametr.nazwa}}</td>
+              <td>{{parametr.typ}}</td>
+              <td>{{parametr.wartoscDomyslna}}</td>
+          </tr>
+        </table>-->

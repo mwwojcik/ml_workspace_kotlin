@@ -19,7 +19,7 @@ export class NlpRegulyListaComponent implements OnInit {
 
   ngOnInit() {
     this.regulyUsluga.podajReguly()
-    .subscribe(aReguly => this.reguly = aReguly);  
+    .subscribe(aReguly => this.reguly = aReguly);
   }
 
 }

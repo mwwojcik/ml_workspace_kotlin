@@ -3,16 +3,16 @@ import { CommonModule } from '@angular/common';
 
 
 import {UkladGlownyAppComponent} from '../layout/uklad-glowny-app/uklad-glowny-app.component'
-import { NlpRegulyListaComponent } from './nlp-reguly-lista.component';
+import { NlpRegulyListaInfoComponent } from './nlp-reguly-lista-info.component';
 import { Routes, RouterModule } from '@angular/router';
 
 
 const routes: Routes = [
   {
-    path: 'nlp-reguly-lista',
+    path: 'nlp-reguly-lista-info',
     component: UkladGlownyAppComponent,
     children: [
-      { path: '', component: NlpRegulyListaComponent }
+      { path: '', component: NlpRegulyListaInfoComponent }
     ]
   }
 ];
@@ -21,7 +21,7 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class NlpRegulyListaRoutingModule implements OnInit{
+export class NlpRegulyListaInfoRoutingModule implements OnInit{
 
   constructor() {
 

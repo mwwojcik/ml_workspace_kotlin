@@ -7,13 +7,18 @@ import { NaglowekComponent } from './naglowek/naglowek.component';
 import { StopkaComponent } from './stopka/stopka.component';
 import { UkladGlownyAppComponent } from './uklad-glowny-app/uklad-glowny-app.component';
 import { UkladGlownyTrescComponent } from './uklad-glowny-tresc/uklad-glowny-tresc.component';
+import { UkladGlownyAppWejscieComponent } from './uklad-glowny-app-wejscie/uklad-glowny-app-wejscie.component';
+import { MenuZmianaTrybuAppComponent } from './menu-zmiana-trybu-app/menu-zmiana-trybu-app.component';
+
 
 @NgModule({
   declarations: [MenuComponent,
     NaglowekComponent,
     StopkaComponent,
     UkladGlownyAppComponent,
-    UkladGlownyTrescComponent],
+    UkladGlownyTrescComponent,
+    UkladGlownyAppWejscieComponent,
+    MenuZmianaTrybuAppComponent],
   imports: [
     CommonModule,
     RouterModule.forChild([])

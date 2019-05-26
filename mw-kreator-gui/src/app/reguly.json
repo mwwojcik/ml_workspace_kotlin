@@ -101,7 +101,7 @@
         "tresc": "Jeśli data nie jest większa od '01-01-2000' wtedy waliduj regułę RS-001 .",
         "sekwencja": {
             "postacKanoniczna": "Jeśli data nie jest większa od '01-01-2000' wtedy waliduj regułę RS-001 .",
-            "komunikaty": {},
+            "komunikaty": null,
             "zdaniePierwotne": "Jeśli data nie jest większa od '01-01-2000' wtedy waliduj regułę RS-001 .",
             "tokeny": [
                 "Jeśli",
@@ -217,7 +217,7 @@
         "tresc": "Jeśli nachylenie nie jest mniejsze niż 30 wtedy wyświetl komunikat <KOMUNIKAT1> .",
         "sekwencja": {
             "postacKanoniczna": "Jeśli nachylenie nie jest mniejsze niż 30 wtedy wyświetl komunikat <KOMUNIKAT1> .",
-            "komunikaty": {},
+            "komunikaty": null,
             "zdaniePierwotne": "Jeśli nachylenie nie jest mniejsze niż 30 wtedy wyświetl komunikat <KOMUNIKAT1> .",
             "tokeny": [
                 "Jeśli",
@@ -312,7 +312,7 @@
         "tresc": "Jeśli data jest różna od '01-01-2000' wtedy wyświetl komunikat <KOMUNIKAT1> .",
         "sekwencja": {
             "postacKanoniczna": "Jeśli data jest różna od '01-01-2000' wtedy wyświetl komunikat <KOMUNIKAT1> .",
-            "komunikaty": {},
+            "komunikaty": null,
             "zdaniePierwotne": "Jeśli data jest różna od '01-01-2000' wtedy wyświetl komunikat <KOMUNIKAT1> .",
             "tokeny": [
                 "Jeśli",
@@ -406,7 +406,7 @@
         "tresc": "Jeśli data jest mniejsza niż '01-01-2000' wtedy wyświetl komunikat <KOMUNIKAT1> .",
         "sekwencja": {
             "postacKanoniczna": "Jeśli data jest mniejsza niż '01-01-2000' wtedy wyświetl komunikat <KOMUNIKAT1> .",
-            "komunikaty": {},
+            "komunikaty": null,
             "zdaniePierwotne": "Jeśli data jest mniejsza niż '01-01-2000' wtedy wyświetl komunikat <KOMUNIKAT1> .",
             "tokeny": [
                 "Jeśli",
@@ -500,7 +500,7 @@
         "tresc": "Jeśli nachylenie jest mniejsze od 30 wtedy wyświetl komunikat <KOMUNIKAT1> .",
         "sekwencja": {
             "postacKanoniczna": "Jeśli nachylenie jest mniejsze od 30 wtedy wyświetl komunikat <KOMUNIKAT1> .",
-            "komunikaty": {},
+            "komunikaty": null,
             "zdaniePierwotne": "Jeśli nachylenie jest mniejsze od 30 wtedy wyświetl komunikat <KOMUNIKAT1> .",
             "tokeny": [
                 "Jeśli",
@@ -594,7 +594,7 @@
         "tresc": "Jeśli dochód jest większy niż 100 wtedy wyświetl komunikat <KOMUNIKAT1> .",
         "sekwencja": {
             "postacKanoniczna": "Jeśli dochód jest większy niż 100 wtedy wyświetl komunikat <KOMUNIKAT1> .",
-            "komunikaty": {},
+            "komunikaty": null,
             "zdaniePierwotne": "Jeśli dochód jest większy niż 100 wtedy wyświetl komunikat <KOMUNIKAT1> .",
             "tokeny": [
                 "Jeśli",
@@ -688,7 +688,7 @@
         "tresc": "Jeżeli suma jest mniejsza od 50 to wyświetl komunikat <KOMUNIKAT1> .",
         "sekwencja": {
             "postacKanoniczna": "Jeżeli suma jest mniejsza od 50 to wyświetl komunikat <KOMUNIKAT1> .",
-            "komunikaty": {},
+            "komunikaty": null,
             "zdaniePierwotne": "Jeżeli suma jest mniejsza od 50 to wyświetl komunikat <KOMUNIKAT1> .",
             "tokeny": [
                 "Jeżeli",
@@ -782,7 +782,7 @@
         "tresc": "Jeżeli suma jest różna od 50 to wyświetl komunikat <KOMUNIKAT1> .",
         "sekwencja": {
             "postacKanoniczna": "Jeżeli suma jest różna od 50 to wyświetl komunikat <KOMUNIKAT1> .",
-            "komunikaty": {},
+            "komunikaty": null,
             "zdaniePierwotne": "Jeżeli suma jest różna od 50 to wyświetl komunikat <KOMUNIKAT1> .",
             "tokeny": [
                 "Jeżeli",
@@ -876,7 +876,7 @@
         "tresc": "Jeśli dochód jest mniejszy od 100 wtedy wyświetl komunikat <KOMUNIKAT1> .",
         "sekwencja": {
             "postacKanoniczna": "Jeśli dochód jest mniejszy od 100 wtedy wyświetl komunikat <KOMUNIKAT1> .",
-            "komunikaty": {},
+            "komunikaty": null,
             "zdaniePierwotne": "Jeśli dochód jest mniejszy od 100 wtedy wyświetl komunikat <KOMUNIKAT1> .",
             "tokeny": [
                 "Jeśli",
@@ -970,7 +970,7 @@
         "tresc": "Jeżeli suma  jest większa od 50 to wyświetl komunikat <KOMUNIKAT1> .",
         "sekwencja": {
             "postacKanoniczna": "Jeżeli suma jest większa od 50 to wyświetl komunikat <KOMUNIKAT1> .",
-            "komunikaty": {},
+            "komunikaty": null,
             "zdaniePierwotne": "Jeżeli suma jest większa od 50 to wyświetl komunikat <KOMUNIKAT1> .",
             "tokeny": [
                 "Jeżeli",
@@ -1064,7 +1064,7 @@
         "tresc": "Jeżeli suma jest różna od 50 to wyświetl komunikat <KOMUNIKAT1> .",
         "sekwencja": {
             "postacKanoniczna": "Jeżeli suma jest różna od 50 to wyświetl komunikat <KOMUNIKAT1> .",
-            "komunikaty": {},
+            "komunikaty": null,
             "zdaniePierwotne": "Jeżeli suma jest różna od 50 to wyświetl komunikat <KOMUNIKAT1> .",
             "tokeny": [
                 "Jeżeli",
@@ -1158,7 +1158,7 @@
         "tresc": "Jeśli rok nie jest równy 2000 to wyświetl komunikat <KOMUNIKAT1> .",
         "sekwencja": {
             "postacKanoniczna": "Jeśli rok nie jest równy 2000 to wyświetl komunikat <KOMUNIKAT1> .",
-            "komunikaty": {},
+            "komunikaty": null,
             "zdaniePierwotne": "Jeśli rok nie jest równy 2000 to wyświetl komunikat <KOMUNIKAT1> .",
             "tokeny": [
                 "Jeśli",
@@ -1252,7 +1252,7 @@
         "tresc": "Jeśli rok jest większy niż 2000 wtedy wyświetl komunikat <KOMUNIKAT1> .",
         "sekwencja": {
             "postacKanoniczna": "Jeśli rok jest większy niż 2000 wtedy wyświetl komunikat <KOMUNIKAT1> .",
-            "komunikaty": {},
+            "komunikaty": null,
             "zdaniePierwotne": "Jeśli rok jest większy niż 2000 wtedy wyświetl komunikat <KOMUNIKAT1> .",
             "tokeny": [
                 "Jeśli",
@@ -1346,7 +1346,7 @@
         "tresc": "Jeśli miesiąc jest mniejszy niż styczeń to wyświetl komunikat <KOMUNIKAT1> .",
         "sekwencja": {
             "postacKanoniczna": "Jeśli miesiąc jest mniejszy niż styczeń to wyświetl komunikat <KOMUNIKAT1> .",
-            "komunikaty": {},
+            "komunikaty": null,
             "zdaniePierwotne": "Jeśli miesiąc jest mniejszy niż styczeń to wyświetl komunikat <KOMUNIKAT1> .",
             "tokeny": [
                 "Jeśli",
@@ -1440,7 +1440,7 @@
         "tresc": "Jeśli data jest mniejsza od '01-01-2019' to zgłoś błąd <KOMUNIKAT1> .",
         "sekwencja": {
             "postacKanoniczna": "Jeśli data jest mniejsza od '01-01-2019' to zgłoś błąd <KOMUNIKAT1> .",
-            "komunikaty": {},
+            "komunikaty": null,
             "zdaniePierwotne": "Jeśli data jest mniejsza od '01-01-2019' to zgłoś błąd <KOMUNIKAT1> .",
             "tokeny": [
                 "Jeśli",
@@ -1534,7 +1534,7 @@
         "tresc": "Jeśli dzień nie jest równy wczoraj to zgłoś błąd <KOMUNIKAT1> .",
         "sekwencja": {
             "postacKanoniczna": "Jeśli dzień nie jest równy wczoraj to zgłoś błąd <KOMUNIKAT1> .",
-            "komunikaty": {},
+            "komunikaty": null,
             "zdaniePierwotne": "Jeśli dzień nie jest równy wczoraj to zgłoś błąd <KOMUNIKAT1> .",
             "tokeny": [
                 "Jeśli",
@@ -1724,7 +1724,7 @@
         "tresc": "Jeśli data_utworzenia jest większa od '01-01-2010' i data_utworzenia jest większa  niż data_kwalifikacji to zgłoś błąd walidacji <KOMUNIKAT_WALIDACJI_1> .",
         "sekwencja": {
             "postacKanoniczna": "Jeśli data_utworzenia jest większa od '01-01-2010' i data_utworzenia jest większa niż data_kwalifikacji to zgłoś błąd walidacji <KOMUNIKAT_WALIDACJI_1> .",
-            "komunikaty": {},
+            "komunikaty": null,
             "zdaniePierwotne": "Jeśli data_utworzenia jest większa od '01-01-2010' i data_utworzenia jest większa niż data_kwalifikacji to zgłoś błąd walidacji <KOMUNIKAT_WALIDACJI_1> .",
             "tokeny": [
                 "Jeśli",
@@ -1861,7 +1861,7 @@
         "tresc": "Jeśli data_utworzenia jest większa od '01-01-2010' oraz data_utworzenia jest mniejsza niż data_kwalifikacji to zgłoś błąd walidacji <KOMUNIKAT_WALIDACJI_1> .",
         "sekwencja": {
             "postacKanoniczna": "Jeśli data_utworzenia jest większa od '01-01-2010' oraz data_utworzenia jest mniejsza niż data_kwalifikacji to zgłoś błąd walidacji <KOMUNIKAT_WALIDACJI_1> .",
-            "komunikaty": {},
+            "komunikaty": null,
             "zdaniePierwotne": "Jeśli data_utworzenia jest większa od '01-01-2010' oraz data_utworzenia jest mniejsza niż data_kwalifikacji to zgłoś błąd walidacji <KOMUNIKAT_WALIDACJI_1> .",
             "tokeny": [
                 "Jeśli",
@@ -1998,7 +1998,7 @@
         "tresc": "Jeśli nachylenie jest mniejsze od 30 wtedy wyświetl komunikat <KOMUNIKAT_0> .",
         "sekwencja": {
             "postacKanoniczna": "Jeśli nachylenie jest mniejsze od 30 wtedy wyświetl komunikat <KOMUNIKAT_0> .",
-            "komunikaty": {},
+            "komunikaty": null,
             "zdaniePierwotne": "Jeśli nachylenie jest mniejsze od 30 wtedy wyświetl komunikat <KOMUNIKAT_0> .",
             "tokeny": [
                 "Jeśli",
@@ -2092,7 +2092,7 @@
         "tresc": "Jeśli nachylenie jest mniejsze niż 30 wtedy wyświetl komunikat <KOMUNIKAT_0> w przeciwnym wypadku wyświetl komunikat <KOMUNIKAT2> .",
         "sekwencja": {
             "postacKanoniczna": "Jeśli nachylenie jest mniejsze niż 30 wtedy wyświetl komunikat <KOMUNIKAT_0> w przeciwnym wypadku wyświetl komunikat <KOMUNIKAT2> .",
-            "komunikaty": {},
+            "komunikaty": null,
             "zdaniePierwotne": "Jeśli nachylenie jest mniejsze niż 30 wtedy wyświetl komunikat <KOMUNIKAT_0> w przeciwnym wypadku wyświetl komunikat <KOMUNIKAT2> .",
             "tokeny": [
                 "Jeśli",
@@ -3257,7 +3257,7 @@
         "tresc": "Jeśli nachylenie nie jest mniejsze niż 40 wtedy wyświetl komunikat <KOMUNIKAT1> .",
         "sekwencja": {
             "postacKanoniczna": "Jeśli nachylenie nie jest mniejsze niż 40 wtedy wyświetl komunikat <KOMUNIKAT1> .",
-            "komunikaty": {},
+            "komunikaty": null,
             "zdaniePierwotne": "Jeśli nachylenie nie jest mniejsze niż 40 wtedy wyświetl komunikat <KOMUNIKAT1> .",
             "tokeny": [
                 "Jeśli",

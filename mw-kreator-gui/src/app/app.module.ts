@@ -9,15 +9,22 @@ import { BibliotekiModule } from './biblioteki/biblioteki.module';
 import  {LayoutModule} from './layout/layout.module'
 import {NlpRegulyAkcjeModule} from './nlp-reguly-akcje/nlp-reguly-akcje.module'
 import {NlpRegulyListaModule} from './nlp-reguly-lista/nlp-reguly-lista.module'
+import {NlpRegulyListaInfoModule} from './nlp-reguly-lista-info/nlp-reguly-lista-info.module'
 import {NlpRegulySzczegolyModule} from './nlp-reguly-szczegoly/nlp-reguly-szczegoly.module'
+import {NlpRegulyWejscieModule} from './nlp-reguly-wejscie/nlp-reguly-wejscie.module'
 
 import {UkladGlownyTrescComponent} from './layout/uklad-glowny-tresc/uklad-glowny-tresc.component'
 import {UkladGlownyAppComponent} from './layout/uklad-glowny-app/uklad-glowny-app.component'
+import {UkladGlownyAppWejscieComponent} from './layout/uklad-glowny-app-wejscie/uklad-glowny-app-wejscie.component'
 
 import {MenuComponent} from './layout/menu/menu.component'
+import {MenuZmianaTrybuAppComponent} from './layout/menu-zmiana-trybu-app/menu-zmiana-trybu-app.component'
 import {StopkaComponent} from './layout/stopka/stopka.component'
 import {NlpRegulyListaComponent} from './nlp-reguly-lista/nlp-reguly-lista.component'
-import {NlpRegulySzczegolyComponent} from './nlp-reguly-szczegoly/nlp-reguly-szczegoly.component'
+
+import {NlpRegulySzczegolyComponent} from './nlp-reguly-szczegoly/nlp-reguly-szczegoly.component';
+import {NlpRegulyWejscieComponent } from './nlp-reguly-wejscie/nlp-reguly-wejscie.component';
+import { NlpRegulyListaInfoComponent } from './nlp-reguly-lista-info/nlp-reguly-lista-info.component'
 
 const routes: Routes = [
   {
@@ -32,10 +39,14 @@ const routes: Routes = [
     AppComponent,
     UkladGlownyTrescComponent,
     UkladGlownyAppComponent,
+    UkladGlownyAppWejscieComponent,
     MenuComponent,
+    MenuZmianaTrybuAppComponent,
     StopkaComponent,
     NlpRegulyListaComponent,
-    NlpRegulySzczegolyComponent
+    NlpRegulySzczegolyComponent,
+    NlpRegulyWejscieComponent,
+    NlpRegulyListaInfoComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +55,9 @@ const routes: Routes = [
     BibliotekiModule,
     NlpRegulyAkcjeModule,
     NlpRegulyListaModule,
-    NlpRegulySzczegolyModule
+    NlpRegulySzczegolyModule,
+    NlpRegulyWejscieModule,
+    NlpRegulyListaInfoModule
   ],
   providers: [],
   bootstrap: [AppComponent]
@@ -70,4 +83,4 @@ export class AppModule { }
   bootstrap: [AppComponent]
 })
 
-*/ 
+*/
