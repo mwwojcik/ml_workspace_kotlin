@@ -1,16 +1,16 @@
 <div class="nav justify-content-end">
-  <a class="btn btn-default btn-sm mr-2" data-toggle="modal" data-target="#exampleModalLong">Dodaj</a>
-  <a class="btn btn-default btn-sm" href="#">Anuluj</a>
-  <a class="btn btn-default btn-sm" href="#">Zapisz</a>
+  <a class="btn btn-default btn-md mr-2" data-toggle="modal" data-target="#exampleModalLong">Dodaj</a>
+  <a class="btn btn-default btn-md" href="#">Anuluj</a>
+  <a class="btn btn-default btn-md" href="#">Zapisz</a>
 </div>
 <table class="table table-sm table-bordered">
   <tr>
     <th colspan="3"> <h6>Reguły wejściowe </h6></th>
   </tr>
   <tr *ngFor="let regula of reguly">
-    <td class="col-1">{{regula.kod}}</td>
-    <td class="col-10">{{regula.tresc}}</td>
-    <td class="col-1"><button type="button" class="btn btn-warning btn-sm" (click)="usunRegule(regula.kod)"><i class="fas fa-trash-alt"></i></button> </td>
+    <td class="w-10">{{regula.kod}}</td>
+    <td class="w-80">{{regula.tresc}}</td>
+    <td class="w-10"><button type="button" class="btn btn-warning btn-sm" (click)="usunRegule(regula.kod)"><i class="fas fa-trash-alt"></i></button> </td>
   </tr>
 </table>
 

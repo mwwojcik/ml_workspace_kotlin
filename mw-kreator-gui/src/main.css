@@ -5,16 +5,18 @@ body{
     background-color: #fff;
     width:100%;
     height: 100vh;
+    color:#111 !important;
     /*color: #747373*/
-    color:#444;
+
 }
 
 html{
-    font-family: 'Lato', sans-serif;
+    font-family: 'Lato', sans-serif !important;
     line-height:1.5em;
     width:100%;
     min-height: 100%;
-    font-size: 14px;
+    font-size: 16px;
+
 }
 
 html:before {
@@ -60,8 +62,8 @@ h3,h4{
     width:1024px;
     margin:auto;
     border:1px solid #aaa;
-    background-color: white;
-    opacity:0.86;
+    background-color: #fff;
+
 }
 
 
@@ -120,13 +122,14 @@ nav{
 .tresc{
     margin-top:0px;
     min-height: 500px;
+
     /*font-size:0.9em;*/
 
 }
 
 .table{
     margin-top:2em;
-    color:inherit !important;
+    font-size: .1em;
 }
 
 .table td{
@@ -155,4 +158,44 @@ footer{
 /*Uwaga! bez tego nie działa okno modalne!*/
 .modal-backdrop {
   z-index: -1;
+}
+
+.w-10{
+  width:10%;
+}
+
+.w-20{
+  width:20%;
+}
+
+.w-30{
+  width:30%;
+}
+
+.w-40{
+  width:40%;
+}
+
+.w-60{
+  width:60%;
+}
+
+.w-70{
+  width:70%;
+}
+
+.w-80{
+  width:80%;
+}
+
+.w-90{
+  width:90%;
+}
+
+.ciemny_tekst{
+  color:red;
+}
+
+.card-text{
+    color:green;
 }

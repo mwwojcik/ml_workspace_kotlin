@@ -23,7 +23,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/reset.css",              
+              "src/reset.css",
               "./node_modules/bootstrap/dist/css/bootstrap.min.css"
               ,"./node_modules/mdbootstrap/css/mdb.css"
               ,"src/styles.css"
