@@ -1,9 +1,9 @@
 
 
 
-<table class="table table-bordered  table-sm">
+<table class="table table-bordered  table-sm dane">
   <tr>
-    <th> <h6>Reguła wejściowa</h6></th>
+    <th> Reguła wejściowa</th>
   </tr>
   <tr>
     <td><strong>{{regula.kod}}</strong></td>
@@ -18,26 +18,26 @@
 
 
 
-  <table class="table table-bordered  table-sm">
+  <table class="table table-bordered  table-sm dane">
     <tr>
-      <th colspan="2"> <h6>Wyodrębnione komunikaty </h6></th>
+      <th colspan="2"> Wyodrębnione komunikaty</th>
     </tr>
     <tr *ngFor="let komunikat of regula.sekwencja.komunikaty | keyvalue">
-      <td class="col-4">{{komunikat.key}}</td>
-      <td class="col-8">{{komunikat.value}}</td>
+      <td class="w-30">{{komunikat.key}}</td>
+      <td class="w-70">{{komunikat.value}}</td>
     </tr>
   </table>
 
 
-  <table class="table table-bordered table-sm">
+  <table class="table table-bordered table-sm dane">
       <tr>
-        <th colspan="4"> <h6>Rozpoznane tokeny </h6></th>
+        <th colspan="4">Rozpoznane tokeny </th>
       </tr>
       <tr>
-          <th><h6>Token</h6></th>
-          <th><h6>Wartość logiczna</h6></th>
-          <th><h6>Prawd.</h6></th>
-          <th><h6>Kategoria</h6></th>
+          <th>Token</th>
+          <th>Wartość logiczna</th>
+          <th>Prawd.</th>
+          <th>Kategoria</th>
       </tr>
       <tr *ngFor="let token of regula.sekwencja.rozpoznaneTokeny">
           <td class="w-30">{{token.wartosc}}</td>
@@ -48,14 +48,14 @@
       </tr>
     </table>
 
-    <table class="table table-bordered  table-sm">
+    <table class="table table-bordered  table-sm dane">
         <tr>
-          <th colspan="3"> <h6>Rozpoznane parametry wejściowe </h6></th>
+          <th colspan="3">Rozpoznane parametry wejściowe </th>
         </tr>
         <tr>
-            <th><h6>Parametr</h6></th>
-            <th><h6>Typ</h6></th>
-            <th><h6>Domyślnie</h6></th>
+            <th>Parametr</th>
+            <th>Typ</th>
+            <th>Domyślnie</th>
         </tr>
         <tr *ngFor="let parametr of regula.parametry">
             <td class="w-30">{{parametr.nazwa}}</td>
@@ -65,16 +65,16 @@
       </table>
 
 
-      <table class="table table-bordered  table-sm">
+      <table class="table table-bordered  table-sm dane">
           <tr>
-            <th colspan="2"> <h6>Rozpoznane wywołania innych reguł </h6></th>
+            <th colspan="2"> Rozpoznane wywołania innych reguł </th>
           </tr>
           <!--<tr *ngFor="let parametr of regula.wywolaniaRegul.parametry">
               <td>{{parametr.nazwaParametruRegulyWolanej}}</td>
               <td>{{parametr.nazwaParametruRegulyWolajacej}}</td>
           </tr>-->
           <tr *ngFor="let wywolanie of regula.wywolaniaRegul">
-              <td>{{wywolanie.kodRegulyWolanej}}</td>
-              <td>{{wywolanie.kodRegulyWolajacej}}</td>
+              <td class="w-30">{{wywolanie.kodRegulyWolanej}}</td>
+              <td class="w-70">{{wywolanie.kodRegulyWolajacej}}</td>
           </tr>
         </table>

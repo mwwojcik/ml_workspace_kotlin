@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RegulyService } from '../reguly.service';
 import { Regula } from '../model'
-import {FormGroup,FormBuilder } from '@angular/forms';
+import {FormGroup,FormBuilder,NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-nlp-reguly-wejscie',
@@ -11,6 +11,7 @@ import {FormGroup,FormBuilder } from '@angular/forms';
 export class NlpRegulyWejscieComponent implements OnInit {
 
   addForm: FormGroup;
+
   reguly: Regula[];
 
   getReguly() {
@@ -34,7 +35,7 @@ export class NlpRegulyWejscieComponent implements OnInit {
   }
 
   dodajRegule(){
-    console.log("dodaj regule")
+    console.log("dodaj regule=>"+this.addForm.value)
   }
 
 }

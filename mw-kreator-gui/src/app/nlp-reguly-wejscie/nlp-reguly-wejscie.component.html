@@ -5,7 +5,7 @@
 </div>
 <table class="table table-sm table-bordered">
   <tr>
-    <th colspan="3"> <h6>Reguły wejściowe </h6></th>
+    <th colspan="3">Reguły wejściowe </th>
   </tr>
   <tr *ngFor="let regula of reguly">
     <td class="w-10">{{regula.kod}}</td>
@@ -36,7 +36,8 @@
         </button>
       </div>
       <div class="modal-body">
-        ...
+        <textarea class="form-control rounded-0" id="kod" formControlName="kod" rows="1" ></textarea>
+        <textarea class="form-control rounded-0" id="tresc" formControlName="tresc" rows="10"></textarea>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Anuluj</button>
