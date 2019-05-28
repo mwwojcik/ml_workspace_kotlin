@@ -60,8 +60,7 @@ const routes: Routes = [
     NlpRegulySzczegolyModule,
     NlpRegulyWejscieModule,
     NlpRegulyListaInfoModule,
-    FormsModule,
-    ReactiveFormsModule
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

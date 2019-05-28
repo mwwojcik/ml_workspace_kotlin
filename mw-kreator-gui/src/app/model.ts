@@ -51,3 +51,7 @@ class WywolanieReguly extends ObiektBazowy {
     kodRegulyWolanej: string;
     parametry: Array<ParametrWywolaniaReguly>;
 }
+
+export class RegulaWejscie {
+  constructor(public kod:string, public tresc:string){}
+  }

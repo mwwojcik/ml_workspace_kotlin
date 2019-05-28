@@ -3,6 +3,7 @@
   <a class="btn btn-default btn-md" href="#">Anuluj</a>
   <a class="btn btn-default btn-md" href="#">Zapisz</a>
 </div>
+
 <table class="table table-sm table-bordered">
   <tr>
     <th colspan="3">Reguły wejściowe </th>
@@ -10,7 +11,7 @@
   <tr *ngFor="let regula of reguly">
     <td class="w-10">{{regula.kod}}</td>
     <td class="w-80">{{regula.tresc}}</td>
-    <td class="w-10"><button type="button" class="btn btn-warning btn-sm" (click)="usunRegule(regula.kod)"><i class="fas fa-trash-alt"></i></button> </td>
+    <td class="w-10">  <button type="button" class="btn btn-warning btn-sm"  (click)="edytujRegule(regula)" data-toggle="modal" data-target="#exampleModalLong"><i class="far fa-edit"></i></button> <button type="button" class="btn btn-warning btn-sm" (click)="usunRegule(regula.kod)"><i class="fas fa-trash-alt"></i></button> </td>
   </tr>
 </table>
 
@@ -26,7 +27,7 @@
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true"  style="z-index: 1041;">
-<form [formGroup]="addForm" (ngSubmit)="dodajRegule()">
+<form (ngSubmit)="dodajRegule()">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -36,8 +37,8 @@
         </button>
       </div>
       <div class="modal-body">
-        <textarea class="form-control rounded-0" id="kod" formControlName="kod" rows="1" ></textarea>
-        <textarea class="form-control rounded-0" id="tresc" formControlName="tresc" rows="10"></textarea>
+        <textarea class="form-control rounded-0" id="kod" [(ngModel)]="model.kod" [ngModelOptions]="{standalone: true}" rows="1" ></textarea>
+        <textarea class="form-control rounded-0" id="tresc" [(ngModel)]="model.tresc" [ngModelOptions]="{standalone: true}" rows="10"></textarea>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Anuluj</button>

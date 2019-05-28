@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RegulyService } from '../reguly.service';
-import { Regula } from '../model'
-import {FormGroup,FormBuilder,NgForm } from '@angular/forms';
+import { Regula,RegulaWejscie } from '../model'
+import {NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-nlp-reguly-wejscie',
@@ -10,23 +10,22 @@ import {FormGroup,FormBuilder,NgForm } from '@angular/forms';
 })
 export class NlpRegulyWejscieComponent implements OnInit {
 
-  addForm: FormGroup;
 
-  reguly: Regula[];
+  model:RegulaWejscie={
+    kod:"KOD",
+    tresc:"tresc"
+  }
+
+  reguly: RegulaWejscie[];
 
   getReguly() {
     return this.reguly;
   }
 
-  constructor(private regulyUsluga: RegulyService,private formBuilder: FormBuilder) { }
+  constructor(private regulyUsluga: RegulyService) { }
 
   ngOnInit() {
-    this.addForm = this.formBuilder.group({
-     kod: [''],
-     tresc: ['']
-   });
-
-    this.regulyUsluga.podajReguly()
+    this.regulyUsluga.podajRegulyWejscie()
     .subscribe(aReguly => this.reguly = aReguly);
   }
 
@@ -34,8 +33,12 @@ export class NlpRegulyWejscieComponent implements OnInit {
     console.log('aKod=>USUNIECIE!=>'+aKod);
   }
 
+  edytujRegule(aRegulaWejscie:RegulaWejscie){
+    this.model=aRegulaWejscie;
+  }
+
   dodajRegule(){
-    console.log("dodaj regule=>"+this.addForm.value)
+    console.log("dodaj regule=>")
   }
 
 }
