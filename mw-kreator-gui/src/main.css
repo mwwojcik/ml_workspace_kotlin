@@ -186,12 +186,18 @@ footer{
 }
 
 /*przedefiniowane z mdb*/
-.card .card-body .card-text {
+.card ,.card-body ,.card-text {
     color: #444;
     font-size: 0.9rem;
     font-weight: 400;
     line-height: 1.5em;
+    background-color:#f5f5f5 ;
 }
+
+.list-group,.list-group-item{
+  background-color:#f5f5f5 ;
+}
+
 table td {
     padding:20px;
     color: #444;
@@ -201,7 +207,7 @@ table td {
 }
 
 table th {
-  background-color:#F7ECDA;
+  background-color:#efebe9;
   text-align: center;
   color:#974405;
   font-size: 0.9rem;
@@ -212,9 +218,17 @@ table th {
 table, table.dane {
   margin-bottom: 3rem;
   margin-top:0;
-  background-color:#fff8e1;
+  background-color:#f5f5f5 ;
+
 }
 
+.table-bordered td, .table-bordered th {
+    border: 1px solid #ddd;
+}
+
+table.table-sm th, table.table-sm td {
+    padding-left: 0.6rem;
+}
 
 
 
