@@ -201,8 +201,12 @@ table td {
 }
 
 table th {
-    text-align: center;
-    background-color: #ffe0b2;
+  background-color:#F7ECDA;
+  text-align: center;
+  color:#974405;
+  font-size: 0.9rem;
+  line-height: 1rem;
+  font-weight: 600;
 }
 
 table, table.dane {
@@ -221,12 +225,5 @@ table.dane td {
     font-weight: 500;
 }
 
-table.dane th {
-    background-color: #ffe0b2;
-    color:#974405;
-    font-size: 0.9rem;
-    line-height: 1rem;
-    font-weight: 600;
 
-}
 /*koniec przedefiniowane z mdb*/
