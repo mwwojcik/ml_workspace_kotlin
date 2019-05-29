@@ -1,4 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
+
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
@@ -6,7 +8,7 @@ import {RouterModule, Routes} from '@angular/router';
 
 import { OprojekcieModule } from './oprojekcie/oprojekcie.module';
 import { BibliotekiModule } from './biblioteki/biblioteki.module';
-import  {LayoutModule} from './layout/layout.module'
+
 import {NlpRegulyAkcjeModule} from './nlp-reguly-akcje/nlp-reguly-akcje.module'
 import {NlpRegulyListaModule} from './nlp-reguly-lista/nlp-reguly-lista.module'
 import {NlpRegulyListaInfoModule} from './nlp-reguly-lista-info/nlp-reguly-lista-info.module'
