@@ -69,10 +69,10 @@ h3,h4{
 
 
  header {
-      background: url(assets/img/projekt-naglowka.png) no-repeat ;
+      background: url(assets/img/naglowek-chmurka.png) no-repeat ;
       height: 320px;
-      margin-top:90px;
-      opacity:0.7;
+      margin-top:40px;
+      opacity:0.9;
     }
 
 .karta_duza {

@@ -7,19 +7,19 @@ data class Regula(
         val kod: String
         , var tresc: String
         , val sekwencja: Sekwencja
-        , var parametry: MutableList<Parametr>?
-        , var wywolaniaRegul: MutableList<WywolanieReguly>?
+        , var parametry: MutableList<Parametr> = mutableListOf()
+        , var wywolaniaRegul: MutableList<WywolanieReguly> = mutableListOf()
     ) : ObiektBazowy(), IWalidowalny {
 
 
     override fun waliduj(): List<String> {
         val bledy: MutableList<String> = mutableListOf<String>()
 
-        parametry?.forEach {
+        parametry.forEach {
             bledy.addAll(it.waliduj())
         }
 
-        wywolaniaRegul?.forEach { bledy.addAll(it.waliduj()) }
+        wywolaniaRegul.forEach { bledy.addAll(it.waliduj()) }
 
         return bledy
     }

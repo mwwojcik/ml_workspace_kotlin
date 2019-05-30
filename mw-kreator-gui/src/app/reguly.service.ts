@@ -3,6 +3,7 @@ import { Injectable, OnInit } from '@angular/core';
 import { Regula,RegulaWejscie } from './model'
 import SampleJson from './reguly.json';
 import { Observable, of } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class RegulyService {
 
   private reguly: Array<Regula>;
 
-  constructor() {
+  constructor(private http: HttpClient) {
     this.reguly=SampleJson
    }
 
@@ -34,3 +35,12 @@ export class RegulyService {
   ));
   }
 }
+
+/*
+constructor(private http: HttpClient) {
+
+  }
+  getEmployee() {
+    return this.http.get(this.url+'/employees')
+  }
+*/
