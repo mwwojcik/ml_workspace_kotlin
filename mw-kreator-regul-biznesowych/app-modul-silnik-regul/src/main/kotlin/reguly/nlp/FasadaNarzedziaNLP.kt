@@ -30,7 +30,11 @@ open class FasadaNarzedziaNLP : IFasadaNarzedziaNLP {
         }
 
         sekwencja.postacKanoniczna=postacZnormalizowana.postacKanoniczna
-        sekwencja.komunikaty=postacZnormalizowana.komunikaty
+
+        sekwencja.komunikaty=if(!postacZnormalizowana.komunikaty.isNullOrEmpty())
+            postacZnormalizowana.komunikaty
+        else
+            null
 
         return sekwencja
     }

@@ -10,8 +10,7 @@ class Sekwencja(val zdaniePierwotne:String, val tokeny:Array<String>,
 
     var postacKanoniczna:String=zdaniePierwotne
 
-    var komunikaty: MutableMap <String,String>? = mutableMapOf()
-
+    var komunikaty: MutableMap <String,String>?=null;
 
 
 
