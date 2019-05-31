@@ -15,6 +15,7 @@ class GreetingController {
     @Autowired
     lateinit var regulyUsluga: RegulyUslugaBean
 
+    @CrossOrigin
     @GetMapping("/reguly")
     fun podajReguly()=regulyUsluga.podajReguly()
 

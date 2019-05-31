@@ -9,17 +9,23 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class RegulyService {
+  private url="http://localhost:8080"
 
   private reguly: Array<Regula>;
 
   constructor(private http: HttpClient) {
-    this.reguly=SampleJson
+    //this.reguly=SampleJson
    }
 
 
 
   podajReguly():Observable<Regula[]> {
-    return of(this.reguly);
+    //return of(this.reguly);
+      this.http.get(this.url+'/reguly').subscribe(reguly=>{
+        console.log("SUKCES")
+        this.reguly=reguly as Regula[];
+      })
+      return of(this.reguly);
   }
 
   podajRegulePoKodzie(aKod:string):Observable<Regula>{
