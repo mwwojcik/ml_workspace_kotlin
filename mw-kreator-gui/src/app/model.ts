@@ -53,5 +53,5 @@ class WywolanieReguly extends ObiektBazowy {
 }
 
 export class RegulaWejscie {
-  constructor(public kod:string, public tresc:string){}
+  constructor(public id:number, public kod:string, public tresc:string){}
   }

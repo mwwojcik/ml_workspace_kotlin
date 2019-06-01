@@ -29,16 +29,21 @@ export class NlpRegulyWejscieComponent implements OnInit {
     .subscribe(aReguly => this.reguly = aReguly);
   }
 
-  usunRegule(aKod:string){
-    console.log('aKod=>USUNIECIE!=>'+aKod);
+  usunRegule(aId:number){
+    this.regulyUsluga.usunRegule(aId)
+    .subscribe(aReguly => this.reguly = aReguly);
+    console.log('aKod=>USUNIECIE!=>'+aId);
   }
 
   edytujRegule(aRegulaWejscie:RegulaWejscie){
     this.model=aRegulaWejscie;
+    this.regulyUsluga.modyfikujRegule(aRegulaWejscie)
+    .subscribe(aReguly => this.reguly = aReguly);
   }
 
   dodajRegule(){
-    console.log("dodaj regule=>")
+    this.regulyUsluga.dodajRegule(this.model)
+    .subscribe(aReguly => this.reguly = aReguly);
   }
 
 }
