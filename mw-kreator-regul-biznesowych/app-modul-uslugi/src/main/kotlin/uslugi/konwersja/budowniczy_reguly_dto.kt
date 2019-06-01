@@ -1,6 +1,9 @@
 package uslugi.konwersja
 
-import model.dto.*
+import model.dto.Parametr
+import model.dto.Regula
+import model.dto.RodzajeAkcjiEnum
+import model.dto.WywolanieReguly
 import model.nlp.RodzajTokenaEnum
 import model.nlp.Sekwencja
 import org.springframework.beans.factory.annotation.Autowired
@@ -29,7 +32,7 @@ open class BudowniczyRegulyDTO : IBudowniczyRegulyDTO {
     }
 
 
-    var licznikDefaultowychParametrow = 1
+    //var licznikDefaultowychParametrow = 1
     var prefixNazwwyParametruDomyslnego = "param"
     val formatDaty = "^([0-2][0-9]||3[0-1])-(0[0-9]||1[0-2])-([0-9][0-9])?[0-9][0-9]\$"
 
@@ -50,9 +53,10 @@ open class BudowniczyRegulyDTO : IBudowniczyRegulyDTO {
                     unikalnySet.add(it.wartosc)
                 }
 
-        licznikDefaultowychParametrow = 0
+        var licznikDefaultowychParametrow = 0
         return unikalnySet.map {
-            utworzObiektParametru(it, aSekwencja)
+            licznikDefaultowychParametrow += 1
+            utworzObiektParametru(it, aSekwencja, licznikDefaultowychParametrow)
         }.toMutableList()
 
     }
@@ -77,25 +81,25 @@ open class BudowniczyRegulyDTO : IBudowniczyRegulyDTO {
 
     }
 
-    fun wyodrebnijParametryWywolania(aWywolania: List<WywolanieReguly>, aWszystkieReguly: List<Regula>) {
-        val mapa = aWszystkieReguly.map { it.kod to it }.toMap()
+    /* fun wyodrebnijParametryWywolania(aWywolania: List<WywolanieReguly>, aWszystkieReguly: List<Regula>) {
+         val mapa = aWszystkieReguly.map { it.kod to it }.toMap()
 
-        aWywolania.forEach {
-            val pRegulaWolana: Regula = mapa[it.kodRegulyWolanej]!!
-            it.parametry = pRegulaWolana.parametry.map { ParametrWywolaniaReguly(nazwaParametruRegulyWolanej = it.nazwa) }.toMutableList()
+         aWywolania.forEach {
+             val pRegulaWolana: Regula = mapa[it.kodRegulyWolanej]!!
+             it.parametry = pRegulaWolana.parametry.map { ParametrWywolaniaReguly(nazwaParametruRegulyWolanej = it.nazwa) }.toMutableList()
 
-        }
+         }
 
 
-    }
+     }*/
 
-    fun utworzObiektParametru(aNazwaParametru: String, aSekwencja: Sekwencja): Parametr {
-        val wraperAtrybutow = wnioskujAtrybutyParametru(aNazwaParametru, aSekwencja)
+    fun utworzObiektParametru(aNazwaParametru: String, aSekwencja: Sekwencja, aNumerKolejny: Int): Parametr {
+        val wraperAtrybutow = wnioskujAtrybutyParametru(aNazwaParametru, aSekwencja, aNumerKolejny)
         return Parametr(wraperAtrybutow.nazwa, wraperAtrybutow.typ, wraperAtrybutow.wartoscDomyslna)
     }
 
 
-    fun wnioskujAtrybutyParametru(aParam: String, aSekwencja: Sekwencja): WrapperTypuParametru {
+    fun wnioskujAtrybutyParametru(aParam: String, aSekwencja: Sekwencja, aNumerKolejny: Int): WrapperTypuParametru {
         if (aSekwencja.podajTokenPoWartosci(aParam)!!.typ == RodzajTokenaEnum.LEWOSTRONNY_OPERAND_WARUNKU) {
 
             if (aParam.contains("data")) {
@@ -108,18 +112,18 @@ open class BudowniczyRegulyDTO : IBudowniczyRegulyDTO {
             if (aParam.contains("'") || aParam.contains("\"")) {
                 //string data lub liczba, ale na pewno wartosc domyslne
                 if (aParam.replace("\"", "").replace("'", "").trim().matches(formatDaty.toRegex())) {
-                    return WrapperTypuParametru(prefixNazwwyParametruDomyslnego + licznikDefaultowychParametrow++, "Data", aParam)//wartosc domyslna data
+                    return WrapperTypuParametru(prefixNazwwyParametruDomyslnego + aNumerKolejny, "Data", aParam)//wartosc domyslna data
 
                 } else {
                     //wartosc domyslna napis
-                    return WrapperTypuParametru(prefixNazwwyParametruDomyslnego + licznikDefaultowychParametrow++, "Napis", aParam)//wartosc domyslna data
+                    return WrapperTypuParametru(prefixNazwwyParametruDomyslnego + aNumerKolejny, "Napis", aParam)//wartosc domyslna data
                 }
             } else {
                 var pEwentualnaLiczba = aParam.trim().toIntOrNull()
 
                 if (pEwentualnaLiczba != null) {
                     //wartosc domyslna bedaca liczba
-                    return WrapperTypuParametru(prefixNazwwyParametruDomyslnego + licznikDefaultowychParametrow++, "Liczba", aParam)//wartosc domyslna data
+                    return WrapperTypuParametru(prefixNazwwyParametruDomyslnego + aNumerKolejny, "Liczba", aParam)//wartosc domyslna data
                 }
 
                 if (aParam.contains("data")) {
@@ -131,3 +135,4 @@ open class BudowniczyRegulyDTO : IBudowniczyRegulyDTO {
 
         }
     }
+}

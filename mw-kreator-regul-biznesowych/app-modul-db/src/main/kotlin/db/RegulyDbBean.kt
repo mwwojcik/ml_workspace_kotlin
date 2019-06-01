@@ -55,6 +55,12 @@ open class RegulyDbBean {
     fun usunRegule(aRegula:RegulaEncja)=regulaRepozytorium.delete(aRegula)
 
     @Transactional
+    fun usunRegule(aId:Long){
+        val pEncja=podajObiektZarzadzalny(aId,RegulaEncja::class.java)
+        usunRegule(pEncja)
+    }
+
+    @Transactional
     fun pobierzWszystkieReguly()=regulaRepozytorium.findAll().sortedBy {it.kod}
 
 

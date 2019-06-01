@@ -3,11 +3,9 @@ package uslugi.konwersja
 import db.RegulyDbBean
 import model.dto.*
 import model.encje.*
-import model.nlp.RodzajTokenaEnum
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
 import org.springframework.transaction.annotation.Transactional
-import reguly.nlp.EgzaminatorModeluRozpoznawaniaEncjiNLP
 import reguly.nlp.IFasadaNarzedziaNLP
 
 
@@ -22,19 +20,19 @@ open class RegulaKonwerter : BazowyKonwerter(), IKonwerter<Regula, RegulaEncja> 
     private lateinit var konwerterParametrow: ParametrKonwerter
 
     @Autowired
-    private lateinit var konwerterWywolanRegul:WywolanieRegulyKonwerter
+    private lateinit var konwerterWywolanRegul: WywolanieRegulyKonwerter
 
     override fun konwertujDoEncji(aDto: Regula): RegulaEncja {
         val pEncja: RegulaEncja = podajObiektZarzadzalny<RegulaEncja>(aDto.id, RegulaEncja::class.java)
         with(aDto) {
 
-            val parametryDoUsunieciaStr:Set<String>? = dajParametryDoUsuniecia(parametry,pEncja.parametry)
+            val parametryDoUsunieciaStr: Set<String>? = dajParametryDoUsuniecia(parametry, pEncja.parametry)
 
-            val parametryDoUsuniecia:List<ParametrRegulyEncja>? = pEncja.parametry?.filter {
-                parametryDoUsunieciaStr?.contains(it.nazwa)?:false
+            val parametryDoUsuniecia: List<ParametrRegulyEncja>? = pEncja.parametry?.filter {
+                parametryDoUsunieciaStr?.contains(it.nazwa) ?: false
             }?.toList()
 
-            parametryDoUsuniecia?.forEach{
+            parametryDoUsuniecia?.forEach {
                 regulyDbBean.usunWszystkieOdwolaniaDoParametru(it)
                 regulyDbBean.usunObiektZarzadzalny(it)
             }
@@ -47,10 +45,9 @@ open class RegulaKonwerter : BazowyKonwerter(), IKonwerter<Regula, RegulaEncja> 
                 pParam
             }.toMutableList()
 
-            pEncja.wywolaniaRegul=wywolaniaRegul.map {
+            pEncja.wywolaniaRegul = wywolaniaRegul.map {
                 konwerterWywolanRegul.konwertujDoEncji(it)
             }.toMutableSet()
-
 
 
         }
@@ -64,12 +61,12 @@ open class RegulaKonwerter : BazowyKonwerter(), IKonwerter<Regula, RegulaEncja> 
                     , tresc
                     , fasadaNLP.rozpoznajSekwencje(tresc)
                     , parametry.map {
-                        konwerterParametrow.konwertujDoTransportu(it)
-                    }.toMutableList()
-                    ,wywolaniaRegul.map {
-                        konwerterWywolanRegul.konwertujDoTransportu(it)
-                    }.toMutableList()
-                    )
+                konwerterParametrow.konwertujDoTransportu(it)
+            }.toMutableList()
+                    , wywolaniaRegul.map {
+                konwerterWywolanRegul.konwertujDoTransportu(it)
+            }.toMutableList()
+            )
             pDto.id = id
             pDto.wersja = wersja
             return pDto
@@ -78,10 +75,10 @@ open class RegulaKonwerter : BazowyKonwerter(), IKonwerter<Regula, RegulaEncja> 
 
     fun dajParametryDoUsuniecia(aParametryDto: List<Parametr>?, aParametryEncja: List<ParametrRegulyEncja>?): Set<String> {
 
-        val nazwyDto = aParametryDto?.map { it.nazwa }?.toSet()?: emptySet()
-        val nazwyEncja = aParametryEncja?.map { it.nazwa }?.toSet()?: emptySet()
+        val nazwyDto = aParametryDto?.map { it.nazwa }?.toSet() ?: emptySet()
+        val nazwyEncja = aParametryEncja?.map { it.nazwa }?.toSet() ?: emptySet()
 
-        return (nazwyEncja-nazwyDto)
+        return (nazwyEncja - nazwyDto)
     }
 }
 
@@ -95,14 +92,14 @@ open class ParametrKonwerter : BazowyKonwerter(), IKonwerter<Parametr, ParametrR
             pEncja.nazwa = nazwa
             pEncja.typ = typ
             pEncja.wartoscDomyslna = wartoscDomyslna
-            pEncja.czyUsuwalny=czyUsuwalny
+            pEncja.czyUsuwalny = czyUsuwalny
             return pEncja
         }
     }
 
     override fun konwertujDoTransportu(aEncja: ParametrRegulyEncja): Parametr {
         with(aEncja) {
-            val pDto = Parametr(nazwa, typ, wartoscDomyslna,czyUsuwalny)
+            val pDto = Parametr(nazwa, typ, wartoscDomyslna, czyUsuwalny)
             pDto.id = id
             pDto.wersja = wersja
             return pDto
@@ -146,7 +143,7 @@ class WywolanieRegulyKonwerter : BazowyKonwerter(), IKonwerter<WywolanieReguly, 
             val pDto = WywolanieReguly(regulaWolajaca.kod, regulaWolana.kod)
 
 
-            if(parametry.size!=0){
+            if (parametry.size != 0) {
                 println("")
             }
             pDto.parametry =
@@ -163,7 +160,7 @@ class WywolanieRegulyKonwerter : BazowyKonwerter(), IKonwerter<WywolanieReguly, 
 
     fun podajObiektTransportowyParametruWywolania(aEncja: ParametrWywolaniaRegulyEncja): ParametrWywolaniaReguly {
         with(aEncja) {
-            val pDto = ParametrWywolaniaReguly(parametrRegulyWolajacej?.nazwa?:"", parametrRegulyWolanej.nazwa)
+            val pDto = ParametrWywolaniaReguly(parametrRegulyWolajacej?.nazwa ?: "", parametrRegulyWolanej.nazwa)
 
             pDto.id = id
             pDto.wersja = wersja

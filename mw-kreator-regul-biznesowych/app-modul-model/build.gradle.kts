@@ -20,6 +20,7 @@ java{
 }
 
 dependencies {
+    compile ("com.fasterxml.jackson.module:jackson-module-kotlin:2.9.+")
     compile("com.massisframework:j-text-utils:0.3.4")
     compile(kotlin("stdlib-jdk8"))
     testCompile ("junit:junit:4.12")

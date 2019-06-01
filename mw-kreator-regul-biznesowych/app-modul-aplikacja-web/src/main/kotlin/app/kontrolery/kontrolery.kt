@@ -1,13 +1,16 @@
 package app.kontrolery
 
 import generator.GeneratorKoduBean
+import model.dto.Regula
+import model.dto.RegulaWejscie
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.web.bind.annotation.CrossOrigin
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.RequestParam
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 import uslugi.RegulyUslugaBean
 import java.util.concurrent.atomic.AtomicLong
+import org.springframework.web.bind.annotation.RequestBody
+import org.springframework.web.bind.annotation.PostMapping
+
+
 
 @RestController
 class GreetingController {
@@ -20,10 +23,28 @@ class GreetingController {
     fun podajReguly()=regulyUsluga.podajReguly()
 
     @CrossOrigin
-    @GetMapping("/hero")
-    fun podajBohaterow()= arrayListOf<Hero>(Hero(1,"Batman"),Hero(2,"Superman"),Hero(3,"Spiderman"),Hero(11,"SuperBird"))
+    @PostMapping("/regula")
+    fun dodajRegule(@RequestBody aRegula:RegulaWejscie):List<Regula>{
+        println(aRegula)
+        regulyUsluga.zapiszRegule(aRegula.kod,aRegula.tresc)
+        return regulyUsluga.podajReguly()
+    }
+
+    @CrossOrigin
+    @DeleteMapping("/regula/{id}")
+    fun usunRegule(@PathVariable("id") id:Long):List<Regula>{
+        regulyUsluga.usunRegule(id)
+        return regulyUsluga.podajReguly()
+    }
+
+    @CrossOrigin
+    @PutMapping("/regula")
+    fun modyfikujRegule(@RequestBody aRegula:RegulaWejscie):List<Regula>{
+        println(aRegula.tresc)
+        regulyUsluga.zapiszRegule(aRegula.kod,aRegula.tresc)
+        return regulyUsluga.podajReguly()
+    }
 }
 
 
 
-data class Hero(val id:Int,val name:String)

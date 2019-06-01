@@ -1,4 +1,3 @@
 package model.dto
 
-class RegulaWejscie {
-}
+open class RegulaWejscie(val kod:String,val tresc:String)
