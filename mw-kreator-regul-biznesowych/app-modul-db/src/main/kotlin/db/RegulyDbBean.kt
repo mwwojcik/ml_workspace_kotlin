@@ -1,13 +1,7 @@
 package db
 
-import db.repo.IParametrRegulyRepozytorium
-import db.repo.IParametrWywolaniaRegulyRepozytorium
-import db.repo.IRegulaRepozytorium
-import db.repo.IWywolanieRegulyRepozytorium
-import model.encje.Encja
-import model.encje.ParametrRegulyEncja
-import model.encje.RegulaEncja
-import model.encje.WywolanieRegulyEncja
+import db.repo.*
+import model.encje.*
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Propagation
@@ -25,6 +19,9 @@ open class RegulyDbBean {
     private lateinit var entityManager: EntityManager
 
     @Autowired
+    private lateinit var numerKolejnyKoduRepozytorium: INumeracjaKodowRepozytorium
+
+    @Autowired
     private lateinit var regulaRepozytorium: IRegulaRepozytorium
 
     @Autowired
@@ -40,6 +37,13 @@ open class RegulyDbBean {
     @Transactional
     fun pobierzParametrRegulyPoNazwie(aRegulaEncja: RegulaEncja, aNazwa: String): ParametrRegulyEncja? =
             parametrRegulyRepozytorium.findByRegulaAndNazwa(aRegulaEncja, aNazwa)
+
+    @Transactional
+    fun pobierzNumerKolejnyKodu(): Long{
+        val pEncja=numerKolejnyKoduRepozytorium.findById(1L).get()
+        pEncja.numerKolejny+=1
+        return pEncja.numerKolejny
+    }
 
 
     @Transactional

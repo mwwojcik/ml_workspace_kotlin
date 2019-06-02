@@ -26,7 +26,7 @@ class GreetingController {
     @PostMapping("/regula")
     fun dodajRegule(@RequestBody aRegula:RegulaWejscie):List<Regula>{
         println(aRegula)
-        regulyUsluga.zapiszRegule(aRegula.kod,aRegula.tresc)
+        regulyUsluga.zapiszRegule(aRegula.tresc)
         return regulyUsluga.podajReguly()
     }
 
@@ -41,7 +41,7 @@ class GreetingController {
     @PutMapping("/regula")
     fun modyfikujRegule(@RequestBody aRegula:RegulaWejscie):List<Regula>{
         println(aRegula.tresc)
-        regulyUsluga.zapiszRegule(aRegula.kod,aRegula.tresc)
+        regulyUsluga.zapiszRegule(aRegula.id,aRegula.kod,aRegula.tresc)
         return regulyUsluga.podajReguly()
     }
 }

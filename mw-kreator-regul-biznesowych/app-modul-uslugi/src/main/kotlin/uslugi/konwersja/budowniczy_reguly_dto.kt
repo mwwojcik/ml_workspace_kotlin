@@ -1,5 +1,6 @@
 package uslugi.konwersja
 
+import db.RegulyDbBean
 import model.dto.Parametr
 import model.dto.Regula
 import model.dto.RodzajeAkcjiEnum
@@ -12,22 +13,30 @@ import org.springframework.transaction.annotation.Transactional
 import reguly.nlp.IFasadaNarzedziaNLP
 
 interface IBudowniczyRegulyDTO {
-    fun buduj(kod: String, tresc: String): Regula
+    fun buduj(id: Long? = null, kod: String? = null, tresc: String): Regula
 }
 
 @Component
 @Transactional
 open class BudowniczyRegulyDTO : IBudowniczyRegulyDTO {
+
+    @Autowired
+    lateinit var regulyDbBean: RegulyDbBean;
+
     @Autowired
     lateinit var fasadaNLP: IFasadaNarzedziaNLP
 
-    override fun buduj(kod: String, tresc: String): Regula {
+    override fun buduj(aId: Long?, aKod: String?, tresc: String): Regula {
+        val kod = if (!aKod.isNullOrEmpty())
+            aKod
+        else
+            "RS-" + String.format("%03d", regulyDbBean.pobierzNumerKolejnyKodu());
         val trescRegulyStr = tresc.replace("\r", "")
         val sekwencja = fasadaNLP.rozpoznajSekwencje(trescRegulyStr)
         val parametry = wyodrebnijListeParametrow(sekwencja)
         val wywolania = wyodrebnijListeWywolanInnychRegul(sekwencja, kod)
         val pReg = Regula(kod, trescRegulyStr, sekwencja, parametry, wywolania)
-
+        pReg.id = aId
         return pReg
     }
 

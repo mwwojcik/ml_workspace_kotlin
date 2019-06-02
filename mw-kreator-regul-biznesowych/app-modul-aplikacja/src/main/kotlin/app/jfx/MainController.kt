@@ -205,7 +205,7 @@ class MainController {
     @FXML
     fun onWczytajRegulyKLIK() {
         println("onWczytajRegulyKLIK")
-        regulyUsluga.wczytajReguly()
+        //regulyUsluga.wczytajReguly()
         aktualizujReguly()
 
         var i =30
