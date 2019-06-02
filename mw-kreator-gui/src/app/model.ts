@@ -1,5 +1,6 @@
 import { extend } from 'webdriver-js-extender';
 
+export class WynikOperacji{}
 
 export class ObiektBazowy {
     id: number;

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { RegulyService } from '../reguly.service';
 import { Regula,RegulaWejscie } from '../model'
 import {NgForm } from '@angular/forms';
+import * as $ from 'jquery';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nlp-reguly-wejscie',
@@ -10,9 +12,11 @@ import {NgForm } from '@angular/forms';
 })
 export class NlpRegulyWejscieComponent implements OnInit {
 
+  komunikat:string=""
 
   model:RegulaWejscie={
-    kod:"KOD",
+    id:-1,
+    kod:"[wartość zostanie wygenerowana]",
     tresc:"tresc"
   }
 
@@ -22,28 +26,71 @@ export class NlpRegulyWejscieComponent implements OnInit {
     return this.reguly;
   }
 
-  constructor(private regulyUsluga: RegulyService) { }
+  constructor(private regulyUsluga: RegulyService,private router:Router) { }
 
   ngOnInit() {
-    this.regulyUsluga.podajRegulyWejscie()
-    .subscribe(aReguly => this.reguly = aReguly);
+    this.regulyUsluga.podajReguly()
+    .subscribe(regulyPelne =>{
+      this.reguly = this.regulyUsluga.podajRegulyWejscie(regulyPelne);
+      this.regulyUsluga.aktualizujObiekty(regulyPelne);
+    });
+
+    /*$(document).ready(function(){
+        $("submit").click(function(){
+            $('#modal').modal('hide');
+            console.log('Probuje ukryc okno')
+        });
+});*/
+
   }
 
   usunRegule(aId:number){
+    this.wyczyscKomunikat();
     this.regulyUsluga.usunRegule(aId)
-    .subscribe(aReguly => this.reguly = aReguly);
-    console.log('aKod=>USUNIECIE!=>'+aId);
+    .subscribe(regulyPelne => {
+        this.komunikat="Reguła została usunięta."
+        this.reguly=this.regulyUsluga.podajRegulyWejscie(regulyPelne);
+        this.regulyUsluga.aktualizujObiekty(regulyPelne);
+    });
+
   }
 
   edytujRegule(aRegulaWejscie:RegulaWejscie){
     this.model=aRegulaWejscie;
-    this.regulyUsluga.modyfikujRegule(aRegulaWejscie)
-    .subscribe(aReguly => this.reguly = aReguly);
   }
 
-  dodajRegule(){
-    this.regulyUsluga.dodajRegule(this.model)
-    .subscribe(aReguly => this.reguly = aReguly);
+  zapiszRegule(){
+
+    this.wyczyscKomunikat();
+    if(this.model.id<0){
+    this.regulyUsluga.dodajRegule(this.model).subscribe(regulyPelne => {
+      this.komunikat="Reguła została dodana."
+      this.reguly=this.regulyUsluga.podajRegulyWejscie(regulyPelne);
+      this.regulyUsluga.aktualizujObiekty(regulyPelne);
+
+      let r=this.reguly.find(reg=>reg.tresc==this.model.tresc)
+      this.model.kod=r.kod;
+      this.model.id=r.id;
+      this.router.navigate(['/nlp-reguly-szczegoly'],{queryParams:{kod:r.kod}});
+      //.router.navigate(['/products'], { queryParams: { order: 'popular' } });
+    });
+  }else{
+    this.regulyUsluga.modyfikujRegule(this.model)
+    .subscribe(regulyPelne => {
+      this.reguly = this.regulyUsluga.podajRegulyWejscie(regulyPelne);
+      this.komunikat="Reguła została zmodyfikowana."
+      this.regulyUsluga.aktualizujObiekty(regulyPelne);
+    });
   }
+  }
+
+ wyczyscKomunikat(){
+   this.komunikat=""
+ }
 
 }
+/*
+gotoHeroes() {
+  this.router.navigate(['/heroes']);
+}
+*/

@@ -1,6 +1,6 @@
 import { Injectable, OnInit } from '@angular/core';
 
-import { Regula,RegulaWejscie } from './model'
+import { Regula,RegulaWejscie,WynikOperacji } from './model'
 import SampleJson from './reguly.json';
 import { Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
@@ -12,8 +12,6 @@ import { HttpHeaders } from '@angular/common/http';
 export class RegulyService {
   private url="http://localhost:8080"
 
-  private reguly: Array<Regula>;
-
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type':  'application/json',
@@ -21,20 +19,20 @@ export class RegulyService {
     })
   };
 
+  reguly:Regula[];
+
   constructor(private http: HttpClient) {
     //this.reguly=SampleJson
     this.podajReguly();
    }
 
-
-
+  podajRegulyWejscie(aRegulyPelne:Regula[]):RegulaWejscie[]{
+    return aRegulyPelne.map(r=>new RegulaWejscie(r.id,r.kod,r.tresc))
+  }
 
   podajReguly():Observable<Regula[]> {
     //return of(this.reguly);
-      this.http.get(this.url+'/reguly').subscribe(reguly=>{
-        this.reguly=reguly as Regula[];
-      })
-      return of(this.reguly);
+      return this.http.get<Regula[]>(this.url+'/reguly');
   }
 
   podajRegulePoKodzie(aKod:string):Observable<Regula>{
@@ -45,38 +43,20 @@ export class RegulyService {
 
   }
 
-  podajRegulyWejscie():Observable<RegulaWejscie[]>{
-    this.podajReguly().subscribe()
-    return of(this.reguly.map(item=>new RegulaWejscie(item.id,item.kod,item.tresc)
-  ));
+  dodajRegule(aRegulaWejscie:RegulaWejscie):Observable<Regula[]>{
+    return this.http.post<Regula[]>(this.url+"/regula",aRegulaWejscie)
   }
 
-  dodajRegule(aRegulaWejscie:RegulaWejscie):Observable<RegulaWejscie[]>{
-    this.http.post(this.url+"/regula",aRegulaWejscie).subscribe(params=>
-    this.reguly=params as Regula[])
-    return this.podajRegulyWejscie()
+  usunRegule(aId:number):Observable<Regula[]>{
+    return this.http.delete<Regula[]>(this.url+"/regula"+"/"+aId,this.httpOptions)
   }
 
-  usunRegule(aId:number):Observable<RegulaWejscie[]>{
-    this.http.delete(this.url+"/regula"+"/"+aId,this.httpOptions)
-    .subscribe(params=>
-    this.reguly=params as Regula[])
-    return this.podajRegulyWejscie()
+  modyfikujRegule(aRegulaWejscie:RegulaWejscie):Observable<Regula[]>{
+    return this.http.put<Regula[]>(this.url+"/regula",aRegulaWejscie,this.httpOptions)
   }
 
-  modyfikujRegule(aRegulaWejscie:RegulaWejscie):Observable<RegulaWejscie[]>{
-    this.http.put(this.url+"/regula",aRegulaWejscie,this.httpOptions).subscribe(params=>
-    this.reguly=params as Regula[])
-    return this.podajRegulyWejscie()
+  aktualizujObiekty(aReguly:Regula[]){
+    this.reguly=aReguly;
   }
 
 }
-
-/*
-constructor(private http: HttpClient) {
-
-  }
-  getEmployee() {
-    return this.http.get(this.url+'/employees')
-  }
-*/
