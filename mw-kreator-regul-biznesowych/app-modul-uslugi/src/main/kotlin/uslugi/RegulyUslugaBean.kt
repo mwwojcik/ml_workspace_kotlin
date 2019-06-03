@@ -64,17 +64,17 @@ open class RegulyUslugaBean {
 
     @Transactional
     fun zapiszRegule(aId:Long,aKod:String,aTresc:String) {
-        konwerter.konwertujDoEncji(budowniczyRegulyDTO.buduj(aId,aKod,aTresc))
+        synchronizatorDanych.synchronizujDane(budowniczyRegulyDTO.buduj(aId,aKod,aTresc))
     }
 
     @Transactional
     fun zapiszRegule(aKod:String,aTresc:String) {
-        konwerter.konwertujDoEncji(budowniczyRegulyDTO.buduj(id=null,kod=aKod,tresc=aTresc))
+        synchronizatorDanych.synchronizujDane(budowniczyRegulyDTO.buduj(id=null,kod=aKod,tresc=aTresc))
     }
 
     @Transactional
     fun zapiszRegule(aTresc:String) {
-        konwerter.konwertujDoEncji(budowniczyRegulyDTO.buduj(id=null,kod=null,tresc=aTresc))
+        synchronizatorDanych.synchronizujDane(budowniczyRegulyDTO.buduj(id=null,kod=null,tresc=aTresc))
     }
 
     @Transactional

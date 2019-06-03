@@ -28,30 +28,30 @@ open class SynchronizatorDanychBean {
     @Autowired
     private lateinit var konwerterWywolanRegul:WywolanieRegulyKonwerter
 
-    fun synchronizujDane(aObiektyDoSynchronizacji: List<Regula>) {
+    fun synchronizujDane(aRegula: Regula) {
         //wybierz obiekty ktore sa w bazie ale nie ma ich w pliku
 
-        val kodyRegul = aObiektyDoSynchronizacji.map { it.kod }.toList()
+       /* val kodyRegul = aObiektyDoSynchronizacji.map { it.kod }.toList()
         val regulyWgKodow = aObiektyDoSynchronizacji.map { it.kod to it }.toMap()
 
         val encjeDoUsuniecia =
-                regulyDbBean.pobierzRegulyJesliKoduNieMaNaLiscie(kodyRegul).toMutableList()
+                regulyDbBean.pobierzRegulyJesliKoduNieMaNaLiscie(kodyRegul).toMutableList()*/
 
 
-        kodyRegul.forEach {
+        //kodyRegul.forEach {
             //sprobuj pobrac obiekt po kodzie
-            val pEncja = regulyDbBean.pobierzRegulePoKodzie(it)
+            val pEncja = regulyDbBean.pobierzRegulePoKodzie(aRegula.kod)
 
             if (pEncja == null) {
                 //sprawa prosta - obiektu nie ma - dodajemy
-                konwerter.konwertujDoEncji(regulyWgKodow[it]!!)
+                konwerter.konwertujDoEncji(aRegula)
             } else {
                 //tu jest trudniej - trzeba zrobic merge
-                if (pEncja.tresc != regulyWgKodow[it]!!.tresc) {
+                if (pEncja.tresc != aRegula.tresc) {
                     //tresc reguly w bazie rozni sie od tresci w pliku
                     //regula sie zmienila, plik ma pierwszenstwo
 
-                    val pRegulaDto = regulyWgKodow[it]!!
+                    val pRegulaDto = aRegula
 
                     val pWywolaniaNieaktualneParametry =
                             regulyDbBean.pobierzWszystkieWywolaniaDoReguly(pEncja).toMutableList()
@@ -64,7 +64,7 @@ open class SynchronizatorDanychBean {
                     //val pUsuniete:MutableList<WywolanieRegulyEncja> = mutableListOf()
                     pWywolaniaNieaktualneParametry.forEach {
                         //sprawdzam czy wywolanie jest aktualne
-                        val pRegulaWolajacaDto=regulyWgKodow[it.regulaWolajaca.kod]
+                        val pRegulaWolajacaDto=konwerter.konwertujDoTransportu(it.regulaWolajaca)
                         val czyNadalAktualne=pRegulaWolajacaDto?.wywolaniaRegul?.map { it.kodRegulyWolanej }?.toList()?.contains(pEncja.kod)?:false
 
                         it.parametry.forEach {
@@ -116,9 +116,9 @@ open class SynchronizatorDanychBean {
 
                 }
             }
-        }
+        //}
 
-        usunEncje(encjeDoUsuniecia)
+        //usunEncje(encjeDoUsuniecia)
     }
 
 

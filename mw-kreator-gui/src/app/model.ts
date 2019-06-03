@@ -50,6 +50,7 @@ class RozpoznanyToken {
 class WywolanieReguly extends ObiektBazowy {
     kodRegulyWolajacej: string;
     kodRegulyWolanej: string;
+    nazwyParametrowRegulyWolanej:Array<string>;
     parametry: Array<ParametrWywolaniaReguly>;
 }
 

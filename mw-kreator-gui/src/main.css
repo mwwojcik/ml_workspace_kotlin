@@ -262,4 +262,11 @@ table.dane td {
   font-size: 0.8rem;
 }
 
+.centered-button-group {
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
 /*koniec przedefiniowane z mdb*/

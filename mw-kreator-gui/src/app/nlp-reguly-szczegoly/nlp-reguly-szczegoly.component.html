@@ -48,9 +48,12 @@
       </tr>
     </table>
 
+
     <table class="table table-bordered table-sm dane z-depth-3">
         <tr>
-          <th colspan="3">Rozpoznane parametry wejściowe </th>
+          <th colspan="3">
+            Rozpoznane parametry wejściowe
+        </th>
         </tr>
         <tr>
             <th>Parametr</th>
@@ -78,10 +81,20 @@
             </td>
             <td class="w-40">{{parametr.wartoscDomyslna}}</td>
         </tr>
+        <tr>
+          <td colspan="3">
+            <div class="centered-button-group">
+            <a [routerLink]="['/nlp-reguly-lista-info']"  class="btn btn-default btn-brown btn-sm"><i class="fas fa-plus"></i></a>
+            <a [routerLink]="['/nlp-reguly-lista-info']"  class="btn btn-default btn-brown btn-sm" style="margin-left:2rem;"><i class="fas fa-minus"></i></a>
+            </div>
+          </td>
+        </tr>
       </table>
+      <div>
 
+      </div>
 
-      <table class="table table-bordered  table-sm dane z-depth-3">
+      <table class="table table-bordered table-sm dane z-depth-3">
           <tr>
             <th colspan="2"> Rozpoznane wywołania innych reguł </th>
           </tr>
@@ -89,8 +102,10 @@
               <td>{{parametr.nazwaParametruRegulyWolanej}}</td>
               <td>{{parametr.nazwaParametruRegulyWolajacej}}</td>
           </tr>-->
-          <tr *ngFor="let wywolanie of regula.wywolaniaRegul">
-              <td class="w-30">{{wywolanie.kodRegulyWolanej}}</td>
-              <td class="w-70">{{wywolanie.kodRegulyWolajacej}}</td>
+          <div *ngFor="let wywolanie of regula.wywolaniaRegul">
+          <tr *ngFor="let parametr of wywolanie.parametry" class="w-100">
+              <td class="w-50">{{wywolanie.kodRegulyWolanej}}.{{parametr.nazwaParametruRegulyWolanej}}</td>
+              <td class="w-50">{{wywolanie.kodRegulyWolajacej}}</td>
           </tr>
+          </div>
         </table>

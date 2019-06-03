@@ -1,10 +1,7 @@
 package uslugi.konwersja
 
 import db.RegulyDbBean
-import model.dto.Parametr
-import model.dto.Regula
-import model.dto.RodzajeAkcjiEnum
-import model.dto.WywolanieReguly
+import model.dto.*
 import model.nlp.RodzajTokenaEnum
 import model.nlp.Sekwencja
 import org.springframework.beans.factory.annotation.Autowired
@@ -77,12 +74,10 @@ open class BudowniczyRegulyDTO : IBudowniczyRegulyDTO {
                     && it.kategoria == RodzajeAkcjiEnum.SPRAWDZ_REGULE.toString()
         }.toList()
 
-
         if (!wywolaniaInnychAkcji.isNullOrEmpty()) {
             return wywolaniaInnychAkcji.map {
-
-                WywolanieReguly(aKod, aSekwencja.podajTokenPoLP(it.lp + 1).wartosc.trim())
-
+                val pWywolanie=WywolanieReguly(aKod, aSekwencja.podajTokenPoLP(it.lp + 1).wartosc.trim())
+                pWywolanie
             }.toMutableList()
 
         }
@@ -90,7 +85,7 @@ open class BudowniczyRegulyDTO : IBudowniczyRegulyDTO {
 
     }
 
-    /* fun wyodrebnijParametryWywolania(aWywolania: List<WywolanieReguly>, aWszystkieReguly: List<Regula>) {
+     fun wyodrebnijParametryWywolania(aWywolania: List<WywolanieReguly>, aWszystkieReguly: List<Regula>) {
          val mapa = aWszystkieReguly.map { it.kod to it }.toMap()
 
          aWywolania.forEach {
@@ -100,7 +95,7 @@ open class BudowniczyRegulyDTO : IBudowniczyRegulyDTO {
          }
 
 
-     }*/
+     }
 
     fun utworzObiektParametru(aNazwaParametru: String, aSekwencja: Sekwencja, aNumerKolejny: Int): Parametr {
         val wraperAtrybutow = wnioskujAtrybutyParametru(aNazwaParametru, aSekwencja, aNumerKolejny)

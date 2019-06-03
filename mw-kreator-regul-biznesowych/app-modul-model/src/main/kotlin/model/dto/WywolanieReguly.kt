@@ -5,6 +5,7 @@ class WywolanieReguly(val kodRegulyWolajacej: String
                       , var parametry: MutableList<ParametrWywolaniaReguly> = mutableListOf()
 ) : ObiektBazowy(), IWalidowalny {
 
+    var nazwyParametrowRegulyWolajacej:List<String>?=null
 
     override fun waliduj(): List<String> {
         val bledy: MutableList<String> = mutableListOf<String>()
