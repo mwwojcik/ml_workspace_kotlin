@@ -16,6 +16,7 @@ import {ViewChild, ElementRef} from '@angular/core';
 })
 export class NlpRegulyWejscieComponent implements OnInit {
   @ViewChild('closeBtn') closeBtn: ElementRef;
+
   komunikat:string=""
 
   model:RegulaWejscie={
@@ -23,6 +24,7 @@ export class NlpRegulyWejscieComponent implements OnInit {
     kod:"[wartość zostanie wygenerowana]",
     tresc:"tresc"
   }
+
 
   reguly: RegulaWejscie[];
 

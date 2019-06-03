@@ -11,8 +11,8 @@
   </tr>
   <tr *ngFor="let regula of reguly">
     <td class="w-10">{{regula.kod}}</td>
-    <td class="w-80">{{regula.tresc}}</td>
-    <td class="w-10">
+    <td class="w-75">{{regula.tresc}}</td>
+    <td class="w-15">
       <button type="button" class="btn btn-warning btn-sm"  (click)="przejdzDoPodgladu(regula)"><i class="far fa-hand-point-right"></i></button>
       <button type="button" class="btn btn-warning btn-sm"  (click)="edytujRegule(regula)" data-toggle="modal" data-target="#exampleModalLong"><i class="far fa-edit"></i></button>
       <button type="button" class="btn btn-warning btn-sm" (click)="usunRegule(regula.id)"><i class="fas fa-trash-alt"></i></button> </td>

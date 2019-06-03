@@ -160,6 +160,10 @@ footer{
   width:10%;
 }
 
+.w-15{
+  width:15%;
+}
+
 .w-20{
   width:20%;
 }
@@ -244,10 +248,18 @@ table.dane td {
 
 
 .btn.btn-sm {
-
-    padding: 0.5rem 1rem;
+    float:left;
+    padding: 0.5rem 0.5rem;
     font-size: 0.64rem;
 
+}
+
+.form-group {
+    margin-bottom: 0rem;
+}
+
+.form-control{
+  font-size: 0.8rem;
 }
 
 /*koniec przedefiniowane z mdb*/

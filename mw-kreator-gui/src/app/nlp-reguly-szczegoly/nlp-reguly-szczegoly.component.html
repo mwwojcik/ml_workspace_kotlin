@@ -59,7 +59,23 @@
         </tr>
         <tr *ngFor="let parametr of regula.parametry">
             <td class="w-30">{{parametr.nazwa}}</td>
-            <td class="w-30">{{parametr.typ}}</td>
+            <td class="w-30">
+              <!--<select [(ngModel)]=parametr.typ ng-options="typ for typ in dopuszczalneTypyParametrow">
+                <option ng-repeat="typ in dopuszczalneTypyParametrow" value="{{typ}}">{{typ}}</option>
+              </select>-->
+              <div class="form-group">
+                  <select class="form-control w-50" id="power"
+                    required
+                    [(ngModel)]="parametr.typ" name="power"
+                    #power="ngModel">
+                    <option *ngFor="let pow of dopuszczalneTypyParametrow" [value]="pow">{{pow}}</option>
+                  </select>
+                  <div [hidden]="power.valid || power.pristine" class="alert alert-danger">
+                    Power is required
+                  </div>
+              </div>
+
+            </td>
             <td class="w-40">{{parametr.wartoscDomyslna}}</td>
         </tr>
       </table>
