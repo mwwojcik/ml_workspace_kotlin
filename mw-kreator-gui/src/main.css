@@ -243,4 +243,11 @@ table.dane td {
 }
 
 
+.btn.btn-sm {
+
+    padding: 0.5rem 1rem;
+    font-size: 0.64rem;
+
+}
+
 /*koniec przedefiniowane z mdb*/

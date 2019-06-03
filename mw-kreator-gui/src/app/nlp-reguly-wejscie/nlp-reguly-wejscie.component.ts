@@ -5,13 +5,17 @@ import {NgForm } from '@angular/forms';
 import * as $ from 'jquery';
 import { Router } from '@angular/router';
 
+
+
+import {ViewChild, ElementRef} from '@angular/core';
+
 @Component({
   selector: 'app-nlp-reguly-wejscie',
   templateUrl: './nlp-reguly-wejscie.component.html',
   styleUrls: ['./nlp-reguly-wejscie.component.css']
 })
 export class NlpRegulyWejscieComponent implements OnInit {
-
+  @ViewChild('closeBtn') closeBtn: ElementRef;
   komunikat:string=""
 
   model:RegulaWejscie={
@@ -82,12 +86,20 @@ export class NlpRegulyWejscieComponent implements OnInit {
       this.regulyUsluga.aktualizujObiekty(regulyPelne);
     });
   }
+    this.closeModal();
   }
 
  wyczyscKomunikat(){
    this.komunikat=""
  }
 
+ przejdzDoPodgladu(aRegulaWejscie:RegulaWejscie){
+   this.router.navigate(['/nlp-reguly-szczegoly'],{queryParams:{kod:aRegulaWejscie.kod}});
+ }
+
+ private closeModal(): void {
+       this.closeBtn.nativeElement.click();
+   }
 }
 /*
 gotoHeroes() {

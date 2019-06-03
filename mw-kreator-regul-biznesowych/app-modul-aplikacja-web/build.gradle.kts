@@ -20,6 +20,7 @@ plugins {
 
 
 dependencies {
+    compile ("com.fasterxml.jackson.module:jackson-module-kotlin:2.9.+")
     implementation(group="org.springframework.boot",name="spring-boot-starter-web",version="2.1.3.RELEASE")
     compile(kotlin("stdlib-jdk8"))
     compile(project(":app-modul-uslugi"))
