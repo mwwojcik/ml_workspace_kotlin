@@ -49,8 +49,34 @@ dodajParametrDoReguly(){
   nowyParam.regula=this.regula;
   this.regulyUsluga.dodajParametrDoReguly(nowyParam).subscribe(
     params=>{
+      this.regulyUsluga.aktualizujObiekty(params)
+      this.regulyUsluga.podajRegulePoKodzie(this.regula.kod).subscribe(aRegula => {
+        this.regula = aRegula;
+      });
       console.log("udalo sie")
       this.closeModal();
+    }
+  )
+}
+
+usunParametrReguly(){
+  this.regulyUsluga.usunParametrReguly(this.regula).subscribe(
+    params=>{
+      this.regulyUsluga.aktualizujObiekty(params)
+      this.regulyUsluga.podajRegulePoKodzie(this.regula.kod).subscribe(aRegula => {
+        this.regula = aRegula;
+      });
+    }
+  )
+}
+
+zapiszRegule(){
+  this.regulyUsluga.zapiszRegule(this.regula).subscribe(
+    params=>{
+      this.regulyUsluga.aktualizujObiekty(params)
+      this.regulyUsluga.podajRegulePoKodzie(this.regula.kod).subscribe(aRegula => {
+        this.regula = aRegula;
+      });
     }
   )
 }

@@ -52,12 +52,20 @@ export class RegulyService {
   }
 
   modyfikujRegule(aRegulaWejscie:RegulaWejscie):Observable<Regula[]>{
+    return this.http.put<Regula[]>(this.url+"/regulawejscie",aRegulaWejscie,this.httpOptions)
+  }
+
+  zapiszRegule(aRegulaWejscie:Regula):Observable<Regula[]>{
     return this.http.put<Regula[]>(this.url+"/regula",aRegulaWejscie,this.httpOptions)
   }
 
 
   dodajParametrDoReguly(aNowyParametr:NowyParametrOW):Observable<Regula[]>{
     return this.http.put<Regula[]>(this.url+"/parametr",aNowyParametr,this.httpOptions)
+  }
+
+  usunParametrReguly(aRegula:Regula):Observable<Regula[]>{
+    return this.http.put<Regula[]>(this.url+"/usuwanyParametr",aRegula,this.httpOptions)
   }
 
 

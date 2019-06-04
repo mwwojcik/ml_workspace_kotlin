@@ -1,5 +1,7 @@
 
-
+<div class="nav justify-content-end" style="margin-bottom: 1em;">
+  <button type="button" class="btn btn-default btn-md" (click)="zapiszRegule()">Zapisz</button>
+</div>
 
 <table class="table table-bordered  table-sm dane z-depth-3">
   <tr>
@@ -84,8 +86,8 @@
         <tr>
           <td colspan="3">
             <div class="centered-button-group">
-            <button type="button"  class="btn btn-default btn-brown btn-sm"  data-toggle="modal" data-target="#exampleModalLong"><i class="fas fa-plus"></i></button>
-            <a [routerLink]="['/nlp-reguly-lista-info']"  class="btn btn-default btn-brown btn-sm" style="margin-left:2rem;"><i class="fas fa-minus"></i></a>
+            <button type="button" class="btn btn-default btn-brown btn-sm"  data-toggle="modal" data-target="#exampleModalLong"><i class="fas fa-plus"></i></button>
+            <button type="button"  class="btn btn-default btn-brown btn-sm" (click)="usunParametrReguly()" style="margin-left:2rem;"><i class="fas fa-minus"></i></button>
             </div>
           </td>
         </tr>
@@ -108,7 +110,7 @@
               <td class="w-50">  <div class="form-group">
                     <select class="form-control w-50" id="power"
                       required
-                      [(ngModel)]="parametr.typ" name="power"
+                      [(ngModel)]="parametr.nazwaParametruRegulyWolajacej" name="power"
                       #power="ngModel">
                       <option *ngFor="let pow of wywolanie.nazwyParametrowRegulyWolajacej" [value]="pow">{{pow}}</option>
                     </select>

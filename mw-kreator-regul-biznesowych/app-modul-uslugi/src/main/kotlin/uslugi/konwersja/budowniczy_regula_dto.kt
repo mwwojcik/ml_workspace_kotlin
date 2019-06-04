@@ -39,7 +39,7 @@ open class BudowniczyRegulyDTO : IBudowniczyRegulyDTO {
 
 
     //var licznikDefaultowychParametrow = 1
-    var prefixNazwwyParametruDomyslnego = "param"
+    var prefixNazwwyParametruDomyslnego = "const_param"
     val formatDaty = "^([0-2][0-9]||3[0-1])-(0[0-9]||1[0-2])-([0-9][0-9])?[0-9][0-9]\$"
 
 

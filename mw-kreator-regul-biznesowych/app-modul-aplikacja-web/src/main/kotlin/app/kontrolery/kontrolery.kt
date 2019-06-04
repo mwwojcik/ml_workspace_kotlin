@@ -39,7 +39,7 @@ class GreetingController {
     }
 
     @CrossOrigin
-    @PutMapping("/regula")
+    @PutMapping("/regulawejscie")
     fun modyfikujRegule(@RequestBody aRegula:RegulaWejscie):List<Regula>{
         println(aRegula.tresc)
         regulyUsluga.zapiszRegule(aRegula.id!!,aRegula.kod!!,aRegula.tresc!!)
@@ -47,8 +47,24 @@ class GreetingController {
     }
 
     @CrossOrigin
+    @PutMapping("/regula")
+    fun modyfikujRegule(@RequestBody aRegula:Regula):List<Regula>{
+        println(aRegula.tresc)
+        regulyUsluga.zapiszRegule(aRegula)
+        return regulyUsluga.podajReguly()
+    }
+
+    @CrossOrigin
     @PutMapping("/parametr")
     fun dodajParametr(@RequestBody aNowyParametr: NowyParametrOW):List<Regula>{
+        regulyUsluga.dodajParametr(aNowyParametr.regula,aNowyParametr.nazwaParametru)
+        return regulyUsluga.podajReguly()
+    }
+
+    @CrossOrigin
+    @PutMapping("/usuwanyParametr")
+    fun usunParametr(@RequestBody aRegula:Regula):List<Regula>{
+        regulyUsluga.usunParametr(aRegula)
         return regulyUsluga.podajReguly()
     }
 }

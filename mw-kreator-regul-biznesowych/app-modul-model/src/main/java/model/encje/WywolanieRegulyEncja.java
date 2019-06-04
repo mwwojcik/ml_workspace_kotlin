@@ -1,5 +1,8 @@
 package model.encje;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -17,6 +20,7 @@ public class WywolanieRegulyEncja extends Encja{
     private RegulaEncja regulaWolana;
 
     @OneToMany(mappedBy = "wywolanie",fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    @Fetch( FetchMode.SELECT)
     private List<ParametrWywolaniaRegulyEncja> parametry=null;
 
     public RegulaEncja getRegulaWolajaca() {

@@ -78,6 +78,12 @@ open class RegulyUslugaBean {
     }
 
     @Transactional
+    fun zapiszRegule(aRegula:Regula){
+        //uwaga! zakladam ze nie zmienia się tresc
+        //zapisujemy tylko typy parametrow i mapowanie parametrow wywolan
+        konwerter.konwertujDoEncji(aRegula)
+    }
+    @Transactional
     fun usunRegule(aId:Long){
         regulyDbBean.usunRegule(aId)
     }

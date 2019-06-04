@@ -48,10 +48,7 @@ open class RegulaKonwerter : BazowyKonwerter(), IKonwerter<Regula, RegulaEncja> 
             pEncja.wywolaniaRegul = wywolaniaRegul.map {
                 konwerterWywolanRegul.konwertujDoEncji(it)
             }.toMutableSet()
-
-
         }
-
         return pEncja;
     }
 
@@ -60,12 +57,8 @@ open class RegulaKonwerter : BazowyKonwerter(), IKonwerter<Regula, RegulaEncja> 
             val pDto = Regula(kod
                     , tresc
                     , fasadaNLP.rozpoznajSekwencje(tresc)
-                    , parametry.map {
-                konwerterParametrow.konwertujDoTransportu(it)
-            }.toMutableList()
-                    , wywolaniaRegul.map {
-                konwerterWywolanRegul.konwertujDoTransportu(it)
-            }.toMutableList()
+                    , parametry.map { konwerterParametrow.konwertujDoTransportu(it) }.toMutableList()
+                    , wywolaniaRegul.map { konwerterWywolanRegul.konwertujDoTransportu(it) }.toMutableList()
             )
             pDto.id = id
             pDto.wersja = wersja
@@ -117,17 +110,16 @@ class WywolanieRegulyKonwerter : BazowyKonwerter(), IKonwerter<WywolanieReguly, 
             pEncja.regulaWolajaca = regulyDbBean.pobierzRegulePoKodzie(kodRegulyWolajacej)
             pEncja.regulaWolana = regulyDbBean.pobierzRegulePoKodzie(kodRegulyWolanej)
 
-            if(!parametry.isNullOrEmpty()) {
-                pEncja.parametry = parametry.map {
-                    podajEncjeParametruWywolania(it, pEncja)
-                }.toMutableList()
-            }else{
+            if (!parametry.isNullOrEmpty()) {
+                pEncja.parametry = parametry.map { podajEncjeParametruWywolania(it, pEncja) }.toMutableList()
+            } else {
                 //jest wywolanie ale nie ma parametrow, wiec inicjalnie trzeba zalozyc
-                pEncja.regulaWolana.parametry.forEach {
+                //do parametrow bierzemy tylko te, ktore nie sa stalymi
+                pEncja.regulaWolana.parametry.filter { it.wartoscDomyslna.isNullOrEmpty() }.forEach {
                     val pParam: ParametrWywolaniaRegulyEncja = podajObiektZarzadzalny<ParametrWywolaniaRegulyEncja>(null, ParametrWywolaniaRegulyEncja::class.java)
-                    pParam.wywolanie=pEncja
-                    pParam.parametrRegulyWolanej=it
-                    pEncja.parametry= mutableListOf<ParametrWywolaniaRegulyEncja>()
+                    pParam.wywolanie = pEncja
+                    pParam.parametrRegulyWolanej = it
+                    pEncja.parametry = mutableListOf<ParametrWywolaniaRegulyEncja>()
                     pEncja.parametry.add(pParam)
                 }
             }
@@ -153,14 +145,9 @@ class WywolanieRegulyKonwerter : BazowyKonwerter(), IKonwerter<WywolanieReguly, 
 
         with(aEncja) {
             val pDto = WywolanieReguly(regulaWolajaca.kod, regulaWolana.kod)
-
-            pDto.nazwyParametrowRegulyWolajacej=regulaWolajaca.parametry.map{it.nazwa}.toList()
-
-            pDto.parametry =
-                    parametry.map {
-                        podajObiektTransportowyParametruWywolania(it)
-                    }.toMutableList()
-
+            pDto.nazwyParametrowRegulyWolajacej = regulaWolajaca.parametry.filter { it.wartoscDomyslna.isNullOrEmpty() }
+                                                    .map { it.nazwa }.toList()
+            pDto.parametry = parametry.map { podajObiektTransportowyParametruWywolania(it) }.toMutableList()
             pDto.id = id
             pDto.wersja = wersja
 

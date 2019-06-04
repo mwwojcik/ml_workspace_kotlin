@@ -1,5 +1,8 @@
 package model.encje;
 
+import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.Fetch;
+
 import javax.persistence.*;
 import java.util.List;
 import java.util.Set;
@@ -23,10 +26,12 @@ public class RegulaEncja extends Encja{
 
     @OneToMany(mappedBy = "regula", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @OrderBy("id")
+    @Fetch( FetchMode.SELECT) //uwaga bez tego zduplikowane rekordy
     private List<ParametrRegulyEncja> parametry=null;
 
 
     @OneToMany(mappedBy = "regulaWolajaca", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @Fetch( FetchMode.SELECT)
     private Set<WywolanieRegulyEncja> wywolaniaRegul=null;
 
 
