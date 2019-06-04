@@ -84,7 +84,7 @@
         <tr>
           <td colspan="3">
             <div class="centered-button-group">
-            <a [routerLink]="['/nlp-reguly-lista-info']"  class="btn btn-default btn-brown btn-sm"><i class="fas fa-plus"></i></a>
+            <button type="button"  class="btn btn-default btn-brown btn-sm"  data-toggle="modal" data-target="#exampleModalLong"><i class="fas fa-plus"></i></button>
             <a [routerLink]="['/nlp-reguly-lista-info']"  class="btn btn-default btn-brown btn-sm" style="margin-left:2rem;"><i class="fas fa-minus"></i></a>
             </div>
           </td>
@@ -94,18 +94,54 @@
 
       </div>
 
-      <table class="table table-bordered table-sm dane z-depth-3">
+      <table class="table table-bordered table-sm dane z-depth-3" *ngFor="let wywolanie of regula.wywolaniaRegul">
           <tr>
-            <th colspan="2"> Rozpoznane wywołania innych reguł </th>
+            <th colspan="2"> Odwołanie do reguły {{wywolanie.kodRegulyWolanej}} </th>
           </tr>
           <!--<tr *ngFor="let parametr of regula.wywolaniaRegul.parametry">
               <td>{{parametr.nazwaParametruRegulyWolanej}}</td>
               <td>{{parametr.nazwaParametruRegulyWolajacej}}</td>
           </tr>-->
-          <div *ngFor="let wywolanie of regula.wywolaniaRegul">
+
           <tr *ngFor="let parametr of wywolanie.parametry" class="w-100">
               <td class="w-50">{{wywolanie.kodRegulyWolanej}}.{{parametr.nazwaParametruRegulyWolanej}}</td>
-              <td class="w-50">{{wywolanie.kodRegulyWolajacej}}</td>
+              <td class="w-50">  <div class="form-group">
+                    <select class="form-control w-50" id="power"
+                      required
+                      [(ngModel)]="parametr.typ" name="power"
+                      #power="ngModel">
+                      <option *ngFor="let pow of wywolanie.nazwyParametrowRegulyWolajacej" [value]="pow">{{pow}}</option>
+                    </select>
+                    <div [hidden]="power.valid || power.pristine" class="alert alert-danger">
+                      Power is required
+                    </div>
+                </div>
+              </td>
           </tr>
-          </div>
+
         </table>
+
+
+
+
+        <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true"  style="z-index: 1041;">
+        <form (ngSubmit)="dodajParametrDoReguly()">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <textarea class="form-control rounded-1" id="tresc" [(ngModel)]="nazwaNowegoParametru" [ngModelOptions]="{standalone: true}" rows="10"></textarea>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal" #closeBtn>Anuluj</button>
+                <button type="submit" class="btn btn-primary btn-sm">Zapisz</button>
+              </div>
+            </div>
+          </div>
+        </form>
+        </div>

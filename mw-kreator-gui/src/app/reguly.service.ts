@@ -1,6 +1,6 @@
 import { Injectable, OnInit } from '@angular/core';
 
-import { Regula,RegulaWejscie,WynikOperacji } from './model'
+import { Regula,RegulaWejscie,WynikOperacji,NowyParametrOW } from './model'
 import SampleJson from './reguly.json';
 import { Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
@@ -54,6 +54,12 @@ export class RegulyService {
   modyfikujRegule(aRegulaWejscie:RegulaWejscie):Observable<Regula[]>{
     return this.http.put<Regula[]>(this.url+"/regula",aRegulaWejscie,this.httpOptions)
   }
+
+
+  dodajParametrDoReguly(aNowyParametr:NowyParametrOW):Observable<Regula[]>{
+    return this.http.put<Regula[]>(this.url+"/parametr",aNowyParametr,this.httpOptions)
+  }
+
 
   aktualizujObiekty(aReguly:Regula[]){
     this.reguly=aReguly;

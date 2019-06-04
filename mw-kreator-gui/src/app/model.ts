@@ -57,3 +57,8 @@ class WywolanieReguly extends ObiektBazowy {
 export class RegulaWejscie {
   constructor(public id:number, public kod:string, public tresc:string){}
   }
+
+export class NowyParametrOW{
+  regula:Regula;
+  nazwaParametru:String;
+}

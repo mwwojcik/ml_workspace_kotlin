@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { RegulyService } from '../reguly.service'
-import { Regula } from '../model';
-
-
+import { Regula,NowyParametrOW } from '../model';
+import {NgForm } from '@angular/forms';
+import * as $ from 'jquery';
+import {ViewChild, ElementRef} from '@angular/core';
 
 @Component({
   selector: 'app-nlp-reguly-szczegoly',
@@ -11,6 +12,10 @@ import { Regula } from '../model';
   styleUrls: ['./nlp-reguly-szczegoly.component.css']
 })
 export class NlpRegulySzczegolyComponent implements OnInit {
+
+  @ViewChild('closeBtn') closeBtn: ElementRef;
+
+  nazwaNowegoParametru:string;
 
   constructor(private route: ActivatedRoute, private regulyUsluga: RegulyService) { }
 
@@ -38,7 +43,21 @@ export class NlpRegulySzczegolyComponent implements OnInit {
     return this.regula;
   }
 
+dodajParametrDoReguly(){
+  let nowyParam:NowyParametrOW=new NowyParametrOW();
+  nowyParam.nazwaParametru=this.nazwaNowegoParametru;
+  nowyParam.regula=this.regula;
+  this.regulyUsluga.dodajParametrDoReguly(nowyParam).subscribe(
+    params=>{
+      console.log("udalo sie")
+      this.closeModal();
+    }
+  )
+}
 
+private closeModal(): void {
+      this.closeBtn.nativeElement.click();
+  }
 
 }
 

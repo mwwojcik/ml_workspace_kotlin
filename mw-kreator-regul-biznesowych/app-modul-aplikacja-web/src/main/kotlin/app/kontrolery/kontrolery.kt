@@ -1,6 +1,7 @@
 package app.kontrolery
 
 import generator.GeneratorKoduBean
+import model.dto.NowyParametrOW
 import model.dto.Regula
 import model.dto.RegulaWejscie
 import org.springframework.beans.factory.annotation.Autowired
@@ -42,6 +43,12 @@ class GreetingController {
     fun modyfikujRegule(@RequestBody aRegula:RegulaWejscie):List<Regula>{
         println(aRegula.tresc)
         regulyUsluga.zapiszRegule(aRegula.id!!,aRegula.kod!!,aRegula.tresc!!)
+        return regulyUsluga.podajReguly()
+    }
+
+    @CrossOrigin
+    @PutMapping("/parametr")
+    fun dodajParametr(@RequestBody aNowyParametr: NowyParametrOW):List<Regula>{
         return regulyUsluga.podajReguly()
     }
 }
