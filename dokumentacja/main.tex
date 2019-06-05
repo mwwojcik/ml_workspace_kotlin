@@ -1,4 +1,9 @@
 \documentclass[a4paper,landscape]{article}
+\usepackage[utf8]{inputenc} % kodowanie ISO Latin2 (Pod Win cp1250)
+%\usepackage[MeX]{polski}
+\usepackage[polish]{babel}
+
+
 \usepackage{amsmath} 
 \usepackage{mathtools}
 \usepackage[margin=0.5in]{geometry}
@@ -20,7 +25,7 @@
 
 SK\_WARUNKI\_START SEKWENCJA\_WARUNKOW SK\_WARUNKI\_STOP SEKCJA\_AKCJA\_TAK  SEKCJA\_AKCJA\_NIE
 \[POCZATEK\_REGULY
- \underbrace{\hspace*{10} WARUNEK \hspace*{10}  (OPERATOR\_LOGICZNY \hspace*{10} WARUNEK)* \hspace*{10}}_\text{Sekwencja warunków} 
+ \underbrace{\hspace*{10pt} WARUNEK \hspace*{10pt}  (OPERATOR\_LOGICZNY \hspace*{10pt} WARUNEK)* \hspace*{10pt}}_\text{Sekwencja warunków} 
 \ KONIEC\_REGULY 
 \]
 
@@ -28,7 +33,7 @@ SK\_WARUNKI\_START SEKWENCJA\_WARUNKOW SK\_WARUNKI\_STOP SEKCJA\_AKCJA\_TAK  SEK
 Gdzie 
 
 \[
-WARUNEK=	\underbrace{LEWY\_OPERAND\_WARUNKU \hspace*{20} OPERATOR\_WARUNKU \hspace*{20} PRAWY\_OPERAND\_WARUNKU }_\text{WARUNEK}
+WARUNEK=	\underbrace{LEWY\_OPERAND\_WARUNKU \hspace*{20pt} OPERATOR\_WARUNKU \hspace*{20pt} PRAWY\_OPERAND\_WARUNKU }_\text{WARUNEK}
 \]
 
 %\[
