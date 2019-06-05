@@ -29,6 +29,7 @@ export class Regula extends ObiektBazowy {
     sekwencja: Sekwencja;
     parametry: Array<Parametr>;
     wywolaniaRegul: Array<WywolanieReguly>;
+    kontekstWalidacji:KontekstWalidacji;
 }
 
 class Sekwencja {
@@ -61,4 +62,16 @@ export class RegulaWejscie {
 export class NowyParametrOW{
   regula:Regula;
   nazwaParametru:String;
+}
+
+export class KontekstWalidacji{
+  komunikaty:KomunikatWalidacji[];
+
+  czySaKomunikaty(){
+    return this.komunikaty.length!=0
+  }
+}
+
+export class KomunikatWalidacji{
+  wartosc:String;
 }

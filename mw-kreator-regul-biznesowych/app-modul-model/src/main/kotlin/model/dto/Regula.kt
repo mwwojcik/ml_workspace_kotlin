@@ -11,6 +11,7 @@ data class Regula(
         , var wywolaniaRegul: MutableList<WywolanieReguly> = mutableListOf()
     ) : ObiektBazowy(), IWalidowalny {
 
+    val kontekstWalidacji=KontekstWalidacji()
 
     override fun waliduj(): List<String> {
         val bledy: MutableList<String> = mutableListOf<String>()

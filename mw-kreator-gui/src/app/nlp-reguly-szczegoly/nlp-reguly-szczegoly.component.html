@@ -3,6 +3,15 @@
   <button type="button" class="btn btn-default btn-md" (click)="zapiszRegule()">Zapisz</button>
 </div>
 
+
+<div class="alert alert-danger" *ngIf="regula.kontekstWalidacji.czySaKomunikaty">
+  <ul>
+    <li *ngFor="let komunikat of regula.kontekstWalidacji.komunikaty">
+      {{komunikat.wartosc}}
+    </li>
+  </ul>
+</div>
+
 <table class="table table-bordered  table-sm dane z-depth-3">
   <tr>
     <th> Reguła wejściowa</th>
