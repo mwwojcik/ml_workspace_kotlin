@@ -1,23 +1,21 @@
-@import url('https://fonts.googleapis.com/css?family=Lato|Coiny|Open Sans');
+@import url('https://fonts.googleapis.com/css?family=Lato|Coiny|Open Sans|Bree Serif|Cabin|Montserrat');
 
 body {
-    font-family: medium-content-serif-font, Georgia, Cambria,'Open Sans', "Roboto",serif;
-    font-weight: 200;
+    font-family: Montserrat,Cabin,Bree Serif,,'Open Sans', "Roboto", serif;
+    font-weight:400;
     width:100%;
     height: 100vh;
     color:#4d4d4d !important;
+    line-height:2rem;
 }
 
 
 
 html {
-
-    line-height:24px;
     width:100%;
     min-height: 100%;
     font-size: 14px;
     letter-spacing: .3px;
-
 }
 
 html:before {
