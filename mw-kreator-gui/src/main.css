@@ -1,11 +1,11 @@
 @import url('https://fonts.googleapis.com/css?family=Lato|Coiny|Open Sans|Bree Serif|Cabin|Montserrat');
 
 body {
-    font-family: Montserrat,Cabin,Bree Serif,'Open Sans', "Roboto", serif;
-    font-weight:400;
+    font-family: 'Open Sans','Bree Serif',"Roboto",Montserrat,Cabin, serif;
+font-weight: 400;
     width:100%;
     height: 100vh;
-    color:#4d4d4d !important;
+    color:#333 !important;
     line-height:2rem;
 }
 
@@ -14,8 +14,7 @@ body {
 html {
     width:100%;
     min-height: 100%;
-    font-size: 14px;
-    letter-spacing: .3px;
+    font-size: 13px;
 }
 
 html:before {
