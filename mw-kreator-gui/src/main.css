@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Lato|Coiny|Open Sans|Bree Serif|Cabin|Montserrat');
 
 body {
-    font-family: 'Open Sans','Bree Serif',"Roboto",Montserrat,Cabin, serif;
-font-weight: 400;
+    font-family: "Georgia",'Open Sans','Bree Serif',"Roboto",Montserrat,Cabin, serif;
+
     width:100%;
     height: 100vh;
     color:#333 !important;
@@ -14,7 +14,7 @@ font-weight: 400;
 html {
     width:100%;
     min-height: 100%;
-    font-size: 13px;
+    font-size: 14px;
 }
 
 html:before {
@@ -240,7 +240,7 @@ table.table-sm th, table.table-sm td {
 
 
 table.dane td {
-    color: #444;
+    color: #666;
     font-size: 0.8rem;
     line-height: 1rem;
     font-weight: 500;
