@@ -2,9 +2,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
-import { MenuComponent } from './menu/menu.component';
+//import { MenuComponent } from './menu/menu.component';
 import { NaglowekComponent } from './naglowek/naglowek.component';
-import { StopkaComponent } from './stopka/stopka.component';
+//import { StopkaComponent } from './stopka/stopka.component';
 import { UkladGlownyAppComponent } from './uklad-glowny-app/uklad-glowny-app.component';
 import { UkladGlownyTrescComponent } from './uklad-glowny-tresc/uklad-glowny-tresc.component';
 import { UkladGlownyAppWejscieComponent } from './uklad-glowny-app-wejscie/uklad-glowny-app-wejscie.component';
@@ -12,20 +12,21 @@ import { MenuZmianaTrybuAppComponent } from './menu-zmiana-trybu-app/menu-zmiana
 
 
 @NgModule({
-  declarations: [MenuComponent,
-    NaglowekComponent,
-    StopkaComponent,
-    UkladGlownyAppComponent,
-    UkladGlownyTrescComponent,
-    UkladGlownyAppWejscieComponent,
-    MenuZmianaTrybuAppComponent],
-  imports: [
-    CommonModule,
+  declarations: [
+    NaglowekComponent
+    //StopkaComponent,
+    //UkladGlownyAppComponent,
+    //UkladGlownyTrescComponent,
+    //UkladGlownyAppWejscieComponent,
+    //MenuZmianaTrybuAppComponent],
+  ]
+,  imports: [
+  //  CommonModule,
     RouterModule.forChild([])
   ]
   , exports: [
-    UkladGlownyTrescComponent,
-    UkladGlownyAppComponent
+    //UkladGlownyTrescComponent,
+    //UkladGlownyAppComponent
   ]
 })
 export class LayoutModule { }
