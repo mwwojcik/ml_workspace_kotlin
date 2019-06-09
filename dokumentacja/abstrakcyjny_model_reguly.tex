@@ -1,0 +1,72 @@
+\section{Abstrakcyjny model reguły}
+Kluczowym elementem całego rozwiązania jest model, w oparciu o który narzędzia dostępne w bibliotece OpenNLP będą dokonywały analizy reguł. By przygotować taki model konieczne jest dostarczenie dobrej jakości próbki uczącej, która weźmie udział w procesie jego trenowania. 
+
+Przygotowanie próbki rozpocznę od opracowania schematu reguły. Oczekuję, że system prawidłowo rozpozna poszczególne składowe każdej reguły, która będzie z nim zgodna. 
+
+\paragraph{}
+Na początek wypiszę sobie kilka przykładowych reguł walidacyjnych.
+
+\fbox{\begin{minipage}{40em}
+		\begin{enumerate}
+		\item Jeśli wiek\_pacjenta jest większy od 18 wtedy zgłoś błąd ,,Pacjent jest osobą dorosłą.'', w przeciwnym wypadku
+		wyświetl komunikat ,,Pacjent został zakwalifikowany do leczenia pediatrycznego.''.
+		\item Jeśli data\_kwalifikacji jest jest mniejsza od '01-01-2019' wtedy zgłoś wyjątek ,,Data sprzed roku 2019.'', w przeciwnym wypadku sprawdź regułę RS-001. 
+		\item Gdy saldo\_rachunku jest większe od 100 oraz saldo\_rachunku jest mniejsze niż 1000 wtedy wyświetl komunikat ,,Saldo rachunku jest prawidłowe.'', w przeciwnym razie zgłoś błąd ,,Nieprawidłowe saldo rachunku''.
+		\item Jeśli data\_teraz jest niewiększa niż data\_ważności wyświetl komunikat ,,Wniosek jest aktualny.'' w przeciwnym wypadku zgłaszaj błąd ,,Wniosek utracił ważność''.
+	\end{enumerate}
+	
+\end{minipage}}
+
+\paragraph{}
+
+%\textunderbrace{Ala ma kota}{warunek}
+%\textunderbrace{Text \textoverbrace{text}{aaa} text text}{bbb}
+
+%\bigskip
+
+%\emph{\textunderbrace{Text \textoverbrace{text}{aaa} text text}{bbb}}
+
+%tesr\newline\\
+
+Przyjmuję uproszczenie, że dla każdej rozpoznawanej reguły możliwe będzie wydzielenie trzech bloków:
+\\ \\
+\fbox{\begin{minipage}{40em}
+\[
+\underbrace{WARUNKI}  \underbrace{AKCJA\_TAK}  \underbrace{(AKCJA\_NIE)?}
+\]
+\end{minipage}}
+\\ \\
+Poszczególne bloki oddzielone będą od siebie słowami kluczowymi oznaczającymi rozpoczęcie i zakończenie bloku. \\
+
+Wprowadzam następujące oznaczenia:
+\begin{enumerate}
+	\item SW - Start sekcji warunku
+	\item KW - Koniec sekcji warunku
+	\item SAN - Start sekcji akcji wykonywanej przy niespełnionym warunku
+\end{enumerate}
+Schemat reguły przyjmuje następującą postać:
+\\ \\
+\fbox{\begin{minipage}{40em}
+		\[
+		\text{SW} \underbrace{WARUNKI} \text{KW} \underbrace{AKCJA\_TAK}  \underbrace{(\text{SAN }AKCJA\_NIE)?}
+		\]
+\end{minipage}}
+\\ \\
+
+W odniesieniu do przykładu wyglądałoby to tak:
+\\ \\
+\fbox{\begin{minipage}{40em}
+		\[
+		\textunderbrace{Jeśli}{SW} 	
+		\textunderbrace{data\_kwalifikacji jest jest mniejsza od '01-01-2019'}{WARUNEK} 		 
+		\]
+		\[
+		\textunderbrace{wtedy}{KW} 		
+		\textunderbrace{zgłoś wyjątek ,,Data sprzed roku 2019.''}{AKCJA\_TAK}		
+		\]
+		\[		
+		\textunderbrace{w przeciwnym wypadku }{SAN} 	
+		\textunderbrace{sprawdź regułę RS-001.}{AKCJA\_NIE} 
+		\]
+\end{minipage}}
+\\ \\
