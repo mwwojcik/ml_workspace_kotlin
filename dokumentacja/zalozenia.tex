@@ -1,1 +1,7 @@
-\section{Założenia i sposób realizacji}
+\section{Realizacja}
+Do realizacji moich założeń wybrałem napisaną w Javia bibliotekę \textit{Apache OpenNLP}. Dostarcza ona narzędzi realizujących wiele aspektów przetwarzania języka naturalnego.
+W moim projekcie skupię się technice nazywanej \textit{Named Entity Recognition (NER)}. 
+\\
+Polega ona na rozpoznawaniu w tekście określonych bytów nazwanych. Najczęściej są to imiona, nazwiska, nazwy własne itp.  W moim przypadku chciałbym stworzyć własny model, który zostanie przyuczony do rozpoznawania poszczególnych elementów konstrukcji reguły walidacyjnej (takich jak słowa kluczowe rozpoczynające i kończące bloki, operatory, akcje i ich parametry). 
+\\
+Żeby to osiągnąć konieczne jest przygotowanie odpowiednio opisanej próbki uczącej, a następnie wykorzystanie jej do treningu modelu.

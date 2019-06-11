@@ -1,7 +1,6 @@
 \section{Abstrakcyjny model reguły}
-Kluczowym elementem całego rozwiązania jest model, w oparciu o który narzędzia dostępne w bibliotece OpenNLP będą dokonywały analizy reguł. By przygotować taki model konieczne jest dostarczenie dobrej jakości próbki uczącej, która weźmie udział w procesie jego trenowania. 
-\\
-Przygotowanie próbki rozpocznę od opracowania schematu reguły. Oczekuję, że system prawidłowo rozpozna poszczególne składowe każdej reguły, która będzie z nim zgodna. 
+
+Przygotowanie próbki rozpocznę od opracowania schematu reguły. 
 
 
 Na początek wypiszę sobie kilka przykładowych reguł walidacyjnych.
@@ -50,20 +49,20 @@ Schemat reguły przyjmuje następującą postać:
 \\ \\
 \fbox{\begin{minipage}{40em}
 		\[
-		\underbrace{SK\_SW} \underbrace{WARUNEK} \underbrace{SK\_KW} \underbrace{AKCJA\_TAK}  (\underbrace{SK\_SAN}\underbrace{AKCJA\_NIE)?}
+		\underbrace{SK\_SW} \underbrace{WARUNKI} \underbrace{SK\_KW} \underbrace{AKCJA\_TAK}  (\underbrace{SK\_SAN}\underbrace{AKCJA\_NIE)?}
 		\]
 		
 \end{minipage}}
 \\ \\
 
-Powyższy schemat można odnieść do przykładowej reguły:
+Rzut oka na przykład:
 \\ \\
 \fbox{\begin{minipage}{40em}
 			\[
 		\textunderbrace{Jeśli}{SK\_SW} 			 
 		\]
 		\[
-		\textunderbrace{data jest jest mniejsza od '01-01-2019' lub data jest większa niż '01-06-2019'}{WARUNEK} 		 
+		\textunderbrace{data jest mniejsza od '01-01-2019' lub data jest większa niż '01-06-2019'}{WARUNEK} 		 
 		\]
 		\[
 		\textunderbrace{wtedy}{SK\_KW} 		
@@ -83,5 +82,122 @@ Powyższy schemat można odnieść do przykładowej reguły:
 
 \paragraph{}
 Ponieważ kluczowe jest właściwe rozpoznanie sekcji warunku, chciałbym wyłączyć go przed nawias i przez chwilę skupić się wyłącznie na nim. 
+\\ \\
+\fbox{\begin{minipage}{40em}
+		
+		\[
+		\textunderbrace{data jest  mniejsza od '01-01-2019' lub data jest większa niż '01-06-2019'}{WARUNEK} 		 
+		\]	
+		
+\end{minipage}}
+\\ \\
 
-%In Figure \ref{fig:test} we see a beautiful duck!
+Na początek trzeba zauważyć, że powyższa sekcja składa się z dwóch niezależnych wyrażeń warunkowych połączonych operatorem logicznym \textit{lub} . Każdy z pojedynczych warunków składa się z kolei z operatora relacyjnego \textit{(jest mniejsza, jest większa)}, oraz z dwóch operandów \textit{(lewego i prawego)}.
+\\
+Wprowadzam więc następujące oznaczenia:
+\begin{enumerate}
+	\item OP\_L - Operand lewy
+	\item OPR\_REL - Operator relacyjny
+	\item OP\_P - Operand prawy
+	\item OPR\_LOG - Operator logiczny
+\end{enumerate}
+
+Po podstawieniu, przykładowy warunek można  
+\\ \\
+\fbox{\begin{minipage}{40em}
+		
+		\[
+		\textunderbrace{\textunderbrace{data}{OP\_L} \textunderbrace{jest  mniejsza od}{OPR\_REL} \textunderbrace{'01-01-2019'}{OP\_P} \textunderbrace{lub}{OPR\_LOG} \textunderbrace{data}{OP\_L} \textunderbrace{jest większa niż}{OPR\_REL} \textunderbrace{'01-06-2019'}{OP\_P}}{WARUNEK} 		 
+		\]	
+		
+\end{minipage}}
+\\ \\
+Zatem zapis symboliczny sekcji warunkowej będzie wyglądał następująco:
+\\ \\
+\fbox{\begin{minipage}{40em}
+		
+		\[
+		\textunderbrace{OP\_L OPR\_REL OP\_P (OPR\_LOG OP\_L OPR\_REL OP\_P)?}{WARUNEK} 		 
+		\]	
+		
+\end{minipage}}
+\\ \\
+
+Po dokonaniu podstawienia w sekcji \textit{WARUNKI} abstrakcyjny model reguły przyjmie następującą postać:
+\\ \\
+\fbox{\begin{minipage}{40em}
+		\[
+		\underbrace{SK\_SW}
+		\]
+		\[	
+			\textunderbrace{OP\_L OPR\_REL OP\_P (OPR\_LOG OP\_L OPR\_REL OP\_P)?}{WARUNEK}		
+		\]
+		\[
+			\underbrace{SK\_KW}
+		\]
+		\[
+		\underbrace{AKCJA\_TAK}
+		\]
+		\[
+		(\underbrace{SK\_SAN}\underbrace{AKCJA\_NIE)?}
+		\]
+		
+\end{minipage}}
+\\ \\
+Jeśli chodzi o akcje, to sprawa wydaje się prostsza, bo każda z nich składa się z części mówiącej o tym co ma być zrobione (AKCJA), oraz z jakim parametrem ma być wykonane (AKCJA\_PARAMETR). Ostatecznie więc, po wykonaniu podstawienia nasz model przyjmie następującą, ostateczną formę:
+\\ \\
+\fbox{\begin{minipage}{40em}
+	\[
+		\underbrace{SK\_SW}
+		\]
+		\[	
+		\textunderbrace{OP\_L OPR\_REL OP\_P (OPR\_LOG OP\_L OPR\_REL OP\_P)?}{WARUNEK}		
+		\]
+		\[
+		\underbrace{SK\_KW}
+		\]
+		\[
+		\textunderbrace{AKCJA AKCJA\_PARAMETR}{AKCJA\_TAK}
+		\]
+		\[
+		(\underbrace{SK\_SAN}\textunderbrace{AKCJA AKCJA\_PARAMETR}{AKCJA\_NIE})?
+		\]
+		
+		\begin{enumerate}
+			\item SK\_SW - Start sekcji warunku
+			\item SK\_KW - Koniec sekcji warunku
+			\item SK\_SAN - Start sekcji akcji wykonywanej przy niespełnionym warunku
+				\item OP\_L - Operand lewy
+			\item OPR\_REL - Operator relacyjny
+			\item OP\_P - Operand prawy
+			\item OPR\_LOG - Operator logiczny
+		\end{enumerate}
+		
+\end{minipage}}
+\\ \\
+I jeszcze ostatnie spojrzenie na przykład:
+\\ \\
+\fbox{\begin{minipage}{40em}
+		\[
+		\textunderbrace{Jeśli}{SK\_SW} 			 
+		\]
+		\[
+	\textunderbrace{\textunderbrace{data}{OP\_L} \textunderbrace{jest  mniejsza od}{OPR\_REL} \textunderbrace{'01-01-2019'}{OP\_P} \textunderbrace{lub}{OPR\_LOG} \textunderbrace{data}{OP\_L} \textunderbrace{jest większa niż}{OPR\_REL} \textunderbrace{'01-06-2019'}{OP\_P}}{WARUNEK} 		 
+	\]	
+		\[
+		\textunderbrace{wtedy}{SK\_KW} 		
+		\]
+		\[ 		
+		\textunderbrace{\textunderbrace{zgłoś wyjątek}{AKCJA} \textunderbrace{,,Data spoza dopuszczonego przedziału.''}{AKCJA\_PARAMETR}}{AKCJA\_TAK}		
+		\]
+		\[		
+		\textunderbrace{w przeciwnym wypadku }{SK\_SAN} 	
+		\]
+		\[			
+		\textunderbrace{\textunderbrace{sprawdź regułę}{AKCJA} \textunderbrace{ RS-001.}{AKCJA\_PARAMETR}}{AKCJA\_NIE} 
+		\]
+		
+\end{minipage}}
+\\ \\
+
+Tak określony model może być podstawą do wygenerowania odpowiednio oznakowanej próbki uczącej.
