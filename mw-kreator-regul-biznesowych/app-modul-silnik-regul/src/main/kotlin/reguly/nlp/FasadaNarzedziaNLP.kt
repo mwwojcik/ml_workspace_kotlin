@@ -23,8 +23,8 @@ open class FasadaNarzedziaNLP : IFasadaNarzedziaNLP {
                 egzaminatorModeluReguly.rozpoznajSekwencje(postacZnormalizowana.postacKanoniczna)
 
         sekwencja.rozpoznaneTokeny.filter {
-            it.typ == RodzajTokenaEnum.OPETATOR_POROWNANIA || it.typ == RodzajTokenaEnum.AKCJA
-            ||it.typ==RodzajTokenaEnum.OPERATOR_LOGICZNY
+            it.typ == RodzajTokenaEnum.OPR_REL || it.typ == RodzajTokenaEnum.AKCJA
+            ||it.typ==RodzajTokenaEnum.OPR_LOG
         }.forEach {
             it.kategoria = egzaminatorModeluKategorii.wybierzNajlepszaKategorie(it.wartosc)
         }

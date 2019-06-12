@@ -35,7 +35,7 @@ class Sekwencja(val zdaniePierwotne:String, val tokeny:Array<String>,
         val tokenyCzescWarunkowa= mutableListOf<RozpoznanyToken>()
         //zaczynamy od 2 bo chcemy przeskoczyc poczatek reguly
         for(i in 2..rozpoznaneTokeny.size){
-            if (podajTokenPoLP(i).typ==RodzajTokenaEnum.KONIEC_REGULY){
+            if (podajTokenPoLP(i).typ==RodzajTokenaEnum.SK_KW){
                 break
             }
             tokenyCzescWarunkowa.add(podajTokenPoLP(i))
@@ -69,9 +69,9 @@ class Sekwencja(val zdaniePierwotne:String, val tokeny:Array<String>,
     fun podajTokenyAkcjiTak():List<RozpoznanyToken>{
         val tokenyAkcjaTak= mutableListOf<RozpoznanyToken>()
         //zaczynamy od 2 bo chcemy przeskoczyc poczatek reguly
-        var indeksStart=podajPierwszyTokenDanegoTypu(RodzajTokenaEnum.KONIEC_REGULY)!!.lp+1
+        var indeksStart=podajPierwszyTokenDanegoTypu(RodzajTokenaEnum.SK_KW)!!.lp+1
         for( i  in indeksStart..rozpoznaneTokeny.size){
-            if (podajTokenPoLP(i).typ==RodzajTokenaEnum.W_PRZECIWNYM_RAZIE){
+            if (podajTokenPoLP(i).typ==RodzajTokenaEnum.SK_SAN){
                 break
             }
             tokenyAkcjaTak.add(podajTokenPoLP(i))
@@ -82,7 +82,7 @@ class Sekwencja(val zdaniePierwotne:String, val tokeny:Array<String>,
     fun podajTokenyAkcjiNie():List<RozpoznanyToken>{
         val tokenyAkcjaNie= mutableListOf<RozpoznanyToken>()
         //zaczynamy od 2 bo chcemy przeskoczyc poczatek reguly
-        var tokenWPrzeciwnym=podajPierwszyTokenDanegoTypu(RodzajTokenaEnum.W_PRZECIWNYM_RAZIE)
+        var tokenWPrzeciwnym=podajPierwszyTokenDanegoTypu(RodzajTokenaEnum.SK_SAN)
         if(tokenWPrzeciwnym==null){
             return emptyList()
         }
@@ -102,7 +102,7 @@ class Sekwencja(val zdaniePierwotne:String, val tokeny:Array<String>,
      */
     fun dajPierwszyOperatorWarunku():String{
         for (tok in rozpoznaneTokeny){
-            if (tok.typ==RodzajTokenaEnum.OPETATOR_POROWNANIA||tok.typ==RodzajTokenaEnum.OPERATOR_POROWNANIA_NULL){
+            if (tok.typ==RodzajTokenaEnum.OPR_REL||tok.typ==RodzajTokenaEnum.OPERATOR_POROWNANIA_NULL){
                 return tok.wartosc.trim();
             }
         }

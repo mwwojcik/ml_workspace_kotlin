@@ -4,15 +4,15 @@ import java.lang.IllegalArgumentException
 
 enum class RodzajTokenaEnum(val kod:String) {
 
-    POCZATEK_REGULY("SK_SW"),
-    KONIEC_REGULY("SK_KW"),
-    LEWOSTRONNY_OPERAND_WARUNKU("OP_L"),
-    PRAWOSTRONNY_OPERAND_WARUNKU("OP_P"),
-    OPETATOR_POROWNANIA("OPR_REL"),
+    SK_SW("SK_SW"), //slowo kluczowe-start warunku
+    SK_KW("SK_KW"), //slowo kluczowe-koniec warunku
+    OP_L("OP_L"),
+    OP_P("OP_P"),
+    OPR_REL("OPR_REL"),
     AKCJA("AKCJA"),
-    PARAMETR_AKCJI("AKCJA_PARAMETR"),
-    OPERATOR_LOGICZNY("OPR_LOG"),
-    W_PRZECIWNYM_RAZIE("SK_SAN"),
+    AKCJA_PARAMETR("AKCJA_PARAMETR"),
+    OPR_LOG("OPR_LOG"),
+    SK_SAN("SK_SAN"), //slowo kluczowe - start akcja NIE
     LEWOSTRONNY_OPERAND_POROWNANIA_NULL("porowanie_czy_null_OP"),
     OPERATOR_POROWNANIA_NULL("operator_porownania_czy_null");
 

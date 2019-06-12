@@ -51,8 +51,8 @@ open class BudowniczyRegulyDTO : IBudowniczyRegulyDTO {
 
         aSekwencja.rozpoznaneTokeny
                 .filter {
-                    (it.typ == RodzajTokenaEnum.LEWOSTRONNY_OPERAND_WARUNKU
-                            || it.typ == RodzajTokenaEnum.PRAWOSTRONNY_OPERAND_WARUNKU)
+                    (it.typ == RodzajTokenaEnum.OP_L
+                            || it.typ == RodzajTokenaEnum.OP_P)
                             && !unikalnySet.contains(it.wartosc)
                 }
                 .forEach() {
@@ -104,7 +104,7 @@ open class BudowniczyRegulyDTO : IBudowniczyRegulyDTO {
 
 
     fun wnioskujAtrybutyParametru(aParam: String, aSekwencja: Sekwencja, aNumerKolejny: Int): WrapperTypuParametru {
-        if (aSekwencja.podajTokenPoWartosci(aParam)!!.typ == RodzajTokenaEnum.LEWOSTRONNY_OPERAND_WARUNKU) {
+        if (aSekwencja.podajTokenPoWartosci(aParam)!!.typ == RodzajTokenaEnum.OP_L) {
 
             if (aParam.contains("data")) {
                 return WrapperTypuParametru(aParam, "Data")
