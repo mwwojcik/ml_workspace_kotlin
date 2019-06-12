@@ -8,11 +8,11 @@ Na początek wypiszę sobie kilka przykładowych reguł walidacyjnych.
 \fbox{\begin{minipage}{40em}
 		
 		\begin{enumerate}
-		\item Jeśli wiek\_pacjenta jest większy od 18 wtedy zgłoś błąd ,,Pacjent jest osobą dorosłą.'', w przeciwnym wypadku
-		wyświetl komunikat ,,Pacjent został zakwalifikowany do leczenia pediatrycznego.''.
-		\item Jeśli data\_kwalifikacji jest jest mniejsza od '01-01-2019' wtedy zgłoś wyjątek ,,Data sprzed roku 2019.'', w przeciwnym wypadku sprawdź regułę RS-001. 
-		\item Gdy saldo\_rachunku jest większe od 100 oraz saldo\_rachunku jest mniejsze niż 1000 wtedy wyświetl komunikat ,,Saldo rachunku jest prawidłowe.'', w przeciwnym razie zgłoś błąd ,,Nieprawidłowe saldo rachunku''.
-		\item Jeśli data\_teraz jest niewiększa niż data\_ważności wyświetl komunikat ,,Wniosek jest aktualny.'' w przeciwnym wypadku zgłaszaj błąd ,,Wniosek utracił ważność''.
+		\item \textit{Jeśli wiek\_pacjenta jest większy od 18 wtedy zgłoś błąd ,,Pacjent jest osobą dorosłą.'', w przeciwnym wypadku
+		wyświetl komunikat ,,Pacjent został zakwalifikowany do leczenia pediatrycznego.''.}
+		\item\textit{ Jeśli data\_kwalifikacji jest jest mniejsza od '01-01-2019' wtedy zgłoś wyjątek ,,Data sprzed roku 2019.'', w przeciwnym wypadku sprawdź regułę RS-001.} 
+		\item \textit{Gdy saldo\_rachunku jest większe od 100 oraz saldo\_rachunku jest mniejsze niż 1000 wtedy wyświetl komunikat ,,Saldo rachunku jest prawidłowe.'', w przeciwnym razie zgłoś błąd ,,Nieprawidłowe saldo rachunku''.}
+		\item \textit{Jeśli data\_teraz jest niewiększa niż data\_ważności wyświetl komunikat ,,Wniosek jest aktualny.'' w przeciwnym wypadku zgłaszaj błąd ,,Wniosek utracił ważność''.}
 	\end{enumerate}
 	
 \end{minipage}}
@@ -31,7 +31,7 @@ Przyjmuję uproszczenie, że każda rozpoznawana reguła składała się będzie
 \\ \\
 \fbox{\begin{minipage}{40em}
 \[
-\underbrace{WARUNKI}  \underbrace{AKCJA\_TAK}  \underbrace{(AKCJA\_NIE)?}
+\textunderbrace{WARUNKI}{} \textunderbrace{AKCJA\_TAK}{}  \textunderbrace{(AKCJA\_NIE)?}{}
 \]
 %S\label{fig:test}test
 \end{minipage}}
@@ -127,19 +127,19 @@ Po dokonaniu podstawienia w sekcji \textit{WARUNKI} abstrakcyjny model reguły p
 \\ \\
 \fbox{\begin{minipage}{40em}
 		\[
-		\underbrace{SK\_SW}
+		\textunderbrace{SK\_SW}{}
 		\]
 		\[	
 			\textunderbrace{OP\_L OPR\_REL OP\_P (OPR\_LOG OP\_L OPR\_REL OP\_P)?}{WARUNEK}		
 		\]
 		\[
-			\underbrace{SK\_KW}
+			\textunderbrace{SK\_KW}{}
 		\]
 		\[
-		\underbrace{AKCJA\_TAK}
+		\textunderbrace{AKCJA\_TAK}{}
 		\]
 		\[
-		(\underbrace{SK\_SAN}\underbrace{AKCJA\_NIE)?}
+		(\textunderbrace{SK\_SAN}{}\textunderbrace{AKCJA\_NIE)?}{}
 		\]
 		
 \end{minipage}}
@@ -148,19 +148,19 @@ Jeśli chodzi o akcje, to sprawa wydaje się prostsza, bo każda z nich składa 
 \\ \\
 \fbox{\begin{minipage}{40em}
 	\[
-		\underbrace{SK\_SW}
+		\textunderbrace{SK\_SW}{}
 		\]
 		\[	
 		\textunderbrace{OP\_L OPR\_REL OP\_P (OPR\_LOG OP\_L OPR\_REL OP\_P)?}{WARUNEK}		
 		\]
 		\[
-		\underbrace{SK\_KW}
+		\textunderbrace{SK\_KW}{}
 		\]
 		\[
 		\textunderbrace{AKCJA AKCJA\_PARAMETR}{AKCJA\_TAK}
 		\]
 		\[
-		(\underbrace{SK\_SAN}\textunderbrace{AKCJA AKCJA\_PARAMETR}{AKCJA\_NIE})?
+		(\textunderbrace{SK\_SAN}{}\textunderbrace{AKCJA AKCJA\_PARAMETR}{AKCJA\_NIE})?
 		\]
 		
 		\begin{enumerate}
@@ -175,7 +175,7 @@ Jeśli chodzi o akcje, to sprawa wydaje się prostsza, bo każda z nich składa 
 		
 \end{minipage}}
 \\ \\
-I jeszcze ostatnie spojrzenie na przykład:
+I jeszcze spojrzenie na przykład:
 \\ \\
 \fbox{\begin{minipage}{40em}
 		\[
@@ -200,4 +200,3 @@ I jeszcze ostatnie spojrzenie na przykład:
 \end{minipage}}
 \\ \\
 
-Tak określony model może być podstawą do wygenerowania odpowiednio oznakowanej próbki uczącej.
