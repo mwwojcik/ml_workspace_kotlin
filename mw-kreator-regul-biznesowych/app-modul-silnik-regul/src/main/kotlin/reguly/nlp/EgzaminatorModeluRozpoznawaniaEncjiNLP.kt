@@ -55,7 +55,7 @@ open class EgzaminatorModeluRozpoznawaniaEncjiNLP {
             for(i in name.start..name.end-1){
                 pName+=pSekwencja.tokeny[i]+" "
             }
-            pSekwencja.rozpoznaneTokeny.add(RozpoznanyToken(lp,pName,RodzajTokenaEnum.AKCJA.podajEnumPoKodzie(name.type),name.prob))
+            pSekwencja.rozpoznaneTokeny.add(RozpoznanyToken(lp,pName,RodzajTokenaEnum.AKCJA.podajEnumPoKodzie(name.type),RodzajTokenaEnum.AKCJA.podajEnumPoKodzie(name.type).typSlownie,name.prob))
             lp++
         }
         return pSekwencja

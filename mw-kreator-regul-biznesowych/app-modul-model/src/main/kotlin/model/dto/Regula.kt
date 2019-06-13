@@ -14,13 +14,14 @@ data class Regula(
     val kontekstWalidacji=KontekstWalidacji()
 
     override fun waliduj(): List<String> {
-        val bledy: MutableList<String> = mutableListOf<String>()
 
+        val bledy: MutableList<String> = mutableListOf<String>()
         parametry.forEach {
             bledy.addAll(it.waliduj())
         }
-
         wywolaniaRegul.forEach { bledy.addAll(it.waliduj()) }
+
+        kontekstWalidacji.komunikaty.addAll(bledy.map { KomunikatWalidacji(it) })
 
         return bledy
     }

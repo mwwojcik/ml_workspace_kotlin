@@ -13,6 +13,7 @@ import {NlpRegulyAkcjeModule} from './nlp-reguly-akcje/nlp-reguly-akcje.module'
 import {NlpRegulyListaModule} from './nlp-reguly-lista/nlp-reguly-lista.module'
 import {NlpRegulyListaInfoModule} from './nlp-reguly-lista-info/nlp-reguly-lista-info.module'
 import {NlpRegulySzczegolyModule} from './nlp-reguly-szczegoly/nlp-reguly-szczegoly.module'
+import {NlpRegulyKodModule} from './nlp-reguly-kod/nlp-reguly-kod.module'
 import {NlpRegulyWejscieModule} from './nlp-reguly-wejscie/nlp-reguly-wejscie.module'
 
 import {UkladGlownyTrescComponent} from './layout/uklad-glowny-tresc/uklad-glowny-tresc.component'
@@ -29,6 +30,7 @@ import {NlpRegulyWejscieComponent } from './nlp-reguly-wejscie/nlp-reguly-wejsci
 import { NlpRegulyListaInfoComponent } from './nlp-reguly-lista-info/nlp-reguly-lista-info.component'
 
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { NlpRegulyKodComponent } from './nlp-reguly-kod/nlp-reguly-kod.component';
 
 const routes: Routes = [
   {
@@ -50,7 +52,8 @@ const routes: Routes = [
     NlpRegulyListaComponent,
     NlpRegulySzczegolyComponent,
     NlpRegulyWejscieComponent,
-    NlpRegulyListaInfoComponent
+    NlpRegulyListaInfoComponent,
+    NlpRegulyKodComponent
   ],
   imports: [
     BrowserModule,
@@ -64,6 +67,7 @@ const routes: Routes = [
     NlpRegulySzczegolyModule,
     NlpRegulyWejscieModule,
     NlpRegulyListaInfoModule,
+    NlpRegulyKodModule,
     FormsModule
   ],
   providers: [],

@@ -4,7 +4,7 @@
 </div>
 
 
-<div class="alert alert-danger" *ngIf="regula.kontekstWalidacji.czySaKomunikaty">
+<div class="alert alert-danger" *ngIf="regula.kontekstWalidacji.komunikaty.length!=0">
   <ul>
     <li *ngFor="let komunikat of regula.kontekstWalidacji.komunikaty">
       {{komunikat.wartosc}}
@@ -42,19 +42,21 @@
 
   <table class="table table-bordered table-sm dane z-depth-3">
       <tr>
-        <th colspan="4">Rozpoznane tokeny </th>
+        <th colspan="5">Rozpoznane tokeny </th>
       </tr>
       <tr>
           <th>Token</th>
           <th>Wartość logiczna</th>
+          <th>Słownie</th>
           <th>Prawd.</th>
           <th>Kategoria</th>
       </tr>
       <tr *ngFor="let token of regula.sekwencja.rozpoznaneTokeny">
-          <td class="w-30">{{token.wartosc}}</td>
-          <td class="w-30">{{token.typ}}</td>
-          <td class="w-10">{{token.prob | number:'1.3'}}</td>
-          <td class="col-30">{{token.kategoria}}</td>
+          <td class="w-20">{{token.wartosc}}</td>
+          <td class="w-20">{{token.typ}}</td>
+          <td class="w-20">{{token.typSlownie}}</td>
+          <td class="w-20">{{token.prob | number:'1.3'}}</td>
+          <td class="w-20">{{token.kategoria}}</td>
 
       </tr>
     </table>

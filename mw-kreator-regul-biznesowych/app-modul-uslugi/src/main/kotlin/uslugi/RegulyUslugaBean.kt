@@ -52,6 +52,8 @@ open class RegulyUslugaBean {
             konwerter.konwertujDoTransportu(it)
         }.toList()
 
+        wart.forEach{it.waliduj()}
+
         return wart
     }
 

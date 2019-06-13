@@ -1,6 +1,6 @@
 package model.nlp
 
-class RozpoznanyToken(val lp:Int,val wartosc:String,val typ:RodzajTokenaEnum,val prob:Double) {
+class RozpoznanyToken(val lp:Int,val wartosc:String,val typ:RodzajTokenaEnum,val typSlownie:String,val prob:Double) {
 
     var kategoria:String?=null
 

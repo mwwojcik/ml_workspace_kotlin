@@ -44,6 +44,7 @@ class RozpoznanyToken {
     lp: number;
     wartosc: string;
     typ: string;
+    typSlownie:string;
     prob: number;
     kategoria: string;
 }
@@ -67,7 +68,7 @@ export class NowyParametrOW{
 export class KontekstWalidacji{
   komunikaty:KomunikatWalidacji[];
 
-  czySaKomunikaty(){
+   czySaKomunikaty():Boolean{
     return this.komunikaty.length!=0
   }
 }
