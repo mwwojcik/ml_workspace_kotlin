@@ -2,6 +2,7 @@ package uslugi
 
 import db.RegulyDbBean
 import db.repo.IRegulaRepozytorium
+import generator.GeneratorKoduBean
 import model.dto.*
 import model.encje.ParametrRegulyEncja
 import model.encje.RegulaEncja
@@ -26,6 +27,9 @@ import javax.persistence.PersistenceContext
 
 @Service
 open class RegulyUslugaBean {
+
+    @Autowired
+    lateinit var generatorKodu: GeneratorKoduBean
 
     @Autowired
     lateinit var konwerter: RegulaKonwerter
@@ -111,6 +115,10 @@ open class RegulyUslugaBean {
 
     }
 
+    @Transactional
+    fun generujKod():String{
+        return generatorKodu.generujKodDlaRegul(podajReguly())
+    }
 
     //**********************************
 

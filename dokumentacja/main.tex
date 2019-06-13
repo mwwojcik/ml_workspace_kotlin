@@ -11,6 +11,7 @@
 \usepackage{mathtools}
 \usepackage[margin=0.5in]{geometry}
 \usepackage{hyperref}
+\usepackage{listings}
 
 \newcommand{\textunderbrace}[2]{%
 	\ensuremath{\underbrace{\small{\text{#1}}}_{\text{#2}}}%
@@ -18,6 +19,14 @@
 \newcommand{\textoverbrace}[2]{%
 	\ensuremath{\overbrace{\text{#1}}^{\text{#2}}}%
 }
+
+\newcommand{\stext}[1]{%		
+		\begin{lstlisting}
+			zawartość...
+		\end{lstlisting}
+		#1
+	}%
+
 
 % font size could be 10pt (default), 11pt or 12 pt
 % paper size coulde be letterpaper (default), legalpaper, executivepaper,

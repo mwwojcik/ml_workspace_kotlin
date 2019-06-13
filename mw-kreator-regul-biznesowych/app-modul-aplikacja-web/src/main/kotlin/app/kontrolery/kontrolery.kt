@@ -67,6 +67,10 @@ class GreetingController {
         regulyUsluga.usunParametr(aRegula)
         return regulyUsluga.podajReguly()
     }
+
+    @CrossOrigin
+    @GetMapping("/kod")
+    fun generujKod()=regulyUsluga.generujKod()
 }
 
 

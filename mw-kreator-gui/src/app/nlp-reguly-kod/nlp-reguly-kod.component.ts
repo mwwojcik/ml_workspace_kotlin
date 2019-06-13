@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { RegulyService } from '../reguly.service';
+import { Regula } from '../model'
 
 @Component({
   selector: 'app-nlp-reguly-kod',
@@ -7,9 +9,34 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NlpRegulyKodComponent implements OnInit {
 
-  constructor() { }
+  reguly: Regula[];
+  wszystkiePoprawne=false;
+  kod=""
 
-  ngOnInit() {
+  getReguly() {
+    return this.reguly;
   }
 
+  constructor(private regulyUsluga: RegulyService) { }
+
+  ngOnInit() {
+    this.regulyUsluga.podajReguly()
+    .subscribe(aReguly => {
+      this.reguly = aReguly
+
+      this.wszystkiePoprawne=true
+
+      for(let r of aReguly){
+         if(r.kontekstWalidacji.komunikaty.length!=0){
+           this.wszystkiePoprawne=false;
+           break;
+         }
+      }
+
+      if(this.wszystkiePoprawne==true){
+        this.regulyUsluga.generujKod().subscribe(aKod=>this.kod)
+      }
+
+    });
+  }
 }

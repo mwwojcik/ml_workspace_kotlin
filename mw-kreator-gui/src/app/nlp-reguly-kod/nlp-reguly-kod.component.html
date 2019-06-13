@@ -1,3 +1,7 @@
-<p>
-  nlp-reguly-kod works!
-</p>
+<div class="alert alert-danger" *ngIf="wszystkiePoprawne==false">
+  Należy poprawić wszystkie błędy reguł
+</div>
+
+<div class="alert alert-danger" *ngIf="wszystkiePoprawne==true">
+{{this.kod}}
+</div>

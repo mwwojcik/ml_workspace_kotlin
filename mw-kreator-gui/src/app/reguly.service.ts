@@ -19,6 +19,13 @@ export class RegulyService {
     })
   };
 
+  httpOptionsTXT = {
+    headers: new HttpHeaders({
+      'Content-Type':  'text/html; charset=utf-8',
+      'Authorization': 'my-auth-token'
+    })
+  };
+
   reguly:Regula[];
 
   constructor(private http: HttpClient) {
@@ -68,6 +75,9 @@ export class RegulyService {
     return this.http.put<Regula[]>(this.url+"/usuwanyParametr",aRegula,this.httpOptions)
   }
 
+  generujKod():Observable<String>{
+    return this.http.get<String>(this.url+'/kod',this.httpOptionsTXT);
+  }
 
   aktualizujObiekty(aReguly:Regula[]){
     this.reguly=aReguly;

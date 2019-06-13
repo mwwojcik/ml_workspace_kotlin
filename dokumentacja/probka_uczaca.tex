@@ -1,1 +1,12 @@
 \section{Przygotowanie próbki uczącej}
+Mechanizmy NER wchodzące w skład OpenNLP pozwalają na stworzenie własnego modelu i przyuczenie go do rozpoznawania specyficznych bytów domenowych. Próbka ucząca jest dosyć obszernym zbiorem przykładów (dokumentacja OpenNLP mówi o minimum 15 tyś. zdań), w których w specjalny sposób otagowane zostały kluczowe frazy. 
+\\ \\
+\fbox{\begin{minipage}{40em}
+		\small{		
+		<START:SK\_SW> jeśli <END> <START:OP\_L> xxx <END> <START:OPR\_REL> jest większy niż <END> <START:OP\_P> xxx <END> <START:SK\_KW> wtedy <END> <START:AKCJA> zgłoś błąd <END> <START:AKCJA\_PARAMETR> xxx <END> . 	
+	}			
+\end{minipage}}
+
+\paragraph{}
+Byty nazwane, które ma rozpoznawać model należy umieścić pomiędzy tagami \\ \textit{<START:NAZWA\_BYTU>} i \textit{<END>}. Każda reguła moich danych uczących jest zbudowana według schematu omawianego wcześniej abstrakcyjnego modelu reguły. Zgodne z nim są również nazwy encji.
+W przypadku tych części reguły, które są zmienne i specyficzne dla każdej instancji (takie jak komentarze, nazwy operandów, wszelkie parametry) użyłem frazy \textit{xxx}, która oznacza że będzie tu coś, o czym na tym etapie nie możemy nic powiedzieć (znamy tylko pozycję tego tokena względem innych encji ). 
