@@ -34,7 +34,11 @@ export class NlpRegulyKodComponent implements OnInit {
       }
 
       if(this.wszystkiePoprawne==true){
-        this.regulyUsluga.generujKod().subscribe(aKod=>this.kod)
+        this.regulyUsluga.generujKod().subscribe(aKodWrapper=>{
+          let str=atob(aKodWrapper.tekst as string)
+          this.kod=str
+
+        })
       }
 
     });

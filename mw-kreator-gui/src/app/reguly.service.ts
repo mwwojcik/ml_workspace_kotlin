@@ -1,6 +1,6 @@
 import { Injectable, OnInit } from '@angular/core';
 
-import { Regula,RegulaWejscie,WynikOperacji,NowyParametrOW } from './model'
+import { Regula,RegulaWejscie,WynikOperacji,NowyParametrOW,WrapperTekstu} from './model'
 import SampleJson from './reguly.json';
 import { Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
@@ -75,8 +75,8 @@ export class RegulyService {
     return this.http.put<Regula[]>(this.url+"/usuwanyParametr",aRegula,this.httpOptions)
   }
 
-  generujKod():Observable<String>{
-    return this.http.get<String>(this.url+'/kod',this.httpOptionsTXT);
+  generujKod():Observable<WrapperTekstu>{
+    return this.http.get<WrapperTekstu>(this.url+'/kod',this.httpOptions);
   }
 
   aktualizujObiekty(aReguly:Regula[]){

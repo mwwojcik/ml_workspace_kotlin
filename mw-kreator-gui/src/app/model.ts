@@ -76,3 +76,7 @@ export class KontekstWalidacji{
 export class KomunikatWalidacji{
   wartosc:String;
 }
+
+export class WrapperTekstu{
+  tekst:String;
+}

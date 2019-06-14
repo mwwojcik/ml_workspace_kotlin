@@ -20,6 +20,7 @@ import uslugi.konwersja.SynchronizatorDanychBean
 import java.nio.file.Files
 import java.nio.file.Path
 import java.nio.file.Paths
+import java.util.*
 import javax.annotation.PostConstruct
 import javax.persistence.EntityManager
 import javax.persistence.PersistenceContext
@@ -117,7 +118,8 @@ open class RegulyUslugaBean {
 
     @Transactional
     fun generujKod():String{
-        return generatorKodu.generujKodDlaRegul(podajReguly())
+
+        return  Base64.getEncoder().encodeToString( generatorKodu.generujKodDlaRegul(podajReguly()).toByteArray())
     }
 
     //**********************************

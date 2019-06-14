@@ -4,6 +4,7 @@ import generator.GeneratorKoduBean
 import model.dto.NowyParametrOW
 import model.dto.Regula
 import model.dto.RegulaWejscie
+import model.dto.WrapperTekstu
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.*
 import uslugi.RegulyUslugaBean
@@ -70,7 +71,7 @@ class GreetingController {
 
     @CrossOrigin
     @GetMapping("/kod")
-    fun generujKod()=regulyUsluga.generujKod()
+    fun generujKod()=WrapperTekstu(regulyUsluga.generujKod())
 }
 
 
