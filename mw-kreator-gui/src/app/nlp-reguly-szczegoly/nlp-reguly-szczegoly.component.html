@@ -1,6 +1,8 @@
 
 <div class="nav justify-content-end" style="margin-bottom: 1em;">
+  <button type="button" class="btn btn-default btn-md" (click)="zapiszRegule()" (click)="edytujRegule(regula)" data-toggle="modal" data-target="#editTrescLong">Modyfikuj</button>
   <button type="button" class="btn btn-default btn-md" (click)="zapiszRegule()">Zapisz</button>
+
 </div>
 
 
@@ -149,6 +151,31 @@
               </div>
               <div class="modal-body">
                 <textarea class="form-control rounded-1" id="tresc" [(ngModel)]="nazwaNowegoParametru" [ngModelOptions]="{standalone: true}" rows="10"></textarea>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal" #closeBtn>Anuluj</button>
+                <button type="submit" class="btn btn-primary btn-sm">Zapisz</button>
+              </div>
+            </div>
+          </div>
+        </form>
+        </div>
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="editTrescLong" tabindex="-1" role="dialog" aria-labelledby="editTrescLongTitle" aria-hidden="true"  style="z-index: 1041;">
+        <form (ngSubmit)="zapiszRegule()">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <textarea class="form-control rounded-1" disabled  style="margin-bottom:1em;font-size:.8rem;" id="kod" [(ngModel)]="model.kod" [ngModelOptions]="{standalone: true}" rows="1" ></textarea>
+                <textarea class="form-control rounded-1" id="tresc" [(ngModel)]="model.tresc" [ngModelOptions]="{standalone: true}" rows="10"></textarea>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal" #closeBtn>Anuluj</button>
