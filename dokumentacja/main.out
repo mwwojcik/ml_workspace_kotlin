@@ -5,5 +5,11 @@
 \BOOKMARK [1][-]{section.0.4}{Przygotowanie pr\363bki uczacej}{section.0.1}% 5
 \BOOKMARK [1][-]{section.0.5}{Trening modelu}{section.0.1}% 6
 \BOOKMARK [-1][-]{part.2}{II Aplikacja}{}% 7
-\BOOKMARK [0][-]{section.0.6}{Prezentacja wynik\363w}{part.2}% 8
-\BOOKMARK [1][-]{section.0.7}{Ocena wynik\363w}{section.0.6}% 9
+\BOOKMARK [0][-]{section.0.6}{Architektura aplikacji}{part.2}% 8
+\BOOKMARK [1][-]{subsection.0.6.1}{Sekcja danych wejsciowych}{section.0.6}% 9
+\BOOKMARK [2][-]{subsection.0.6.2}{Sekcja prezentacji wynik\363w analizy NLP}{subsection.0.6.1}% 10
+\BOOKMARK [2][-]{subsection.0.6.3}{Sekcja wygenerowanego kodu}{subsection.0.6.1}% 11
+\BOOKMARK [1][-]{section.0.7}{Eksperymenty}{section.0.6}% 12
+\BOOKMARK [-1][-]{part.3}{III Ocena wynik\363w}{}% 13
+\BOOKMARK [0][-]{section.0.8}{Prezentacja wynik\363w}{part.3}% 14
+\BOOKMARK [1][-]{section.0.9}{Ocena wynik\363w}{section.0.8}% 15
