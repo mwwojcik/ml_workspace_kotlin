@@ -1,1 +1,80 @@
 \section{Trening modelu}
+
+Proces trenowania modelu realizowany jest przez niewielką aplikację (\textit{Kotlin, OpenNLP NER API}),której zadaniem jest dostarczenie danych próbki, ustawienie parametrów uczenia, wystartowanie procesu trenowania, oraz zapisanie wygenerowanego binarnego pliku modelu. Najistotniejszy fragment aplikacji przedstawiony jest na listingu. 
+\small
+\begin{lstlisting}
+private fun trenujModel(aZbiorRegul:Path): TokenNameFinderModel {
+	// reading training data
+	var inputFactory: InputStreamFactory?
+	try {
+		inputFactory =
+		 MarkableFileInputStreamFactory(aZbiorRegul.toFile())
+		} catch (e: FileNotFoundException) {
+			throw IllegalArgumentException(e)
+		}
+
+	var sampleStream: ObjectStream<*>?
+
+	sampleStream = NameSampleDataStream(
+	PlainTextByLineStream(inputFactory, StandardCharsets.UTF_8))
+
+	// setting the parameters for train ing
+	val params = TrainingParameters()
+	params.put(TrainingParameters.ITERATIONS_PARAM, 70)
+	params.put(TrainingParameters.CUTOFF_PARAM, 1)
+
+	// training the model using TokenNameFinderModel class
+	var nameFinderModel: TokenNameFinderModel?
+	try {
+		nameFinderModel = NameFinderME.train("en"
+		, null
+		, sampleStream
+		,params
+		, TokenNameFinderFactory.create(null
+					, null
+					, mutableMapOf<String, Any>()
+					, BioCodec()))
+
+	return nameFinderModel
+
+	} catch (e: IOException) {
+		throw IllegalArgumentException(e)
+	}
+}
+\end{lstlisting}
+	
+\normalsize
+Raport podsumowujący pojedynczą sesję treningową wykonaną w oparciu o przygotowaną wcześniej próbkę wygląda następująco:
+
+\small
+\begin{lstlisting}
+
+> Task :app-modul-silnik-regul:wytrenujModel
+=====encje_reguly_probka_uczaca.reg
+Indexing events with TwoPass using cutoff of 1
+
+Computing event counts...  done. 259140 events
+Indexing...  done.
+Collecting events... Done indexing in 6,59 s.
+Incorporating indexed data for training...  
+done.
+Number of Event Tokens: 259140
+Number of Outcomes: 13
+Number of Predicates: 654
+Computing model parameters...
+Performing 70 iterations.
+1:  . (259100/259140) 0.9998456432816238
+2:  . (259140/259140) 1.0
+3:  . (259140/259140) 1.0
+4:  . (259140/259140) 1.0
+5:  . (259140/259140) 1.0
+Stopping: change in training set accuracy less than 1.0E-5
+Stats: (259140/259140) 1.0
+...done.
+Compressed 654 parameters to 322
+79 outcome patterns
+Trained model saved to file in location=>src/main/resources/modelnlp/encje_reguly_model.bin
+\end{lstlisting}
+\normalsize
+\paragraph{}\noindent
+Trening modelu jest krokiem kończącym etap przygotowawczy. Zapisany plik binarny jest gotowy do użycia go w aplikacji. W następnej części postaram się opisać jak można posłużyć się nim do rozwiązania konkretnego problemu.

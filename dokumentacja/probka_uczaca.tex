@@ -8,29 +8,31 @@ Mechanizmy NER wchodzące w skład \textit{OpenNLP} pozwalają na stworzenie wł
 \end{minipage}}
 
 \paragraph{}
-Byty nazwane, które ma rozpoznawać model należy umieścić pomiędzy tagami \\ \textit{<START:NAZWA\_BYTU>} i \textit{<END>}. Każda reguła moich danych uczących jest zbudowana według schematu omawianego wcześniej abstrakcyjnego modelu reguły. Zgodne z nim są również nazwy encji.
+Byty, które docelowo mają być rozpoznawane przez model należy umieścić pomiędzy tagami \\ \textit{<START:NAZWA\_BYTU>} i \textit{<END>}. Dodatkowo każda reguła danych uczących zbudowana jest według schematu omawianego wcześniej abstrakcyjnego modelu reguły. Zgodne z nim są również nazwy encji.
 W przypadku tych części reguły, które są zmienne i specyficzne dla każdej instancji (takie jak komentarze, nazwy operandów, wszelkie parametry) użyłem frazy \textit{xxx}, która oznacza że będzie tu coś, o czym na tym etapie nie możemy nic powiedzieć (znamy tylko pozycję tego tokena względem innych encji ). 
 \paragraph{}
-Wygenerowanie próbki uczącej okazało się zagadnieniem samym w sobie. Do tego celu napisałem aplikację pythonową, która przetwarza zdefiniowane wektory poprawnych wartości poszczególnych encji, następnie tworzy ich iloczyny kartezjańskie i losuje do próbki zadaną ilość wygenerowanych, otagowanych reguł.
+Wygenerowanie próbki uczącej okazało się zagadnieniem samym w sobie. Do tego celu napisałem aplikację pythonową, która w danych wejściowych otrzymuje przewidywane przykładowe wartości encji,a następnie otagowuje je, tworzy ich  iloczyny kartezjańskie i ostatecznie konstruuje z nich zdanie zgodne z założonym schematem.
 
-Poniżej zamieściłem wartości użyte przeze mnie do konstrukcji przykładów.
-\\ \\ \\
-\fbox{\begin{minipage}{40em}
-	\begin{equation}
-	SK\_SW=
-	\begin{bmatrix}
-	\text{jeśli}\\
-	\text{gdy}\\
-	\text{jeżeli}
-	\end{bmatrix}
-	\end{equation} 
+Poniżej znajdują się wartości poszczególnych encji użyte to wygenerowania danych uczących.
 
-\end{minipage}}
-\\ \\ \\
-\fbox{\begin{minipage}{40em}
-	\begin{equation}
-	OPR\_REL=[nie]?*
-	\begin{bmatrix}
+\[
+\hspace*{-22em}
+SK\_SW=
+\begin{Bmatrix*}[l]
+\text{jeśli}\\
+\text{gdy}\\
+\text{jeżeli}
+\end{Bmatrix*}
+\]
+
+\[ 
+\hspace*{-20em}
+OPR\_REL=
+\begin{Bmatrix*}[l]
+	\text{nie}
+\end{Bmatrix*}
+*
+\begin{Bmatrix*}[l]
 	\text{jest równy}\\
 	\text{jest równa}\\
 	\text{jest równe}\\
@@ -43,41 +45,56 @@ Poniżej zamieściłem wartości użyte przeze mnie do konstrukcji przykładów.
 	\text{jest większe}\\
 	\text{jest mniejsze}\\
 	\text{jest różne}
-	\end{bmatrix}
-	\end{equation} 
-\end{minipage}}
-\\ \\ \\
-\fbox{\begin{minipage}{40em}
-	\begin{equation}
-	SK\_KW=
-	\begin{bmatrix}
+\end{Bmatrix*}
+\begin{Bmatrix*}[l]
+\text{niż}\\
+\text{od}
+\end{Bmatrix*}
+\]
+
+\[	
+\hspace*{-22em}
+SK\_KW=
+	\begin{Bmatrix*}[l]
 	\text{wtedy}\\
 	\text{to}
-	\end{bmatrix}
-	\end{equation} 
-\end{minipage}}
-\\ \\ \\
-\fbox{\begin{minipage}{40em}
-	\begin{equation}
+\end{Bmatrix*}
+\]	
+
+
+\[
+\hspace*{-15em}
 	SK\_SAN=
-	\begin{bmatrix}
+	\begin{Bmatrix*}[l]
 	\text{w przeciwnym wypadku}
-	\end{bmatrix}
-	\end{equation} 
-\end{minipage}}
-\\ \\ \\
-\fbox{\begin{minipage}{40em}
-	\begin{equation}
-	AKCJA=
-	\begin{bmatrix}
+	\end{Bmatrix*}
+\]
+
+\[
+\hspace*{-16em}
+\begin{array}{l}
+AKCJA=
+	\begin{Bmatrix*}[l]
 	\text{zgłoś błąd}\\
 	\text{zgłoś błąd walidacji}\\
 	\text{raportuj błąd}\\
 	\text{wyświetl komunikat}\\
 	\text{sprawdź regułę}\\
 	\text{sprawdzaj regułę}
-	\end{bmatrix}
-	\end{equation} 
-\end{minipage}}
-\\ \\ \\
+	\end{Bmatrix*}\\
+
+	\end{array}
+\]
+
+\paragraph{}
+
+Przykładowe, bardziej złożone reguły utworzone opisaną wcześniej techniką:
+
+\begin{enumerate}
+	\item \small\textit{ <START:SK\_SW> jeśli <END> <START:OP\_L> xxx <END> <START:OPR\_REL> jest większy niż <END> <START:OP\_P> xxx <END> <START:SK\_KW> wtedy <END> <START:AKCJA> zgłoś błąd <END> <START:AKCJA\_PARAMETR> xxx <END>  <START:SK\_SAN> w przeciwnym wypadku <END> <START:AKCJA> sprawdzaj regułę <END> <START:AKCJA\_PARAMETR> xxx <END> .}
+	\item \small\textit{ <START:SK\_SW> jeśli <END> <START:OP\_L> xxx <END> <START:OPR\_REL> nie jest mniejsza od <END> <START:OP\_P> xxx <END> <START:OPR\_LOG> oraz <END> <START:OP\_L> xxx <END> <START:OPR\_REL> nie jest równy <END> <START:OP\_P> xxx <END> <START:SK\_KW> wtedy <END> <START:AKCJA> zgłoś błąd <END> <START:AKCJA\_PARAMETR> xxx <END>  <START:SK\_SAN> w przeciwnym wypadku <END> <START:AKCJA> zgłoś błąd <END> \\ <START:AKCJA\_PARAMETR> xxx <END> .}
+	
+	\item \small \textit{<START:SK\_SW> jeśli <END> <START:OP\_L> xxx <END> <START:OPR\_REL> jest większy niż <END> <START:OP\_P> xxx <END> <START:OPR\_LOG> lub <END> <START:OP\_L> xxx <END> <START:OPR\_REL> jest różny od <END> <START:OP\_P> xxx <END> <START:SK\_KW> wtedy <END> <START:AKCJA> zgłoś błąd <END> <START:AKCJA\_PARAMETR> xxx <END>  <START:SK\_SAN> w przeciwnym wypadku <END> <START:AKCJA> zgłoś błąd walidacji <END> <START:AKCJA\_PARAMETR> xxx <END> .}
+\end{enumerate}
+
 Liczność próbki użytej do treningu modelu ustawiłem na poziomie ok 20 000 rekordów.

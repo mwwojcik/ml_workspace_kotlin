@@ -1,4 +1,4 @@
-\documentclass[12pt, a4paper, twoside, titlepage]{article}
+\documentclass[10pt, a4paper, twoside, titlepage]{report}
 
 \usepackage[T1]{fontenc}
 
@@ -9,9 +9,11 @@
 
 \usepackage{amsmath} 
 \usepackage{mathtools}
-\usepackage[margin=0.5in]{geometry}
+\usepackage[margin=1 in]{geometry}
 \usepackage{hyperref}
 \usepackage{listings}
+%zarzadza wcięciami paragrafów
+\usepackage{parskip}
 
 \newcommand{\textunderbrace}[2]{%
 	\ensuremath{\underbrace{\small{\text{#1}}}_{\text{#2}}}%
@@ -19,6 +21,7 @@
 \newcommand{\textoverbrace}[2]{%
 	\ensuremath{\overbrace{\text{#1}}^{\text{#2}}}%
 }
+\renewcommand*\thesection{\arabic{section}}
 
 \newcommand{\stext}[1]{%		
 		\begin{lstlisting}
@@ -26,7 +29,9 @@
 		\end{lstlisting}
 		#1
 	}%
-
+    %set title spacing
+%\titlespacing*\section{0pt}{12pt plus 4pt minus 2pt}{2pt plus 2pt minus 2pt}
+%\titlespacing*\subsection{0pt}{12pt plus 4pt minus 2pt}{2pt plus 2pt minus 2pt}
 
 % font size could be 10pt (default), 11pt or 12 pt
 % paper size coulde be letterpaper (default), legalpaper, executivepaper,
@@ -64,18 +69,19 @@
 	%	Poniższy dokument jest opisem realizacji zagadnienia technik przetwarzania języka 
 %	Do realizacji tych zadań wykorzystana została biblioteka \hyperref['https://opennlp.apache.org/']{''OpenNLP''} %dostarczająca narzędzi do przetwarzania zdań zapisanych w języku naturalnym.
  				
-%	\end{abstract}
+	%\end{abstract}
 	
 	%\tableofcontents % create a table of contens 
 	
 	
-	
-	
+   \noindent	
+	\part{Przygotowanie i trening modelu}
 	\input{wstep.tex}
 	\input{zalozenia.tex}
 	\input{abstrakcyjny_model_reguly.tex}
 	\input{probka_uczaca.tex}
 	\input{trening_modelu.tex}
+	\part{Aplikacja}
 	\input{wyniki.tex}
 	\input{ocena_wynikow.tex}
 %	\input{wzor.tex}

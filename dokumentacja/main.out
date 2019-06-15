@@ -1,7 +1,9 @@
-\BOOKMARK [1][-]{section.1}{Poczatki}{}% 1
-\BOOKMARK [1][-]{section.2}{Realizacja}{}% 2
-\BOOKMARK [1][-]{section.3}{Abstrakcyjny model regu\233y}{}% 3
-\BOOKMARK [1][-]{section.4}{Przygotowanie pr\363bki uczacej}{}% 4
-\BOOKMARK [1][-]{section.5}{Trening modelu}{}% 5
-\BOOKMARK [1][-]{section.6}{Prezentacja wynik\363w}{}% 6
-\BOOKMARK [1][-]{section.7}{Ocena wynik\363w}{}% 7
+\BOOKMARK [-1][-]{part.1}{I Przygotowanie i trening modelu}{}% 1
+\BOOKMARK [0][-]{section.0.1}{Poczatki}{part.1}% 2
+\BOOKMARK [1][-]{section.0.2}{Realizacja}{section.0.1}% 3
+\BOOKMARK [1][-]{section.0.3}{Abstrakcyjny model regu\233y}{section.0.1}% 4
+\BOOKMARK [1][-]{section.0.4}{Przygotowanie pr\363bki uczacej}{section.0.1}% 5
+\BOOKMARK [1][-]{section.0.5}{Trening modelu}{section.0.1}% 6
+\BOOKMARK [-1][-]{part.2}{II Aplikacja}{}% 7
+\BOOKMARK [0][-]{section.0.6}{Prezentacja wynik\363w}{part.2}% 8
+\BOOKMARK [1][-]{section.0.7}{Ocena wynik\363w}{section.0.6}% 9
