@@ -10,6 +10,18 @@
 \BOOKMARK [2][-]{subsection.0.6.2}{Sekcja prezentacji wynik\363w analizy NLP}{subsection.0.6.1}% 10
 \BOOKMARK [2][-]{subsection.0.6.3}{Sekcja wygenerowanego kodu}{subsection.0.6.1}% 11
 \BOOKMARK [1][-]{section.0.7}{Eksperymenty}{section.0.6}% 12
-\BOOKMARK [-1][-]{part.3}{III Ocena wynik\363w}{}% 13
-\BOOKMARK [0][-]{section.0.8}{Prezentacja wynik\363w}{part.3}% 14
-\BOOKMARK [1][-]{section.0.9}{Ocena wynik\363w}{section.0.8}% 15
+\BOOKMARK [2][-]{subsection.0.7.1}{Regu\233a z jednym warunkiem i jedna akcja}{section.0.7}% 13
+\BOOKMARK [2][-]{subsection.0.7.2}{Regu\233a z podw\363jnym warunkiem}{section.0.7}% 14
+\BOOKMARK [2][-]{subsection.0.7.3}{Regu\233a z akcja ,,w przeciwnym wypadku''}{section.0.7}% 15
+\BOOKMARK [2][-]{subsection.0.7.4}{Regu\233a z wywo\233aniem innej regu\233y}{section.0.7}% 16
+\BOOKMARK [1][-]{section.0.8}{Pr\363bki zaburzone}{section.0.6}% 17
+\BOOKMARK [2][-]{subsection.0.8.1}{Liter\363wki i nieznane s\233owa}{section.0.8}% 18
+\BOOKMARK [2][-]{subsection.0.8.2}{Zaburzenia struktury i niezgodnosc z abstrakcyjnym modelem regu\233y}{section.0.8}% 19
+\BOOKMARK [2][-]{subsection.0.8.3}{Podsumowanie}{section.0.8}% 20
+\BOOKMARK [-1][-]{part.3}{III Ocena wynik\363w}{}% 21
+\BOOKMARK [0][-]{section.0.9}{Pytania bez odpowiedzi}{part.3}% 22
+\BOOKMARK [1][-]{subsection.0.9.1}{Ocena jakosci danych uczacych}{section.0.9}% 23
+\BOOKMARK [2][-]{subsection.0.9.2}{Rozszerzalnosc pr\363bki danych uczacych }{subsection.0.9.1}% 24
+\BOOKMARK [2][-]{subsection.0.9.3}{Optymalny dob\363r parametr\363w uczenia}{subsection.0.9.1}% 25
+\BOOKMARK [2][-]{subsection.0.9.4}{Odpornosc na b\233edy i zaburzenia}{subsection.0.9.1}% 26
+\BOOKMARK [2][-]{subsection.0.9.5}{Optymalny dob\363r narzedzi i technologii}{subsection.0.9.1}% 27

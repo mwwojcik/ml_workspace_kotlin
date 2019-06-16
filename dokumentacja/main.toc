@@ -1,0 +1,39 @@
+\select@language {polish}
+\contentsline {part}{I\hspace {1em}Przygotowanie i trening modelu}{3}{part.1}
+\contentsline {section}{\numberline {1}Pocz\IeC {\k a}tki}{4}{section.0.1}
+\contentsline {paragraph}{}{4}{section*.2}
+\contentsline {paragraph}{}{4}{section*.3}
+\contentsline {paragraph}{}{4}{section*.4}
+\contentsline {paragraph}{}{4}{section*.5}
+\contentsline {paragraph}{}{4}{section*.6}
+\contentsline {section}{\numberline {2}Realizacja}{4}{section.0.2}
+\contentsline {section}{\numberline {3}Abstrakcyjny model regu\IeC {\l }y}{5}{section.0.3}
+\contentsline {paragraph}{}{6}{section*.7}
+\contentsline {section}{\numberline {4}Przygotowanie pr\IeC {\'o}bki ucz\IeC {\k a}cej}{8}{section.0.4}
+\contentsline {paragraph}{}{8}{section*.8}
+\contentsline {paragraph}{}{8}{section*.9}
+\contentsline {paragraph}{}{9}{section*.10}
+\contentsline {section}{\numberline {5}Trening modelu}{9}{section.0.5}
+\contentsline {paragraph}{}{10}{section*.11}
+\contentsline {part}{II\hspace {1em}Aplikacja}{11}{part.2}
+\contentsline {section}{\numberline {6}Architektura aplikacji}{12}{section.0.6}
+\contentsline {subsection}{\numberline {6.1}Sekcja danych wej\IeC {\'s}ciowych}{12}{subsection.0.6.1}
+\contentsline {subsection}{\numberline {6.2}Sekcja prezentacji wynik\IeC {\'o}w analizy NLP}{13}{subsection.0.6.2}
+\contentsline {paragraph}{P}{13}{section*.12}
+\contentsline {subsection}{\numberline {6.3}Sekcja wygenerowanego kodu}{14}{subsection.0.6.3}
+\contentsline {section}{\numberline {7}Eksperymenty}{15}{section.0.7}
+\contentsline {subsection}{\numberline {7.1}Regu\IeC {\l }a z jednym warunkiem i jedn\IeC {\k a} akcj\IeC {\k a}}{15}{subsection.0.7.1}
+\contentsline {subsection}{\numberline {7.2}Regu\IeC {\l }a z podw\IeC {\'o}jnym warunkiem}{18}{subsection.0.7.2}
+\contentsline {subsection}{\numberline {7.3}Regu\IeC {\l }a z akcj\IeC {\k a} ,,w przeciwnym wypadku''}{20}{subsection.0.7.3}
+\contentsline {subsection}{\numberline {7.4}Regu\IeC {\l }a z wywo\IeC {\l }aniem innej regu\IeC {\l }y}{22}{subsection.0.7.4}
+\contentsline {section}{\numberline {8}Pr\IeC {\'o}bki zaburzone}{25}{section.0.8}
+\contentsline {subsection}{\numberline {8.1}Liter\IeC {\'o}wki i nieznane s\IeC {\l }owa}{25}{subsection.0.8.1}
+\contentsline {subsection}{\numberline {8.2}Zaburzenia struktury i niezgodno\IeC {\'s}\IeC {\'c} z abstrakcyjnym modelem regu\IeC {\l }y}{27}{subsection.0.8.2}
+\contentsline {subsection}{\numberline {8.3}Podsumowanie}{28}{subsection.0.8.3}
+\contentsline {part}{III\hspace {1em}Ocena wynik\IeC {\'o}w}{29}{part.3}
+\contentsline {section}{\numberline {9}Pytania bez odpowiedzi}{30}{section.0.9}
+\contentsline {subsection}{\numberline {9.1}Ocena jako\IeC {\'s}ci danych ucz\IeC {\k a}cych}{30}{subsection.0.9.1}
+\contentsline {subsection}{\numberline {9.2}Rozszerzalno\IeC {\'s}\IeC {\'c} pr\IeC {\'o}bki danych ucz\IeC {\k a}cych }{30}{subsection.0.9.2}
+\contentsline {subsection}{\numberline {9.3}Optymalny dob\IeC {\'o}r parametr\IeC {\'o}w uczenia}{30}{subsection.0.9.3}
+\contentsline {subsection}{\numberline {9.4}Odporno\IeC {\'s}\IeC {\'c} na b\IeC {\l }\IeC {\k e}dy i zaburzenia}{30}{subsection.0.9.4}
+\contentsline {subsection}{\numberline {9.5}Optymalny dob\IeC {\'o}r narz\IeC {\k e}dzi i technologii}{30}{subsection.0.9.5}

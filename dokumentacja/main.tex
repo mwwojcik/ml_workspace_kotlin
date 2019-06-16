@@ -68,14 +68,20 @@
 	\maketitle
 	
 	
-	%\begin{abstract}
-	%	Poniższy dokument jest opisem realizacji zagadnienia technik przetwarzania języka 
-%	Do realizacji tych zadań wykorzystana została biblioteka \hyperref['https://opennlp.apache.org/']{''OpenNLP''} %dostarczająca narzędzi do przetwarzania zdań zapisanych w języku naturalnym.
- 				
-	%\end{abstract}
+	\begin{abstract}
+	Dokument stanowi raport z realizacji projektu, którego celem było opracowanie metody skutecznego  wykorzystania technik NLP do transkrypcji reguł walidacyjnych zapisanych językiem naturalnym na kod wykonywalny aplikacji.
+	
+	Dokument składa się z trzech części:
+	\begin{enumerate}
+		\item Przygotowanie i trening modelu - skupia się ona na zagadnieniach związanych z przygotowaniem próbki uczącej użytej do treningu modelu. 
+		\item Aplikacja - część ta dotyczy prezentacji wyników w oparciu o napisaną w tym celu aplikację. 
+		\item Ocena wyników - część ta zawiera wykaz problemów, które ujawniłý się podczas pracy nad aplikacją i które nie znalazły należytego rozwiązania.
+	\end{enumerate}
+	\end{abstract}
 	
 	%\tableofcontents % create a table of contens 
 	
+	\tableofcontents
 	
    \noindent	
 	\part{Przygotowanie i trening modelu}
@@ -87,9 +93,10 @@
 	\part{Aplikacja}
 	\input{app-architektura.tex}
 	\input{app-eksperymenty.tex}
+	\input{app-eksperymenty-zaburzenia.tex}
 	\part{Ocena wyników}
 	\input{wyniki.tex}
-	\input{ocena_wynikow.tex}
+
 %	\input{wzor.tex}
 
 
