@@ -9,10 +9,10 @@
 \contentsline {section}{\numberline {2}Realizacja}{4}{section.0.2}
 \contentsline {section}{\numberline {3}Abstrakcyjny model regu\IeC {\l }y}{5}{section.0.3}
 \contentsline {paragraph}{}{6}{section*.7}
-\contentsline {section}{\numberline {4}Przygotowanie pr\IeC {\'o}bki ucz\IeC {\k a}cej}{8}{section.0.4}
+\contentsline {section}{\numberline {4}Przygotowanie pr\IeC {\'o}bki ucz\IeC {\k a}cej}{7}{section.0.4}
 \contentsline {paragraph}{}{8}{section*.8}
 \contentsline {paragraph}{}{8}{section*.9}
-\contentsline {paragraph}{}{9}{section*.10}
+\contentsline {paragraph}{}{8}{section*.10}
 \contentsline {section}{\numberline {5}Trening modelu}{9}{section.0.5}
 \contentsline {paragraph}{}{10}{section*.11}
 \contentsline {part}{II\hspace {1em}Aplikacja}{11}{part.2}
