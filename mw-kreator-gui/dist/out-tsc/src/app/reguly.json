@@ -1,0 +1,4059 @@
+[
+    {
+        "id": 1,
+        "wersja": 2,
+        "kod": "RS-001",
+        "tresc": "Jeśli data1 jest równa '01-01-2000' wtedy wyświetlaj komunikat \"Podana data jest równa 01-01-2000\" .",
+        "sekwencja": {
+            "postacKanoniczna": "Jeśli data1 jest równa '01-01-2000' wtedy wyświetlaj komunikat KOMUNIKAT1 .",
+            "komunikaty": {
+                "KOMUNIKAT1": "Podana data jest równa 01-01-2000"
+            },
+            "zdaniePierwotne": "Jeśli data1 jest równa '01-01-2000' wtedy wyświetlaj komunikat KOMUNIKAT1 .",
+            "tokeny": [
+                "Jeśli",
+                "data1",
+                "jest",
+                "równa",
+                "'01-01-2000'",
+                "wtedy",
+                "wyświetlaj",
+                "komunikat",
+                "KOMUNIKAT1",
+                "."
+            ],
+            "rozpoznaneTokeny": [
+                {
+                    "kategoria": null,
+                    "lp": 1,
+                    "wartosc": "Jeśli ",
+                    "typ": "POCZATEK_REGULY",
+                    "prob": 0.19358072642932103
+                },
+                {
+                    "kategoria": null,
+                    "lp": 2,
+                    "wartosc": "data1 ",
+                    "typ": "LEWOSTRONNY_OPERAND_WARUNKU",
+                    "prob": 0.1845057576128071
+                },
+                {
+                    "kategoria": "==",
+                    "lp": 3,
+                    "wartosc": "jest równa ",
+                    "typ": "OPETATOR_POROWNANIA",
+                    "prob": 0.19175765455936755
+                },
+                {
+                    "kategoria": null,
+                    "lp": 4,
+                    "wartosc": "'01-01-2000' ",
+                    "typ": "PRAWOSTRONNY_OPERAND_WARUNKU",
+                    "prob": 0.15456750082896537
+                },
+                {
+                    "kategoria": null,
+                    "lp": 5,
+                    "wartosc": "wtedy ",
+                    "typ": "KONIEC_REGULY",
+                    "prob": 0.18938611298314553
+                },
+                {
+                    "kategoria": "WYSWIETL_KOMUNIKAT",
+                    "lp": 6,
+                    "wartosc": "wyświetlaj komunikat ",
+                    "typ": "AKCJA",
+                    "prob": 0.18995680026582853
+                },
+                {
+                    "kategoria": null,
+                    "lp": 7,
+                    "wartosc": "KOMUNIKAT1 ",
+                    "typ": "PARAMETR_AKCJI",
+                    "prob": 0.17290652945075932
+                }
+            ]
+        },
+        "parametry": [
+            {
+                "id": 1,
+                "wersja": 2,
+                "nazwa": "data1 ",
+                "typ": "Data",
+                "wartoscDomyslna": null,
+                "czyUsuwalny": 0
+            },
+            {
+                "id": 2,
+                "wersja": 2,
+                "nazwa": "param0",
+                "typ": "Data",
+                "wartoscDomyslna": "'01-01-2000' ",
+                "czyUsuwalny": 0
+            }
+        ],
+        "wywolaniaRegul": []
+    },
+    {
+        "id": 2,
+        "wersja": 2,
+        "kod": "RS-002",
+        "tresc": "Jeśli data nie jest większa od '01-01-2000' wtedy waliduj regułę RS-001 .",
+        "sekwencja": {
+            "postacKanoniczna": "Jeśli data nie jest większa od '01-01-2000' wtedy waliduj regułę RS-001 .",
+            "komunikaty": {},
+            "zdaniePierwotne": "Jeśli data nie jest większa od '01-01-2000' wtedy waliduj regułę RS-001 .",
+            "tokeny": [
+                "Jeśli",
+                "data",
+                "nie",
+                "jest",
+                "większa",
+                "od",
+                "'01-01-2000'",
+                "wtedy",
+                "waliduj",
+                "regułę",
+                "RS-001",
+                "."
+            ],
+            "rozpoznaneTokeny": [
+                {
+                    "kategoria": null,
+                    "lp": 1,
+                    "wartosc": "Jeśli ",
+                    "typ": "POCZATEK_REGULY",
+                    "prob": 0.19329940876322138
+                },
+                {
+                    "kategoria": null,
+                    "lp": 2,
+                    "wartosc": "data ",
+                    "typ": "LEWOSTRONNY_OPERAND_WARUNKU",
+                    "prob": 0.1810376118580793
+                },
+                {
+                    "kategoria": "<=",
+                    "lp": 3,
+                    "wartosc": "nie jest większa od ",
+                    "typ": "OPETATOR_POROWNANIA",
+                    "prob": 0.18858047834186953
+                },
+                {
+                    "kategoria": null,
+                    "lp": 4,
+                    "wartosc": "'01-01-2000' ",
+                    "typ": "PRAWOSTRONNY_OPERAND_WARUNKU",
+                    "prob": 0.19275913502254302
+                },
+                {
+                    "kategoria": null,
+                    "lp": 5,
+                    "wartosc": "wtedy ",
+                    "typ": "KONIEC_REGULY",
+                    "prob": 0.18865564158100814
+                },
+                {
+                    "kategoria": "SPRAWDZ_REGULE",
+                    "lp": 6,
+                    "wartosc": "waliduj regułę ",
+                    "typ": "AKCJA",
+                    "prob": 0.19266861143321734
+                },
+                {
+                    "kategoria": null,
+                    "lp": 7,
+                    "wartosc": "RS-001 ",
+                    "typ": "PARAMETR_AKCJI",
+                    "prob": 0.17290652945075932
+                }
+            ]
+        },
+        "parametry": [
+            {
+                "id": 3,
+                "wersja": 2,
+                "nazwa": "data ",
+                "typ": "Data",
+                "wartoscDomyslna": null,
+                "czyUsuwalny": 0
+            },
+            {
+                "id": 4,
+                "wersja": 2,
+                "nazwa": "param0",
+                "typ": "Data",
+                "wartoscDomyslna": "'01-01-2000' ",
+                "czyUsuwalny": 0
+            }
+        ],
+        "wywolaniaRegul": [
+            {
+                "id": 1,
+                "wersja": 2,
+                "kodRegulyWolajacej": "RS-002",
+                "kodRegulyWolanej": "RS-001",
+                "parametry": [
+                    {
+                        "id": 1,
+                        "wersja": 3,
+                        "nazwaParametruRegulyWolajacej": "data ",
+                        "nazwaParametruRegulyWolanej": "data1 "
+                    },
+                    {
+                        "id": 2,
+                        "wersja": 3,
+                        "nazwaParametruRegulyWolajacej": "data ",
+                        "nazwaParametruRegulyWolanej": "param0"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "wersja": 2,
+        "kod": "RS-003",
+        "tresc": "Jeśli nachylenie nie jest mniejsze niż 30 wtedy wyświetl komunikat <KOMUNIKAT1> .",
+        "sekwencja": {
+            "postacKanoniczna": "Jeśli nachylenie nie jest mniejsze niż 30 wtedy wyświetl komunikat <KOMUNIKAT1> .",
+            "komunikaty": {},
+            "zdaniePierwotne": "Jeśli nachylenie nie jest mniejsze niż 30 wtedy wyświetl komunikat <KOMUNIKAT1> .",
+            "tokeny": [
+                "Jeśli",
+                "nachylenie",
+                "nie",
+                "jest",
+                "mniejsze",
+                "niż",
+                "30",
+                "wtedy",
+                "wyświetl",
+                "komunikat",
+                "<KOMUNIKAT1>",
+                "."
+            ],
+            "rozpoznaneTokeny": [
+                {
+                    "kategoria": null,
+                    "lp": 1,
+                    "wartosc": "Jeśli ",
+                    "typ": "POCZATEK_REGULY",
+                    "prob": 0.19329940876322138
+                },
+                {
+                    "kategoria": null,
+                    "lp": 2,
+                    "wartosc": "nachylenie ",
+                    "typ": "LEWOSTRONNY_OPERAND_WARUNKU",
+                    "prob": 0.1810376118580793
+                },
+                {
+                    "kategoria": ">=",
+                    "lp": 3,
+                    "wartosc": "nie jest mniejsze niż ",
+                    "typ": "OPETATOR_POROWNANIA",
+                    "prob": 0.18024720892894686
+                },
+                {
+                    "kategoria": null,
+                    "lp": 4,
+                    "wartosc": "30 ",
+                    "typ": "PRAWOSTRONNY_OPERAND_WARUNKU",
+                    "prob": 0.19226534939114506
+                },
+                {
+                    "kategoria": null,
+                    "lp": 5,
+                    "wartosc": "wtedy ",
+                    "typ": "KONIEC_REGULY",
+                    "prob": 0.1919307619407416
+                },
+                {
+                    "kategoria": "WYSWIETL_KOMUNIKAT",
+                    "lp": 6,
+                    "wartosc": "wyświetl komunikat ",
+                    "typ": "AKCJA",
+                    "prob": 0.18995680026582853
+                },
+                {
+                    "kategoria": null,
+                    "lp": 7,
+                    "wartosc": "<KOMUNIKAT1> ",
+                    "typ": "PARAMETR_AKCJI",
+                    "prob": 0.17290652945075932
+                }
+            ]
+        },
+        "parametry": [
+            {
+                "id": 5,
+                "wersja": 2,
+                "nazwa": "nachylenie ",
+                "typ": null,
+                "wartoscDomyslna": null,
+                "czyUsuwalny": 0
+            },
+            {
+                "id": 6,
+                "wersja": 2,
+                "nazwa": "param0",
+                "typ": "Liczba",
+                "wartoscDomyslna": "30 ",
+                "czyUsuwalny": 0
+            }
+        ],
+        "wywolaniaRegul": []
+    },
+    {
+        "id": 4,
+        "wersja": 2,
+        "kod": "RS-004",
+        "tresc": "Jeśli data jest różna od '01-01-2000' wtedy wyświetl komunikat <KOMUNIKAT1> .",
+        "sekwencja": {
+            "postacKanoniczna": "Jeśli data jest różna od '01-01-2000' wtedy wyświetl komunikat <KOMUNIKAT1> .",
+            "komunikaty": {},
+            "zdaniePierwotne": "Jeśli data jest różna od '01-01-2000' wtedy wyświetl komunikat <KOMUNIKAT1> .",
+            "tokeny": [
+                "Jeśli",
+                "data",
+                "jest",
+                "różna",
+                "od",
+                "'01-01-2000'",
+                "wtedy",
+                "wyświetl",
+                "komunikat",
+                "<KOMUNIKAT1>",
+                "."
+            ],
+            "rozpoznaneTokeny": [
+                {
+                    "kategoria": null,
+                    "lp": 1,
+                    "wartosc": "Jeśli ",
+                    "typ": "POCZATEK_REGULY",
+                    "prob": 0.19373415993280196
+                },
+                {
+                    "kategoria": null,
+                    "lp": 2,
+                    "wartosc": "data ",
+                    "typ": "LEWOSTRONNY_OPERAND_WARUNKU",
+                    "prob": 0.17904039788229717
+                },
+                {
+                    "kategoria": "!=",
+                    "lp": 3,
+                    "wartosc": "jest różna od ",
+                    "typ": "OPETATOR_POROWNANIA",
+                    "prob": 0.19060861365262846
+                },
+                {
+                    "kategoria": null,
+                    "lp": 4,
+                    "wartosc": "'01-01-2000' ",
+                    "typ": "PRAWOSTRONNY_OPERAND_WARUNKU",
+                    "prob": 0.19177385296601376
+                },
+                {
+                    "kategoria": null,
+                    "lp": 5,
+                    "wartosc": "wtedy ",
+                    "typ": "KONIEC_REGULY",
+                    "prob": 0.19208600573397366
+                },
+                {
+                    "kategoria": "WYSWIETL_KOMUNIKAT",
+                    "lp": 6,
+                    "wartosc": "wyświetl komunikat ",
+                    "typ": "AKCJA",
+                    "prob": 0.18995680026582853
+                },
+                {
+                    "kategoria": null,
+                    "lp": 7,
+                    "wartosc": "<KOMUNIKAT1> ",
+                    "typ": "PARAMETR_AKCJI",
+                    "prob": 0.17290652945075932
+                }
+            ]
+        },
+        "parametry": [
+            {
+                "id": 7,
+                "wersja": 2,
+                "nazwa": "data ",
+                "typ": "Data",
+                "wartoscDomyslna": null,
+                "czyUsuwalny": 0
+            },
+            {
+                "id": 8,
+                "wersja": 2,
+                "nazwa": "param0",
+                "typ": "Data",
+                "wartoscDomyslna": "'01-01-2000' ",
+                "czyUsuwalny": 0
+            }
+        ],
+        "wywolaniaRegul": []
+    },
+    {
+        "id": 5,
+        "wersja": 2,
+        "kod": "RS-005",
+        "tresc": "Jeśli data jest mniejsza niż '01-01-2000' wtedy wyświetl komunikat <KOMUNIKAT1> .",
+        "sekwencja": {
+            "postacKanoniczna": "Jeśli data jest mniejsza niż '01-01-2000' wtedy wyświetl komunikat <KOMUNIKAT1> .",
+            "komunikaty": {},
+            "zdaniePierwotne": "Jeśli data jest mniejsza niż '01-01-2000' wtedy wyświetl komunikat <KOMUNIKAT1> .",
+            "tokeny": [
+                "Jeśli",
+                "data",
+                "jest",
+                "mniejsza",
+                "niż",
+                "'01-01-2000'",
+                "wtedy",
+                "wyświetl",
+                "komunikat",
+                "<KOMUNIKAT1>",
+                "."
+            ],
+            "rozpoznaneTokeny": [
+                {
+                    "kategoria": null,
+                    "lp": 1,
+                    "wartosc": "Jeśli ",
+                    "typ": "POCZATEK_REGULY",
+                    "prob": 0.19373415993280196
+                },
+                {
+                    "kategoria": null,
+                    "lp": 2,
+                    "wartosc": "data ",
+                    "typ": "LEWOSTRONNY_OPERAND_WARUNKU",
+                    "prob": 0.17904039788229717
+                },
+                {
+                    "kategoria": "<",
+                    "lp": 3,
+                    "wartosc": "jest mniejsza niż ",
+                    "typ": "OPETATOR_POROWNANIA",
+                    "prob": 0.18993369107420385
+                },
+                {
+                    "kategoria": null,
+                    "lp": 4,
+                    "wartosc": "'01-01-2000' ",
+                    "typ": "PRAWOSTRONNY_OPERAND_WARUNKU",
+                    "prob": 0.19226534939114506
+                },
+                {
+                    "kategoria": null,
+                    "lp": 5,
+                    "wartosc": "wtedy ",
+                    "typ": "KONIEC_REGULY",
+                    "prob": 0.1919307619407416
+                },
+                {
+                    "kategoria": "WYSWIETL_KOMUNIKAT",
+                    "lp": 6,
+                    "wartosc": "wyświetl komunikat ",
+                    "typ": "AKCJA",
+                    "prob": 0.18995680026582853
+                },
+                {
+                    "kategoria": null,
+                    "lp": 7,
+                    "wartosc": "<KOMUNIKAT1> ",
+                    "typ": "PARAMETR_AKCJI",
+                    "prob": 0.17290652945075932
+                }
+            ]
+        },
+        "parametry": [
+            {
+                "id": 9,
+                "wersja": 2,
+                "nazwa": "data ",
+                "typ": "Data",
+                "wartoscDomyslna": null,
+                "czyUsuwalny": 0
+            },
+            {
+                "id": 10,
+                "wersja": 2,
+                "nazwa": "param0",
+                "typ": "Data",
+                "wartoscDomyslna": "'01-01-2000' ",
+                "czyUsuwalny": 0
+            }
+        ],
+        "wywolaniaRegul": []
+    },
+    {
+        "id": 6,
+        "wersja": 2,
+        "kod": "RS-006",
+        "tresc": "Jeśli nachylenie jest mniejsze od 30 wtedy wyświetl komunikat <KOMUNIKAT1> .",
+        "sekwencja": {
+            "postacKanoniczna": "Jeśli nachylenie jest mniejsze od 30 wtedy wyświetl komunikat <KOMUNIKAT1> .",
+            "komunikaty": {},
+            "zdaniePierwotne": "Jeśli nachylenie jest mniejsze od 30 wtedy wyświetl komunikat <KOMUNIKAT1> .",
+            "tokeny": [
+                "Jeśli",
+                "nachylenie",
+                "jest",
+                "mniejsze",
+                "od",
+                "30",
+                "wtedy",
+                "wyświetl",
+                "komunikat",
+                "<KOMUNIKAT1>",
+                "."
+            ],
+            "rozpoznaneTokeny": [
+                {
+                    "kategoria": null,
+                    "lp": 1,
+                    "wartosc": "Jeśli ",
+                    "typ": "POCZATEK_REGULY",
+                    "prob": 0.19373415993280196
+                },
+                {
+                    "kategoria": null,
+                    "lp": 2,
+                    "wartosc": "nachylenie ",
+                    "typ": "LEWOSTRONNY_OPERAND_WARUNKU",
+                    "prob": 0.17904039788229717
+                },
+                {
+                    "kategoria": "<",
+                    "lp": 3,
+                    "wartosc": "jest mniejsze od ",
+                    "typ": "OPETATOR_POROWNANIA",
+                    "prob": 0.18964903285000587
+                },
+                {
+                    "kategoria": null,
+                    "lp": 4,
+                    "wartosc": "30 ",
+                    "typ": "PRAWOSTRONNY_OPERAND_WARUNKU",
+                    "prob": 0.19177385296601376
+                },
+                {
+                    "kategoria": null,
+                    "lp": 5,
+                    "wartosc": "wtedy ",
+                    "typ": "KONIEC_REGULY",
+                    "prob": 0.19208600573397366
+                },
+                {
+                    "kategoria": "WYSWIETL_KOMUNIKAT",
+                    "lp": 6,
+                    "wartosc": "wyświetl komunikat ",
+                    "typ": "AKCJA",
+                    "prob": 0.18995680026582853
+                },
+                {
+                    "kategoria": null,
+                    "lp": 7,
+                    "wartosc": "<KOMUNIKAT1> ",
+                    "typ": "PARAMETR_AKCJI",
+                    "prob": 0.17290652945075932
+                }
+            ]
+        },
+        "parametry": [
+            {
+                "id": 11,
+                "wersja": 2,
+                "nazwa": "nachylenie ",
+                "typ": null,
+                "wartoscDomyslna": null,
+                "czyUsuwalny": 0
+            },
+            {
+                "id": 12,
+                "wersja": 2,
+                "nazwa": "param0",
+                "typ": "Liczba",
+                "wartoscDomyslna": "30 ",
+                "czyUsuwalny": 0
+            }
+        ],
+        "wywolaniaRegul": []
+    },
+    {
+        "id": 7,
+        "wersja": 2,
+        "kod": "RS-007",
+        "tresc": "Jeśli dochód jest większy niż 100 wtedy wyświetl komunikat <KOMUNIKAT1> .",
+        "sekwencja": {
+            "postacKanoniczna": "Jeśli dochód jest większy niż 100 wtedy wyświetl komunikat <KOMUNIKAT1> .",
+            "komunikaty": {},
+            "zdaniePierwotne": "Jeśli dochód jest większy niż 100 wtedy wyświetl komunikat <KOMUNIKAT1> .",
+            "tokeny": [
+                "Jeśli",
+                "dochód",
+                "jest",
+                "większy",
+                "niż",
+                "100",
+                "wtedy",
+                "wyświetl",
+                "komunikat",
+                "<KOMUNIKAT1>",
+                "."
+            ],
+            "rozpoznaneTokeny": [
+                {
+                    "kategoria": null,
+                    "lp": 1,
+                    "wartosc": "Jeśli ",
+                    "typ": "POCZATEK_REGULY",
+                    "prob": 0.19373415993280196
+                },
+                {
+                    "kategoria": null,
+                    "lp": 2,
+                    "wartosc": "dochód ",
+                    "typ": "LEWOSTRONNY_OPERAND_WARUNKU",
+                    "prob": 0.186809525865329
+                },
+                {
+                    "kategoria": ">",
+                    "lp": 3,
+                    "wartosc": "jest większy niż ",
+                    "typ": "OPETATOR_POROWNANIA",
+                    "prob": 0.1899451652896139
+                },
+                {
+                    "kategoria": null,
+                    "lp": 4,
+                    "wartosc": "100 ",
+                    "typ": "PRAWOSTRONNY_OPERAND_WARUNKU",
+                    "prob": 0.1939135951508479
+                },
+                {
+                    "kategoria": null,
+                    "lp": 5,
+                    "wartosc": "wtedy ",
+                    "typ": "KONIEC_REGULY",
+                    "prob": 0.1919307619407416
+                },
+                {
+                    "kategoria": "WYSWIETL_KOMUNIKAT",
+                    "lp": 6,
+                    "wartosc": "wyświetl komunikat ",
+                    "typ": "AKCJA",
+                    "prob": 0.18995680026582853
+                },
+                {
+                    "kategoria": null,
+                    "lp": 7,
+                    "wartosc": "<KOMUNIKAT1> ",
+                    "typ": "PARAMETR_AKCJI",
+                    "prob": 0.17290652945075932
+                }
+            ]
+        },
+        "parametry": [
+            {
+                "id": 13,
+                "wersja": 2,
+                "nazwa": "dochód ",
+                "typ": null,
+                "wartoscDomyslna": null,
+                "czyUsuwalny": 0
+            },
+            {
+                "id": 14,
+                "wersja": 2,
+                "nazwa": "param0",
+                "typ": "Liczba",
+                "wartoscDomyslna": "100 ",
+                "czyUsuwalny": 0
+            }
+        ],
+        "wywolaniaRegul": []
+    },
+    {
+        "id": 8,
+        "wersja": 2,
+        "kod": "RS-008",
+        "tresc": "Jeżeli suma jest mniejsza od 50 to wyświetl komunikat <KOMUNIKAT1> .",
+        "sekwencja": {
+            "postacKanoniczna": "Jeżeli suma jest mniejsza od 50 to wyświetl komunikat <KOMUNIKAT1> .",
+            "komunikaty": {},
+            "zdaniePierwotne": "Jeżeli suma jest mniejsza od 50 to wyświetl komunikat <KOMUNIKAT1> .",
+            "tokeny": [
+                "Jeżeli",
+                "suma",
+                "jest",
+                "mniejsza",
+                "od",
+                "50",
+                "to",
+                "wyświetl",
+                "komunikat",
+                "<KOMUNIKAT1>",
+                "."
+            ],
+            "rozpoznaneTokeny": [
+                {
+                    "kategoria": null,
+                    "lp": 1,
+                    "wartosc": "Jeżeli ",
+                    "typ": "POCZATEK_REGULY",
+                    "prob": 0.19300117883183918
+                },
+                {
+                    "kategoria": null,
+                    "lp": 2,
+                    "wartosc": "suma ",
+                    "typ": "LEWOSTRONNY_OPERAND_WARUNKU",
+                    "prob": 0.15394685413977624
+                },
+                {
+                    "kategoria": "<",
+                    "lp": 3,
+                    "wartosc": "jest mniejsza od ",
+                    "typ": "OPETATOR_POROWNANIA",
+                    "prob": 0.18928706473218582
+                },
+                {
+                    "kategoria": null,
+                    "lp": 4,
+                    "wartosc": "50 ",
+                    "typ": "PRAWOSTRONNY_OPERAND_WARUNKU",
+                    "prob": 0.18777416291688692
+                },
+                {
+                    "kategoria": null,
+                    "lp": 5,
+                    "wartosc": "to ",
+                    "typ": "KONIEC_REGULY",
+                    "prob": 0.19186799783109157
+                },
+                {
+                    "kategoria": "WYSWIETL_KOMUNIKAT",
+                    "lp": 6,
+                    "wartosc": "wyświetl komunikat ",
+                    "typ": "AKCJA",
+                    "prob": 0.17440280404983302
+                },
+                {
+                    "kategoria": null,
+                    "lp": 7,
+                    "wartosc": "<KOMUNIKAT1> ",
+                    "typ": "PARAMETR_AKCJI",
+                    "prob": 0.17290652945075932
+                }
+            ]
+        },
+        "parametry": [
+            {
+                "id": 15,
+                "wersja": 2,
+                "nazwa": "suma ",
+                "typ": null,
+                "wartoscDomyslna": null,
+                "czyUsuwalny": 0
+            },
+            {
+                "id": 16,
+                "wersja": 2,
+                "nazwa": "param0",
+                "typ": "Liczba",
+                "wartoscDomyslna": "50 ",
+                "czyUsuwalny": 0
+            }
+        ],
+        "wywolaniaRegul": []
+    },
+    {
+        "id": 9,
+        "wersja": 2,
+        "kod": "RS-009",
+        "tresc": "Jeżeli suma jest różna od 50 to wyświetl komunikat <KOMUNIKAT1> .",
+        "sekwencja": {
+            "postacKanoniczna": "Jeżeli suma jest różna od 50 to wyświetl komunikat <KOMUNIKAT1> .",
+            "komunikaty": {},
+            "zdaniePierwotne": "Jeżeli suma jest różna od 50 to wyświetl komunikat <KOMUNIKAT1> .",
+            "tokeny": [
+                "Jeżeli",
+                "suma",
+                "jest",
+                "różna",
+                "od",
+                "50",
+                "to",
+                "wyświetl",
+                "komunikat",
+                "<KOMUNIKAT1>",
+                "."
+            ],
+            "rozpoznaneTokeny": [
+                {
+                    "kategoria": null,
+                    "lp": 1,
+                    "wartosc": "Jeżeli ",
+                    "typ": "POCZATEK_REGULY",
+                    "prob": 0.19300117883183918
+                },
+                {
+                    "kategoria": null,
+                    "lp": 2,
+                    "wartosc": "suma ",
+                    "typ": "LEWOSTRONNY_OPERAND_WARUNKU",
+                    "prob": 0.15394685413977624
+                },
+                {
+                    "kategoria": "!=",
+                    "lp": 3,
+                    "wartosc": "jest różna od ",
+                    "typ": "OPETATOR_POROWNANIA",
+                    "prob": 0.1902466455348084
+                },
+                {
+                    "kategoria": null,
+                    "lp": 4,
+                    "wartosc": "50 ",
+                    "typ": "PRAWOSTRONNY_OPERAND_WARUNKU",
+                    "prob": 0.18777416291688692
+                },
+                {
+                    "kategoria": null,
+                    "lp": 5,
+                    "wartosc": "to ",
+                    "typ": "KONIEC_REGULY",
+                    "prob": 0.19186799783109157
+                },
+                {
+                    "kategoria": "WYSWIETL_KOMUNIKAT",
+                    "lp": 6,
+                    "wartosc": "wyświetl komunikat ",
+                    "typ": "AKCJA",
+                    "prob": 0.17440280404983302
+                },
+                {
+                    "kategoria": null,
+                    "lp": 7,
+                    "wartosc": "<KOMUNIKAT1> ",
+                    "typ": "PARAMETR_AKCJI",
+                    "prob": 0.17290652945075932
+                }
+            ]
+        },
+        "parametry": [
+            {
+                "id": 17,
+                "wersja": 2,
+                "nazwa": "suma ",
+                "typ": null,
+                "wartoscDomyslna": null,
+                "czyUsuwalny": 0
+            },
+            {
+                "id": 18,
+                "wersja": 2,
+                "nazwa": "param0",
+                "typ": "Liczba",
+                "wartoscDomyslna": "50 ",
+                "czyUsuwalny": 0
+            }
+        ],
+        "wywolaniaRegul": []
+    },
+    {
+        "id": 10,
+        "wersja": 2,
+        "kod": "RS-010",
+        "tresc": "Jeśli dochód jest mniejszy od 100 wtedy wyświetl komunikat <KOMUNIKAT1> .",
+        "sekwencja": {
+            "postacKanoniczna": "Jeśli dochód jest mniejszy od 100 wtedy wyświetl komunikat <KOMUNIKAT1> .",
+            "komunikaty": {},
+            "zdaniePierwotne": "Jeśli dochód jest mniejszy od 100 wtedy wyświetl komunikat <KOMUNIKAT1> .",
+            "tokeny": [
+                "Jeśli",
+                "dochód",
+                "jest",
+                "mniejszy",
+                "od",
+                "100",
+                "wtedy",
+                "wyświetl",
+                "komunikat",
+                "<KOMUNIKAT1>",
+                "."
+            ],
+            "rozpoznaneTokeny": [
+                {
+                    "kategoria": null,
+                    "lp": 1,
+                    "wartosc": "Jeśli ",
+                    "typ": "POCZATEK_REGULY",
+                    "prob": 0.19373415993280196
+                },
+                {
+                    "kategoria": null,
+                    "lp": 2,
+                    "wartosc": "dochód ",
+                    "typ": "LEWOSTRONNY_OPERAND_WARUNKU",
+                    "prob": 0.17904039788229717
+                },
+                {
+                    "kategoria": "<",
+                    "lp": 3,
+                    "wartosc": "jest mniejszy od ",
+                    "typ": "OPETATOR_POROWNANIA",
+                    "prob": 0.19046992332732984
+                },
+                {
+                    "kategoria": null,
+                    "lp": 4,
+                    "wartosc": "100 ",
+                    "typ": "PRAWOSTRONNY_OPERAND_WARUNKU",
+                    "prob": 0.1926609499382168
+                },
+                {
+                    "kategoria": null,
+                    "lp": 5,
+                    "wartosc": "wtedy ",
+                    "typ": "KONIEC_REGULY",
+                    "prob": 0.19208600573397366
+                },
+                {
+                    "kategoria": "WYSWIETL_KOMUNIKAT",
+                    "lp": 6,
+                    "wartosc": "wyświetl komunikat ",
+                    "typ": "AKCJA",
+                    "prob": 0.18995680026582853
+                },
+                {
+                    "kategoria": null,
+                    "lp": 7,
+                    "wartosc": "<KOMUNIKAT1> ",
+                    "typ": "PARAMETR_AKCJI",
+                    "prob": 0.17290652945075932
+                }
+            ]
+        },
+        "parametry": [
+            {
+                "id": 19,
+                "wersja": 2,
+                "nazwa": "dochód ",
+                "typ": null,
+                "wartoscDomyslna": null,
+                "czyUsuwalny": 0
+            },
+            {
+                "id": 20,
+                "wersja": 2,
+                "nazwa": "param0",
+                "typ": "Liczba",
+                "wartoscDomyslna": "100 ",
+                "czyUsuwalny": 0
+            }
+        ],
+        "wywolaniaRegul": []
+    },
+    {
+        "id": 11,
+        "wersja": 2,
+        "kod": "RS-011",
+        "tresc": "Jeżeli suma  jest większa od 50 to wyświetl komunikat <KOMUNIKAT1> .",
+        "sekwencja": {
+            "postacKanoniczna": "Jeżeli suma jest większa od 50 to wyświetl komunikat <KOMUNIKAT1> .",
+            "komunikaty": {},
+            "zdaniePierwotne": "Jeżeli suma jest większa od 50 to wyświetl komunikat <KOMUNIKAT1> .",
+            "tokeny": [
+                "Jeżeli",
+                "suma",
+                "jest",
+                "większa",
+                "od",
+                "50",
+                "to",
+                "wyświetl",
+                "komunikat",
+                "<KOMUNIKAT1>",
+                "."
+            ],
+            "rozpoznaneTokeny": [
+                {
+                    "kategoria": null,
+                    "lp": 1,
+                    "wartosc": "Jeżeli ",
+                    "typ": "POCZATEK_REGULY",
+                    "prob": 0.19300117883183918
+                },
+                {
+                    "kategoria": null,
+                    "lp": 2,
+                    "wartosc": "suma ",
+                    "typ": "LEWOSTRONNY_OPERAND_WARUNKU",
+                    "prob": 0.15394685413977624
+                },
+                {
+                    "kategoria": ">",
+                    "lp": 3,
+                    "wartosc": "jest większa od ",
+                    "typ": "OPETATOR_POROWNANIA",
+                    "prob": 0.18928706473218582
+                },
+                {
+                    "kategoria": null,
+                    "lp": 4,
+                    "wartosc": "50 ",
+                    "typ": "PRAWOSTRONNY_OPERAND_WARUNKU",
+                    "prob": 0.19000452224048409
+                },
+                {
+                    "kategoria": null,
+                    "lp": 5,
+                    "wartosc": "to ",
+                    "typ": "KONIEC_REGULY",
+                    "prob": 0.19186799783109157
+                },
+                {
+                    "kategoria": "WYSWIETL_KOMUNIKAT",
+                    "lp": 6,
+                    "wartosc": "wyświetl komunikat ",
+                    "typ": "AKCJA",
+                    "prob": 0.17440280404983302
+                },
+                {
+                    "kategoria": null,
+                    "lp": 7,
+                    "wartosc": "<KOMUNIKAT1> ",
+                    "typ": "PARAMETR_AKCJI",
+                    "prob": 0.17290652945075932
+                }
+            ]
+        },
+        "parametry": [
+            {
+                "id": 21,
+                "wersja": 2,
+                "nazwa": "suma ",
+                "typ": null,
+                "wartoscDomyslna": null,
+                "czyUsuwalny": 0
+            },
+            {
+                "id": 22,
+                "wersja": 2,
+                "nazwa": "param0",
+                "typ": "Liczba",
+                "wartoscDomyslna": "50 ",
+                "czyUsuwalny": 0
+            }
+        ],
+        "wywolaniaRegul": []
+    },
+    {
+        "id": 12,
+        "wersja": 2,
+        "kod": "RS-012",
+        "tresc": "Jeżeli suma jest różna od 50 to wyświetl komunikat <KOMUNIKAT1> .",
+        "sekwencja": {
+            "postacKanoniczna": "Jeżeli suma jest różna od 50 to wyświetl komunikat <KOMUNIKAT1> .",
+            "komunikaty": {},
+            "zdaniePierwotne": "Jeżeli suma jest różna od 50 to wyświetl komunikat <KOMUNIKAT1> .",
+            "tokeny": [
+                "Jeżeli",
+                "suma",
+                "jest",
+                "różna",
+                "od",
+                "50",
+                "to",
+                "wyświetl",
+                "komunikat",
+                "<KOMUNIKAT1>",
+                "."
+            ],
+            "rozpoznaneTokeny": [
+                {
+                    "kategoria": null,
+                    "lp": 1,
+                    "wartosc": "Jeżeli ",
+                    "typ": "POCZATEK_REGULY",
+                    "prob": 0.19300117883183918
+                },
+                {
+                    "kategoria": null,
+                    "lp": 2,
+                    "wartosc": "suma ",
+                    "typ": "LEWOSTRONNY_OPERAND_WARUNKU",
+                    "prob": 0.15394685413977624
+                },
+                {
+                    "kategoria": "!=",
+                    "lp": 3,
+                    "wartosc": "jest różna od ",
+                    "typ": "OPETATOR_POROWNANIA",
+                    "prob": 0.1902466455348084
+                },
+                {
+                    "kategoria": null,
+                    "lp": 4,
+                    "wartosc": "50 ",
+                    "typ": "PRAWOSTRONNY_OPERAND_WARUNKU",
+                    "prob": 0.18777416291688692
+                },
+                {
+                    "kategoria": null,
+                    "lp": 5,
+                    "wartosc": "to ",
+                    "typ": "KONIEC_REGULY",
+                    "prob": 0.19186799783109157
+                },
+                {
+                    "kategoria": "WYSWIETL_KOMUNIKAT",
+                    "lp": 6,
+                    "wartosc": "wyświetl komunikat ",
+                    "typ": "AKCJA",
+                    "prob": 0.17440280404983302
+                },
+                {
+                    "kategoria": null,
+                    "lp": 7,
+                    "wartosc": "<KOMUNIKAT1> ",
+                    "typ": "PARAMETR_AKCJI",
+                    "prob": 0.17290652945075932
+                }
+            ]
+        },
+        "parametry": [
+            {
+                "id": 23,
+                "wersja": 2,
+                "nazwa": "suma ",
+                "typ": null,
+                "wartoscDomyslna": null,
+                "czyUsuwalny": 0
+            },
+            {
+                "id": 24,
+                "wersja": 2,
+                "nazwa": "param0",
+                "typ": "Liczba",
+                "wartoscDomyslna": "50 ",
+                "czyUsuwalny": 0
+            }
+        ],
+        "wywolaniaRegul": []
+    },
+    {
+        "id": 13,
+        "wersja": 2,
+        "kod": "RS-013",
+        "tresc": "Jeśli rok nie jest równy 2000 to wyświetl komunikat <KOMUNIKAT1> .",
+        "sekwencja": {
+            "postacKanoniczna": "Jeśli rok nie jest równy 2000 to wyświetl komunikat <KOMUNIKAT1> .",
+            "komunikaty": {},
+            "zdaniePierwotne": "Jeśli rok nie jest równy 2000 to wyświetl komunikat <KOMUNIKAT1> .",
+            "tokeny": [
+                "Jeśli",
+                "rok",
+                "nie",
+                "jest",
+                "równy",
+                "2000",
+                "to",
+                "wyświetl",
+                "komunikat",
+                "<KOMUNIKAT1>",
+                "."
+            ],
+            "rozpoznaneTokeny": [
+                {
+                    "kategoria": null,
+                    "lp": 1,
+                    "wartosc": "Jeśli ",
+                    "typ": "POCZATEK_REGULY",
+                    "prob": 0.19329940876322138
+                },
+                {
+                    "kategoria": null,
+                    "lp": 2,
+                    "wartosc": "rok ",
+                    "typ": "LEWOSTRONNY_OPERAND_WARUNKU",
+                    "prob": 0.1810376118580793
+                },
+                {
+                    "kategoria": "!=",
+                    "lp": 3,
+                    "wartosc": "nie jest równy ",
+                    "typ": "OPETATOR_POROWNANIA",
+                    "prob": 0.19108758784715815
+                },
+                {
+                    "kategoria": null,
+                    "lp": 4,
+                    "wartosc": "2000 ",
+                    "typ": "PRAWOSTRONNY_OPERAND_WARUNKU",
+                    "prob": 0.15445229380586586
+                },
+                {
+                    "kategoria": null,
+                    "lp": 5,
+                    "wartosc": "to ",
+                    "typ": "KONIEC_REGULY",
+                    "prob": 0.19115364581514846
+                },
+                {
+                    "kategoria": "WYSWIETL_KOMUNIKAT",
+                    "lp": 6,
+                    "wartosc": "wyświetl komunikat ",
+                    "typ": "AKCJA",
+                    "prob": 0.17440280404983302
+                },
+                {
+                    "kategoria": null,
+                    "lp": 7,
+                    "wartosc": "<KOMUNIKAT1> ",
+                    "typ": "PARAMETR_AKCJI",
+                    "prob": 0.17290652945075932
+                }
+            ]
+        },
+        "parametry": [
+            {
+                "id": 25,
+                "wersja": 2,
+                "nazwa": "rok ",
+                "typ": null,
+                "wartoscDomyslna": null,
+                "czyUsuwalny": 0
+            },
+            {
+                "id": 26,
+                "wersja": 2,
+                "nazwa": "param0",
+                "typ": "Liczba",
+                "wartoscDomyslna": "2000 ",
+                "czyUsuwalny": 0
+            }
+        ],
+        "wywolaniaRegul": []
+    },
+    {
+        "id": 14,
+        "wersja": 2,
+        "kod": "RS-014",
+        "tresc": "Jeśli rok jest większy niż 2000 wtedy wyświetl komunikat <KOMUNIKAT1> .",
+        "sekwencja": {
+            "postacKanoniczna": "Jeśli rok jest większy niż 2000 wtedy wyświetl komunikat <KOMUNIKAT1> .",
+            "komunikaty": {},
+            "zdaniePierwotne": "Jeśli rok jest większy niż 2000 wtedy wyświetl komunikat <KOMUNIKAT1> .",
+            "tokeny": [
+                "Jeśli",
+                "rok",
+                "jest",
+                "większy",
+                "niż",
+                "2000",
+                "wtedy",
+                "wyświetl",
+                "komunikat",
+                "<KOMUNIKAT1>",
+                "."
+            ],
+            "rozpoznaneTokeny": [
+                {
+                    "kategoria": null,
+                    "lp": 1,
+                    "wartosc": "Jeśli ",
+                    "typ": "POCZATEK_REGULY",
+                    "prob": 0.19373415993280196
+                },
+                {
+                    "kategoria": null,
+                    "lp": 2,
+                    "wartosc": "rok ",
+                    "typ": "LEWOSTRONNY_OPERAND_WARUNKU",
+                    "prob": 0.186809525865329
+                },
+                {
+                    "kategoria": ">",
+                    "lp": 3,
+                    "wartosc": "jest większy niż ",
+                    "typ": "OPETATOR_POROWNANIA",
+                    "prob": 0.1899451652896139
+                },
+                {
+                    "kategoria": null,
+                    "lp": 4,
+                    "wartosc": "2000 ",
+                    "typ": "PRAWOSTRONNY_OPERAND_WARUNKU",
+                    "prob": 0.1939135951508479
+                },
+                {
+                    "kategoria": null,
+                    "lp": 5,
+                    "wartosc": "wtedy ",
+                    "typ": "KONIEC_REGULY",
+                    "prob": 0.1919307619407416
+                },
+                {
+                    "kategoria": "WYSWIETL_KOMUNIKAT",
+                    "lp": 6,
+                    "wartosc": "wyświetl komunikat ",
+                    "typ": "AKCJA",
+                    "prob": 0.18995680026582853
+                },
+                {
+                    "kategoria": null,
+                    "lp": 7,
+                    "wartosc": "<KOMUNIKAT1> ",
+                    "typ": "PARAMETR_AKCJI",
+                    "prob": 0.17290652945075932
+                }
+            ]
+        },
+        "parametry": [
+            {
+                "id": 27,
+                "wersja": 2,
+                "nazwa": "rok ",
+                "typ": null,
+                "wartoscDomyslna": null,
+                "czyUsuwalny": 0
+            },
+            {
+                "id": 28,
+                "wersja": 2,
+                "nazwa": "param0",
+                "typ": "Liczba",
+                "wartoscDomyslna": "2000 ",
+                "czyUsuwalny": 0
+            }
+        ],
+        "wywolaniaRegul": []
+    },
+    {
+        "id": 15,
+        "wersja": 2,
+        "kod": "RS-015",
+        "tresc": "Jeśli miesiąc jest mniejszy niż styczeń to wyświetl komunikat <KOMUNIKAT1> .",
+        "sekwencja": {
+            "postacKanoniczna": "Jeśli miesiąc jest mniejszy niż styczeń to wyświetl komunikat <KOMUNIKAT1> .",
+            "komunikaty": {},
+            "zdaniePierwotne": "Jeśli miesiąc jest mniejszy niż styczeń to wyświetl komunikat <KOMUNIKAT1> .",
+            "tokeny": [
+                "Jeśli",
+                "miesiąc",
+                "jest",
+                "mniejszy",
+                "niż",
+                "styczeń",
+                "to",
+                "wyświetl",
+                "komunikat",
+                "<KOMUNIKAT1>",
+                "."
+            ],
+            "rozpoznaneTokeny": [
+                {
+                    "kategoria": null,
+                    "lp": 1,
+                    "wartosc": "Jeśli ",
+                    "typ": "POCZATEK_REGULY",
+                    "prob": 0.19373415993280196
+                },
+                {
+                    "kategoria": null,
+                    "lp": 2,
+                    "wartosc": "miesiąc ",
+                    "typ": "LEWOSTRONNY_OPERAND_WARUNKU",
+                    "prob": 0.17904039788229717
+                },
+                {
+                    "kategoria": "<",
+                    "lp": 3,
+                    "wartosc": "jest mniejszy niż ",
+                    "typ": "OPETATOR_POROWNANIA",
+                    "prob": 0.19030690850957308
+                },
+                {
+                    "kategoria": null,
+                    "lp": 4,
+                    "wartosc": "styczeń ",
+                    "typ": "PRAWOSTRONNY_OPERAND_WARUNKU",
+                    "prob": 0.18798972325965838
+                },
+                {
+                    "kategoria": null,
+                    "lp": 5,
+                    "wartosc": "to ",
+                    "typ": "KONIEC_REGULY",
+                    "prob": 0.19062095076073948
+                },
+                {
+                    "kategoria": "WYSWIETL_KOMUNIKAT",
+                    "lp": 6,
+                    "wartosc": "wyświetl komunikat ",
+                    "typ": "AKCJA",
+                    "prob": 0.16761906704103813
+                },
+                {
+                    "kategoria": null,
+                    "lp": 7,
+                    "wartosc": "<KOMUNIKAT1> ",
+                    "typ": "PARAMETR_AKCJI",
+                    "prob": 0.17290652945075932
+                }
+            ]
+        },
+        "parametry": [
+            {
+                "id": 29,
+                "wersja": 2,
+                "nazwa": "miesiąc ",
+                "typ": null,
+                "wartoscDomyslna": null,
+                "czyUsuwalny": 0
+            },
+            {
+                "id": 30,
+                "wersja": 2,
+                "nazwa": "styczeń ",
+                "typ": null,
+                "wartoscDomyslna": null,
+                "czyUsuwalny": 0
+            }
+        ],
+        "wywolaniaRegul": []
+    },
+    {
+        "id": 16,
+        "wersja": 2,
+        "kod": "RS-016",
+        "tresc": "Jeśli data jest mniejsza od '01-01-2019' to zgłoś błąd <KOMUNIKAT1> .",
+        "sekwencja": {
+            "postacKanoniczna": "Jeśli data jest mniejsza od '01-01-2019' to zgłoś błąd <KOMUNIKAT1> .",
+            "komunikaty": {},
+            "zdaniePierwotne": "Jeśli data jest mniejsza od '01-01-2019' to zgłoś błąd <KOMUNIKAT1> .",
+            "tokeny": [
+                "Jeśli",
+                "data",
+                "jest",
+                "mniejsza",
+                "od",
+                "'01-01-2019'",
+                "to",
+                "zgłoś",
+                "błąd",
+                "<KOMUNIKAT1>",
+                "."
+            ],
+            "rozpoznaneTokeny": [
+                {
+                    "kategoria": null,
+                    "lp": 1,
+                    "wartosc": "Jeśli ",
+                    "typ": "POCZATEK_REGULY",
+                    "prob": 0.19373415993280196
+                },
+                {
+                    "kategoria": null,
+                    "lp": 2,
+                    "wartosc": "data ",
+                    "typ": "LEWOSTRONNY_OPERAND_WARUNKU",
+                    "prob": 0.17904039788229717
+                },
+                {
+                    "kategoria": "<",
+                    "lp": 3,
+                    "wartosc": "jest mniejsza od ",
+                    "typ": "OPETATOR_POROWNANIA",
+                    "prob": 0.18977074240388536
+                },
+                {
+                    "kategoria": null,
+                    "lp": 4,
+                    "wartosc": "'01-01-2019' ",
+                    "typ": "PRAWOSTRONNY_OPERAND_WARUNKU",
+                    "prob": 0.1899921004959373
+                },
+                {
+                    "kategoria": null,
+                    "lp": 5,
+                    "wartosc": "to ",
+                    "typ": "KONIEC_REGULY",
+                    "prob": 0.19289877364988472
+                },
+                {
+                    "kategoria": "ZGLOS_BLAD",
+                    "lp": 6,
+                    "wartosc": "zgłoś błąd ",
+                    "typ": "AKCJA",
+                    "prob": 0.19242652377749037
+                },
+                {
+                    "kategoria": null,
+                    "lp": 7,
+                    "wartosc": "<KOMUNIKAT1> ",
+                    "typ": "PARAMETR_AKCJI",
+                    "prob": 0.17934579374217954
+                }
+            ]
+        },
+        "parametry": [
+            {
+                "id": 31,
+                "wersja": 2,
+                "nazwa": "data ",
+                "typ": "Data",
+                "wartoscDomyslna": null,
+                "czyUsuwalny": 0
+            },
+            {
+                "id": 32,
+                "wersja": 2,
+                "nazwa": "param0",
+                "typ": "Data",
+                "wartoscDomyslna": "'01-01-2019' ",
+                "czyUsuwalny": 0
+            }
+        ],
+        "wywolaniaRegul": []
+    },
+    {
+        "id": 17,
+        "wersja": 2,
+        "kod": "RS-017",
+        "tresc": "Jeśli dzień nie jest równy wczoraj to zgłoś błąd <KOMUNIKAT1> .",
+        "sekwencja": {
+            "postacKanoniczna": "Jeśli dzień nie jest równy wczoraj to zgłoś błąd <KOMUNIKAT1> .",
+            "komunikaty": {},
+            "zdaniePierwotne": "Jeśli dzień nie jest równy wczoraj to zgłoś błąd <KOMUNIKAT1> .",
+            "tokeny": [
+                "Jeśli",
+                "dzień",
+                "nie",
+                "jest",
+                "równy",
+                "wczoraj",
+                "to",
+                "zgłoś",
+                "błąd",
+                "<KOMUNIKAT1>",
+                "."
+            ],
+            "rozpoznaneTokeny": [
+                {
+                    "kategoria": null,
+                    "lp": 1,
+                    "wartosc": "Jeśli ",
+                    "typ": "POCZATEK_REGULY",
+                    "prob": 0.19329940876322138
+                },
+                {
+                    "kategoria": null,
+                    "lp": 2,
+                    "wartosc": "dzień ",
+                    "typ": "LEWOSTRONNY_OPERAND_WARUNKU",
+                    "prob": 0.1810376118580793
+                },
+                {
+                    "kategoria": "!=",
+                    "lp": 3,
+                    "wartosc": "nie jest równy ",
+                    "typ": "OPETATOR_POROWNANIA",
+                    "prob": 0.1901006819934025
+                },
+                {
+                    "kategoria": null,
+                    "lp": 4,
+                    "wartosc": "wczoraj ",
+                    "typ": "PRAWOSTRONNY_OPERAND_WARUNKU",
+                    "prob": 0.16714682059503763
+                },
+                {
+                    "kategoria": null,
+                    "lp": 5,
+                    "wartosc": "to ",
+                    "typ": "KONIEC_REGULY",
+                    "prob": 0.1912076821149737
+                },
+                {
+                    "kategoria": "ZGLOS_BLAD",
+                    "lp": 6,
+                    "wartosc": "zgłoś błąd ",
+                    "typ": "AKCJA",
+                    "prob": 0.19177185376781614
+                },
+                {
+                    "kategoria": null,
+                    "lp": 7,
+                    "wartosc": "<KOMUNIKAT1> ",
+                    "typ": "PARAMETR_AKCJI",
+                    "prob": 0.17934579374217954
+                }
+            ]
+        },
+        "parametry": [
+            {
+                "id": 33,
+                "wersja": 2,
+                "nazwa": "dzień ",
+                "typ": null,
+                "wartoscDomyslna": null,
+                "czyUsuwalny": 0
+            },
+            {
+                "id": 34,
+                "wersja": 2,
+                "nazwa": "wczoraj ",
+                "typ": null,
+                "wartoscDomyslna": null,
+                "czyUsuwalny": 0
+            }
+        ],
+        "wywolaniaRegul": []
+    },
+    {
+        "id": 18,
+        "wersja": 2,
+        "kod": "RS-018",
+        "tresc": "Jeśli miesiąc jest mniejszy niż 6 to wyświetl komunikat \"miesiąc jest mniejszy\" .",
+        "sekwencja": {
+            "postacKanoniczna": "Jeśli miesiąc jest mniejszy niż 6 to wyświetl komunikat KOMUNIKAT1 .",
+            "komunikaty": {
+                "KOMUNIKAT1": "miesiąc jest mniejszy"
+            },
+            "zdaniePierwotne": "Jeśli miesiąc jest mniejszy niż 6 to wyświetl komunikat KOMUNIKAT1 .",
+            "tokeny": [
+                "Jeśli",
+                "miesiąc",
+                "jest",
+                "mniejszy",
+                "niż",
+                "6",
+                "to",
+                "wyświetl",
+                "komunikat",
+                "KOMUNIKAT1",
+                "."
+            ],
+            "rozpoznaneTokeny": [
+                {
+                    "kategoria": null,
+                    "lp": 1,
+                    "wartosc": "Jeśli ",
+                    "typ": "POCZATEK_REGULY",
+                    "prob": 0.19373415993280196
+                },
+                {
+                    "kategoria": null,
+                    "lp": 2,
+                    "wartosc": "miesiąc ",
+                    "typ": "LEWOSTRONNY_OPERAND_WARUNKU",
+                    "prob": 0.17904039788229717
+                },
+                {
+                    "kategoria": "<",
+                    "lp": 3,
+                    "wartosc": "jest mniejszy niż ",
+                    "typ": "OPETATOR_POROWNANIA",
+                    "prob": 0.19135615104060025
+                },
+                {
+                    "kategoria": null,
+                    "lp": 4,
+                    "wartosc": "6 ",
+                    "typ": "PRAWOSTRONNY_OPERAND_WARUNKU",
+                    "prob": 0.19136598325988358
+                },
+                {
+                    "kategoria": null,
+                    "lp": 5,
+                    "wartosc": "to ",
+                    "typ": "KONIEC_REGULY",
+                    "prob": 0.19201642811518851
+                },
+                {
+                    "kategoria": "WYSWIETL_KOMUNIKAT",
+                    "lp": 6,
+                    "wartosc": "wyświetl komunikat ",
+                    "typ": "AKCJA",
+                    "prob": 0.17440280404983302
+                },
+                {
+                    "kategoria": null,
+                    "lp": 7,
+                    "wartosc": "KOMUNIKAT1 ",
+                    "typ": "PARAMETR_AKCJI",
+                    "prob": 0.17290652945075932
+                }
+            ]
+        },
+        "parametry": [
+            {
+                "id": 35,
+                "wersja": 2,
+                "nazwa": "miesiąc ",
+                "typ": null,
+                "wartoscDomyslna": null,
+                "czyUsuwalny": 0
+            },
+            {
+                "id": 36,
+                "wersja": 2,
+                "nazwa": "param0",
+                "typ": "Liczba",
+                "wartoscDomyslna": "6 ",
+                "czyUsuwalny": 0
+            }
+        ],
+        "wywolaniaRegul": []
+    },
+    {
+        "id": 19,
+        "wersja": 2,
+        "kod": "RS-021",
+        "tresc": "Jeśli data_utworzenia jest większa od '01-01-2010' i data_utworzenia jest większa  niż data_kwalifikacji to zgłoś błąd walidacji <KOMUNIKAT_WALIDACJI_1> .",
+        "sekwencja": {
+            "postacKanoniczna": "Jeśli data_utworzenia jest większa od '01-01-2010' i data_utworzenia jest większa niż data_kwalifikacji to zgłoś błąd walidacji <KOMUNIKAT_WALIDACJI_1> .",
+            "komunikaty": {},
+            "zdaniePierwotne": "Jeśli data_utworzenia jest większa od '01-01-2010' i data_utworzenia jest większa niż data_kwalifikacji to zgłoś błąd walidacji <KOMUNIKAT_WALIDACJI_1> .",
+            "tokeny": [
+                "Jeśli",
+                "data_utworzenia",
+                "jest",
+                "większa",
+                "od",
+                "'01-01-2010'",
+                "i",
+                "data_utworzenia",
+                "jest",
+                "większa",
+                "niż",
+                "data_kwalifikacji",
+                "to",
+                "zgłoś",
+                "błąd",
+                "walidacji",
+                "<KOMUNIKAT_WALIDACJI_1>",
+                "."
+            ],
+            "rozpoznaneTokeny": [
+                {
+                    "kategoria": null,
+                    "lp": 1,
+                    "wartosc": "Jeśli ",
+                    "typ": "POCZATEK_REGULY",
+                    "prob": 0.19296507027760343
+                },
+                {
+                    "kategoria": null,
+                    "lp": 2,
+                    "wartosc": "data_utworzenia ",
+                    "typ": "LEWOSTRONNY_OPERAND_WARUNKU",
+                    "prob": 0.18376036692643896
+                },
+                {
+                    "kategoria": ">",
+                    "lp": 3,
+                    "wartosc": "jest większa od ",
+                    "typ": "OPETATOR_POROWNANIA",
+                    "prob": 0.1904961250487803
+                },
+                {
+                    "kategoria": null,
+                    "lp": 4,
+                    "wartosc": "'01-01-2010' ",
+                    "typ": "PRAWOSTRONNY_OPERAND_WARUNKU",
+                    "prob": 0.18692060992853735
+                },
+                {
+                    "kategoria": "&&",
+                    "lp": 5,
+                    "wartosc": "i ",
+                    "typ": "OPERATOR_LOGICZNY",
+                    "prob": 0.1461196171018922
+                },
+                {
+                    "kategoria": null,
+                    "lp": 6,
+                    "wartosc": "data_utworzenia ",
+                    "typ": "LEWOSTRONNY_OPERAND_WARUNKU",
+                    "prob": 0.17726261734089477
+                },
+                {
+                    "kategoria": ">",
+                    "lp": 7,
+                    "wartosc": "jest większa niż ",
+                    "typ": "OPETATOR_POROWNANIA",
+                    "prob": 0.18972840405202765
+                },
+                {
+                    "kategoria": null,
+                    "lp": 8,
+                    "wartosc": "data_kwalifikacji ",
+                    "typ": "PRAWOSTRONNY_OPERAND_WARUNKU",
+                    "prob": 0.19163757641985846
+                },
+                {
+                    "kategoria": null,
+                    "lp": 9,
+                    "wartosc": "to ",
+                    "typ": "KONIEC_REGULY",
+                    "prob": 0.1927665573738282
+                },
+                {
+                    "kategoria": "ZGLOS_BLAD",
+                    "lp": 10,
+                    "wartosc": "zgłoś błąd walidacji ",
+                    "typ": "AKCJA",
+                    "prob": 0.19173431498996604
+                },
+                {
+                    "kategoria": null,
+                    "lp": 11,
+                    "wartosc": "<KOMUNIKAT_WALIDACJI_1> ",
+                    "typ": "PARAMETR_AKCJI",
+                    "prob": 0.14428749951121284
+                }
+            ]
+        },
+        "parametry": [
+            {
+                "id": 37,
+                "wersja": 2,
+                "nazwa": "data_utworzenia ",
+                "typ": "Data",
+                "wartoscDomyslna": null,
+                "czyUsuwalny": 0
+            },
+            {
+                "id": 38,
+                "wersja": 2,
+                "nazwa": "param0",
+                "typ": "Data",
+                "wartoscDomyslna": "'01-01-2010' ",
+                "czyUsuwalny": 0
+            },
+            {
+                "id": 39,
+                "wersja": 2,
+                "nazwa": "data_kwalifikacji ",
+                "typ": "Data",
+                "wartoscDomyslna": null,
+                "czyUsuwalny": 0
+            }
+        ],
+        "wywolaniaRegul": []
+    },
+    {
+        "id": 20,
+        "wersja": 2,
+        "kod": "RS-022",
+        "tresc": "Jeśli data_utworzenia jest większa od '01-01-2010' oraz data_utworzenia jest mniejsza niż data_kwalifikacji to zgłoś błąd walidacji <KOMUNIKAT_WALIDACJI_1> .",
+        "sekwencja": {
+            "postacKanoniczna": "Jeśli data_utworzenia jest większa od '01-01-2010' oraz data_utworzenia jest mniejsza niż data_kwalifikacji to zgłoś błąd walidacji <KOMUNIKAT_WALIDACJI_1> .",
+            "komunikaty": {},
+            "zdaniePierwotne": "Jeśli data_utworzenia jest większa od '01-01-2010' oraz data_utworzenia jest mniejsza niż data_kwalifikacji to zgłoś błąd walidacji <KOMUNIKAT_WALIDACJI_1> .",
+            "tokeny": [
+                "Jeśli",
+                "data_utworzenia",
+                "jest",
+                "większa",
+                "od",
+                "'01-01-2010'",
+                "oraz",
+                "data_utworzenia",
+                "jest",
+                "mniejsza",
+                "niż",
+                "data_kwalifikacji",
+                "to",
+                "zgłoś",
+                "błąd",
+                "walidacji",
+                "<KOMUNIKAT_WALIDACJI_1>",
+                "."
+            ],
+            "rozpoznaneTokeny": [
+                {
+                    "kategoria": null,
+                    "lp": 1,
+                    "wartosc": "Jeśli ",
+                    "typ": "POCZATEK_REGULY",
+                    "prob": 0.19296507027760343
+                },
+                {
+                    "kategoria": null,
+                    "lp": 2,
+                    "wartosc": "data_utworzenia ",
+                    "typ": "LEWOSTRONNY_OPERAND_WARUNKU",
+                    "prob": 0.18376036692643896
+                },
+                {
+                    "kategoria": ">",
+                    "lp": 3,
+                    "wartosc": "jest większa od ",
+                    "typ": "OPETATOR_POROWNANIA",
+                    "prob": 0.1904961250487803
+                },
+                {
+                    "kategoria": null,
+                    "lp": 4,
+                    "wartosc": "'01-01-2010' ",
+                    "typ": "PRAWOSTRONNY_OPERAND_WARUNKU",
+                    "prob": 0.1899947631848119
+                },
+                {
+                    "kategoria": "&&",
+                    "lp": 5,
+                    "wartosc": "oraz ",
+                    "typ": "OPERATOR_LOGICZNY",
+                    "prob": 0.16085504741733267
+                },
+                {
+                    "kategoria": null,
+                    "lp": 6,
+                    "wartosc": "data_utworzenia ",
+                    "typ": "LEWOSTRONNY_OPERAND_WARUNKU",
+                    "prob": 0.18433696712368677
+                },
+                {
+                    "kategoria": "<",
+                    "lp": 7,
+                    "wartosc": "jest mniejsza niż ",
+                    "typ": "OPETATOR_POROWNANIA",
+                    "prob": 0.18881573238778113
+                },
+                {
+                    "kategoria": null,
+                    "lp": 8,
+                    "wartosc": "data_kwalifikacji ",
+                    "typ": "PRAWOSTRONNY_OPERAND_WARUNKU",
+                    "prob": 0.1901436302030327
+                },
+                {
+                    "kategoria": null,
+                    "lp": 9,
+                    "wartosc": "to ",
+                    "typ": "KONIEC_REGULY",
+                    "prob": 0.1927665573738282
+                },
+                {
+                    "kategoria": "ZGLOS_BLAD",
+                    "lp": 10,
+                    "wartosc": "zgłoś błąd walidacji ",
+                    "typ": "AKCJA",
+                    "prob": 0.19173431498996604
+                },
+                {
+                    "kategoria": null,
+                    "lp": 11,
+                    "wartosc": "<KOMUNIKAT_WALIDACJI_1> ",
+                    "typ": "PARAMETR_AKCJI",
+                    "prob": 0.14428749951121284
+                }
+            ]
+        },
+        "parametry": [
+            {
+                "id": 40,
+                "wersja": 2,
+                "nazwa": "data_utworzenia ",
+                "typ": "Data",
+                "wartoscDomyslna": null,
+                "czyUsuwalny": 0
+            },
+            {
+                "id": 41,
+                "wersja": 2,
+                "nazwa": "param0",
+                "typ": "Data",
+                "wartoscDomyslna": "'01-01-2010' ",
+                "czyUsuwalny": 0
+            },
+            {
+                "id": 42,
+                "wersja": 2,
+                "nazwa": "data_kwalifikacji ",
+                "typ": "Data",
+                "wartoscDomyslna": null,
+                "czyUsuwalny": 0
+            }
+        ],
+        "wywolaniaRegul": []
+    },
+    {
+        "id": 21,
+        "wersja": 2,
+        "kod": "RS-023",
+        "tresc": "Jeśli nachylenie jest mniejsze od 30 wtedy wyświetl komunikat <KOMUNIKAT_0> .",
+        "sekwencja": {
+            "postacKanoniczna": "Jeśli nachylenie jest mniejsze od 30 wtedy wyświetl komunikat <KOMUNIKAT_0> .",
+            "komunikaty": {},
+            "zdaniePierwotne": "Jeśli nachylenie jest mniejsze od 30 wtedy wyświetl komunikat <KOMUNIKAT_0> .",
+            "tokeny": [
+                "Jeśli",
+                "nachylenie",
+                "jest",
+                "mniejsze",
+                "od",
+                "30",
+                "wtedy",
+                "wyświetl",
+                "komunikat",
+                "<KOMUNIKAT_0>",
+                "."
+            ],
+            "rozpoznaneTokeny": [
+                {
+                    "kategoria": null,
+                    "lp": 1,
+                    "wartosc": "Jeśli ",
+                    "typ": "POCZATEK_REGULY",
+                    "prob": 0.19373415993280196
+                },
+                {
+                    "kategoria": null,
+                    "lp": 2,
+                    "wartosc": "nachylenie ",
+                    "typ": "LEWOSTRONNY_OPERAND_WARUNKU",
+                    "prob": 0.17904039788229717
+                },
+                {
+                    "kategoria": "<",
+                    "lp": 3,
+                    "wartosc": "jest mniejsze od ",
+                    "typ": "OPETATOR_POROWNANIA",
+                    "prob": 0.18964903285000587
+                },
+                {
+                    "kategoria": null,
+                    "lp": 4,
+                    "wartosc": "30 ",
+                    "typ": "PRAWOSTRONNY_OPERAND_WARUNKU",
+                    "prob": 0.19177385296601376
+                },
+                {
+                    "kategoria": null,
+                    "lp": 5,
+                    "wartosc": "wtedy ",
+                    "typ": "KONIEC_REGULY",
+                    "prob": 0.19208600573397366
+                },
+                {
+                    "kategoria": "WYSWIETL_KOMUNIKAT",
+                    "lp": 6,
+                    "wartosc": "wyświetl komunikat ",
+                    "typ": "AKCJA",
+                    "prob": 0.18995680026582853
+                },
+                {
+                    "kategoria": null,
+                    "lp": 7,
+                    "wartosc": "<KOMUNIKAT_0> ",
+                    "typ": "PARAMETR_AKCJI",
+                    "prob": 0.17290652945075932
+                }
+            ]
+        },
+        "parametry": [
+            {
+                "id": 43,
+                "wersja": 2,
+                "nazwa": "nachylenie ",
+                "typ": null,
+                "wartoscDomyslna": null,
+                "czyUsuwalny": 0
+            },
+            {
+                "id": 44,
+                "wersja": 2,
+                "nazwa": "param0",
+                "typ": "Liczba",
+                "wartoscDomyslna": "30 ",
+                "czyUsuwalny": 0
+            }
+        ],
+        "wywolaniaRegul": []
+    },
+    {
+        "id": 22,
+        "wersja": 2,
+        "kod": "RS-024",
+        "tresc": "Jeśli nachylenie jest mniejsze niż 30 wtedy wyświetl komunikat <KOMUNIKAT_0> w przeciwnym wypadku wyświetl komunikat <KOMUNIKAT2> .",
+        "sekwencja": {
+            "postacKanoniczna": "Jeśli nachylenie jest mniejsze niż 30 wtedy wyświetl komunikat <KOMUNIKAT_0> w przeciwnym wypadku wyświetl komunikat <KOMUNIKAT2> .",
+            "komunikaty": {},
+            "zdaniePierwotne": "Jeśli nachylenie jest mniejsze niż 30 wtedy wyświetl komunikat <KOMUNIKAT_0> w przeciwnym wypadku wyświetl komunikat <KOMUNIKAT2> .",
+            "tokeny": [
+                "Jeśli",
+                "nachylenie",
+                "jest",
+                "mniejsze",
+                "niż",
+                "30",
+                "wtedy",
+                "wyświetl",
+                "komunikat",
+                "<KOMUNIKAT_0>",
+                "w",
+                "przeciwnym",
+                "wypadku",
+                "wyświetl",
+                "komunikat",
+                "<KOMUNIKAT2>",
+                "."
+            ],
+            "rozpoznaneTokeny": [
+                {
+                    "kategoria": null,
+                    "lp": 1,
+                    "wartosc": "Jeśli ",
+                    "typ": "POCZATEK_REGULY",
+                    "prob": 0.19373415993280196
+                },
+                {
+                    "kategoria": null,
+                    "lp": 2,
+                    "wartosc": "nachylenie ",
+                    "typ": "LEWOSTRONNY_OPERAND_WARUNKU",
+                    "prob": 0.17904039788229717
+                },
+                {
+                    "kategoria": "<",
+                    "lp": 3,
+                    "wartosc": "jest mniejsze niż ",
+                    "typ": "OPETATOR_POROWNANIA",
+                    "prob": 0.18993369107420385
+                },
+                {
+                    "kategoria": null,
+                    "lp": 4,
+                    "wartosc": "30 ",
+                    "typ": "PRAWOSTRONNY_OPERAND_WARUNKU",
+                    "prob": 0.19226534939114506
+                },
+                {
+                    "kategoria": null,
+                    "lp": 5,
+                    "wartosc": "wtedy ",
+                    "typ": "KONIEC_REGULY",
+                    "prob": 0.1919307619407416
+                },
+                {
+                    "kategoria": "WYSWIETL_KOMUNIKAT",
+                    "lp": 6,
+                    "wartosc": "wyświetl komunikat ",
+                    "typ": "AKCJA",
+                    "prob": 0.18860136152551643
+                },
+                {
+                    "kategoria": null,
+                    "lp": 7,
+                    "wartosc": "<KOMUNIKAT_0> ",
+                    "typ": "PARAMETR_AKCJI",
+                    "prob": 0.1190751511748062
+                },
+                {
+                    "kategoria": null,
+                    "lp": 8,
+                    "wartosc": "w przeciwnym wypadku ",
+                    "typ": "W_PRZECIWNYM_RAZIE",
+                    "prob": 0.17928606136098493
+                },
+                {
+                    "kategoria": "WYSWIETL_KOMUNIKAT",
+                    "lp": 9,
+                    "wartosc": "wyświetl komunikat ",
+                    "typ": "AKCJA",
+                    "prob": 0.17479481282751363
+                },
+                {
+                    "kategoria": null,
+                    "lp": 10,
+                    "wartosc": "<KOMUNIKAT2> ",
+                    "typ": "PARAMETR_AKCJI",
+                    "prob": 0.17290652945075932
+                }
+            ]
+        },
+        "parametry": [
+            {
+                "id": 45,
+                "wersja": 2,
+                "nazwa": "nachylenie ",
+                "typ": null,
+                "wartoscDomyslna": null,
+                "czyUsuwalny": 0
+            },
+            {
+                "id": 46,
+                "wersja": 2,
+                "nazwa": "param0",
+                "typ": "Liczba",
+                "wartoscDomyslna": "30 ",
+                "czyUsuwalny": 0
+            }
+        ],
+        "wywolaniaRegul": []
+    },
+    {
+        "id": 23,
+        "wersja": 2,
+        "kod": "RS-025",
+        "tresc": "Jeżeli suma jest różna od 50 to wyświetl komunikat <KOMUNIKAT1> w przeciwnym razie wyświetl komunikat \"Suma nie jest mniejsza\" .",
+        "sekwencja": {
+            "postacKanoniczna": "Jeżeli suma jest różna od 50 to wyświetl komunikat <KOMUNIKAT1> w przeciwnym razie wyświetl komunikat KOMUNIKAT1 .",
+            "komunikaty": {
+                "KOMUNIKAT1": "Suma nie jest mniejsza"
+            },
+            "zdaniePierwotne": "Jeżeli suma jest różna od 50 to wyświetl komunikat <KOMUNIKAT1> w przeciwnym razie wyświetl komunikat KOMUNIKAT1 .",
+            "tokeny": [
+                "Jeżeli",
+                "suma",
+                "jest",
+                "różna",
+                "od",
+                "50",
+                "to",
+                "wyświetl",
+                "komunikat",
+                "<KOMUNIKAT1>",
+                "w",
+                "przeciwnym",
+                "razie",
+                "wyświetl",
+                "komunikat",
+                "KOMUNIKAT1",
+                "."
+            ],
+            "rozpoznaneTokeny": [
+                {
+                    "kategoria": null,
+                    "lp": 1,
+                    "wartosc": "Jeżeli ",
+                    "typ": "POCZATEK_REGULY",
+                    "prob": 0.19300117883183918
+                },
+                {
+                    "kategoria": null,
+                    "lp": 2,
+                    "wartosc": "suma ",
+                    "typ": "LEWOSTRONNY_OPERAND_WARUNKU",
+                    "prob": 0.15394685413977624
+                },
+                {
+                    "kategoria": "!=",
+                    "lp": 3,
+                    "wartosc": "jest różna od ",
+                    "typ": "OPETATOR_POROWNANIA",
+                    "prob": 0.1902466455348084
+                },
+                {
+                    "kategoria": null,
+                    "lp": 4,
+                    "wartosc": "50 ",
+                    "typ": "PRAWOSTRONNY_OPERAND_WARUNKU",
+                    "prob": 0.18777416291688692
+                },
+                {
+                    "kategoria": null,
+                    "lp": 5,
+                    "wartosc": "to ",
+                    "typ": "KONIEC_REGULY",
+                    "prob": 0.19186799783109157
+                },
+                {
+                    "kategoria": "WYSWIETL_KOMUNIKAT",
+                    "lp": 6,
+                    "wartosc": "wyświetl komunikat ",
+                    "typ": "AKCJA",
+                    "prob": 0.17131187851844015
+                },
+                {
+                    "kategoria": null,
+                    "lp": 7,
+                    "wartosc": "<KOMUNIKAT1> ",
+                    "typ": "PARAMETR_AKCJI",
+                    "prob": 0.1190751511748062
+                },
+                {
+                    "kategoria": null,
+                    "lp": 8,
+                    "wartosc": "w przeciwnym razie ",
+                    "typ": "W_PRZECIWNYM_RAZIE",
+                    "prob": 0.17675570360603912
+                },
+                {
+                    "kategoria": "WYSWIETL_KOMUNIKAT",
+                    "lp": 9,
+                    "wartosc": "wyświetl komunikat ",
+                    "typ": "AKCJA",
+                    "prob": 0.15291660881440172
+                },
+                {
+                    "kategoria": null,
+                    "lp": 10,
+                    "wartosc": "KOMUNIKAT1 ",
+                    "typ": "PARAMETR_AKCJI",
+                    "prob": 0.17290652945075932
+                }
+            ]
+        },
+        "parametry": [
+            {
+                "id": 47,
+                "wersja": 2,
+                "nazwa": "suma ",
+                "typ": null,
+                "wartoscDomyslna": null,
+                "czyUsuwalny": 0
+            },
+            {
+                "id": 48,
+                "wersja": 2,
+                "nazwa": "param0",
+                "typ": "Liczba",
+                "wartoscDomyslna": "50 ",
+                "czyUsuwalny": 0
+            }
+        ],
+        "wywolaniaRegul": []
+    },
+    {
+        "id": 24,
+        "wersja": 2,
+        "kod": "RS-026",
+        "tresc": "Jeśli data_utworzenia jest większa od '01-01-2010' oraz data_utworzenia jest mniejsza niż data_kwalifikacji i data_kwalifikacji jest różna od data_weryfikacji to zgłoś błąd walidacji \"Daty utworzenia, modyfikacji i kwalifikacji są nieprawidłowe\" w przeciwnym razie wyświetl komunikat \"Wszystkie daty zostały zwalidowane jako poprawne.\" .",
+        "sekwencja": {
+            "postacKanoniczna": "Jeśli data_utworzenia jest większa od '01-01-2010' oraz data_utworzenia jest mniejsza niż data_kwalifikacji i data_kwalifikacji jest różna od data_weryfikacji to zgłoś błąd walidacji KOMUNIKAT1 w przeciwnym razie wyświetl komunikat KOMUNIKAT2 .",
+            "komunikaty": {
+                "KOMUNIKAT1": "Daty utworzenia modyfikacji i kwalifikacji są nieprawidłowe",
+                "KOMUNIKAT2": "Wszystkie daty zostały zwalidowane jako poprawne ."
+            },
+            "zdaniePierwotne": "Jeśli data_utworzenia jest większa od '01-01-2010' oraz data_utworzenia jest mniejsza niż data_kwalifikacji i data_kwalifikacji jest różna od data_weryfikacji to zgłoś błąd walidacji KOMUNIKAT1 w przeciwnym razie wyświetl komunikat KOMUNIKAT2 .",
+            "tokeny": [
+                "Jeśli",
+                "data_utworzenia",
+                "jest",
+                "większa",
+                "od",
+                "'01-01-2010'",
+                "oraz",
+                "data_utworzenia",
+                "jest",
+                "mniejsza",
+                "niż",
+                "data_kwalifikacji",
+                "i",
+                "data_kwalifikacji",
+                "jest",
+                "różna",
+                "od",
+                "data_weryfikacji",
+                "to",
+                "zgłoś",
+                "błąd",
+                "walidacji",
+                "KOMUNIKAT1",
+                "w",
+                "przeciwnym",
+                "razie",
+                "wyświetl",
+                "komunikat",
+                "KOMUNIKAT2",
+                "."
+            ],
+            "rozpoznaneTokeny": [
+                {
+                    "kategoria": null,
+                    "lp": 1,
+                    "wartosc": "Jeśli ",
+                    "typ": "POCZATEK_REGULY",
+                    "prob": 0.19296507027760343
+                },
+                {
+                    "kategoria": null,
+                    "lp": 2,
+                    "wartosc": "data_utworzenia ",
+                    "typ": "LEWOSTRONNY_OPERAND_WARUNKU",
+                    "prob": 0.18376036692643896
+                },
+                {
+                    "kategoria": ">",
+                    "lp": 3,
+                    "wartosc": "jest większa od ",
+                    "typ": "OPETATOR_POROWNANIA",
+                    "prob": 0.1904961250487803
+                },
+                {
+                    "kategoria": null,
+                    "lp": 4,
+                    "wartosc": "'01-01-2010' ",
+                    "typ": "PRAWOSTRONNY_OPERAND_WARUNKU",
+                    "prob": 0.1899947631848119
+                },
+                {
+                    "kategoria": "&&",
+                    "lp": 5,
+                    "wartosc": "oraz ",
+                    "typ": "OPERATOR_LOGICZNY",
+                    "prob": 0.16085504741733267
+                },
+                {
+                    "kategoria": null,
+                    "lp": 6,
+                    "wartosc": "data_utworzenia ",
+                    "typ": "LEWOSTRONNY_OPERAND_WARUNKU",
+                    "prob": 0.18433696712368677
+                },
+                {
+                    "kategoria": "<",
+                    "lp": 7,
+                    "wartosc": "jest mniejsza niż ",
+                    "typ": "OPETATOR_POROWNANIA",
+                    "prob": 0.18824514193910188
+                },
+                {
+                    "kategoria": null,
+                    "lp": 8,
+                    "wartosc": "data_kwalifikacji ",
+                    "typ": "PRAWOSTRONNY_OPERAND_WARUNKU",
+                    "prob": 0.18506866295365
+                },
+                {
+                    "kategoria": "&&",
+                    "lp": 9,
+                    "wartosc": "i ",
+                    "typ": "OPERATOR_LOGICZNY",
+                    "prob": 0.1775481763212335
+                },
+                {
+                    "kategoria": null,
+                    "lp": 10,
+                    "wartosc": "data_kwalifikacji ",
+                    "typ": "LEWOSTRONNY_OPERAND_WARUNKU",
+                    "prob": 0.17726261734089477
+                },
+                {
+                    "kategoria": "!=",
+                    "lp": 11,
+                    "wartosc": "jest różna od ",
+                    "typ": "OPETATOR_POROWNANIA",
+                    "prob": 0.19038240896363665
+                },
+                {
+                    "kategoria": null,
+                    "lp": 12,
+                    "wartosc": "data_weryfikacji ",
+                    "typ": "PRAWOSTRONNY_OPERAND_WARUNKU",
+                    "prob": 0.1889813520970232
+                },
+                {
+                    "kategoria": null,
+                    "lp": 13,
+                    "wartosc": "to ",
+                    "typ": "KONIEC_REGULY",
+                    "prob": 0.19289877364988472
+                },
+                {
+                    "kategoria": "ZGLOS_BLAD",
+                    "lp": 14,
+                    "wartosc": "zgłoś błąd ",
+                    "typ": "AKCJA",
+                    "prob": 0.19227967109710878
+                },
+                {
+                    "kategoria": null,
+                    "lp": 15,
+                    "wartosc": "walidacji ",
+                    "typ": "PARAMETR_AKCJI",
+                    "prob": 0.11118711749905376
+                },
+                {
+                    "kategoria": null,
+                    "lp": 16,
+                    "wartosc": "KOMUNIKAT1 w przeciwnym razie ",
+                    "typ": "W_PRZECIWNYM_RAZIE",
+                    "prob": 0.16937291963263346
+                },
+                {
+                    "kategoria": "WYSWIETL_KOMUNIKAT",
+                    "lp": 17,
+                    "wartosc": "wyświetl komunikat ",
+                    "typ": "AKCJA",
+                    "prob": 0.15291660881440172
+                },
+                {
+                    "kategoria": null,
+                    "lp": 18,
+                    "wartosc": "KOMUNIKAT2 ",
+                    "typ": "PARAMETR_AKCJI",
+                    "prob": 0.17290652945075932
+                }
+            ]
+        },
+        "parametry": [
+            {
+                "id": 49,
+                "wersja": 2,
+                "nazwa": "data_utworzenia ",
+                "typ": "Data",
+                "wartoscDomyslna": null,
+                "czyUsuwalny": 0
+            },
+            {
+                "id": 50,
+                "wersja": 2,
+                "nazwa": "param0",
+                "typ": "Data",
+                "wartoscDomyslna": "'01-01-2010' ",
+                "czyUsuwalny": 0
+            },
+            {
+                "id": 51,
+                "wersja": 2,
+                "nazwa": "data_kwalifikacji ",
+                "typ": "Data",
+                "wartoscDomyslna": null,
+                "czyUsuwalny": 0
+            },
+            {
+                "id": 52,
+                "wersja": 2,
+                "nazwa": "data_weryfikacji ",
+                "typ": "Data",
+                "wartoscDomyslna": null,
+                "czyUsuwalny": 0
+            }
+        ],
+        "wywolaniaRegul": []
+    },
+    {
+        "id": 25,
+        "wersja": 2,
+        "kod": "RS-027",
+        "tresc": "Jeśli data_dzisiejsza jest większa od '07-04-2019' i data_dzisiejsza jest mniejsza od '14-04-2019' to wyświetl komunikat <KOMUNIKAT1> w przeciwnym razie raportuj błąd \"Błąd\".",
+        "sekwencja": {
+            "postacKanoniczna": "Jeśli data_dzisiejsza jest większa od '07-04-2019' i data_dzisiejsza jest mniejsza od '14-04-2019' to wyświetl komunikat <KOMUNIKAT1> w przeciwnym razie raportuj błąd KOMUNIKAT1 .",
+            "komunikaty": {
+                "KOMUNIKAT1": "Błąd"
+            },
+            "zdaniePierwotne": "Jeśli data_dzisiejsza jest większa od '07-04-2019' i data_dzisiejsza jest mniejsza od '14-04-2019' to wyświetl komunikat <KOMUNIKAT1> w przeciwnym razie raportuj błąd KOMUNIKAT1 .",
+            "tokeny": [
+                "Jeśli",
+                "data_dzisiejsza",
+                "jest",
+                "większa",
+                "od",
+                "'07-04-2019'",
+                "i",
+                "data_dzisiejsza",
+                "jest",
+                "mniejsza",
+                "od",
+                "'14-04-2019'",
+                "to",
+                "wyświetl",
+                "komunikat",
+                "<KOMUNIKAT1>",
+                "w",
+                "przeciwnym",
+                "razie",
+                "raportuj",
+                "błąd",
+                "KOMUNIKAT1",
+                "."
+            ],
+            "rozpoznaneTokeny": [
+                {
+                    "kategoria": null,
+                    "lp": 1,
+                    "wartosc": "Jeśli ",
+                    "typ": "POCZATEK_REGULY",
+                    "prob": 0.19296507027760343
+                },
+                {
+                    "kategoria": null,
+                    "lp": 2,
+                    "wartosc": "data_dzisiejsza ",
+                    "typ": "LEWOSTRONNY_OPERAND_WARUNKU",
+                    "prob": 0.18376036692643896
+                },
+                {
+                    "kategoria": ">",
+                    "lp": 3,
+                    "wartosc": "jest większa od ",
+                    "typ": "OPETATOR_POROWNANIA",
+                    "prob": 0.1904961250487803
+                },
+                {
+                    "kategoria": null,
+                    "lp": 4,
+                    "wartosc": "'07-04-2019' ",
+                    "typ": "PRAWOSTRONNY_OPERAND_WARUNKU",
+                    "prob": 0.18692060992853735
+                },
+                {
+                    "kategoria": "&&",
+                    "lp": 5,
+                    "wartosc": "i ",
+                    "typ": "OPERATOR_LOGICZNY",
+                    "prob": 0.1461196171018922
+                },
+                {
+                    "kategoria": null,
+                    "lp": 6,
+                    "wartosc": "data_dzisiejsza ",
+                    "typ": "LEWOSTRONNY_OPERAND_WARUNKU",
+                    "prob": 0.17726261734089477
+                },
+                {
+                    "kategoria": "<",
+                    "lp": 7,
+                    "wartosc": "jest mniejsza od ",
+                    "typ": "OPETATOR_POROWNANIA",
+                    "prob": 0.1903304202863192
+                },
+                {
+                    "kategoria": null,
+                    "lp": 8,
+                    "wartosc": "'14-04-2019' ",
+                    "typ": "PRAWOSTRONNY_OPERAND_WARUNKU",
+                    "prob": 0.18777416291688692
+                },
+                {
+                    "kategoria": null,
+                    "lp": 9,
+                    "wartosc": "to ",
+                    "typ": "KONIEC_REGULY",
+                    "prob": 0.19186799783109157
+                },
+                {
+                    "kategoria": "WYSWIETL_KOMUNIKAT",
+                    "lp": 10,
+                    "wartosc": "wyświetl komunikat ",
+                    "typ": "AKCJA",
+                    "prob": 0.17131187851844015
+                },
+                {
+                    "kategoria": null,
+                    "lp": 11,
+                    "wartosc": "<KOMUNIKAT1> ",
+                    "typ": "PARAMETR_AKCJI",
+                    "prob": 0.1190751511748062
+                },
+                {
+                    "kategoria": null,
+                    "lp": 12,
+                    "wartosc": "w przeciwnym razie ",
+                    "typ": "W_PRZECIWNYM_RAZIE",
+                    "prob": 0.17696689069041702
+                },
+                {
+                    "kategoria": "ZGLOS_BLAD",
+                    "lp": 13,
+                    "wartosc": "raportuj błąd ",
+                    "typ": "AKCJA",
+                    "prob": 0.1918613102827289
+                },
+                {
+                    "kategoria": null,
+                    "lp": 14,
+                    "wartosc": "KOMUNIKAT1 ",
+                    "typ": "PARAMETR_AKCJI",
+                    "prob": 0.17673970128539723
+                }
+            ]
+        },
+        "parametry": [
+            {
+                "id": 53,
+                "wersja": 2,
+                "nazwa": "data_dzisiejsza ",
+                "typ": "Data",
+                "wartoscDomyslna": null,
+                "czyUsuwalny": 0
+            },
+            {
+                "id": 54,
+                "wersja": 2,
+                "nazwa": "param0",
+                "typ": "Data",
+                "wartoscDomyslna": "'07-04-2019' ",
+                "czyUsuwalny": 0
+            },
+            {
+                "id": 55,
+                "wersja": 2,
+                "nazwa": "param1",
+                "typ": "Data",
+                "wartoscDomyslna": "'14-04-2019' ",
+                "czyUsuwalny": 0
+            }
+        ],
+        "wywolaniaRegul": []
+    },
+    {
+        "id": 26,
+        "wersja": 2,
+        "kod": "RS-028",
+        "tresc": "Jeżeli suma jest nie jest większa od 100 wtedy wyświetl komunikat \"komunikat\" w przeciwnym razie zwróć błąd \"Niepoprawna wartość\" .",
+        "sekwencja": {
+            "postacKanoniczna": "Jeżeli suma jest nie jest większa od 100 wtedy wyświetl komunikat KOMUNIKAT1 w przeciwnym razie zwróć błąd KOMUNIKAT2 .",
+            "komunikaty": {
+                "KOMUNIKAT1": "komunikat",
+                "KOMUNIKAT2": "Niepoprawna wartość"
+            },
+            "zdaniePierwotne": "Jeżeli suma jest nie jest większa od 100 wtedy wyświetl komunikat KOMUNIKAT1 w przeciwnym razie zwróć błąd KOMUNIKAT2 .",
+            "tokeny": [
+                "Jeżeli",
+                "suma",
+                "jest",
+                "nie",
+                "jest",
+                "większa",
+                "od",
+                "100",
+                "wtedy",
+                "wyświetl",
+                "komunikat",
+                "KOMUNIKAT1",
+                "w",
+                "przeciwnym",
+                "razie",
+                "zwróć",
+                "błąd",
+                "KOMUNIKAT2",
+                "."
+            ],
+            "rozpoznaneTokeny": [
+                {
+                    "kategoria": null,
+                    "lp": 1,
+                    "wartosc": "Jeżeli ",
+                    "typ": "POCZATEK_REGULY",
+                    "prob": 0.19300117883183918
+                },
+                {
+                    "kategoria": null,
+                    "lp": 2,
+                    "wartosc": "suma ",
+                    "typ": "LEWOSTRONNY_OPERAND_WARUNKU",
+                    "prob": 0.154720108574609
+                },
+                {
+                    "kategoria": ">",
+                    "lp": 3,
+                    "wartosc": "jest nie jest większa od ",
+                    "typ": "OPETATOR_POROWNANIA",
+                    "prob": 0.18535966349737062
+                },
+                {
+                    "kategoria": null,
+                    "lp": 4,
+                    "wartosc": "100 ",
+                    "typ": "PRAWOSTRONNY_OPERAND_WARUNKU",
+                    "prob": 0.19275913502254302
+                },
+                {
+                    "kategoria": null,
+                    "lp": 5,
+                    "wartosc": "wtedy ",
+                    "typ": "KONIEC_REGULY",
+                    "prob": 0.19208600573397366
+                },
+                {
+                    "kategoria": "WYSWIETL_KOMUNIKAT",
+                    "lp": 6,
+                    "wartosc": "wyświetl komunikat ",
+                    "typ": "AKCJA",
+                    "prob": 0.18860136152551643
+                },
+                {
+                    "kategoria": null,
+                    "lp": 7,
+                    "wartosc": "KOMUNIKAT1 ",
+                    "typ": "PARAMETR_AKCJI",
+                    "prob": 0.1190751511748062
+                },
+                {
+                    "kategoria": null,
+                    "lp": 8,
+                    "wartosc": "w przeciwnym razie ",
+                    "typ": "W_PRZECIWNYM_RAZIE",
+                    "prob": 0.1768539626903868
+                },
+                {
+                    "kategoria": "ZGLOS_BLAD",
+                    "lp": 9,
+                    "wartosc": "zwróć błąd ",
+                    "typ": "AKCJA",
+                    "prob": 0.1878562791493258
+                },
+                {
+                    "kategoria": null,
+                    "lp": 10,
+                    "wartosc": "KOMUNIKAT2 ",
+                    "typ": "PARAMETR_AKCJI",
+                    "prob": 0.17673970128539723
+                }
+            ]
+        },
+        "parametry": [
+            {
+                "id": 56,
+                "wersja": 2,
+                "nazwa": "suma ",
+                "typ": null,
+                "wartoscDomyslna": null,
+                "czyUsuwalny": 0
+            },
+            {
+                "id": 57,
+                "wersja": 2,
+                "nazwa": "param0",
+                "typ": "Liczba",
+                "wartoscDomyslna": "100 ",
+                "czyUsuwalny": 0
+            }
+        ],
+        "wywolaniaRegul": []
+    },
+    {
+        "id": 27,
+        "wersja": 2,
+        "kod": "RS-029",
+        "tresc": "Jeśli wiek jest większy niż 20 wtedy wyświetl komunikat \"komunikat12\" w przeciwnym wypadku zgłoś błąd walidacji \"To jest poprawna sytufacja\" .",
+        "sekwencja": {
+            "postacKanoniczna": "Jeśli wiek jest większy niż 20 wtedy wyświetl komunikat KOMUNIKAT1 w przeciwnym wypadku zgłoś błąd walidacji KOMUNIKAT2 .",
+            "komunikaty": {
+                "KOMUNIKAT1": "komunikat12",
+                "KOMUNIKAT2": "To jest poprawna sytufacja"
+            },
+            "zdaniePierwotne": "Jeśli wiek jest większy niż 20 wtedy wyświetl komunikat KOMUNIKAT1 w przeciwnym wypadku zgłoś błąd walidacji KOMUNIKAT2 .",
+            "tokeny": [
+                "Jeśli",
+                "wiek",
+                "jest",
+                "większy",
+                "niż",
+                "20",
+                "wtedy",
+                "wyświetl",
+                "komunikat",
+                "KOMUNIKAT1",
+                "w",
+                "przeciwnym",
+                "wypadku",
+                "zgłoś",
+                "błąd",
+                "walidacji",
+                "KOMUNIKAT2",
+                "."
+            ],
+            "rozpoznaneTokeny": [
+                {
+                    "kategoria": null,
+                    "lp": 1,
+                    "wartosc": "Jeśli ",
+                    "typ": "POCZATEK_REGULY",
+                    "prob": 0.19373415993280196
+                },
+                {
+                    "kategoria": null,
+                    "lp": 2,
+                    "wartosc": "wiek ",
+                    "typ": "LEWOSTRONNY_OPERAND_WARUNKU",
+                    "prob": 0.186809525865329
+                },
+                {
+                    "kategoria": ">",
+                    "lp": 3,
+                    "wartosc": "jest większy niż ",
+                    "typ": "OPETATOR_POROWNANIA",
+                    "prob": 0.1899451652896139
+                },
+                {
+                    "kategoria": null,
+                    "lp": 4,
+                    "wartosc": "20 ",
+                    "typ": "PRAWOSTRONNY_OPERAND_WARUNKU",
+                    "prob": 0.1939135951508479
+                },
+                {
+                    "kategoria": null,
+                    "lp": 5,
+                    "wartosc": "wtedy ",
+                    "typ": "KONIEC_REGULY",
+                    "prob": 0.1919307619407416
+                },
+                {
+                    "kategoria": "WYSWIETL_KOMUNIKAT",
+                    "lp": 6,
+                    "wartosc": "wyświetl komunikat ",
+                    "typ": "AKCJA",
+                    "prob": 0.18860136152551643
+                },
+                {
+                    "kategoria": null,
+                    "lp": 7,
+                    "wartosc": "KOMUNIKAT1 ",
+                    "typ": "PARAMETR_AKCJI",
+                    "prob": 0.1190751511748062
+                },
+                {
+                    "kategoria": null,
+                    "lp": 8,
+                    "wartosc": "w przeciwnym wypadku ",
+                    "typ": "W_PRZECIWNYM_RAZIE",
+                    "prob": 0.17868499682912808
+                },
+                {
+                    "kategoria": "ZGLOS_BLAD",
+                    "lp": 9,
+                    "wartosc": "zgłoś błąd walidacji ",
+                    "typ": "AKCJA",
+                    "prob": 0.19264326658679062
+                },
+                {
+                    "kategoria": null,
+                    "lp": 10,
+                    "wartosc": "KOMUNIKAT2 ",
+                    "typ": "PARAMETR_AKCJI",
+                    "prob": 0.14428749951121284
+                }
+            ]
+        },
+        "parametry": [
+            {
+                "id": 58,
+                "wersja": 2,
+                "nazwa": "wiek ",
+                "typ": null,
+                "wartoscDomyslna": null,
+                "czyUsuwalny": 0
+            },
+            {
+                "id": 59,
+                "wersja": 2,
+                "nazwa": "param0",
+                "typ": "Liczba",
+                "wartoscDomyslna": "20 ",
+                "czyUsuwalny": 0
+            }
+        ],
+        "wywolaniaRegul": []
+    },
+    {
+        "id": 28,
+        "wersja": 2,
+        "kod": "RS-030",
+        "tresc": "Jeśli wiek jest mniejszy niż 18 wtedy wyświetl komunikat \"Funkcjonalność tylko dla osób dorosłych\" w przeciwnym wypadku wyświetl komunikat \"Nic\" .",
+        "sekwencja": {
+            "postacKanoniczna": "Jeśli wiek jest mniejszy niż 18 wtedy wyświetl komunikat KOMUNIKAT1 w przeciwnym wypadku wyświetl komunikat KOMUNIKAT2 .",
+            "komunikaty": {
+                "KOMUNIKAT1": "Funkcjonalność tylko dla osób dorosłych",
+                "KOMUNIKAT2": "Nic"
+            },
+            "zdaniePierwotne": "Jeśli wiek jest mniejszy niż 18 wtedy wyświetl komunikat KOMUNIKAT1 w przeciwnym wypadku wyświetl komunikat KOMUNIKAT2 .",
+            "tokeny": [
+                "Jeśli",
+                "wiek",
+                "jest",
+                "mniejszy",
+                "niż",
+                "18",
+                "wtedy",
+                "wyświetl",
+                "komunikat",
+                "KOMUNIKAT1",
+                "w",
+                "przeciwnym",
+                "wypadku",
+                "wyświetl",
+                "komunikat",
+                "KOMUNIKAT2",
+                "."
+            ],
+            "rozpoznaneTokeny": [
+                {
+                    "kategoria": null,
+                    "lp": 1,
+                    "wartosc": "Jeśli ",
+                    "typ": "POCZATEK_REGULY",
+                    "prob": 0.19373415993280196
+                },
+                {
+                    "kategoria": null,
+                    "lp": 2,
+                    "wartosc": "wiek ",
+                    "typ": "LEWOSTRONNY_OPERAND_WARUNKU",
+                    "prob": 0.17904039788229717
+                },
+                {
+                    "kategoria": "<",
+                    "lp": 3,
+                    "wartosc": "jest mniejszy niż ",
+                    "typ": "OPETATOR_POROWNANIA",
+                    "prob": 0.19116971978775318
+                },
+                {
+                    "kategoria": null,
+                    "lp": 4,
+                    "wartosc": "18 ",
+                    "typ": "PRAWOSTRONNY_OPERAND_WARUNKU",
+                    "prob": 0.19323834744787283
+                },
+                {
+                    "kategoria": null,
+                    "lp": 5,
+                    "wartosc": "wtedy ",
+                    "typ": "KONIEC_REGULY",
+                    "prob": 0.1919307619407416
+                },
+                {
+                    "kategoria": "WYSWIETL_KOMUNIKAT",
+                    "lp": 6,
+                    "wartosc": "wyświetl komunikat ",
+                    "typ": "AKCJA",
+                    "prob": 0.18860136152551643
+                },
+                {
+                    "kategoria": null,
+                    "lp": 7,
+                    "wartosc": "KOMUNIKAT1 ",
+                    "typ": "PARAMETR_AKCJI",
+                    "prob": 0.1190751511748062
+                },
+                {
+                    "kategoria": null,
+                    "lp": 8,
+                    "wartosc": "w przeciwnym wypadku ",
+                    "typ": "W_PRZECIWNYM_RAZIE",
+                    "prob": 0.17928606136098493
+                },
+                {
+                    "kategoria": "WYSWIETL_KOMUNIKAT",
+                    "lp": 9,
+                    "wartosc": "wyświetl komunikat ",
+                    "typ": "AKCJA",
+                    "prob": 0.17479481282751363
+                },
+                {
+                    "kategoria": null,
+                    "lp": 10,
+                    "wartosc": "KOMUNIKAT2 ",
+                    "typ": "PARAMETR_AKCJI",
+                    "prob": 0.17290652945075932
+                }
+            ]
+        },
+        "parametry": [
+            {
+                "id": 60,
+                "wersja": 2,
+                "nazwa": "wiek ",
+                "typ": null,
+                "wartoscDomyslna": null,
+                "czyUsuwalny": 0
+            },
+            {
+                "id": 61,
+                "wersja": 2,
+                "nazwa": "param0",
+                "typ": "Liczba",
+                "wartoscDomyslna": "18 ",
+                "czyUsuwalny": 0
+            }
+        ],
+        "wywolaniaRegul": []
+    },
+    {
+        "id": 29,
+        "wersja": 2,
+        "kod": "RS-031",
+        "tresc": "Jeśli data jest równa  '01-02-2019' lub data nie jest równa '01-02-2019' i data nie jest mniejsza niż '01-05-2019' wtedy wyświetlaj komunikat \"Podana data jest równa 01-01-2000\" .",
+        "sekwencja": {
+            "postacKanoniczna": "Jeśli data jest równa '01-02-2019' lub data nie jest równa '01-02-2019' i data nie jest mniejsza niż '01-05-2019' wtedy wyświetlaj komunikat KOMUNIKAT1 .",
+            "komunikaty": {
+                "KOMUNIKAT1": "Podana data jest równa 01-01-2000"
+            },
+            "zdaniePierwotne": "Jeśli data jest równa '01-02-2019' lub data nie jest równa '01-02-2019' i data nie jest mniejsza niż '01-05-2019' wtedy wyświetlaj komunikat KOMUNIKAT1 .",
+            "tokeny": [
+                "Jeśli",
+                "data",
+                "jest",
+                "równa",
+                "'01-02-2019'",
+                "lub",
+                "data",
+                "nie",
+                "jest",
+                "równa",
+                "'01-02-2019'",
+                "i",
+                "data",
+                "nie",
+                "jest",
+                "mniejsza",
+                "niż",
+                "'01-05-2019'",
+                "wtedy",
+                "wyświetlaj",
+                "komunikat",
+                "KOMUNIKAT1",
+                "."
+            ],
+            "rozpoznaneTokeny": [
+                {
+                    "kategoria": null,
+                    "lp": 1,
+                    "wartosc": "Jeśli ",
+                    "typ": "POCZATEK_REGULY",
+                    "prob": 0.19373415993280196
+                },
+                {
+                    "kategoria": null,
+                    "lp": 2,
+                    "wartosc": "data ",
+                    "typ": "LEWOSTRONNY_OPERAND_WARUNKU",
+                    "prob": 0.17904039788229717
+                },
+                {
+                    "kategoria": "==",
+                    "lp": 3,
+                    "wartosc": "jest równa ",
+                    "typ": "OPETATOR_POROWNANIA",
+                    "prob": 0.189398632566056
+                },
+                {
+                    "kategoria": null,
+                    "lp": 4,
+                    "wartosc": "'01-02-2019' ",
+                    "typ": "PRAWOSTRONNY_OPERAND_WARUNKU",
+                    "prob": 0.10933859412716299
+                },
+                {
+                    "kategoria": "||",
+                    "lp": 5,
+                    "wartosc": "lub ",
+                    "typ": "OPERATOR_LOGICZNY",
+                    "prob": 0.18323818710261477
+                },
+                {
+                    "kategoria": null,
+                    "lp": 6,
+                    "wartosc": "data ",
+                    "typ": "LEWOSTRONNY_OPERAND_WARUNKU",
+                    "prob": 0.18382669412055427
+                },
+                {
+                    "kategoria": "!=",
+                    "lp": 7,
+                    "wartosc": "nie jest równa ",
+                    "typ": "OPETATOR_POROWNANIA",
+                    "prob": 0.18952323135529223
+                },
+                {
+                    "kategoria": null,
+                    "lp": 8,
+                    "wartosc": "'01-02-2019' ",
+                    "typ": "PRAWOSTRONNY_OPERAND_WARUNKU",
+                    "prob": 0.15644056842761977
+                },
+                {
+                    "kategoria": "&&",
+                    "lp": 9,
+                    "wartosc": "i ",
+                    "typ": "OPERATOR_LOGICZNY",
+                    "prob": 0.18139309460963018
+                },
+                {
+                    "kategoria": null,
+                    "lp": 10,
+                    "wartosc": "data ",
+                    "typ": "LEWOSTRONNY_OPERAND_WARUNKU",
+                    "prob": 0.17947649794767367
+                },
+                {
+                    "kategoria": ">=",
+                    "lp": 11,
+                    "wartosc": "nie jest mniejsza niż ",
+                    "typ": "OPETATOR_POROWNANIA",
+                    "prob": 0.17963084944341595
+                },
+                {
+                    "kategoria": null,
+                    "lp": 12,
+                    "wartosc": "'01-05-2019' ",
+                    "typ": "PRAWOSTRONNY_OPERAND_WARUNKU",
+                    "prob": 0.19226534939114506
+                },
+                {
+                    "kategoria": null,
+                    "lp": 13,
+                    "wartosc": "wtedy ",
+                    "typ": "KONIEC_REGULY",
+                    "prob": 0.19039674528384756
+                },
+                {
+                    "kategoria": "WYSWIETL_KOMUNIKAT",
+                    "lp": 14,
+                    "wartosc": "wyświetlaj komunikat ",
+                    "typ": "AKCJA",
+                    "prob": 0.18995680026582853
+                },
+                {
+                    "kategoria": null,
+                    "lp": 15,
+                    "wartosc": "KOMUNIKAT1 ",
+                    "typ": "PARAMETR_AKCJI",
+                    "prob": 0.17290652945075932
+                }
+            ]
+        },
+        "parametry": [
+            {
+                "id": 62,
+                "wersja": 2,
+                "nazwa": "data ",
+                "typ": "Data",
+                "wartoscDomyslna": null,
+                "czyUsuwalny": 0
+            },
+            {
+                "id": 63,
+                "wersja": 2,
+                "nazwa": "param0",
+                "typ": "Data",
+                "wartoscDomyslna": "'01-02-2019' ",
+                "czyUsuwalny": 0
+            },
+            {
+                "id": 64,
+                "wersja": 2,
+                "nazwa": "param1",
+                "typ": "Data",
+                "wartoscDomyslna": "'01-05-2019' ",
+                "czyUsuwalny": 0
+            }
+        ],
+        "wywolaniaRegul": []
+    },
+    {
+        "id": 30,
+        "wersja": 2,
+        "kod": "RS-032",
+        "tresc": "Jeśli nachylenie nie jest mniejsze niż 40 wtedy wyświetl komunikat <KOMUNIKAT1> .",
+        "sekwencja": {
+            "postacKanoniczna": "Jeśli nachylenie nie jest mniejsze niż 40 wtedy wyświetl komunikat <KOMUNIKAT1> .",
+            "komunikaty": {},
+            "zdaniePierwotne": "Jeśli nachylenie nie jest mniejsze niż 40 wtedy wyświetl komunikat <KOMUNIKAT1> .",
+            "tokeny": [
+                "Jeśli",
+                "nachylenie",
+                "nie",
+                "jest",
+                "mniejsze",
+                "niż",
+                "40",
+                "wtedy",
+                "wyświetl",
+                "komunikat",
+                "<KOMUNIKAT1>",
+                "."
+            ],
+            "rozpoznaneTokeny": [
+                {
+                    "kategoria": null,
+                    "lp": 1,
+                    "wartosc": "Jeśli ",
+                    "typ": "POCZATEK_REGULY",
+                    "prob": 0.19329940876322138
+                },
+                {
+                    "kategoria": null,
+                    "lp": 2,
+                    "wartosc": "nachylenie ",
+                    "typ": "LEWOSTRONNY_OPERAND_WARUNKU",
+                    "prob": 0.1810376118580793
+                },
+                {
+                    "kategoria": ">=",
+                    "lp": 3,
+                    "wartosc": "nie jest mniejsze niż ",
+                    "typ": "OPETATOR_POROWNANIA",
+                    "prob": 0.18024720892894686
+                },
+                {
+                    "kategoria": null,
+                    "lp": 4,
+                    "wartosc": "40 ",
+                    "typ": "PRAWOSTRONNY_OPERAND_WARUNKU",
+                    "prob": 0.19226534939114506
+                },
+                {
+                    "kategoria": null,
+                    "lp": 5,
+                    "wartosc": "wtedy ",
+                    "typ": "KONIEC_REGULY",
+                    "prob": 0.1919307619407416
+                },
+                {
+                    "kategoria": "WYSWIETL_KOMUNIKAT",
+                    "lp": 6,
+                    "wartosc": "wyświetl komunikat ",
+                    "typ": "AKCJA",
+                    "prob": 0.18995680026582853
+                },
+                {
+                    "kategoria": null,
+                    "lp": 7,
+                    "wartosc": "<KOMUNIKAT1> ",
+                    "typ": "PARAMETR_AKCJI",
+                    "prob": 0.17290652945075932
+                }
+            ]
+        },
+        "parametry": [
+            {
+                "id": 65,
+                "wersja": 2,
+                "nazwa": "nachylenie ",
+                "typ": null,
+                "wartoscDomyslna": null,
+                "czyUsuwalny": 0
+            },
+            {
+                "id": 66,
+                "wersja": 2,
+                "nazwa": "param0",
+                "typ": "Liczba",
+                "wartoscDomyslna": "40 ",
+                "czyUsuwalny": 0
+            }
+        ],
+        "wywolaniaRegul": []
+    },
+    {
+        "id": 31,
+        "wersja": 2,
+        "kod": "RS-033",
+        "tresc": "Jeśli data_rejestracji jest większa od '2000-01-01' i data_kwalifikacji jest większa od '2000-01-01' i data_rejestracji nie jest mniejsza niż data_kwalifikacji wtedy wyświetl komunikat \"Daty są prawidłowe\" w przeciwnym wypadku zgłoś błąd walidacji \"Podane daty są nieprawidłowe\" .",
+        "sekwencja": {
+            "postacKanoniczna": "Jeśli data_rejestracji jest większa od '2000-01-01' i data_kwalifikacji jest większa od '2000-01-01' i data_rejestracji nie jest mniejsza niż data_kwalifikacji wtedy wyświetl komunikat KOMUNIKAT1 w przeciwnym wypadku zgłoś błąd walidacji KOMUNIKAT2 .",
+            "komunikaty": {
+                "KOMUNIKAT1": "Daty są prawidłowe",
+                "KOMUNIKAT2": "Podane daty są nieprawidłowe"
+            },
+            "zdaniePierwotne": "Jeśli data_rejestracji jest większa od '2000-01-01' i data_kwalifikacji jest większa od '2000-01-01' i data_rejestracji nie jest mniejsza niż data_kwalifikacji wtedy wyświetl komunikat KOMUNIKAT1 w przeciwnym wypadku zgłoś błąd walidacji KOMUNIKAT2 .",
+            "tokeny": [
+                "Jeśli",
+                "data_rejestracji",
+                "jest",
+                "większa",
+                "od",
+                "'2000-01-01'",
+                "i",
+                "data_kwalifikacji",
+                "jest",
+                "większa",
+                "od",
+                "'2000-01-01'",
+                "i",
+                "data_rejestracji",
+                "nie",
+                "jest",
+                "mniejsza",
+                "niż",
+                "data_kwalifikacji",
+                "wtedy",
+                "wyświetl",
+                "komunikat",
+                "KOMUNIKAT1",
+                "w",
+                "przeciwnym",
+                "wypadku",
+                "zgłoś",
+                "błąd",
+                "walidacji",
+                "KOMUNIKAT2",
+                "."
+            ],
+            "rozpoznaneTokeny": [
+                {
+                    "kategoria": null,
+                    "lp": 1,
+                    "wartosc": "Jeśli ",
+                    "typ": "POCZATEK_REGULY",
+                    "prob": 0.19296507027760343
+                },
+                {
+                    "kategoria": null,
+                    "lp": 2,
+                    "wartosc": "data_rejestracji ",
+                    "typ": "LEWOSTRONNY_OPERAND_WARUNKU",
+                    "prob": 0.18376036692643896
+                },
+                {
+                    "kategoria": ">",
+                    "lp": 3,
+                    "wartosc": "jest większa od ",
+                    "typ": "OPETATOR_POROWNANIA",
+                    "prob": 0.1904961250487803
+                },
+                {
+                    "kategoria": null,
+                    "lp": 4,
+                    "wartosc": "'2000-01-01' ",
+                    "typ": "PRAWOSTRONNY_OPERAND_WARUNKU",
+                    "prob": 0.18692060992853735
+                },
+                {
+                    "kategoria": "&&",
+                    "lp": 5,
+                    "wartosc": "i ",
+                    "typ": "OPERATOR_LOGICZNY",
+                    "prob": 0.1461196171018922
+                },
+                {
+                    "kategoria": null,
+                    "lp": 6,
+                    "wartosc": "data_kwalifikacji ",
+                    "typ": "LEWOSTRONNY_OPERAND_WARUNKU",
+                    "prob": 0.17726261734089477
+                },
+                {
+                    "kategoria": ">",
+                    "lp": 7,
+                    "wartosc": "jest większa od ",
+                    "typ": "OPETATOR_POROWNANIA",
+                    "prob": 0.1899389378317821
+                },
+                {
+                    "kategoria": null,
+                    "lp": 8,
+                    "wartosc": "'2000-01-01' ",
+                    "typ": "PRAWOSTRONNY_OPERAND_WARUNKU",
+                    "prob": 0.18692060992853735
+                },
+                {
+                    "kategoria": "&&",
+                    "lp": 9,
+                    "wartosc": "i ",
+                    "typ": "OPERATOR_LOGICZNY",
+                    "prob": 0.18664895873970497
+                },
+                {
+                    "kategoria": null,
+                    "lp": 10,
+                    "wartosc": "data_rejestracji ",
+                    "typ": "LEWOSTRONNY_OPERAND_WARUNKU",
+                    "prob": 0.18213064875900947
+                },
+                {
+                    "kategoria": ">=",
+                    "lp": 11,
+                    "wartosc": "nie jest mniejsza niż ",
+                    "typ": "OPETATOR_POROWNANIA",
+                    "prob": 0.18059320913930962
+                },
+                {
+                    "kategoria": null,
+                    "lp": 12,
+                    "wartosc": "data_kwalifikacji ",
+                    "typ": "PRAWOSTRONNY_OPERAND_WARUNKU",
+                    "prob": 0.1915785934897202
+                },
+                {
+                    "kategoria": null,
+                    "lp": 13,
+                    "wartosc": "wtedy ",
+                    "typ": "KONIEC_REGULY",
+                    "prob": 0.1919307619407416
+                },
+                {
+                    "kategoria": "WYSWIETL_KOMUNIKAT",
+                    "lp": 14,
+                    "wartosc": "wyświetl komunikat ",
+                    "typ": "AKCJA",
+                    "prob": 0.18860136152551643
+                },
+                {
+                    "kategoria": null,
+                    "lp": 15,
+                    "wartosc": "KOMUNIKAT1 ",
+                    "typ": "PARAMETR_AKCJI",
+                    "prob": 0.1190751511748062
+                },
+                {
+                    "kategoria": null,
+                    "lp": 16,
+                    "wartosc": "w przeciwnym wypadku ",
+                    "typ": "W_PRZECIWNYM_RAZIE",
+                    "prob": 0.17868499682912808
+                },
+                {
+                    "kategoria": "ZGLOS_BLAD",
+                    "lp": 17,
+                    "wartosc": "zgłoś błąd walidacji ",
+                    "typ": "AKCJA",
+                    "prob": 0.19264326658679062
+                },
+                {
+                    "kategoria": null,
+                    "lp": 18,
+                    "wartosc": "KOMUNIKAT2 ",
+                    "typ": "PARAMETR_AKCJI",
+                    "prob": 0.14428749951121284
+                }
+            ]
+        },
+        "parametry": [
+            {
+                "id": 67,
+                "wersja": 2,
+                "nazwa": "data_rejestracji ",
+                "typ": "Data",
+                "wartoscDomyslna": null,
+                "czyUsuwalny": 0
+            },
+            {
+                "id": 68,
+                "wersja": 2,
+                "nazwa": "param0",
+                "typ": "Napis",
+                "wartoscDomyslna": "'2000-01-01' ",
+                "czyUsuwalny": 0
+            },
+            {
+                "id": 69,
+                "wersja": 2,
+                "nazwa": "data_kwalifikacji ",
+                "typ": "Data",
+                "wartoscDomyslna": null,
+                "czyUsuwalny": 0
+            }
+        ],
+        "wywolaniaRegul": []
+    },
+    {
+        "id": 32,
+        "wersja": 2,
+        "kod": "RS-034",
+        "tresc": "Jeśli dzień jest mniejszy od 1 oraz dzień jest większy od 31 wtedy zgłoś błąd \"Niepoprawne pole dzień\" w przeciwny wypadku wyświetl komunikat \"Data jest poprawna.\" .",
+        "sekwencja": {
+            "postacKanoniczna": "Jeśli dzień jest mniejszy od 1 oraz dzień jest większy od 31 wtedy zgłoś błąd KOMUNIKAT1 w przeciwny wypadku wyświetl komunikat KOMUNIKAT2 .",
+            "komunikaty": {
+                "KOMUNIKAT1": "Niepoprawne pole dzień",
+                "KOMUNIKAT2": "Data jest poprawna ."
+            },
+            "zdaniePierwotne": "Jeśli dzień jest mniejszy od 1 oraz dzień jest większy od 31 wtedy zgłoś błąd KOMUNIKAT1 w przeciwny wypadku wyświetl komunikat KOMUNIKAT2 .",
+            "tokeny": [
+                "Jeśli",
+                "dzień",
+                "jest",
+                "mniejszy",
+                "od",
+                "1",
+                "oraz",
+                "dzień",
+                "jest",
+                "większy",
+                "od",
+                "31",
+                "wtedy",
+                "zgłoś",
+                "błąd",
+                "KOMUNIKAT1",
+                "w",
+                "przeciwny",
+                "wypadku",
+                "wyświetl",
+                "komunikat",
+                "KOMUNIKAT2",
+                "."
+            ],
+            "rozpoznaneTokeny": [
+                {
+                    "kategoria": null,
+                    "lp": 1,
+                    "wartosc": "Jeśli ",
+                    "typ": "POCZATEK_REGULY",
+                    "prob": 0.19373415993280196
+                },
+                {
+                    "kategoria": null,
+                    "lp": 2,
+                    "wartosc": "dzień ",
+                    "typ": "LEWOSTRONNY_OPERAND_WARUNKU",
+                    "prob": 0.17904039788229717
+                },
+                {
+                    "kategoria": "<",
+                    "lp": 3,
+                    "wartosc": "jest mniejszy od ",
+                    "typ": "OPETATOR_POROWNANIA",
+                    "prob": 0.19032744150295897
+                },
+                {
+                    "kategoria": null,
+                    "lp": 4,
+                    "wartosc": "1 ",
+                    "typ": "PRAWOSTRONNY_OPERAND_WARUNKU",
+                    "prob": 0.19062112867985515
+                },
+                {
+                    "kategoria": "&&",
+                    "lp": 5,
+                    "wartosc": "oraz ",
+                    "typ": "OPERATOR_LOGICZNY",
+                    "prob": 0.1362768291061234
+                },
+                {
+                    "kategoria": null,
+                    "lp": 6,
+                    "wartosc": "dzień ",
+                    "typ": "LEWOSTRONNY_OPERAND_WARUNKU",
+                    "prob": 0.18550203199858656
+                },
+                {
+                    "kategoria": ">",
+                    "lp": 7,
+                    "wartosc": "jest większy od ",
+                    "typ": "OPETATOR_POROWNANIA",
+                    "prob": 0.18923501074760674
+                },
+                {
+                    "kategoria": null,
+                    "lp": 8,
+                    "wartosc": "31 ",
+                    "typ": "PRAWOSTRONNY_OPERAND_WARUNKU",
+                    "prob": 0.1939477910300693
+                },
+                {
+                    "kategoria": null,
+                    "lp": 9,
+                    "wartosc": "wtedy ",
+                    "typ": "KONIEC_REGULY",
+                    "prob": 0.19362856791487693
+                },
+                {
+                    "kategoria": "ZGLOS_BLAD",
+                    "lp": 10,
+                    "wartosc": "zgłoś błąd ",
+                    "typ": "AKCJA",
+                    "prob": 0.19329888292581268
+                },
+                {
+                    "kategoria": null,
+                    "lp": 11,
+                    "wartosc": "KOMUNIKAT1 ",
+                    "typ": "PARAMETR_AKCJI",
+                    "prob": 0.12986001962562732
+                },
+                {
+                    "kategoria": null,
+                    "lp": 12,
+                    "wartosc": "w przeciwny wypadku ",
+                    "typ": "W_PRZECIWNYM_RAZIE",
+                    "prob": 0.17783923659109288
+                },
+                {
+                    "kategoria": "WYSWIETL_KOMUNIKAT",
+                    "lp": 13,
+                    "wartosc": "wyświetl komunikat ",
+                    "typ": "AKCJA",
+                    "prob": 0.15291660881440172
+                },
+                {
+                    "kategoria": null,
+                    "lp": 14,
+                    "wartosc": "KOMUNIKAT2 ",
+                    "typ": "PARAMETR_AKCJI",
+                    "prob": 0.17290652945075932
+                }
+            ]
+        },
+        "parametry": [
+            {
+                "id": 70,
+                "wersja": 2,
+                "nazwa": "dzień ",
+                "typ": null,
+                "wartoscDomyslna": null,
+                "czyUsuwalny": 0
+            },
+            {
+                "id": 71,
+                "wersja": 2,
+                "nazwa": "param0",
+                "typ": "Liczba",
+                "wartoscDomyslna": "1 ",
+                "czyUsuwalny": 0
+            },
+            {
+                "id": 72,
+                "wersja": 2,
+                "nazwa": "param1",
+                "typ": "Liczba",
+                "wartoscDomyslna": "31 ",
+                "czyUsuwalny": 0
+            }
+        ],
+        "wywolaniaRegul": []
+    },
+    {
+        "id": 33,
+        "wersja": 2,
+        "kod": "RS-035",
+        "tresc": "Jeśli miesiac jest większy niż 1 oraz miesiac jest mniejszy niż 12 wtedy sprawdź regułę RS-034 w przeciwny wypadku zgłoś błąd \"Niepoprawne pole miesiąc\" .",
+        "sekwencja": {
+            "postacKanoniczna": "Jeśli miesiac jest większy niż 1 oraz miesiac jest mniejszy niż 12 wtedy sprawdź regułę RS-034 w przeciwny wypadku zgłoś błąd KOMUNIKAT1 .",
+            "komunikaty": {
+                "KOMUNIKAT1": "Niepoprawne pole miesiąc"
+            },
+            "zdaniePierwotne": "Jeśli miesiac jest większy niż 1 oraz miesiac jest mniejszy niż 12 wtedy sprawdź regułę RS-034 w przeciwny wypadku zgłoś błąd KOMUNIKAT1 .",
+            "tokeny": [
+                "Jeśli",
+                "miesiac",
+                "jest",
+                "większy",
+                "niż",
+                "1",
+                "oraz",
+                "miesiac",
+                "jest",
+                "mniejszy",
+                "niż",
+                "12",
+                "wtedy",
+                "sprawdź",
+                "regułę",
+                "RS-034",
+                "w",
+                "przeciwny",
+                "wypadku",
+                "zgłoś",
+                "błąd",
+                "KOMUNIKAT1",
+                "."
+            ],
+            "rozpoznaneTokeny": [
+                {
+                    "kategoria": null,
+                    "lp": 1,
+                    "wartosc": "Jeśli ",
+                    "typ": "POCZATEK_REGULY",
+                    "prob": 0.19373415993280196
+                },
+                {
+                    "kategoria": null,
+                    "lp": 2,
+                    "wartosc": "miesiac ",
+                    "typ": "LEWOSTRONNY_OPERAND_WARUNKU",
+                    "prob": 0.186809525865329
+                },
+                {
+                    "kategoria": ">",
+                    "lp": 3,
+                    "wartosc": "jest większy niż ",
+                    "typ": "OPETATOR_POROWNANIA",
+                    "prob": 0.1898019647069178
+                },
+                {
+                    "kategoria": null,
+                    "lp": 4,
+                    "wartosc": "1 ",
+                    "typ": "PRAWOSTRONNY_OPERAND_WARUNKU",
+                    "prob": 0.19313178818794524
+                },
+                {
+                    "kategoria": "&&",
+                    "lp": 5,
+                    "wartosc": "oraz ",
+                    "typ": "OPERATOR_LOGICZNY",
+                    "prob": 0.15851556247438514
+                },
+                {
+                    "kategoria": null,
+                    "lp": 6,
+                    "wartosc": "miesiac ",
+                    "typ": "LEWOSTRONNY_OPERAND_WARUNKU",
+                    "prob": 0.18072647227240587
+                },
+                {
+                    "kategoria": "<",
+                    "lp": 7,
+                    "wartosc": "jest mniejszy niż ",
+                    "typ": "OPETATOR_POROWNANIA",
+                    "prob": 0.18979373949674683
+                },
+                {
+                    "kategoria": null,
+                    "lp": 8,
+                    "wartosc": "12 ",
+                    "typ": "PRAWOSTRONNY_OPERAND_WARUNKU",
+                    "prob": 0.19323834744787283
+                },
+                {
+                    "kategoria": null,
+                    "lp": 9,
+                    "wartosc": "wtedy ",
+                    "typ": "KONIEC_REGULY",
+                    "prob": 0.1877999191778243
+                },
+                {
+                    "kategoria": "SPRAWDZ_REGULE",
+                    "lp": 10,
+                    "wartosc": "sprawdź regułę ",
+                    "typ": "AKCJA",
+                    "prob": 0.19131317269290524
+                },
+                {
+                    "kategoria": null,
+                    "lp": 11,
+                    "wartosc": "RS-034 ",
+                    "typ": "PARAMETR_AKCJI",
+                    "prob": 0.10404869507045336
+                },
+                {
+                    "kategoria": null,
+                    "lp": 12,
+                    "wartosc": "w przeciwny wypadku ",
+                    "typ": "W_PRZECIWNYM_RAZIE",
+                    "prob": 0.17480756104587689
+                },
+                {
+                    "kategoria": "ZGLOS_BLAD",
+                    "lp": 13,
+                    "wartosc": "zgłoś błąd ",
+                    "typ": "AKCJA",
+                    "prob": 0.19166138404879493
+                },
+                {
+                    "kategoria": null,
+                    "lp": 14,
+                    "wartosc": "KOMUNIKAT1 ",
+                    "typ": "PARAMETR_AKCJI",
+                    "prob": 0.17934579374217954
+                }
+            ]
+        },
+        "parametry": [
+            {
+                "id": 73,
+                "wersja": 2,
+                "nazwa": "miesiac ",
+                "typ": null,
+                "wartoscDomyslna": null,
+                "czyUsuwalny": 0
+            },
+            {
+                "id": 74,
+                "wersja": 2,
+                "nazwa": "param0",
+                "typ": "Liczba",
+                "wartoscDomyslna": "1 ",
+                "czyUsuwalny": 0
+            },
+            {
+                "id": 75,
+                "wersja": 2,
+                "nazwa": "param1",
+                "typ": "Liczba",
+                "wartoscDomyslna": "12 ",
+                "czyUsuwalny": 0
+            }
+        ],
+        "wywolaniaRegul": [
+            {
+                "id": 2,
+                "wersja": 2,
+                "kodRegulyWolajacej": "RS-035",
+                "kodRegulyWolanej": "RS-034",
+                "parametry": [
+                    {
+                        "id": 3,
+                        "wersja": 2,
+                        "nazwaParametruRegulyWolajacej": "",
+                        "nazwaParametruRegulyWolanej": "dzień "
+                    },
+                    {
+                        "id": 4,
+                        "wersja": 2,
+                        "nazwaParametruRegulyWolajacej": "",
+                        "nazwaParametruRegulyWolanej": "param0"
+                    },
+                    {
+                        "id": 5,
+                        "wersja": 2,
+                        "nazwaParametruRegulyWolajacej": "",
+                        "nazwaParametruRegulyWolanej": "param1"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 34,
+        "wersja": 2,
+        "kod": "RS-036",
+        "tresc": "Jeśli rok nie jest mniejszy niż 2000 wtedy sprawdź regułę RS-035 w przeciwnym wypadku zgłoś błąd \"Rok nie może być mniejszy niż 2000!\" .",
+        "sekwencja": {
+            "postacKanoniczna": "Jeśli rok nie jest mniejszy niż 2000 wtedy sprawdź regułę RS-035 w przeciwnym wypadku zgłoś błąd KOMUNIKAT1 .",
+            "komunikaty": {
+                "KOMUNIKAT1": "Rok nie może być mniejszy niż 2000!"
+            },
+            "zdaniePierwotne": "Jeśli rok nie jest mniejszy niż 2000 wtedy sprawdź regułę RS-035 w przeciwnym wypadku zgłoś błąd KOMUNIKAT1 .",
+            "tokeny": [
+                "Jeśli",
+                "rok",
+                "nie",
+                "jest",
+                "mniejszy",
+                "niż",
+                "2000",
+                "wtedy",
+                "sprawdź",
+                "regułę",
+                "RS-035",
+                "w",
+                "przeciwnym",
+                "wypadku",
+                "zgłoś",
+                "błąd",
+                "KOMUNIKAT1",
+                "."
+            ],
+            "rozpoznaneTokeny": [
+                {
+                    "kategoria": null,
+                    "lp": 1,
+                    "wartosc": "Jeśli ",
+                    "typ": "POCZATEK_REGULY",
+                    "prob": 0.19329940876322138
+                },
+                {
+                    "kategoria": null,
+                    "lp": 2,
+                    "wartosc": "rok ",
+                    "typ": "LEWOSTRONNY_OPERAND_WARUNKU",
+                    "prob": 0.1810376118580793
+                },
+                {
+                    "kategoria": ">=",
+                    "lp": 3,
+                    "wartosc": "nie jest mniejszy niż ",
+                    "typ": "OPETATOR_POROWNANIA",
+                    "prob": 0.18705211687896633
+                },
+                {
+                    "kategoria": null,
+                    "lp": 4,
+                    "wartosc": "2000 ",
+                    "typ": "PRAWOSTRONNY_OPERAND_WARUNKU",
+                    "prob": 0.19323834744787283
+                },
+                {
+                    "kategoria": null,
+                    "lp": 5,
+                    "wartosc": "wtedy ",
+                    "typ": "KONIEC_REGULY",
+                    "prob": 0.1877999191778243
+                },
+                {
+                    "kategoria": "SPRAWDZ_REGULE",
+                    "lp": 6,
+                    "wartosc": "sprawdź regułę ",
+                    "typ": "AKCJA",
+                    "prob": 0.19131317269290524
+                },
+                {
+                    "kategoria": null,
+                    "lp": 7,
+                    "wartosc": "RS-035 ",
+                    "typ": "PARAMETR_AKCJI",
+                    "prob": 0.1190751511748062
+                },
+                {
+                    "kategoria": null,
+                    "lp": 8,
+                    "wartosc": "w przeciwnym wypadku ",
+                    "typ": "W_PRZECIWNYM_RAZIE",
+                    "prob": 0.17868499682912808
+                },
+                {
+                    "kategoria": "ZGLOS_BLAD",
+                    "lp": 9,
+                    "wartosc": "zgłoś błąd ",
+                    "typ": "AKCJA",
+                    "prob": 0.19369399324230147
+                },
+                {
+                    "kategoria": null,
+                    "lp": 10,
+                    "wartosc": "KOMUNIKAT1 ",
+                    "typ": "PARAMETR_AKCJI",
+                    "prob": 0.17934579374217954
+                }
+            ]
+        },
+        "parametry": [
+            {
+                "id": 76,
+                "wersja": 2,
+                "nazwa": "rok ",
+                "typ": null,
+                "wartoscDomyslna": null,
+                "czyUsuwalny": 0
+            },
+            {
+                "id": 77,
+                "wersja": 2,
+                "nazwa": "param0",
+                "typ": "Liczba",
+                "wartoscDomyslna": "2000 ",
+                "czyUsuwalny": 0
+            }
+        ],
+        "wywolaniaRegul": [
+            {
+                "id": 3,
+                "wersja": 2,
+                "kodRegulyWolajacej": "RS-036",
+                "kodRegulyWolanej": "RS-035",
+                "parametry": [
+                    {
+                        "id": 6,
+                        "wersja": 2,
+                        "nazwaParametruRegulyWolajacej": "",
+                        "nazwaParametruRegulyWolanej": "miesiac "
+                    },
+                    {
+                        "id": 7,
+                        "wersja": 2,
+                        "nazwaParametruRegulyWolajacej": "",
+                        "nazwaParametruRegulyWolanej": "param0"
+                    },
+                    {
+                        "id": 8,
+                        "wersja": 2,
+                        "nazwaParametruRegulyWolajacej": "",
+                        "nazwaParametruRegulyWolanej": "param1"
+                    }
+                ]
+            }
+        ]
+    }
+]
